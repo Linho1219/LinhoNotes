@@ -1,2 +1,3 @@
-# linho-notes
-lhp的本科课程笔记
+# LinhoNotes
+lhp的本科课程笔记。
+
