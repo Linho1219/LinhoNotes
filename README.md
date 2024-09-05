@@ -1,7 +1,7 @@
 # LinhoNotes
 一些本科课程笔记。仓库由 lhp 牵头。
 
-目前 zdy 和 gby 已加入。
+目前 zdy， gby 和 fxl 已加入。
 
 ## To-do
 
