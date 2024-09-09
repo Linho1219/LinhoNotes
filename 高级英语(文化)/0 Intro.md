@@ -12,7 +12,7 @@ I overslept and missed the very first class, then sent an email to the teacher p
 
 > 你加入了QQ班群对吧，今天课上介绍了本课程的考核方式和教学安排（参加QQ群相册图片），主要讲了culture的定义，特点和几个metaphor（可自行阅读群文件里的电子学习材料的chapter1的culture这一小节的内容），课后作业的必读任务为阅读电子材料里的2. Communication到3.2这个部分；拓展阅读内容为新教材的19-43页。
 
-Words beyond my vocabulary is marked ***bold & italic*** in the text.
+Words beyond my vocabulary are marked ***bold & italic*** in the text.
 
 ## Assessment
 
