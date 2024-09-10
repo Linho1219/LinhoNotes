@@ -1,8 +1,8 @@
-Chapter 1: Culture, Communication, Intercultural Communication
+# Chapter 1: Culture, Communication, Intercultural Communication
 
 *In international business, as in most other areas of life, the best idea in the world can fail if it's not communicated effectively.*
 
-# 1 Culture
+## 1 Culture
 
 Culture is ***ubiquitous***, multidimensional, and ***all-pervasive***, as we have it almost anywhere and anytime. It is understood differently by people throughout the world. Americans believe that culture is a fast-moving train, which is closely connected with what is going on for the time being. The better you adjust yourself to the present world, the more you understand culture. However, Chinese people believe that culture is closely related to the past. The more you know about Confucianism or the past, the more cultured you are considered to be.
 
@@ -10,7 +10,7 @@ To the outside observers, Americans may seem like a nation of ***amnesiacs***; t
 
 “It is estimated that there are more than 164 definitions of culture.” (Chen, 2005) Culture can be understood in the broad sense and the narrow sense. It can be defined as attributes of man in its broad sense, including what distinguishes man from the rest part of the world. When culture is contrasted with nature, it can be defined as “life way of a population” in its narrow sense, meaning what characterizes the particular way of life of a population. For instance, corporate culture is a culture in the broad sense, as it refers to the moral, social and behavioral norms of one organization based on the beliefs, attitudes and priorities of its members. However, the slogan “quality is life” of an organization is a culture in the narrow sense, as it refers to one specific characteristic of the organization.
 
-## 1.1 Definitions of Culture
+### 1.1 Definitions of Culture
 
 There is no agreed-upon definition of culture. Anthropologists actually have managed to give multiple answers to the question, “What is culture?” In the following, several definitions of culture from dictionaries or by scholars both in China and abroad are given for a general understanding of culture and how it is interpreted in different cultures.
 
@@ -32,11 +32,11 @@ From the definitions given above we can see that culture can be actually classif
 
 Culture involves at least three components: what people think, what they do, and the material products they produce. Culture also has several properties: It is shared, learned, symbolic, adaptive, and integrated. The definition of culture by Samovar and Porter covers the three components and all the properties. Their definition helps us understand culture for the sake of intercultural communication, as we will study in this book more about “the way of life of people,” “a way of thinking, feeling, and believing,” “the learned behavior,” “a mechanism for the normative regulation of behavior” and “a set of techniques for adjusting both to the external environment and to other men.”
 
-## 1.2 Metaphors for Culture
+### 1.2 Metaphors for Culture
 
 Trying to define “culture” has certainly produced a torrent of results as shown in the above. It seems that we could fill up an entire volume with definitions alone. However, we can approach the complex, ill-defined nature of this abstract concept by working with metaphors, which can help us explore the dimensions of it from different approaches.
 
-### 1.2.1 The Culture Iceberg
+#### 1.2.1 The Culture Iceberg
 
 Just as an iceberg which has a visible section above the waterline and a larger invisible section below the waterline, culture has some aspects that are observable and others that can only be suspected and imagined. Also like an iceberg, the part of culture that is visible (observable behavior) is only a small part of a much bigger whole. It is said nine-tenths of culture is below the surface.
 
@@ -48,7 +48,7 @@ Just as an iceberg which has a visible section above the waterline and a larger 
 
 Actually a great deal can be found below the waterline, such as concepts of beauty, justice, etc., relationships to animals, patterns of ***superior-subordinate*** relations, ***incentives*** to work, notions of leadership, ***tempos*** of work, ways of decision-making, attitudes toward dependents, approaches to problem-solving, designation based on age, sex, class, occupation, ***kinship***, etc., nature of friendship, ordering of time, concept of self, preference for competition or cooperation, body language and notions about logic and ***validity*** and so on.
 
-### 1.2.2 The Culture Onion
+#### 1.2.2 The Culture Onion
 
 Culture can be imagined as an onion, consisting of multiple layers.
 
@@ -62,7 +62,7 @@ When a foreigner is in Japan, he will discover that Japanese ladies are sometime
 
 Actually, the three layers are closely connected and influence one another. The inner nucleus layer influences the middle layer, and then the middle layer works on the outer layer. What we can see every day is usually what is shown in the outer layer. But to understand and control the middle layer and inner nucleus layer is the goal of studying culture.
 
-### 1.3 Characteristics of Culture
+#### 1.3 Characteristics of Culture
 
 In order to better understand culture, it is useful to examine its characteristics. The following six major characteristics are generally accepted and shared around the world.
 
@@ -90,11 +90,11 @@ Innovation or cultural innovation refers to the introduction of new thoughts, no
 
 Culture is ***ethnocentric***. Ethnocentrism is the belief that your own cultural background, including ways of analyzing problems, values, beliefs, language, etc., is superior. Ethnocentrism is the tendency to look at the world primarily from the perspective of one’s own culture. Ethnocentrists believe their culture is the central culture and other cultures are incorrect, ineffective, or ***quaint***. They may take it for granted that their own cultural behaviors are the standard ones and different behaviors are alien.
 
-# Communication
+## Communication
 
 Communication, the basis of all human contact, occurs wherever there are human beings. When a baby is born, it cries. The crying is communication. When you achieve your goal, your friends come and say, “Congratulations!” The word “congratulations” is communication. When you run into a friend on your way to school in the morning, you greet him, “Good morning!” The expression “good morning” is communication.
 
-## 2.1 Definitions of Communication
+### 2.1 Definitions of Communication
 
 It is as difficult to define communication as it is to define culture. The American scholars, Dance and Larson (1972), in their book *Speech Communication: Concepts and Behavior*, found 126 definitions of communication after they reviewed the literature on communication. There are two reasons why it is not easy to locate a single definition of communication: One is the complex nature of communication, the other is the controversy over ***intentionality*** versus unintentionality. (Samovar & Porter, 2003) Some people believe that communication is the process by which people ***deliberately*** attempt to convey meanings to others. However, others hold that communication is unintentional, as they think communication is much like culture and occurs without awareness.
 
@@ -124,7 +124,7 @@ Communication is transactional, because each person encodes and sends messages, 
 
 Communication is contextual, because all communication takes place within a specific context. The context includes the place where people meet, the social purpose for being together, and the nature of the relationship. In other words, context includes both physical and social settings within which messages are exchanged.
 
-## 2.2 Business Communication
+### 2.2 Business Communication
 
 There are quite a number of books on business communication, but none of them can provide a single definition of business communication. Business communication does have its specific application, which differs to a certain degree from other forms of communication. However, they share something in common. In the previous pages, we have explored much about communication and its definitions, which can help us better understand the definition of business communication.
 
@@ -132,7 +132,7 @@ There are quite a number of books on business communication, but none of them ca
 
 Actually, we have to learn a lot in order to be effective in business communication. We have to be skilled at dealing with what is always involved in business communication. Can we resolve conflicts effectively? Can we choose the best words and voice for our audience? Can we craft persuasive business letters? Can we overcome our fears of public speaking? Can we present ourselves professionally in an interview? In a word, can we incorporate active listening, assertive speaking, and nonverbal communication techniques into our daily communication?
 
-## 2.3 Patterns of Communication
+### 2.3 Patterns of Communication
 
 As to patterns of communication, there are more than 10 kinds from different points of views, but here we will focus on only three in terms of directions in business context: upward communication, downward communication, and lateral communication.
 
@@ -144,7 +144,7 @@ As to patterns of communication, there are more than 10 kinds from different poi
 
 The importance of free-flowing ***forthright*** communications, both downward from management to employees and upward from employees to management, can hardly be overemphasized. Whether it is to support morale and productivity among the workforce or to assure that management takes advantage of employee input, good communications are essential. Where downward communication is poor, rumors and misinformation will spread around. Where upward communication is poor, employee ***grievances*** will drive down morale and productivity and increase vulnerability to union organizing.
 
-## 2.4 Communication and Culture
+### 2.4 Communication and Culture
 
 Communication systems such as language and nonverbal communication are products of culture. So interconnected are communication and culture that some scholars have been led to use them interchangeably: “Culture is communication” and “communication is culture” (Varner & Beamer, 2006).
 
@@ -152,11 +152,11 @@ As the basic building blocks of communication, words communicate meaning, but ve
 
 Communication is very closely connected with culture. In reality, almost every aspect of human life is affected by the seemingly ***omnipresent*** culture. The clothes we wear, the way we decorate our homes, the car we drive, the way we address people, the jobs we choose, all these things communicate different things to different people, and they may communicate more than we intend to. It depends on how the receiver of the message sees, thinks and feels what the sender says, thinks, and feels.
 
-# 3 Intercultural Communication
+## 3 Intercultural Communication
 
 Today, success in local, national, or international business means making sure the diversity of voices, cultures, and know-how in the workplace are recognized and understood. In the past, the wandering nomads, religious missionaries, and conquering warriors encountered people of different cultures. These contacts were intercultural communication. Nowadays, people from different countries meet in Beijing, New York, London, Tokyo, or Paris for exchanges every day. When they meet and talk, intercultural communication occurs. Foreigners come to China for business, educational exchange or entertainment. Meanwhile, Chinese people go to foreign countries for the same purposes. Without doubt, these exchanges are intercultural communication.
 
-## 3.1 Definitions of Intercultural Communication
+### 3.1 Definitions of Intercultural Communication
 
 There are several frequently used terms for the study of intercultural communication. Such terms as intercultural, international, cross-cultural and multicultural are often used interchangeably. On one level, the study of intercultural communication is represented by culture studies, where we examine the political, economic and lifestyle systems of other countries. On another level, it is part of applied linguistics, where we seek to understand the relationship between language and culture. The following definitions are presented or interpreted by some experts in their books.
 
@@ -172,7 +172,7 @@ In reality, the term “intercultural communication” was first used by Edward 
 
 In order to better understand the relationship between culture and communication, we’d better study both of them together. Culture cannot be known without a study of communication, and communication can only be understood with an understanding of the culture it supports.
 
-## 3.2 Barriers in Intercultural Communication
+### 3.2 Barriers in Intercultural Communication
 
 Misunderstanding comes from superficial differences as well as differences in structures of cultures. There are times we meet people with backgrounds different from our own, e.g. we negotiate a major contract with a foreign businessman, we discuss a large project with a foreign company, we are supervised by someone of a different nation, we counsel a young student from another country, we work alongside someone who does not speak our language. Then differences in language, food, dress, attitudes toward time, work habits, social behavior, and the like can cause many of our communications to be frustrating or even unsuccessful. These are only superficial differences. The deep structure of a culture, however, is often what determines how a person responds to events and other people. What members of a particular culture value and how they perceive the universe are usually far more important than whether they eat with chopsticks, their hands, or metal utensils. (Samovar & Porter, 2000)
 
@@ -188,7 +188,7 @@ The need to understand significant differences in social relations, concepts of 
 
 **High level of stress.** We usually have a high level of stress that typically accompanies intercultural communication. Like every other unfamiliar experience, intercultural contact is likely to create stress. When we are in a social group to which we do not belong, we are likely to feel uncomfortable. We are not sure about our words and behavior, and hesitate to give responses. To relieve these kinds of stress, we’d better work hard to remove intercultural barriers, and be tolerant of others and ourselves, as neither of us is familiar to the new cultural context.
 
-## 3.3 Communication in the Global Village
+### 3.3 Communication in the Global Village
 
 Not only the variety of written and spoken languages, but cultural boundaries and ethnic differences, can create problems when it comes to doing international business. However, to our surprise and pleasure, the world that we understand is rapidly becoming a much smaller place. Technology is rapidly bringing us to places we have never been before. Thanks to widespread globalization, and the explosive growth and use of the Internet, people are uniting and communicating in ways they never dreamed of two decades ago.
 
@@ -198,9 +198,9 @@ It is said that technology has broken down cultural boundaries. Technological ad
 
 As a member of the global village, we need to take action for the survival of it. We need to identify the norms that govern face-to-face relations and “the rule books of meaning” that distinguish one culture from another. We need to understand how other cultures perceive the world and know the assumptions and values that are the foundation of these perceptions. We need to have a better understanding of the worldview and the communication style of other cultures. By doing so, we can maintain constructive relationships with societies that operate according to a different logic than our own. Communication is successful when the communicators reach some kind of understanding, which is a measure of communicative success. (Bamlund, 2007)
 
-# Summary
+## Summary
 
-## Culture and Communication
+### Culture and Communication
 
 1. Culture is the total accumulation of beliefs, customs, values, behaviors, institutions and communication patterns that are shared, learned and passed down through the generations in an identifiable group of people.
 2. Only the outward symbols of a culture, 10 percent, are easily visible. The most important aspects of culture, 90 percent, its norms and values, are far more difficult to grasp. These more profound cultural differences can cause problems when communicating with someone from another culture.
@@ -209,23 +209,23 @@ As a member of the global village, we need to take action for the survival of it
 5. There are three business communication patterns in terms of direction: upward communication, downward communication, and lateral communication.
 6. Culture and communication are inseparably linked. Culture gives meaning and provides the context for communication. Besides, meaning is in the person, not in the word.
 
-## lntercultural Communication
+### lntercultural Communication
 
 1. Intercultural communication is the communication between persons of different cultures, or different cultural backgrounds.
 2. There are five barriers in intercultural communication: language differences, nonverbal communication, stereotypes, cultural bias on judgments, and high level of stress.
 3. Technology has broken down cultural boundaries, and the world is becoming a global village, in which neighbors speak different languages, have different values and different lifestyles. Understanding is a measure of communicative success in the global village.
 
-# Case Study
+## Case Study
 
 *Read the following case and analyze why Sam didn't perform his work successfully together with his Saudi Arabian laborers.*
 
-## To Be Direct or Not
+### To Be Direct or Not
 
 Sam Lucas, a construction supervisor for an international engineering firm, had the reputation of being tough but fair-minded. He was a very forceful, obstinate individual who always spoke his mind. He never hesitated to criticize any worker whom he felt was performing poorly. Even though during his six years with the company Sam had never worked outside of the United States, he was chosen to supervise construction on a new hotel project in Jidda, Saudi Arabia, primarily because of his outstanding work record. On this project, Sam supervised the work of about a dozen Americans and nearly 100 Saudi Arabian laborers. It was not long before Sam realized that the Saudi Arabian laborers, to his way of thinking, were nowhere as reliable as the workers he had supervised in the United States. He was becoming increasingly annoyed at the seeming lack of competence of the local workforce. Following the leadership style that helped him in such good stead at home, he would rebuke any worker who was not doing his job properly, and he would make certain that he did it publicly so that it would serve as a lesson to all the other workers. He was convinced that he was doing the right thing and was being fair, for after all, he rebuked both Americans and Saudi Arabians alike. He was troubled, however, by the fact that the problems seemed to be growing worse and more numerous.
 
-# Further Reading
+## Further Reading
 
-## Cultural Differences
+### Cultural Differences
 
 It is a well-known fact that people across nations ~nd cultures behave and believe differently. First, nations and cultures differ in terms of how they define specific phenomena, including behavior, language and institutions. We call these kinds of differences nominal differences. One extreme example of nominal difference is language. Cultures with completely different linguistic origins define their phenomena differently. Managing change in other cultures, thus, involves understanding how objects or events are defined in other cultures. Such differences may not be reflected simply in phonetics and grammar. More importantly, a single construct may have entirely different connotations across cultures. For example, organizational commitment in the U.S. has been defined as one's willingness to stay with an organization (i.e. continuance), identification with organizational goals and values, and willingness to exert effort on behalf of the organization.
 

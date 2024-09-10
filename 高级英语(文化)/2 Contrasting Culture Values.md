@@ -1,10 +1,10 @@
-Chapter 2: Contrasting Cultural Values
+# Chapter 2: Contrasting Cultural Values
 
 *To be successful in international business and to be good citizens of the international community, we should learn to honor and respect our own cultures and also to develop an appreciation, tolerance, and respect for other cultures.*
 
 
 
-# 1 Cultrual Values
+## 1 Cultrual Values
 
 Values fundamentally influence our behaviors in society. They do not describe how we act in a culture but dictate what we ought or ought not to do. Values tend to be the basis of all the decisions we make and provide standards for us to evaluate our own and other's actions. Thus a value can be defined as a conception, explicit or implicit, distinctive of an individual or characteristic of a group, of the desirable which influences the selection from available modes, means, and ends of action.
 
@@ -18,7 +18,7 @@ We have to remember that, most of the time, the different customs of different c
 
 Although each of us has a unique set of values, there are also values that tend to permeate a culture. These are called cultural values.
 
-## 1.1 Comparison Between Chinese Values and Western Values
+### 1.1 Comparison Between Chinese Values and Western Values
 Many scholars have written about cultural differences between the West and the East. A.lllong these differences, three are highlighted here: cognition, relationship with nature, and the concept of truth. Western people are said to incline to think in a linear fashion. A cause leads to an effect. In Eastern culture, a cause can lead to an effect and it can be an effect as well. Past, present and future are interconnected and affect one another. Western culture tends to be oriented toward mastery over nature while Eastern culture seeks harmony with nature. Regarding the concept of truth, the view of Western culture on ultimate truth or reality is based more on scientific and empirical explanation while that of Eastern culture is based more on existing truth. Cultural differences between the East and the West have a significant impact on the communication behavior and pattern. As a result of the differences in cognition, relationship with nature and the concept of truth, people from the West and the East are further different in the following aspects.
 
 **Differences in expressing gratitude.** The Chinese and Westerners are different in expressing their gratitude. The Chinese who are close to each other seldom express their gratitude in public or in words. Look at the following situation. A mother is busy in the kitchen. She suddenly asks her son to fetch a bowl for her. Then the son does so. The mother just continues cooking without any word of gratitude. Later at table, the mother hands her son a bowl of rice. The son just takes it and begins eating without any word of gratitude either. If such a situation happens in the United States, both the mother and her son will say “thanks” or “thank you” for fetching the bowl and serving the rice.
@@ -29,7 +29,7 @@ Differences in attitudes toward women. The Chinese and Westerners are different 
 
 > With changes in women's roles, there have been changes in customs. Women used to expect that men would open doors for them, but now they open their own. When a man invited a woman out for dinner in the past, he was expected to pay for everything. Today, a woman might share the bill when she goes out with a man. She can be the one who calls a man up and asks him out. She may even pay for the entire date.
 
-## 1.2 Comparison Between Chinese Values and American Values
+### 1.2 Comparison Between Chinese Values and American Values
 It is true that Chinese people and American people enjoy different cultures, which influence their life, customs and behaviors, beliefs and values, aesthetic and interest. The following is going to provide us with a better understanding of the differences between Chinese and American cultures.
 
 **Differences in friendship.** Friendship means a lot to the Chinese. There is a Chinese saying: “One more friend, one more road.” Whenever they have made friends with someone, they will try all their efforts to make the friendship as close as possible, and keep him as a lifelong friend. Lifelong friends feel deeply obligated to give each other whatever help might be required. Americans, however, change their friends and acquaintances over time and have limited mutual obligation. They will try to help their friends in difficulty with some advice but avoid making a decision for them.
@@ -46,19 +46,19 @@ It is true that Chinese people and American people enjoy different cultures, whi
 
 **Differences in social relationships.** The Chinese have formal and hierarchical social relationships. They feel uncomfortable while they are chatting with someone who holds a higher position. Americans have informal and egalitarian social relationships. People tend to minimize the importance of social rankings.
 
-# 2 Cultural Dimensions
+## 2 Cultural Dimensions
 
 For those who work in international business, it is sometimes amazing how different people in other cultures behave. We tend to have a human instinct that all people are the same-but they are not. Therefore, if we go to another country and make decisions based on how we operate in our own country, the chances are we will make some poor decisions. Geert Hofstede's research gives us insights into other cultures so that we can be more effective when interacting with people in other countries.
 
 Geert Hofstede is an international authority on intercultural social psychology. He analyzed a large database of employee values scores collected by IBM between 1967 and 1973 covering more than 70 countries, from which he first used the 40 largest only, and afterward extended the analysis to 50 countries and 3 regions. In the editions of his work since 2001, scores are listed for 74 countries and regions, partly based on replications and extensions of the IBM study on different international populations. Subsequent studies validating the earlier results have included commercial airline pilots and students in 23 countries, civil service managers in 14 counties, “up-market” consumers in 15 countries and “elites” in 19 countries. From the initial results, and later additions, Hofstede developed a model that identifies four primary dimensions for differentiating cultures: power distance, individualism/collectivism, masculinity/femininity and uncertainty avoidance. The value survey model has been widely discussed in international management literature and it appears to provide information of relevance from a managerial point of view.
 
-## 2.1 Power Distance
+### 2.1 Power Distance
 
 Power distance means the extent to which the less powerful members of institutions and organizations within a country, expect and accept that power is distributed unequally. It just shows how much subordinates can consent or dissent with their superiors. It is the distance between the superior and the subordinate. Among most oriental corporate cultures, there is hierarchism, greater centralization, sometimes called “poser-oriented culture,” due to historical reasons. The superiors make the decision and are entitled more privileges. Their decisions and supervision are always positively evaluated by subordinates. In this situation, it does not matter if subordinates have a disagreement with their managers, especially in China, Japan and India.
 
 In China and some other Asian countries, power distance is also associated with “the family culture” (Trompenaars, 1993). “Family culture at their least effective drains the energies and loyalties of subordinates to buoy up the leader.” (Trompenaars, 1993) In this kind of corporate culture the manager is like the “caring father” who knows better than his subordinates what should be done and what is suitable for them. The subordinates always esteem the managers because of their position and experience. There are both positive and negative aspects in the family cultures. It is just an easy managing system. But sometimes it is hard to get young creative employees work well because of the hierarchy.
 
-### 2.1.1 Small Power Distance Cultrue
+#### 2.1.1 Small Power Distance Cultrue
 
 Small power distance culture values horizontal relationships where everyone is on a level playing field. Status symbols and privilege invite ridicule, and those who would set themselves above others are cut down to size. While a boss has power and authority, he must be careful to respect workers and share the benefits of that power whenever possible. Everyone is expected to have a voice in decision-making and each person or group has rights and feels free to complain when those rights are violated. There is a strong sense of what is fair, and when workers sense they are being treated unfairly, they feel free to complain and negotiate to improve their situation.
 
@@ -72,7 +72,7 @@ Small power distance countries hold that inequality in society should be minimiz
 - In many egalitarian societies, informality (for example, deemphasizing status differences) is reflected in the structure of everyday language. The distinction between the formal and informal you, found in such languages as German and French, requires speakers to make linguistic choices that reflect the social status of the people being addressed. In contrast, English language makes no such distinctions.
 - Authority figures, such as supervisors or college professors, are allowed to admit that they don't have all the answers. Also, they will not lose respect because of mistakes.
 
-### 2.1.2 Large Power Distance Culture
+#### 2.1.2 Large Power Distance Culture
 
 Large power distance culture emphasizes the unequal distribution of power in institutions and organizations in a hierarchy of privilege. A few people have a lot of power; the vast majority has little. Power is experienced as a personal attribute, something to be felt rather than enforced. Members of large power distance culture will usually be quiet, soft-spoken, and polite, whether they are powerful individuals or not. And ·if they feel that you are being unfriendly or uncaring, they will be silent. People of large power distance culture will show their trust in you by asking for help and direction and will show their respect by remaining formal and lowering their eyes.
 
@@ -86,13 +86,13 @@ In large power distance societies, communication is traditionally superiorcenter
 - Children defer to their parents, the younger defer to the older, women defer to men, employees defer to employers, students defer to teachers, sellers defer to buyers, and everyone defers to the head of state.
 - Highly respected authorities are reluctant to admit they don't know certain things or they've made a mistake.
 
-## 2.2 Individualism Versus Collectivism
+### 2.2 Individualism Versus Collectivism
 
 Hofstede defines the second dimension as “individualism pertains to societies in which the ties between individuals are loose: Everyone is expected to look after himself or herself and his or her immediate family. Collectivism as its opposite pertains to societies in which people from birth onwards are integrated into strong, cohesive groups, which throughout people's lifetime continue to protect them in exchange for unquestioning loyalty.” (Hofstede, 1994)
 
 Individualists prefer self-sufficiency while collectivists give more recognition to their interdependent roles and obligations to the group. Studies of social categorization and intergroup relations show that people use salient characteristics as the basis to “group” others. The group that the categorizer feels similar to and identifies with is called the “ingroup” and other groups are called “outgroups.” People from all types of culture categorize others in this way, but the importance of the distinction is much greater for people from collectivist cultures. Whereas individualistic societies are loosely knit, collectivist societies are composed of tight networks in which people operate as members of ingroups and outgroups, expect to look after other members of their ingroup in need and expect their group to look after them.
 
-## Individualistic Culture
+### Individualistic Culture
 
 Individualistic culture believes that people are supposed to take care of themselves and remain emotionally independent of groups, organizations, or other collectives. Self-emphasis is important, even in budding friendships. Individuals can do whatever they want, and their “freedom” and their “rights” are of necessary values. They build contracts to protect their rights from others and to protect their dignity. Their high level of self-respect does not keep them from enjoying a good time and an occasional adventure, even if they might feel guilty later. When they are with friends, they are very open, but they can be very critical toward enemies. Individuals like to debate but will withdraw and become defensive with somebody they don't trust. When they are interested, they can be loud with lots of questions but they are likely to look away when they get bored. They judge others by how much they need them. Individuals are major units of social perception.
 
@@ -125,7 +125,7 @@ In the United States, emphasis on individuality can be seen in Americans' love f
 
 > “Everybody takes care of his own business and the cows will be well guarded” is a Swiss saying. People do no like to get involved in others' affairs; problems and things are usually kept within the family. A common saying is “One washes his dirty laundry in the family.” People will assume that if you are in trouble, it must be because you have done something wrong and until you prove the contrary, they will not interfere. Not that their hearts are made o~ stone, but remember that this is a people who had nothing but mountains and poverty 100 years ago, so they just do not blindly expect everything to come from the state or from others. Heaven helps those who help themselves.
 
-### 2.2.2 Collectivist Culture
+#### 2.2.2 Collectivist Culture
 
 Collectivist culture emphasizes the ingroup, such as the organization or the extended family. Collectivists value harmony and avoid direct confrontation. They emphasize building relationships with others through rituals and politeness, and task accomplishment becomes an indirect or secondary goal. Each individual represents the group to which he belongs, so if an individual is hurt, the group is hurt; if an individual is helped, the group is helped; if an individual is shamed, the group is shamed. The communication style is typically indirect.
 
@@ -156,11 +156,11 @@ Collectivism emphasizes common interests, conformity, cooperation, and interdepe
 - Collectivist societies have a strong sense of responsibility to the group ( e.g. country, family, company). In China and Japan, for example, if an individual does not make his best effort, it is seen as letting down the entire group. In other words, both success and failure are kind of “team affairs” in China and Japan.
 - There is considerably less privacy. Children, even in homes with ample rooms, frequently share the same sleeping areas with their parents and siblings until well into adolescence. Clearly, they do not share the American value that children are disadvantaged if they have to share a room with other siblings.
 
-## Masculinity Versus Femininity
+### Masculinity Versus Femininity
 
 Masculinity focuses on the degree the society reinforces, or does not reinforce, the traditional masculine work role model of male achievement, control, and power. In high masculinity cultures, males dominate a significant portion of the society and power structure, with females being controlled by male domination. A country of low masculinity culture has a low level of differentiation and discrimination between genders. In these cultures, females are treated equally as males in all aspects of the society.
 
-### 2.3.1 Masculine Culture
+#### 2.3.1 Masculine Culture
 
 In high masculinity societies, people tend to believe that matters of material comfort, social privilege, access to power and influence, status and prestige, and ability to consume are related to ability and that with enough opportunity any individual who wants these benefits of society can have them. High masculinity societies tend to reward financial and material achievements with preferential social prestige and status, and to attribute strong character and spiritual values to such high achievers.
 
@@ -198,7 +198,7 @@ The following are some illustrations of masculine culture.
 - People place a high value on growth for its own sake. Increases in market share take precedence over quality of life, social programs, or environmental protection.
 - A strong emphasis is placed on achievement, with the greatest respect given to those who are the high achievers.
 
-### 2.3.2 Feminine Culture
+#### 2.3.2 Feminine Culture
 
 In feminine societies, men and women are considered socially equal. Homosexuality is not a threat. Love and tenderness are for men and women alike. Intimate relationships without sex are allowed. Children need love, and parents spend much time with them.
 
@@ -235,13 +235,13 @@ Some illustrations of feminine culture are listed below.
 - Governments lean more toward a welfare state (helping the needy). Progressive income taxes are used to support a wide range of social welfare programs.
 - Dominant religions stress complementarities of the sexes, not male dominance.
 
-## 2.4 Uncertainty Avoidance
+### 2.4 Uncertainty Avoidance
 
 According to Hofstede (1998), uncertainty avoidance refers to the lack of tolerance for ambiguity and uncertainty and the need for formal rules and high-level organizational structure. The unpredictability of the future, and the resultant anxiety that this produces, is part of the human experience. Nevertheless, cultures differ in the degree to which they can tolerate ambiguity, cope with uncertainties, and adapt to the future. Hofstede's uncertainty-voidance measure indicates the extent to which a culture conditions its members to feel either comfortable or uncomfortable in unstructured, ambiguous, and unpredictable situations.
 
 In cultures with high uncertainty avoidance, emotions are displayed in the way that everything different is dangerous. They resist changes and worry about future. They are open for new things and changes. They don't have feelings of uncertainty about future.
 
-### 2.4.1 Low Uncertainty Avoidance
+#### 2.4.1 Low Uncertainty Avoidance
 
 Cultures of low uncertainty avoidance have less concern about ambiguity and uncertainty and have more tolerance for a variety of opinions. This is reflected in a society that is less rule-oriented, more readily accepts change, and takes more and greater risks.
 
@@ -276,7 +276,7 @@ People of low uncertainty avoidance take life easy. They tolerate and even celeb
 - Employees are more likely to function effectively in work teams.
 - Leaders are more likely to be innovative, creative, and approachable.
 
-### 2.4.2 High Uncertainty Avoidance
+#### 2.4.2 High Uncertainty Avoidance
 
 Cultures of high uncertainty avoidance have a low tolerance for uncertainty and ambiguity. This creates a rule-oriented society that institutes laws, rules, regulations, and controls in order to reduce the amount of uncertainty.
 
@@ -311,32 +311,32 @@ People of high uncertainty avoidance have no tolerance for ambiguity. They like 
 - Employees are considerably less comfortable working in problem-solving teams.
 - Leaders are not likely to be innovative or approachable.
 
-# Summary
+## Summary
 
-## Cultural Values
+### Cultural Values
 
 1. A value system represents what is expected or hoped for, required or forbidden. It is the system of criteria by which conduct is judged and sanctions applied.
 2. Cultural differences between the West and the East can be highlighted in cognition, relationship with nature, and the concept of truth.
 3. The Chinese are collectivist, placing high value on group cooperation and individual modesty. Americans are individualist, placing high value on selfreliance and freedom from externally imposed constraints.
 
-## Cultural Dimensions
+### Cultural Dimensions
 
 1. Power distance is the degree to which power differences are expected and accepted by society.
 2. Individualism is the degree to which individual decision-making and action is accepted and encouraged by the society.
 3. Masculinity is the degree to which traditional male values are important to a society.
 4. Uncertainty avoidance is the degree to which the society is willing to accept and deal with ambiguity and uncertainty.
 
-# Case Study
+## Case Study
 
 *Read the following case carefully and try to explain the reasons why the Chinese left and the American was surprised.*
 
-## Hand in the Report in 15 Days
+### Hand in the Report in 15 Days
 
 A Chinese young man worked at a company in the United States. One day he was asked by his American supervisor to come to his office for a report, as the Chinese was thought of as a competent candidate for it. The American supervisor said to the Chinese employee: “Since the report is so important, I hope that you can finish it on time. But just tell me how long it will take you to finish this report?” The Chinese answered, “I do not know. But how long should it take?” The American said, “You are in the best position to analyze time requirements.” Then the Chinese replied, “20 days.” Then the American said, “Take 15. It is agreed you will do it in 15 days.” In fact the report needed 30 days ofregular work. So the Chinese worked day and night, but at the end of the 15th day, he still needed one more day's work. But he was asked to hand in his report by the American supervisor, “Where is the report?” the American supervisor asked. The Chinese replied, “It will be ready tomorrow.” “But we agreed that it would be ready today.” The American said firmly. The next day the Chinese employee handed in his resignation. The American supervisor was shocked.
 
-# Further Reading
+## Further Reading
 
-## Cultural Values in International Business
+### Cultural Values in International Business
 
 In today's hyper-competitive global markets, any company that operates internationally is faced with the task of integrating many value systems into a framework that allows the organization not only to survive but also to compete effectively. A European research group, the European Managerial Decision Making Project, was formed in 1994 to examine the effect of different national value systems on organizational policy. The project's research methodology is simple: Given identical business problems, do managers in six different European countries choose similar solutions? In addition to the responses to these questions, the study also includes both organizational and personal data.
 

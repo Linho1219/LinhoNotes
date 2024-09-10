@@ -1,8 +1,8 @@
-3 Culture Shock Intercultural Communication
+# Chapter 3: Culture Shock Intercultural Communication
 
 *You step into a new cultural world. Everything around you is new. You begin to adapt. But, this process takes time.*
 
-# 1 Feelings of Culture Shock
+## 1 Feelings of Culture Shock
 
 The term, culture shock, was introduced to describe the anxiety produced when a person moves to a completely new environment, especially when a person arrives in a new country where he is confronted with a new cultural environment. This term expresses the lack of direction, the feeling of not knowing what to do or how to do things in a new environment, and not knowing what is appropriate or inappropriate.
 
@@ -22,17 +22,17 @@ Both the American businesspeople and Chinese businesspeople suffer from culture 
 
 From the case above, we can say for sure that it is a must for companies, especially the management staff, to have a good understanding of the foreign culture in order to avoid culture shock and make good profits in their businesses with foreign companies.
 
-# 2 Stages of Culture Shock
+## 2 Stages of Culture Shock
 
 Culture shock is frequently described as a series of stages that a person goes through. People will experience these stages when they are in a new country which enjoys a different culture from their own. In the beginning people are usually excited about what they will experience in the new environment; soon they feel disappointed by what they actually experience; later on they try to understand what is going on around them and feel happy; then they begin to adjust themselves to the new environment and enjoy their new life; and finally they feel comfortable in the new environment, as comfortable as in their old culture. Their feelings change as they experience different stages.
 
-## 2.1 The Honeymoon Stage
+### 2.1 The Honeymoon Stage
 
 The first stage is the incubation stage. This stage is also called the “honeymoon” stage, as everything encountered is new and exciting. In this stage, the new arrivals may feel euphoric and may be pleased by all of the new things encountered. Those who have just come to a foreign country are fascinated with everything that is new. They are embarking on a long sought-after adventure. People in this stage will demonstrate an eagerness to please people around, a spirit of cooperation, and an active interest in listening to people speaking. The excitement of life in a new culture seems to be endless.
 
 In reality, the new arrivals are delightful to get along with, but due to their enthusiasm to please, they frequently nod or smile to indicate understanding when in fact they don't understand at all. When misunderstandings mount up, they are likely to experience the second stage of cultural adjustment.
 
-## 2.2 The Hostility Stage
+### 2.2 The Hostility Stage
 
 Afterward, the second stage presents itself. A person may encounter some difficult times and crises in daily life. For example, communication difficulties may occur such as not being understood.
 
@@ -40,7 +40,7 @@ In general, this stage is characterized by frustration, anger, anxiety, and some
 
 > A Chinese manager was sent to work in the United States for one year, but he returned home in three months, as he couldn't bear what he encountered in the country. He couldn't enjoy the native food, the TV programs, or the ways of communicating with the native people. He was even sometimes misunderstood by the native people because of his behaviors and poor English.
 
-## 2.3 The Recovery Stage
+### 2.3 The Recovery Stage
 
 The third stage is characterized by gaining some understanding of the new culture. A new feeling of pleasure and sense of humor may be experienced. One may start to feel a certain psychological balance. The new arrivals may not feel as lost as before and start to have a feeling of direction. They are more familiar with the environment and want to identify themselves with it. This initiates an evaluation of the old ways versus new ones.
 
@@ -48,7 +48,7 @@ At this stage, the new arrivals start feeling more positive, and they try to dev
 
 This more relaxed state of being is accomplished by making some friends, being able to manage the size and complexity of the environment and understanding what is going on. They become generally easy to get along with because they are relaxed and receptive.
 
-## 2.4 The Adjustment Stage
+### 2.4 The Adjustment Stage
 
 At the fourth stage, people realize that the new culture has good and bad things to offer. This stage can be one of double integration or triple integration depending on the number of cultures that people have to process. This integration is accompanied by a more solid feeling of belonging. People start to define themselves and establish goals for living.
 
@@ -56,17 +56,17 @@ At this stage, people have reached a point where they actually feel good because
 
 When people not only retain allegiance to their home culture, but also “feel at ease” with what they meet and where they are, they have successfully adjusted to the new culture, and should feel proud of themselves for achieving the ability to live successfully in two cultures.
 
-## 2.5 The Biculturality Stage
+### 2.5 The Biculturality Stage
 
 At this stage people have become comfortable in both the old and the new culture. They achieve biculturality to some extent. Biculturality is viewed by some as the healthy and even ideal stage of adaptation in which one's original cultural world view remains intact as alternative cultural frames are acquired. Though there is some controversy about whether it is within people's reach to be really “bicultural.”
 
 The above stages take place at different times and each person has his own way of reacting in the different stages of culture shock. Many factors contribute to the duration and effects of culture shock. For example, the individual's state of mental health, type of personality, previous experiences, socioeconomic conditions, familiarity with the language, family and social support systems, and level of education. As a consequence, some stages will be longer and more difficult to deal with than others.
 
-# 3 Symptoms of Culture Shock
+## 3 Symptoms of Culture Shock
 
 There are many kinds of symptoms of culture shock. They may include: excessive concern over cleanliness of drinking water, food, dishes, and bedding; fear of physical contact with others; feeling of helplessness and desire for dependence on long-term residents of one's own nationality; irritation over delays and other minor frustrations; delay and outright refusal to learn the language of the host country; excessive fear of being cheated, robbed, or injured; great concern over minor pains and illnesses; and finally, that terrible longing to be back home, to be in familiar surroundings, to visit one' s relatives, and, in general, to talk to people who really “make sense.” Individuals differ greatly in the degree in which culture shock affects them. Although not common, there are individuals who cannot live in fo~eign countries. On the other hand, there are those who have gone through a serious case of culture shock and make satisfactory adjustments.
 
-## 3.1 Two Aspects of Culture Shock
+### 3.1 Two Aspects of Culture Shock
 
 We can divide the symptoms of culture shock mentioned above into two aspects: physical and psychological.
 
@@ -76,7 +76,7 @@ We can divide the symptoms of culture shock mentioned above into two aspects: ph
 
 **Psychological symptoms of culture shock.** Some of the psychological symptoms of culture shock include: loneliness or boredom, homesickness, idealizing home, feeling helpless and dependent, irritability and even hostility, social withdrawal, excessive concern for health or security, rebellion against rules and authority, feeling like you have no control over your life, feeling unimportant and being a foreigner, crying, negative stereotyping of people in the host country.
 
-## 3.2 Symptoms of Culture Shock in a New Place
+### 3.2 Symptoms of Culture Shock in a New Place
 
 As we can see, many of these symptoms are not unusual. This is why it can be difficult to recognize when you have culture shock. Not everyone will experience all of these symptoms, and each person's reaction may be different. Let's study the following case and see how :Professor Wang suffered from the symptoms of culture shock during his few days at a conference in the United States.
 
@@ -84,7 +84,7 @@ Wang, a Chinese professor of medical science, went to Seattle to present a paper
 
 Such misunderstandings and miscommunications were minor. But _for Professor Wang, they were the beginning of a sense of “cultural confusion.” By the end of the conference, he felt a deep sense of “cultural stress” and was worn out from having to pay attention to so many new expressions and ways of dealing with things. He felt his handshake was not as firm as Americans', found that people reacted unusually when he modestly insisted his English was not good after they complimented him, that he didn't know how to accept dinner invitations properly and therefore missed out on several lunches, and so on. Eventually, he was so bewildered that he felt the full impact of “culture shock.”
 
-## 3.3 Symptoms of Reverse Culture Shock
+### 3.3 Symptoms of Reverse Culture Shock
 
 It is also natural that some people suffer from culture shock even when they are in their own country. Coming home after spending some time abroad is not an easy task. A similar adjustment period and its accompanying symptoms usually occur when a sojourner returns home. This is often called reverse culture shock. It takes people by surprise when they don't realize that it is normal. After all, it's somewhat ironic. The sojourner has been longing to return to the old, familiar culture of home. But once home, the returnees find many things to complain or criticize and often ask why the old culture can't be more like the one they recently encountered. Friends and family members often find the returnees impatient with things that never used to cause complaint. Returnees' most common complaint is that nobody wants to hear about the wonderful new experiences they have had.
 
@@ -102,11 +102,11 @@ This type of reaction is unfortunately not uncommon, many expatriates face such 
 
 As in the example the engineer is no longer really “German,” and has become more “Middle Eastern.” So coming home is similar to coming to another culture. While living abroad many people lose the perspective on their culture. What they miss tends to be an idealized home. Once they move back, they get confronted with the reality.
 
-# 4 Curing Culture Shock
+## 4 Curing Culture Shock
 
 Culture shock does not imply a serious mental condition, but rather a long-term psychological stress. Almost like a disease, it has a cause, symptoms, and a cure.
 
-## 4.1 Defense Mechanisms Against Culture Shock
+### 4.1 Defense Mechanisms Against Culture Shock
 
 In reality, we have some mechanisms against culture shock. When we are trying to adjust ourselves to a new culture, we devise some defense mechanisms to help us cope with the effects of culture shock.
 
@@ -120,7 +120,7 @@ In reality, we have some mechanisms against culture shock. When we are trying to
 
 As a matter of fact, the defense mechanisms we utilize are not helpful. If we only occasionally use one of these coping mechanisms to help ourselves survive, that is acceptable. We must be cautious, however. These mechanisms can really hurt us because they prevent us from making necessary adjustments to the new culture.
 
-## 4.2 Alleviating Culture Shock
+### 4.2 Alleviating Culture Shock
 
 Generally speaking, culture shock can be alleviated, or minimized. Some multinational firms try to minimize culture shock by selecting employees for overseas assignments who possess certain personal and professional qualifications. In addition, it is advisable that the company conduct training programs for employees prior to overseas assignment.
 
@@ -144,7 +144,7 @@ Culture shock is an unfortunate side effect of going abroad, but people need to 
 
 To be certain, no bottled remedies for culture shock are to be found at the pharmacy. But, simply knowing that culture shock exists, that it happens to everyone to some extent, and that it is not permanent is likely to reduce the severity of the symptoms and speed the recovery. Don't think you are pathological or inadequate if you experience some culture shock. The anxiety resulting form trying to operate in a different environment is normal. Give yourself permission to feel frustration, homesickness, or irritability. Eventually, you will work through these symptoms and come up with a much richer appreciation of the host culture. But it is also important to remain realistic. There may be others who, for purely personal reasons, you will not like and vice versa. And there are some things that may never be understood .. But once you understand that these problems are perfectly normal reactions for anyone in the same situation, you can begin to search for solutions.
 
-# 5 High-context and Low-context Cultures
+## 5 High-context and Low-context Cultures
 
 The high-context culture and low-context culture are the terms that refer to “the fact that when people communicate, they take for granted how much the listener knows about the subject under discussion. In low-context communication, the listener knows very little and must be told practically everything. In high-context communication the listener is already 'contexted' and so does not need to be given much background information” (Hall, 1990).
 
@@ -188,9 +188,9 @@ The following two tables may help you better understand high-context culture and
 > 4. Messages are expected to be explicit and specific.
 > 5. People judge what someone is talking about mainly by what he is saying.
 
-# Summary
+## Summary
 
-## Culture Shock
+### Culture Shock
 
 1. Culture shock expresses the lack of direction, the feeling of not knowing what to do or how to do things in a new environment, and not knowing what is appropriate or inappropriate.
 2. Five stages of culture shock can be identified as: honeymoon stage, hostility stage, recovery stage, adjustment stage and biculturality stage.
@@ -198,22 +198,22 @@ The following two tables may help you better understand high-context culture and
 4. People can suffer from the symptoms of culture shock in a new place and in their own country as well.
 5. There are some mechanisms against culture shock, such as repression, regression, isolation and rejection. Culture shock can be alleviated, or minimized.
 
-## High-context Culture and Low-context Culture
+### High-context Culture and Low-context Culture
 
 1. Members of high-context cultures use the context to communicate the message, as both senders and receivers understand the context of the message well.
 2. Members of low-context cultures put their thoughts into words. They tend to think that if thoughts are not solidified in words, they will not be understood correctly or completely.
 
-# Case Study
+## Case Study
 
 *Read the following case carefully and try to find a way to help Jim better understand the following situation.*
 
-## Are the Problems Right There or Not?
+### Are the Problems Right There or Not?
 
 Jim Ellis, vice president of a North Carolina knitwear manufacturer, was sent by his company to observe firsthand how operations were proceeding in their Korean plant and to help institute some new managerial procedures. Before any changes could be made, however, Jim wanted to learn as much as possible about the problems that existed at the plant. During his first week he was met with bows, polite smiles, and the continual denial of any significant problems. But Jim was enough of a realist to know that there will be no manufacturing operation that doesn't have some problems. So after some research, he uncovered a number of problems that the local manager and staff were not acknowledging. None of the problems were particularly unusual or difficult to solve, but Jim was frustrated that no one would admit that any problems existed. “If you don't acknowledge the problems,” he complained to one of the mangers, “how do you expect to be able to solve them?” And then to further exasperate him, when a problem was finally brought to his attention, it was until the end of the workday when there was no time left to solve it.
 
-# Further Reading
+## Further Reading
 
-## Culture Clash
+### Culture Clash
 
 Culture is indefinable in a single sentence. Culture is understood in many different aspects of life by different people. One part of commonly accepted definitions of culture includes the presence of a distinct system of belief and views among the constituents of the society. Many view culture as the actions and behaviors of a society while others view culture as what it produces, including everything from the society's art to its institutions. Cultures differ from each other in their distinctly different systems of belief, value, behavior, etc. This causes clash and misunderstandings from lack of tolerance, patience, and even knowledge of the world or society.
 
