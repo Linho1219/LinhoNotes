@@ -66,7 +66,7 @@ Actually, the three layers are closely connected and influence one another. The 
 
 In order to better understand culture, it is useful to examine its characteristics. The following six major characteristics are generally accepted and shared around the world.
 
-**Culture is shared.** Members of a culture share a set of ideals, values, and standards of behaviors, and this set is what gives meaning to their lives, and what bonds them together as a culture. For example, almost all people living in China share the Chinese language, dress themselves in similar styles, eat similar foods, and celebrate many of the same holidays or festivals. When Spring Festival comes, for example, Chinese people all over the world will celebrate it in the same way: wearing new clothes, setting off firecrackers, eating dumplings,  extending good wishes for the New Year, having ***antithetical couplets*** on doors and hanging lanterns.
+**Culture is shared.** Members of a culture share a set of ideals, values, and standards of behaviors, and this set is what gives meaning to their lives, and what bonds them together as a culture. For example, almost all people living in China share the Chinese language, dress themselves in similar styles, eat similar foods, and celebrate many of the same holidays or festivals. When Spring Festival comes, for example, Chinese people all over the world will celebrate it in the same way: wearing new clothes, setting off firecrackers, eating dumplings, extending good wishes for the New Year, having ***antithetical couplets*** on doors and hanging lanterns.
 
 **Culture is learned.** Culture is learned, not inherited. It derives from one’s social environment, not from one’s genes.
 
