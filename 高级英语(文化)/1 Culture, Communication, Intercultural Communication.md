@@ -1,3 +1,7 @@
+Chapter 1: Culture, Communication, Intercultural Communication
+
+*In international business, as in most other areas of life, the best idea in the world can fail if it's not communicated effectively.*
+
 # 1 Culture
 
 Culture is ***ubiquitous***, multidimensional, and ***all-pervasive***, as we have it almost anywhere and anytime. It is understood differently by people throughout the world. Americans believe that culture is a fast-moving train, which is closely connected with what is going on for the time being. The better you adjust yourself to the present world, the more you understand culture. However, Chinese people believe that culture is closely related to the past. The more you know about Confucianism or the past, the more cultured you are considered to be.
@@ -164,7 +168,7 @@ There are several frequently used terms for the study of intercultural communica
 
 In reality, the term “intercultural communication” was first used by Edward T. Hall in 1959. One of the first researchers to differentiate cultures based on how information is sent and received, Hall simply defines intercultural communication as communication between persons of different cultures. And Hu Wenzhong, a well-known professor of intercultural communication in China, defines intercultural communication as communication between people of different cultural backgrounds. To be specific, the study of intercultural communication is a comprehensive attempt to understand all aspects of human cultures and how they interact with each other.
 
-> A group of American business people arrived in Beijing for business. They started to work the next day; they held negotiations with the Chinese businesspeople and signed contracts frnaliy. After they frnished their business,, they went to the Great Wall, the Summer Palace and the Tian’anmen Square, where they met the local people and chatted with them about what they were interested in. They had intercultural communication with the local people all the J. way through their stay in China.
+> A group of American business people arrived in Beijing for business. They started to work the next day; they held negotiations with the Chinese businesspeople and signed contracts frnaliy. After they finished their business,, they went to the Great Wall, the Summer Palace and the Tian’anmen Square, where they met the local people and chatted with them about what they were interested in. They had intercultural communication with the local people all the J. way through their stay in China.
 
 In order to better understand the relationship between culture and communication, we’d better study both of them together. Culture cannot be known without a study of communication, and communication can only be understood with an understanding of the culture it supports.
 
@@ -194,9 +198,9 @@ It is said that technology has broken down cultural boundaries. Technological ad
 
 As a member of the global village, we need to take action for the survival of it. We need to identify the norms that govern face-to-face relations and “the rule books of meaning” that distinguish one culture from another. We need to understand how other cultures perceive the world and know the assumptions and values that are the foundation of these perceptions. We need to have a better understanding of the worldview and the communication style of other cultures. By doing so, we can maintain constructive relationships with societies that operate according to a different logic than our own. Communication is successful when the communicators reach some kind of understanding, which is a measure of communicative success. (Bamlund, 2007)
 
-## Summary
+# Summary
 
-### Culture and Communication
+## Culture and Communication
 
 1. Culture is the total accumulation of beliefs, customs, values, behaviors, institutions and communication patterns that are shared, learned and passed down through the generations in an identifiable group of people.
 2. Only the outward symbols of a culture, 10 percent, are easily visible. The most important aspects of culture, 90 percent, its norms and values, are far more difficult to grasp. These more profound cultural differences can cause problems when communicating with someone from another culture.
@@ -205,8 +209,29 @@ As a member of the global village, we need to take action for the survival of it
 5. There are three business communication patterns in terms of direction: upward communication, downward communication, and lateral communication.
 6. Culture and communication are inseparably linked. Culture gives meaning and provides the context for communication. Besides, meaning is in the person, not in the word.
 
-### lntercultural Communication
+## lntercultural Communication
 
 1. Intercultural communication is the communication between persons of different cultures, or different cultural backgrounds.
 2. There are five barriers in intercultural communication: language differences, nonverbal communication, stereotypes, cultural bias on judgments, and high level of stress.
 3. Technology has broken down cultural boundaries, and the world is becoming a global village, in which neighbors speak different languages, have different values and different lifestyles. Understanding is a measure of communicative success in the global village.
+
+# Case Study
+
+*Read the following case and analyze why Sam didn't perform his work successfully together with his Saudi Arabian laborers.*
+
+## To Be Direct or Not
+
+Sam Lucas, a construction supervisor for an international engineering firm, had the reputation of being tough but fair-minded. He was a very forceful, obstinate individual who always spoke his mind. He never hesitated to criticize any worker whom he felt was performing poorly. Even though during his six years with the company Sam had never worked outside of the United States, he was chosen to supervise construction on a new hotel project in Jidda, Saudi Arabia, primarily because of his outstanding work record. On this project, Sam supervised the work of about a dozen Americans and nearly 100 Saudi Arabian laborers. It was not long before Sam realized that the Saudi Arabian laborers, to his way of thinking, were nowhere as reliable as the workers he had supervised in the United States. He was becoming increasingly annoyed at the seeming lack of competence of the local workforce. Following the leadership style that helped him in such good stead at home, he would rebuke any worker who was not doing his job properly, and he would make certain that he did it publicly so that it would serve as a lesson to all the other workers. He was convinced that he was doing the right thing and was being fair, for after all, he rebuked both Americans and Saudi Arabians alike. He was troubled, however, by the fact that the problems seemed to be growing worse and more numerous.
+
+# Further Reading
+
+## Cultural Differences
+
+It is a well-known fact that people across nations ~nd cultures behave and believe differently. First, nations and cultures differ in terms of how they define specific phenomena, including behavior, language and institutions. We call these kinds of differences nominal differences. One extreme example of nominal difference is language. Cultures with completely different linguistic origins define their phenomena differently. Managing change in other cultures, thus, involves understanding how objects or events are defined in other cultures. Such differences may not be reflected simply in phonetics and grammar. More importantly, a single construct may have entirely different connotations across cultures. For example, organizational commitment in the U.S. has been defined as one's willingness to stay with an organization (i.e. continuance), identification with organizational goals and values, and willingness to exert effort on behalf of the organization.
+
+Nominal differences can also occur in cultures with identical or similar linguistic origins. For example, the British, or those who are close to the British culture, will find that when they ask for biscuits in America, people will bring them a scone or a piece of dry bun. When they ask for milk for their coffee, the waiter or waitress may give them cream. Systematic differences involve fundamental differences in the kind of values, beliefs and philosophy of social regulation that drive the overt, manifested phenomena in a nation or culture. Research on culture values is an example of how academics and practitioners have approached this issue of understanding systematic differences across cultures. Chinese culture is felt to be collectivist, whereas the American culture is felt to be individualistic. Management researchers have attempted to use this kind of differences. For example, Earley (1994) found that collectivistic cultures are more affected by collective goals, whereas individualistic cultures are more affected by individualistic goals. Some recent effort has been devoted to understanding cultural differences in terms of how collective actions are regulated. It defines collective actions as behavior by members of a collective for the sake of common good. A key characteristic of collective action is that it will be better for the collective if some members act than if no one does, but better for the individual members not to do so. (Elster, 1989) There are two major systems of regulating collective action: relationship-based and procedure-based. A relationship-based system relies on the relational networks of the system, whereas procedure-based regulatory systems rely on the. formalization and institutionalization . of procedures. Some cultures rely more on relational means, while others rely more on procedural means, to regulate collective actions. American culture relies more on formal, enforceable agreements such as contract and legal agreements. Both culture . values and regulatory systems for collective actions are attempts to understand the systematic differences across cultures. To manage cross-national or cross-cultural partnerships effectively, both nominal and systematic differences in these partnerships must be understood and managed. The impact of neglecting or misunderstanding the two kinds of cultural differences can be costly. When GM's promotion of its Chevy NOVA in Mexico resulted in a complete fiasco, GM found that their promotion was based on their own cultures. The GM directors might think that they understand manufacturing and marketing, and that they understand Mexico. What they actually need are understanding of cross-cultural differences and a means to manage cultural differences.
+
+**Answer the following questions.**
+
+1. Try to explain the idea "cultures with completely different linguistic origins define their phenomena differently" in the article.
+2. What is the main difference between Chinese culture and American culture in terms of the relationship between the individual and the collective?
