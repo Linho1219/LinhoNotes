@@ -39,7 +39,7 @@ P.S.
 ## Course Plan (per week)
 
 1. Globalization and Culture
-2. Communication and Itercultural Communication
+2. Communication and Intercultural Communication
 3. *Mid-Autumn Day*
 4. Stereotypes
 5. *National Day*
