@@ -467,10 +467,15 @@ console.log(oTemp2 == undefined);
 function testFunc() {
 }
 
-console.log(testFunc() == undefined);  //输出 "true"
+console.log(testFunc() == undefined);  // true
 ```
 
+> [!note]
+>
+> 判断一个量是否定义的最佳实践是 `typeof xxx == "undefined"`。
+
 ### Null 类型
+
 另一种只有一个值的类型是 Null，它只有一个专用值 `null`，即它的字面量。值 `undefined` 实际上是从值 `null` 派生来的，因此 ECMAScript 把它们定义为相等的。
 
 ```js
@@ -1237,6 +1242,33 @@ console.log(oStringObject.toLowerCase());		//输出 "hello world"
 
 **提示：** 记住，String 对象的所有属性和方法都可应用于 String 原始值上，因为它们是伪对象。
 
+> [!note]
+>
+> Number 对象、Boolean 对象、String 对象等等被称为“包装对象”。String 对象会在调用原始类型的属性或方法时自动创建，不需要手动创建。
+>
+> ```js
+> 'a'.toUpperCase();
+> // 'A'
+> ```
+>
+> 但是其他的不行：
+>
+> ```js
+> 648.toPrecision(5);
+> // Uncaught SyntaxError: Invalid or unexpected token
+> (new Number(648)).toPrecision(5);
+> // '648.00'
+> ```
+>
+> 平时要用的话，最好用上面的方式，现场建立一个，用后即弃，不要存下来，更不要日常用于存储数字。因为会出现一些奇怪的问题：
+>
+> ```js
+> (new Number(648)) == (new Number(648));
+> // false
+> ```
+>
+> 因为对象的判等判断的是地址的相等。所以上面的结果是 `false`。
+
 ### instanceof 运算符
 在使用 typeof 运算符时采用引用类型存储值会出现一个问题，无论引用的是什么类型的对象，它都返回 `"object"`。ECMAScript 引入了另一个 Java 运算符 `instanceof` 来解决这个问题。
 
@@ -1244,7 +1276,7 @@ console.log(oStringObject.toLowerCase());		//输出 "hello world"
 
 ```js
 var oStringObject = new String("hello world");
-console.log(oStringObject instanceof String);	//输出 "true"
+console.log(oStringObject instanceof String);	// true
 ```
 
 这段代码问的是“变量 `oStringObject` 是否为 `String` 对象的实例？”`oStringObject` 的确是 `String` 对象的实例，因此结果是 `"true"`。尽管不像 `typeof` 方法那样灵活，但是在 `typeof` 方法返回 `"object"` 的情况下，`instanceof` 方法还是很有用的。
