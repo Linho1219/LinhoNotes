@@ -135,6 +135,22 @@ for (sProp in window) {
 
 前面讨论过的 `PropertyIsEnumerable()` 是 ECMAScript 中专门用于说明属性是否可以用 `for-in` 语句访问的方法。
 
+> [!note]
+>
+> 不要用 `for-in` 语句遍历数组。
+>
+> ```js
+> let arr = [ 'a', 'b', 'c' ]
+> for ( let i in arr ){
+>     console.log(i, typeof i, arr[i])
+> }
+> // 0 string a
+> // 1 string b
+> // 2 string c
+> ```
+>
+> 其中的索引是 string 类型，因为其本质是枚举对象的属性。推荐使用带有数值索引的 `for` 循环、`Array.prototype.forEach()` 或 `for...of` 循环。
+
 ## ECMAScript 标签语句
 ### 有标签的语句
 可以用下列语句给语句加标签，以便以后调用：
@@ -240,7 +256,7 @@ console.log(iNum);	//输出 "95"
 
 **提示：** 想了解什么是有标签语句，请阅读 ECMAScript 标签语句 这一节。
 
-## ECMAScript with 语句
+## ~~ECMAScript with 语句~~
 > with 语句用于设置代码在特定对象中的作用域。
 
 它的语法：
@@ -261,6 +277,10 @@ with(sMessage) {
 在这个例子中，with 语句用于字符串，所以在调用 `toUpperCase()` 方法时，解释程序将检查该方法是否是本地函数。如果不是，它将检查伪对象 `sMessage`，看它是否为该对象的方法。然后，控制台输出 `"HELLO"`，因为解释程序找到了字符串 `"hello"` 的 `toUpperCase()` 方法。
 
 **提示：** with 语句是运行缓慢的代码块，尤其是在已设置了属性值时。大多数情况下，如果可能，最好避免使用它。
+
+> [!note]
+>
+> with 语句已被弃用。严格模式下使用会报错。
 
 ## ECMAScript switch 语句
 ### switch 语句
