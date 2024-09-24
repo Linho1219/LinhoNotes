@@ -772,7 +772,6 @@ var bResult = bTrue && bFalse;
 | false    | true     | false |
 | false    | false    | false |
 
-
 逻辑 AND 运算的运算数可以是任何类型的，不止是 Boolean 值。
 
 如果某个运算数不是原始的 Boolean 型值，逻辑 AND 运算并不一定返回 Boolean 值：
