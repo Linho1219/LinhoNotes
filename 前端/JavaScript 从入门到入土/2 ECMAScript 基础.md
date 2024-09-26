@@ -154,7 +154,7 @@ var myTestValue = 0, mySecondValue = "hi";
 
 > [!note]
 >
-> 就是我们说的“驼峰命名法”。JavaScript 中的变量都应该用这样的方式命名。
+> 就是我们说的「驼峰命名法」。JavaScript 中的变量都应该用这样的方式命名。
 
 #### Pascal 标记法
 
@@ -610,7 +610,7 @@ var fNum = 5.0;
 > // 0.375
 > ```
 >
-> 所以，**算钱的时候不要用浮点**，不然你的客户会面对 0.9999999999999999 块钱而提不出来。最佳实践是以“分”为单位进行存储、传输和计算，仅在展示的时候除以 100。
+> 所以，**算钱的时候不要用浮点**，不然你的客户会面对 0.9999999999999999 块钱而提不出来。最佳实践是以「分」为单位进行存储、传输和计算，仅在展示的时候除以 100。
 
 #### 科学计数法
 对于非常大或非常小的数，可以用科学计数法表示浮点数，可以把一个数表示为数字（包括十进制数字）加 e（或 E），后面加乘以 10 的倍数。例如：
@@ -741,7 +741,7 @@ console.log(sColor.length);	//输出 "3"
 
 总而言之，3 种主要的原始类型 Boolean 值、数字和字符串都有 `toString()` 方法，可以把它们的值转换成字符串。
 
-**提示：** 您也许会问，“字符串还有 `toString()` 方法吗，这不是多余吗？”是的，的确如此，不过 ECMAScript 定义所有对象都有 `toString()` 方法，无论它是伪对象，还是真对象。因为 String 类型属于伪对象，所以它一定有 `toString()` 方法。
+**提示：** 您也许会问，「字符串还有 `toString()` 方法吗，这不是多余吗？」是的，的确如此，不过 ECMAScript 定义所有对象都有 `toString()` 方法，无论它是伪对象，还是真对象。因为 String 类型属于伪对象，所以它一定有 `toString()` 方法。
 
 Boolean 类型的 `toString()` 方法只是输出 `"true"` 或 `"false"`，结果由变量的值决定：
 
@@ -846,7 +846,7 @@ var fNum1 = parseFloat("red");	//返回 NaN
 ### 强制类型转换
 您还可以使用**强制类型转换（type casting）**来处理转换值的类型。使用强制类型转换可以访问特定的值，即使它是另一种类型的。
 
-**编者注：**cast 有“铸造”之意，很贴合“强制转换”的意思。
+**编者注：**cast 有「铸造」之意，很贴合「强制转换」的意思。
 
 ECMAScript 中可用的 3 种强制类型转换如下：
 
@@ -916,11 +916,11 @@ var s2 = oNull.toString();	//会引发错误
 
 从现在起，将重点讨论与已经讨论过的原始类型紧密相关的引用类型。
 
-**注意：** 从传统意义上来说，ECMAScript 并不真正具有类。事实上，除了说明不存在类，在 ECMA-262 中根本没有出现“类”这个词。ECMAScript 定义了“对象定义”，逻辑上等价于其他程序设计语言中的类。
+**注意：** 从传统意义上来说，ECMAScript 并不真正具有类。事实上，除了说明不存在类，在 ECMA-262 中根本没有出现「类」这个词。ECMAScript 定义了「对象定义」，逻辑上等价于其他程序设计语言中的类。
 
 **编者注：** ECMAScript 6 中引入了类的概念，其本质是构造函数的代码糖。
 
-**提示：** 本教程将使用术语“对象”。
+**提示：** 本教程将使用术语「对象」。
 
 对象是由 `new` 运算符加上要实例化的对象的名字创建的。例如，下面的代码创建 `Object` 对象的实例：
 
@@ -1097,7 +1097,7 @@ var oStringObject = new String("hello world");
 console.log(oStringObject.charAt(1));	//输出 "e"
 ```
 
-在字符串 `"hello world"` 中，位置 1 处的字符是 `"e"`。在“ECMAScript 原始类型”这一节中我们讲过，第一个字符的位置是 0，第二个字符的位置是 1，依此类推。因此，调用 `charAt(1)` 返回的是 `"e"`。
+在字符串 `"hello world"` 中，位置 1 处的字符是 `"e"`。在「ECMAScript 原始类型」这一节中我们讲过，第一个字符的位置是 0，第二个字符的位置是 1，依此类推。因此，调用 `charAt(1)` 返回的是 `"e"`。
 
 如果想得到的不是字符，而是字符代码，那么可以调用 `charCodeAt()` 方法：
 
@@ -1242,7 +1242,7 @@ console.log(oStringObject.toLowerCase());		//输出 "hello world"
 
 > [!note]
 >
-> Number 对象、Boolean 对象、String 对象等等被称为“包装对象”。String 对象会在调用原始类型的属性或方法时自动创建，不需要手动创建。
+> Number 对象、Boolean 对象、String 对象等等被称为「包装对象」。String 对象会在调用原始类型的属性或方法时自动创建，不需要手动创建。
 >
 > ```js
 > 'a'.toUpperCase();
@@ -1277,4 +1277,4 @@ var oStringObject = new String("hello world");
 console.log(oStringObject instanceof String);	// true
 ```
 
-这段代码问的是“变量 `oStringObject` 是否为 `String` 对象的实例？”`oStringObject` 的确是 `String` 对象的实例，因此结果是 `"true"`。尽管不像 `typeof` 方法那样灵活，但是在 `typeof` 方法返回 `"object"` 的情况下，`instanceof` 方法还是很有用的。
+这段代码问的是「变量 `oStringObject` 是否为 `String` 对象的实例？」`oStringObject` 的确是 `String` 对象的实例，因此结果是 `"true"`。尽管不像 `typeof` 方法那样灵活，但是在 `typeof` 方法返回 `"object"` 的情况下，`instanceof` 方法还是很有用的。

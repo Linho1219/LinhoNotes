@@ -306,7 +306,7 @@ switch (expression)
   default: statement;
 ```
 
-每个情况（`case`）都是表示“如果 `expression` 等于 `value`，就执行 `statement`”。
+每个情况（`case`）都是表示「如果 `expression` 等于 `value`，就执行 `statement`」。
 
 关键字 `break` 会使代码跳出 `switch` 语句。如果没有关键字 `break`，代码执行就会继续进入下一个 `case`。
 
