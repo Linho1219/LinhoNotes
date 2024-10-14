@@ -1,7 +1,7 @@
 # 简介：高等数学
 
 
-  ## 学科概况-TCU
+## 学科概况-TCU
 
 ![必修](https://img.shields.io/badge/%E5%BF%85%E4%BF%AE-red) ![考试](https://img.shields.io/badge/%E8%80%83%E8%AF%95-gold) ![学分](https://img.shields.io/badge/%E5%AD%A6%E5%88%86-5.0-white)
 
@@ -11,12 +11,12 @@
 
 考核方式：
 $$
-  总分100 \left\{ \matrix{
-    30\% :过程\left\{ \matrix{
-    10\% :{\rm{10次考勤}} \hfill \\ 
-    20\% :{\rm{小测试-14周前后课程基本结束时}} \hfill \\}  \right. \hfill \\ 
-    20\% :期中考-第三章凹凸性那里 \hfill \\ 
-    50\% :期末考 \hfill \\}  \right.
+总分100 \left\{ \matrix{
+  30\% :过程\left\{ \matrix{
+  10\% :{\rm{10次考勤}} \hfill \\ 
+  20\% :{\rm{小测试-14周前后课程基本结束时}} \hfill \\}  \right. \hfill \\ 
+  20\% :期中考-第三章凹凸性那里 \hfill \\ 
+  50\% :期末考 \hfill \\}  \right.
 $$
 同济高数同步课堂：https://gaoshutongbu.tongji.edu.cn/
 
@@ -24,83 +24,83 @@ $$
 
 答疑时间段：9-16~12-15，周一三四，一二九大楼B区102，中午12:15~1:15
 
-补个希腊字母表：
+补个希腊字母表（形式上与英文字母相同的大写字母已略去）：
 $$
-  \begin{matrix}
-    \Alpha\alpha-alpha&\Beta\beta-beta&\Gamma\gamma-gamma&\Delta\delta-delta\\
-    \Epsilon\epsilon-epsilon&\Zeta\zeta-zeta&\Eta\eta-eta&\Theta\theta-theta\\
-    \Iota\iota-iota&\Kappa\kappa-kappa&\Lambda\lambda-lambda&\Mu\mu-mu\\
-    \Nu\nu-nu&\Xi\xi-xi&\Omicron\omicron-omicron&\Pi\pi-pi\\
-    \Rho\rho-rho&\Sigma\sigma-sigma&\Tau\tau-tau&\Upsilon\upsilon-upsilon\\
-    \Phi\phi-phi&\Chi\chi-chi&\Psi\psi-psi&\Omega\omega-omega\\
-  \end{matrix}
+\begin{matrix}
+  \alpha-alpha&\beta-beta&\Gamma\gamma-gamma&\Delta\delta-delta\\
+  \epsilon-epsilon&\zeta-zeta&\eta-eta&\Theta\theta-theta\\
+  \iota-iota&\kappa-kappa&\Lambda\lambda-lambda&\mu-mu\\
+  \nu-nu&\xi-xi&\omicron-omicron&\Pi\pi-pi\\
+  \rho-rho&\Sigma\sigma-sigma&\tau-tau&\Upsilon\upsilon-upsilon\\
+  \Phi\phi-phi&\chi-chi&\Psi\psi-psi&\Omega\omega-omega\\
+\end{matrix}
 $$
 参考一高数：
 
 
 
-  ## 学科概况-XDU
+## 学科概况-XDU
 
 ![必修](https://img.shields.io/badge/%E5%BF%85%E4%BF%AE-red) ![考试](https://img.shields.io/badge/%E8%80%83%E8%AF%95-gold) ![学分](https://img.shields.io/badge/%E5%AD%A6%E5%88%86-5.5-white)
 
-  ### 老师：柴华岳
+### 老师：柴华岳
 
-  - 人很好，上课很有激情，讲得很具体，主张“多讲少练”。
-  - 学长一致好评，但是缺点是喜欢给一堆用不上还不好吸收的课外拓展。
-  - 联系方式：13468668096
+- 人很好，上课很有激情，讲得很具体，主张“多讲少练”。
+- 学长一致好评，但是缺点是喜欢给一堆用不上还不好吸收的课外拓展。
+- 联系方式：13468668096
 
-  ### 学科讲解
+### 学科讲解
 
-  - 学科主体内容：微积分，微分方程，向量代数，空间解析几何
-  - 分数组成：**`15%平时分` `10%*2课堂小测` `25%期中考` `40%期末考`**
-  - 学期作业：对微积分的看法与认识，2k~3k字
+- 学科主体内容：微积分，微分方程，向量代数，空间解析几何
+- 分数组成：**`15%平时分` `10%*2课堂小测` `25%期中考` `40%期末考`**
+- 学期作业：对微积分的看法与认识，2k~3k字
 
-  ### 学习平台
+### 学习平台
 
-  - [慕课-西电高数](https://www.icourses.cn/sCourse/course_6645.html)
+- [慕课-西电高数](https://www.icourses.cn/sCourse/course_6645.html)
 
-  #### 参考材料与推荐书目
+#### 参考材料与推荐书目
 
-  ##### 教材：
+##### 教材：
 
-  - 杨有龙编《高等数学》上册，西安电子科技大学出版社
+- 杨有龙编《高等数学》上册，西安电子科技大学出版社
 
-  ##### 推荐参考书目：
+##### 推荐参考书目：
 
-  - 同济大学编《高等数学》（第八版）
-  - 华罗庚著《高等数学引论》 第一册&第二册
-  - 刘三阳，李广民《数学分析十讲》
-  - 清华大学编《高等数学》
-  - 杨有龙等编《高等数学同步辅导》
-  - 《吉米多维奇高等数学习题精选精解》
-  - 波利亚《如何解题》
+- 同济大学编《高等数学》（第八版）
+- 华罗庚著《高等数学引论》 第一册&第二册
+- 刘三阳，李广民《数学分析十讲》
+- 清华大学编《高等数学》
+- 杨有龙等编《高等数学同步辅导》
+- 《吉米多维奇高等数学习题精选精解》
+- 波利亚《如何解题》
 
 
 
-  ## 学科概况-CSU
+## 学科概况-CSU
 
 ![必修](https://img.shields.io/badge/%E5%BF%85%E4%BF%AE-red) ![考试](https://img.shields.io/badge/%E8%80%83%E8%AF%95-gold) ![学分](https://img.shields.io/badge/%E5%AD%A6%E5%88%86-5.0-white)
 
-  ### 老师：秦宣云
+### 老师：秦宣云
 
-  - 上课风格有点像李玉能
-  - 有点口音，上课速度极快
-  - 参与编写学校高数教材
+- 上课风格有点像李玉能
+- 有点口音，上课速度极快
+- 参与编写学校高数教材
 
-  ### 教材
+### 教材
 
-  - 郑洲顺编《高等数学》，高等教育出版社
+- 郑洲顺编《高等数学》，高等教育出版社
 
-  ### 考核方式
+### 考核方式
 
 $$
-  总分100 \left\{ \matrix{
-    40\% :平时\left\{ \matrix{
-    8\% :{\rm{考勤}} \hfill \\ 
-    12\% :{\rm{作业}} \hfill \\
-    12\% :{\rm{导学}} \hfill \\
-    8\% :{\rm{期末复习：依据期末成绩而定}} \hfill \\}  \right. \hfill \\ 
-    60\% :期末考 \hfill \\}  \right.
+总分100 \left\{ \matrix{
+  40\% :平时\left\{ \matrix{
+  8\% :{\rm{考勤}} \hfill \\ 
+  12\% :{\rm{作业}} \hfill \\
+  12\% :{\rm{导学}} \hfill \\
+  8\% :{\rm{期末复习：依据期末成绩而定}} \hfill \\}  \right. \hfill \\ 
+  60\% :期末考 \hfill \\}  \right.
 $$
 
 期末成绩需高于45分才可获得 期末复习 成绩
