@@ -1,5 +1,15 @@
 import { defineConfig } from "vitepress";
-import AutoSidebarPlugin from "vitepress-auto-sidebar-plugin";
+import { generateSidebar } from "./generateSidebar";
+
+function sidebar() {
+  return {
+    高等数学: generateSidebar("高等数学"),
+    线性代数: generateSidebar("线性代数"),
+    机甲大师: generateSidebar("机甲大师"),
+    高级英语: generateSidebar("高级英语"),
+    "JavaScript 教程": generateSidebar("JavaScript 教程"),
+  };
+}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -7,24 +17,20 @@ export default defineConfig({
   description: "一个本科笔记仓库",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: "Home", link: "/" },
-      { text: "高等数学", link: "/%e9%ab%98%e7%ad%89%e6%95%b0%e5%ad%a6/0%20%e7%ae%80%e4%bb%8b" },
-    ],
+    nav: [{ text: "主页", link: "/" }],
     socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
+      { icon: "github", link: "https://github.com/Linho1219/LinhoNotes" },
     ],
+    search: {
+      provider: "local",
+    },
+    sidebar: sidebar(),
+    outline: [2, 3],
   },
   markdown: {
     math: true,
   },
-  vite: {
-    plugins: [
-      AutoSidebarPlugin({
-        srcDir: "./",
-      }),
-    ],
-  },
   srcExclude: ["**/README.md"],
-  outDir: '../build'
+  outDir: "../build",
+  cleanUrls: true,
 });
