@@ -1,6 +1,7 @@
 // import { defineConfig } from "vitepress";
 import { generateSidebar } from "./generateSidebar";
 import mdFootnote from "markdown-it-footnote";
+import mdCheckbox from "markdown-it-task-lists";
 import { withMermaid } from "vitepress-plugin-mermaid";
 
 function sidebar() {
@@ -27,9 +28,9 @@ export default withMermaid({
     socialLinks: [
       { icon: "github", link: "https://github.com/Linho1219/LinhoNotes" },
     ],
-    search: {
-      provider: "local",
-    },
+    // search: {
+    //   provider: "local",
+    // },
     sidebar: sidebar(),
     outline: [2, 3],
   },
@@ -37,10 +38,11 @@ export default withMermaid({
     math: true,
     config: (md) => {
       md.use(mdFootnote);
+      md.use(mdCheckbox);
     },
   },
-  srcExclude: ["**/README.md"],
   cleanUrls: true,
+  ignoreDeadLinks: true,
   mermaid: {
     // https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults
   },
