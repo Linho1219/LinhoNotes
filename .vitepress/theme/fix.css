@@ -1,0 +1,15 @@
+mjx-container {
+  overflow-y: hidden;
+}
+
+a.footnote-backref{
+	font-family: sans-serif;
+}
+
+:root{
+	--vp-nav-bg-color:#1B1B1F80
+}
+
+.content-body{
+	backdrop-filter: blur(15px);
+}
