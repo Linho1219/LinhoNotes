@@ -8,6 +8,8 @@ function sidebar() {
     机甲大师: generateSidebar("机甲大师"),
     高级英语: generateSidebar("高级英语"),
     "JavaScript 教程": generateSidebar("JavaScript 教程"),
+    "C-C++ 相关": generateSidebar("C-C++ 相关"),
+    杂项: generateSidebar("杂项"),
   };
 }
 
