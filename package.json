@@ -1,6 +1,9 @@
 {
   "devDependencies": {
+    "@types/node": "^22.7.5",
+    "markdown-it-footnote": "^4.0.0",
     "markdown-it-mathjax3": "^4.3.2",
+    "markdown-it-task-lists": "^2.1.1",
     "mermaid": "^11.3.0",
     "vitepress": "^1.4.1",
     "vitepress-plugin-mermaid": "^2.0.17"
@@ -9,11 +12,5 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
-  },
-  "dependencies": {
-    "@types/node": "^22.7.5",
-    "markdown-it-footnote": "^4.0.0",
-    "markdown-it-task-lists": "^2.1.1",
-    "vue": "^3.5.12"
   }
 }
