@@ -6,14 +6,15 @@ a.footnote-backref {
   font-family: sans-serif;
 }
 
-:root {
-  --vp-nav-bg-color: #1b1b1f80;
+@media only screen and (min-width: 1280px) {
+  :root {
+    --vp-nav-bg-color: #1b1b1f80;
+  }
+  .content-body {
+    backdrop-filter: blur(15px);
+  }
 }
 
 * {
   -webkit-tap-highlight-color: transparent;
-}
-
-.content-body {
-  backdrop-filter: blur(15px);
 }
