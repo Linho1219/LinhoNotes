@@ -15,6 +15,11 @@ a.footnote-backref {
   }
 }
 
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 * {
   -webkit-tap-highlight-color: transparent;
 }
