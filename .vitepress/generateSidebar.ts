@@ -61,8 +61,8 @@ export function generateSidebar(dir: string): DefaultTheme.SidebarItem[] {
       .sort((a, b) => compareFileName(a.name, b.name))
       .forEach((file) => {
         sidebar.push({
-          text: file.name,
-          link: dir.split("/").at(-1) + "/" + file.name.replace(/\.md$/, ""),
+          text: path.basename(file.name, ".md"),
+          link: dir.split("/").at(-1) + "/" + path.basename(file.name, ".md"),
         });
       });
   }
