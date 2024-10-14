@@ -1,5 +1,7 @@
-import { defineConfig } from "vitepress";
+// import { defineConfig } from "vitepress";
 import { generateSidebar } from "./generateSidebar";
+import mdFootnote from "markdown-it-footnote";
+import { withMermaid } from "vitepress-plugin-mermaid";
 
 function sidebar() {
   return {
@@ -9,17 +11,19 @@ function sidebar() {
     高级英语: generateSidebar("高级英语"),
     "JavaScript 教程": generateSidebar("JavaScript 教程"),
     "C-C++ 相关": generateSidebar("C-C++ 相关"),
+    算法相关: generateSidebar("算法相关"),
     杂项: generateSidebar("杂项"),
   };
 }
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+// export default defineConfig({
+export default withMermaid({
   title: "LinhoNotes",
   description: "一个本科笔记仓库",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    nav: [{ text: "主页", link: "/" }],
+    // nav: [{ text: "主页", link: "/" }],
     socialLinks: [
       { icon: "github", link: "https://github.com/Linho1219/LinhoNotes" },
     ],
@@ -31,8 +35,16 @@ export default defineConfig({
   },
   markdown: {
     math: true,
+    config: (md) => {
+      md.use(mdFootnote);
+    },
   },
   srcExclude: ["**/README.md"],
-  outDir: "../build",
   cleanUrls: true,
+  mermaid: {
+    // https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults
+  },
+  mermaidPlugin: {
+    class: "mermaid",
+  },
 });

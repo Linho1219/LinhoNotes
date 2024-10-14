@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "LinhoNotes"
-  text: "一个本科笔记仓库"
+# text: "一个本科笔记仓库"
   tagline: 一个本科笔记仓库
   actions:
     - theme: brand
@@ -37,6 +37,6 @@ features:
     details: 包含算法学习与做题笔记。基于 C++。
     link: /算法相关/
   - title: 杂项
-    details: 如题，杂七杂八的东西
+    details: 如题，杂七杂八的东西。还不少。
     link: /杂项/
 ---
