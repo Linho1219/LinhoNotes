@@ -28,9 +28,9 @@ export default withMermaid({
     socialLinks: [
       { icon: "github", link: "https://github.com/Linho1219/LinhoNotes" },
     ],
-    // search: {
-    //   provider: "local",
-    // },
+    search: {
+      provider: "local",
+    },
     sidebar: sidebar(),
     outline: [2, 3],
   },
@@ -45,8 +45,5 @@ export default withMermaid({
   ignoreDeadLinks: true,
   mermaid: {
     // https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults
-  },
-  mermaidPlugin: {
-    class: "mermaid",
   },
 });
