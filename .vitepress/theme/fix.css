@@ -7,8 +7,11 @@ a.footnote-backref {
 }
 
 @media only screen and (min-width: 1280px) {
-  :root {
-    --vp-nav-bg-color: #1b1b1f80;
+  :root{
+    --vp-nav-bg-color: #fff5;
+  }
+  .dark {
+    --vp-nav-bg-color: #1b1b1f70;
   }
   .content-body {
     backdrop-filter: blur(15px);
@@ -22,4 +25,12 @@ html {
 
 * {
   -webkit-tap-highlight-color: transparent;
+}
+
+::selection{
+  background-color: #3451B240;
+}
+
+.dark ::selection{
+  background-color: #fff3;
 }
