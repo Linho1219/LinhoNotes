@@ -1,8 +1,40 @@
-/** @format */
-
 import fs from "fs";
 import path from "path";
+import yaml from "js-yaml";
 import { DefaultTheme } from "vitepress";
+
+type IndexStructure = {
+  layout: string;
+  hero: {
+    name: string;
+    text?: string;
+    tagline?: string;
+    actions?: {
+      theme: string;
+      text: string;
+      link: string;
+    }[];
+  };
+  features: {
+    title: string;
+    detail: string;
+    link: string;
+  }[];
+};
+
+export default function sidebar() {
+  const sidebarObj = {};
+  const indexMD = <IndexStructure>yaml.load(
+    fs
+      .readFileSync("index.md", "utf-8")
+      .trim()
+      .replace(/\n---$/, "")
+  );
+  indexMD.features.forEach(({ title, link }) => {
+    sidebarObj[title] = generateSidebar(link);
+  });
+  return sidebarObj;
+}
 
 function getMarkdownTitle(filePath: string): string {
   // const content = fs.readFileSync(filePath, "utf-8");
@@ -11,7 +43,7 @@ function getMarkdownTitle(filePath: string): string {
   return path.basename(filePath, ".md");
 }
 
-export function generateSidebar(dir: string): DefaultTheme.SidebarItem[] {
+function generateSidebar(dir: string): DefaultTheme.SidebarItem[] {
   const sidebar: DefaultTheme.SidebarItem[] = [];
   function compareFileName(a: string, b: string) {
     const matchA = a.match(/^(\d+)\.(\d+)\s/),
