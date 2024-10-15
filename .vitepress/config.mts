@@ -29,7 +29,6 @@ export default withMermaid({
     },
   },
   cleanUrls: true,
-  ignoreDeadLinks: true,
   mermaid: {
     // https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults
   },
