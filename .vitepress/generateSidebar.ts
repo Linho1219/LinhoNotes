@@ -30,8 +30,8 @@ export default function sidebar() {
       .trim()
       .replace(/\n---$/, "")
   );
-  indexMD.features.forEach(({ title, link }) => {
-    sidebarObj[title] = generateSidebar(link);
+  indexMD.features.forEach(({ link }) => {
+    sidebarObj[link] = generateSidebar(link);
   });
   return sidebarObj;
 }
