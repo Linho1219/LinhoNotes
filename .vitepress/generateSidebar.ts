@@ -46,13 +46,13 @@ function getMarkdownTitle(filePath: string): string {
 function generateSidebar(dir: string): DefaultTheme.SidebarItem[] {
   const sidebar: DefaultTheme.SidebarItem[] = [];
   function compareFileName(a: string, b: string) {
-    const matchA = a.match(/^(\d+)\.(\d+)\s/),
-      matchB = b.match(/^(\d+)\.(\d+)\s/);
-    if (matchA === null || matchB === null) {
-      return a.localeCompare(b);
-    }
-    const indexA = Number(matchA[1]) * 1000 + Number(matchA[2]),
-      indexB = Number(matchB[1]) * 1000 + Number(matchB[2]);
+    const matchA = a.match(/^((\d+)(\.(\d+))?)\s/),
+      matchB = b.match(/^((\d+)(\.(\d+))?)\s/);
+    if (matchA === null || matchB === null) return a.localeCompare(b);
+    const NumberWithoutNaN = (str: string) =>
+      isNaN(Number(str)) ? 0 : Number(str);
+    const indexA = Number(matchA[2]) * 1000 + NumberWithoutNaN(matchA[4]),
+      indexB = Number(matchB[2]) * 1000 + NumberWithoutNaN(matchB[4]);
     return indexA - indexB;
   }
 
@@ -64,37 +64,32 @@ function generateSidebar(dir: string): DefaultTheme.SidebarItem[] {
     .readdirSync(dir, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory() && dirent.name !== "images")
     .sort((a, b) => compareFileName(a.name, b.name));
-
-  if (folders.length !== 0)
+  const dirLastName = dir.split("/").at(-1);
+  if (folders.length !== 0) {
+    // 文件夹模式
     folders.forEach((folder) => {
       const folderPath = path.join(dir, folder.name);
       const files = fs
         .readdirSync(folderPath)
         .filter((file) => file.endsWith(".md"))
         .sort(compareFileName);
-
-      const path2 = dir.split("/").at(-1);
-      const items = files.map((file) => {
-        const filePath = path.join(folderPath, file);
-        const title = getMarkdownTitle(filePath);
-        return { text: title, link: `/${path2}/${folder.name}/${file}` };
-      });
-
       sidebar.push({
         text: folder.name,
-        items: items,
+        items: files.map((file) => ({
+          text: getMarkdownTitle(path.join(folderPath, file)),
+          link: `/${dirLastName}/${folder.name}/${file}`,
+        })),
       });
     });
-  else {
-    fs.readdirSync(dir, { withFileTypes: true })
-      .filter(
-        (dirent) => dirent.name.endsWith(".md") && dirent.name !== "index.md"
-      )
-      .sort((a, b) => compareFileName(a.name, b.name))
+  } else {
+    // 文件模式
+    fs.readdirSync(dir)
+      .filter((file) => file.endsWith(".md") && file !== "index.md")
+      .sort(compareFileName)
       .forEach((file) => {
         sidebar.push({
-          text: path.basename(file.name, ".md"),
-          link: dir.split("/").at(-1) + "/" + path.basename(file.name, ".md"),
+          text: path.basename(file, ".md"),
+          link: dirLastName + "/" + path.basename(file, ".md"),
         });
       });
   }

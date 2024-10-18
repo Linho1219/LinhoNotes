@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
+    "@types/markdown-it-footnote": "^3.0.4",
     "@types/node": "^22.7.5",
     "js-yaml": "^4.1.0",
     "markdown-it-footnote": "^4.0.0",
