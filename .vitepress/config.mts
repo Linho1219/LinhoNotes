@@ -32,4 +32,7 @@ export default withMermaid({
   mermaid: {
     // https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults
   },
+  sitemap: {
+    hostname: "https://notes.linho.cc",
+  },
 });
