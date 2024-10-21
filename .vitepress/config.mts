@@ -25,6 +25,10 @@ export default withMermaid({
     ],
     search: { provider: "local" },
     sidebar: sidebar(),
+    editLink: {
+      pattern: 'https://github.com/Linho1219/LinhoNotes/edit/main/:path',
+      text: '前往 Github 编辑此页'
+    },
     outline: {
       level: [2, 3],
       label: "本页大纲",
