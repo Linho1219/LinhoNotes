@@ -6,7 +6,6 @@ hero:
   name: "LinhoNotes"
 # text: "一个本科笔记仓库"
   tagline: 一个本科笔记仓库
-  image: /icon.svg
   actions:
     - theme: brand
       text: Github 仓库
