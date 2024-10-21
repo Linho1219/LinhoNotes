@@ -28,7 +28,7 @@ export default withMermaid({
     sidebar: sidebar(),
     editLink: {
       pattern: 'https://github.com/Linho1219/LinhoNotes/edit/main/:path',
-      text: '前往 Github 编辑此页'
+      text: '在 Github 上编辑此页'
     },
     outline: {
       level: [2, 3],
