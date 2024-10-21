@@ -1,13 +1,16 @@
+/* 修复公式纵向滚动条 */
 mjx-container {
   overflow-y: hidden;
 }
 
+/* 修复脚注返回按钮显示为 emoji */
 a.footnote-backref {
   font-family: sans-serif;
 }
 
+/* 大屏下顶栏毛玻璃效果 */
 @media only screen and (min-width: 1280px) {
-  :root{
+  :root {
     --vp-nav-bg-color: #fff5;
   }
   .dark {
@@ -16,21 +19,75 @@ a.footnote-backref {
   .content-body {
     backdrop-filter: blur(15px);
   }
+  .home .content-body {
+    backdrop-filter: none;
+  }
+}
+@media only screen and (min-width: 960px) {
+  .VPNavBar.home {
+    backdrop-filter: blur(15px);
+    --vp-nav-bg-color: #fff5;
+  }
+  .dark .VPNavBar.home {
+    --vp-nav-bg-color: #1b1b1f70;
+  }
+  .VPNavBar.home.top {
+    backdrop-filter: none;
+  }
 }
 
-html {
-  width: 100vw;
-  overflow-x: hidden;
+/* 顶栏 logo 大小修复 */
+img.VPImage.logo {
+  transform: scale(1.25);
 }
 
+/* 修复移动端出现横向滚动条 */
+#app {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+}
+
+/* 改善移动端点击效果 */
 * {
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: #0002;
+}
+.dark * {
+ -webkit-tap-highlight-color: #fff2;
 }
 
-::selection{
-  background-color: #3451B240;
+/* 改善选择样式 */
+::selection {
+  background-color: #3451b240;
 }
-
-.dark ::selection{
+.dark ::selection {
   background-color: #fff3;
+}
+
+/* 首页样式调整 */
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #746dc1 40%,
+    #228cc2
+  );
+  --vp-home-hero-image-background-image: linear-gradient(
+    50deg,
+    #07abfc50 50%,
+    #7367fc50 50%
+  );
+  --vp-home-hero-image-filter: blur(60px);
+}
+.dark {
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #7d76cc 40%,
+    #41d1ff
+  );
+}
+@media (min-width: 960px) {
+  .image-container .image-src {
+    max-width: 220px;
+    max-height: 220px;
+  }
 }

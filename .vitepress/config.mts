@@ -15,6 +15,7 @@ export default withMermaid({
   lang: "zh-CN",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo:'/title_logo.svg',
     nav: [
       { text: "主页", link: "/" },
       { text: "高数", link: "/高等数学/" },
