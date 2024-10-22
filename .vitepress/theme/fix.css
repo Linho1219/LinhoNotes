@@ -13,6 +13,11 @@ mjx-container text {
   margin: 0 auto;
 }
 
+/* 把 tip 框改成绿色 */
+:root {
+  --vp-c-tip-soft: var(--vp-c-green-soft);
+}
+
 /* 修复脚注返回按钮显示为 emoji */
 a.footnote-backref {
   font-family: sans-serif;
@@ -56,7 +61,7 @@ img.VPImage.logo {
   -webkit-tap-highlight-color: #0002;
 }
 .dark * {
- -webkit-tap-highlight-color: #fff2;
+  -webkit-tap-highlight-color: #fff2;
 }
 
 /* 改善选择样式 */
