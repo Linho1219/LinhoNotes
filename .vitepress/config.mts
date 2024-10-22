@@ -27,8 +27,8 @@ export default withMermaid({
     search: { provider: "local" },
     sidebar: sidebar(),
     editLink: {
-      pattern: 'https://github.com/Linho1219/LinhoNotes/edit/main/:path',
-      text: '在 Github 上编辑此页'
+      pattern: 'https://github.com/Linho1219/LinhoNotes/blob/main/:path?plain=1',
+      text: '在 Github 上查看此页'
     },
     outline: {
       level: [2, 3],
