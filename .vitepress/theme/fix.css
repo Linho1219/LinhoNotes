@@ -41,12 +41,6 @@ img.VPImage.logo {
   transform: scale(1.25);
 }
 
-/* 修复移动端出现横向滚动条 */
-#app {
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-}
-
 /* 改善移动端点击效果 */
 * {
   -webkit-tap-highlight-color: #0002;
