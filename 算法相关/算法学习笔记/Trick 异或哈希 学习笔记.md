@@ -18,8 +18,9 @@
 
 根据异或的交换律可知：一个数组的任何排列组合，它的异或结果都相同，看起来好像可以根据这个来判断两个数组是否是同一个排列组合，但是其实有很多其他的组合异或后也是相同的结果，本质原因是组合数的数量级在 $ n^2 $ 而异或的结果集只有 $n$ ，有什么办法可以解决呢？
 
-用哈希降低冲突
-为了解决冲突我们可以利用哈希将异或的结果集扩大：将数字哈希成 64 位无符号整数，结果集就扩大为了 $2^{64}$ 冲突的概率就微乎其微了。
+#### 用哈希降低冲突
+
+为了解决冲突我们可以利用哈希将异或的结果集扩大：将数字哈希成 64 位无符号整数，结果集就扩大为了 $2^{64}$ ，冲突的概率就微乎其微了。
 
 ### 进阶练习
 
@@ -108,17 +109,3 @@ int main()
 ```
 
 > 上面代码大家会看到一个很神奇的内容 mt19937_64 rnd(time(0))，这是 c++ 自带的梅森旋转（Mersenne Twister）伪随机数，可以随机生成 64 位整数，随机的内容直到 $ 2^{19937} $ 次调用后才会出现重复，具体的原理这里不过多介绍。把他当成一个工具使用就行。
-
-## Tips
-
-*来自对于Codeforces Round 978 (Div. 2)的复盘*
-
-> -   Do small cases! Let the pencil (or the computer) do the work and use your brain to look out for patterns.
->
-> -   Try to find the most natural and simple way of modeling the problem.
->
-> -   Learn how to code a decision tree, or other models to exhaustively search for constructions, proof patterns, recursive complete search, etc. and build intuition on that to solve the more general cases of the problem.
-
-- 做小案例！让铅笔（或电脑）完成工作，用你的大脑寻找规律。
-- 尝试找到最自然、最简单的问题建模方法。
-- 学习如何编码决策树，图或其他模型，以详尽考虑构造、证明模式、递归完全遍历等，并在此基础上建立直觉，以解决更一般的问题。
