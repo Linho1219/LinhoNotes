@@ -44,7 +44,9 @@ export default withMermaid({
     },
   },
   cleanUrls: true,
-  mermaid: {},
+  mermaid: {
+    theme:'forest'
+  },
   sitemap: {
     hostname: "https://notes.linho.cc",
   },
