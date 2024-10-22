@@ -3,6 +3,11 @@ mjx-container {
   overflow-y: hidden;
 }
 
+/* Mermaid 示意图水平居中 */
+.mermaid svg {
+  margin: 0 auto;
+}
+
 /* 修复脚注返回按钮显示为 emoji */
 a.footnote-backref {
   font-family: sans-serif;
