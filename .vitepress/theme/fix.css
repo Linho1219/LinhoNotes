@@ -3,6 +3,11 @@ mjx-container {
   overflow-y: hidden;
 }
 
+/* 公式内文字字体定义 */
+mjx-container text {
+  font-family: var(--vp-font-family-base);
+}
+
 /* Mermaid 示意图水平居中 */
 .mermaid svg {
   margin: 0 auto;
