@@ -3,9 +3,10 @@
 layout: home
 
 hero:
-  name: "LinhoNotes"
-# text: "一个本科笔记仓库"
-  tagline: 一个本科笔记仓库
+  name: LinhoNotes
+  text: Notes in a simple way
+  tagline: Linho, Horrible, Skincrab, Acha 共建的笔记仓库
+  image: /homepage_logo.png
   actions:
     - theme: brand
       text: Github 仓库
