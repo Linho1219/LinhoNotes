@@ -35,6 +35,13 @@ export default withMermaid({
       level: [2, 3],
       label: miscI18n.outline,
     },
+    lastUpdated: {
+      text: miscI18n.lastUpdated,
+      formatOptions: {
+        dateStyle: "short",
+        timeStyle: "short",
+      },
+    },
     ...themeI18n,
   },
   markdown: {
