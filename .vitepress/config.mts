@@ -3,7 +3,7 @@ import sidebar from "./generateSidebar";
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
 import { withMermaid } from "vitepress-plugin-mermaid";
-import themeI18n from "./i18n";
+import { themeI18n, miscI18n } from "./i18n";
 import { UserConfig, DefaultTheme } from "vitepress";
 // import { defineConfig } from "vitepress";
 
@@ -15,7 +15,7 @@ export default withMermaid({
   lang: "zh-CN",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo:'/title_logo.svg',
+    logo: "/title_logo.svg",
     nav: [
       { text: "主页", link: "/" },
       { text: "高数", link: "/高等数学/" },
@@ -27,12 +27,13 @@ export default withMermaid({
     search: { provider: "local" },
     sidebar: sidebar(),
     editLink: {
-      pattern: 'https://github.com/Linho1219/LinhoNotes/blob/main/:path?plain=1',
-      text: '在 Github 上查看此页'
+      pattern:
+        "https://github.com/Linho1219/LinhoNotes/blob/main/:path?plain=1",
+      text: miscI18n.editLink,
     },
     outline: {
       level: [2, 3],
-      label: "本页大纲",
+      label: miscI18n.outline,
     },
     ...themeI18n,
   },
@@ -45,7 +46,7 @@ export default withMermaid({
   },
   cleanUrls: true,
   mermaid: {
-    theme:'forest'
+    theme: "forest",
   },
   sitemap: {
     hostname: "https://notes.linho.cc",
