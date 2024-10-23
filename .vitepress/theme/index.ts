@@ -1,4 +1,8 @@
-import DefaultTheme from 'vitepress/theme'
-import './fix.css'
+import DefaultTheme from "vitepress/theme";
+import "./fix.css";
+import Layout from "./layout.vue";
 
-export default DefaultTheme
+export default {
+  extends: DefaultTheme,
+  Layout,
+};
