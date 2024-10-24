@@ -3,9 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import { useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { nextTick, provide } from "vue";
+import { useData } from "vitepress";
 const { isDark } = useData();
 
 const enableTransitions = () =>

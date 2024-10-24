@@ -2,14 +2,15 @@
 import sidebar from "./generateSidebar";
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
-import { withMermaid } from "vitepress-plugin-mermaid";
+// import { withMermaid } from "vitepress-plugin-mermaid";
 import { themeI18n, miscI18n } from "./i18n";
 import { UserConfig, DefaultTheme } from "vitepress";
-// import { defineConfig } from "vitepress";
+import { defineConfig } from "vitepress";
+import codePlugin from "./codeblock/codeblockHijack";
 
 // https://vitepress.dev/reference/site-config
-// export default defineConfig({
-export default withMermaid({
+export default defineConfig({
+  // export default withMermaid({
   title: "LinhoNotes",
   description: "一个本科笔记仓库",
   lang: "zh-CN",
@@ -50,12 +51,10 @@ export default withMermaid({
     config: (md) => {
       md.use(mdFootnote);
       md.use(mdCheckbox);
+      md.use(codePlugin);
     },
   },
   cleanUrls: true,
-  mermaid: {
-    theme: "forest",
-  },
   sitemap: {
     hostname: "https://notes.linho.cc",
   },
