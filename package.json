@@ -1,8 +1,11 @@
 {
   "devDependencies": {
+    "@babel/core": "^7.25.9",
+    "@babel/preset-env": "^7.25.9",
     "@types/js-yaml": "^4.0.9",
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node": "^22.7.5",
+    "function-plot": "^1.25.0",
     "js-yaml": "^4.1.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-mathjax3": "^4.3.2",
@@ -14,8 +17,5 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview"
-  },
-  "dependencies": {
-    "function-plot": "^1.25.0"
   }
 }
