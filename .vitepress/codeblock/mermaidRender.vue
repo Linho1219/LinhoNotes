@@ -1,5 +1,5 @@
 <template>
-    <div class="mermaid_container" v-html="svgRef"></div>
+    <div v-if="!errorFlag" class="mermaid_container" v-html="svgRef"></div>
     <div
       v-if="errorFlag"
       class="mermaid-error caution custom-block github-alert"
