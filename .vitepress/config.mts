@@ -24,7 +24,8 @@ export default withMermaid({
     socialLinks: [
       { icon: "github", link: "https://github.com/Linho1219/LinhoNotes" },
     ],
-    search: { provider: "local" },
+    search:
+      process.env.NODE_ENV === "production" ? { provider: "local" } : false,
     sidebar: sidebar(),
     editLink: {
       pattern:
