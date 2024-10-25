@@ -18,6 +18,15 @@ mjx-container text {
   --vp-c-tip-soft: var(--vp-c-green-soft);
 }
 
+/* 提示块分割线颜色修复 */
+.github-alert{
+  --vp-c-divider:#0002
+}
+
+.dark .github-alert{
+  --vp-c-divider:#fff2
+}
+
 /* 修复脚注返回按钮显示为 emoji */
 a.footnote-backref {
   font-family: sans-serif;
