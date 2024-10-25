@@ -17,6 +17,10 @@ mjx-container {
   color: #dfdfd6;
 }
 
+.dark blockquote mjx-container {
+  color: #98989F;
+}
+
 /* 公式内文字字体定义 */
 mjx-container text {
   font-family: var(--vp-font-family-base);
