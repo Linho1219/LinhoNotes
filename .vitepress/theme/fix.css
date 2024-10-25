@@ -3,6 +3,11 @@ mjx-container {
   overflow-y: hidden;
 }
 
+/* 修复公式大括号毛边 */
+.dark mjx-container {
+  color: #dfdfd6;
+}
+
 /* 公式内文字字体定义 */
 mjx-container text {
   font-family: var(--vp-font-family-base);
@@ -19,12 +24,12 @@ mjx-container text {
 }
 
 /* 提示块分割线颜色修复 */
-.github-alert{
-  --vp-c-divider:#0002
+.github-alert {
+  --vp-c-divider: #0002;
 }
 
-.dark .github-alert{
-  --vp-c-divider:#fff2
+.dark .github-alert {
+  --vp-c-divider: #fff2;
 }
 
 /* 修复脚注返回按钮显示为 emoji */
