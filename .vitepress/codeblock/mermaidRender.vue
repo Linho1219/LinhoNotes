@@ -1,12 +1,9 @@
 <template>
-    <div v-if="!errorFlag" class="mermaid_container" v-html="svgRef"></div>
-    <div
-      v-if="errorFlag"
-      class="mermaid-error caution custom-block github-alert"
-    >
-      <p class="custom-block-title">Mermaid 渲染错误</p>
-      <pre v-html="errorDetails"></pre>
-    </div>
+  <div v-if="!errorFlag" class="mermaid_container" v-html="svgRef"></div>
+  <div v-if="errorFlag" class="mermaid-error caution custom-block github-alert">
+    <p class="custom-block-title">Mermaid 渲染错误</p>
+    <pre v-html="errorDetails"></pre>
+  </div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
@@ -20,7 +17,7 @@ const svgRef = ref(""),
 
 const props = defineProps({
   id: String,
-  code: String
+  code: String,
 });
 
 const render = async () => {
@@ -34,9 +31,18 @@ const render = async () => {
     ).svg;
   } catch (e) {
     errorFlag.value = true;
-    errorDetails.value = e.toString().replace("\n", "<br/>");
+    errorDetails.value = e.toString();
   }
 };
 
 onMounted(render);
 </script>
+
+<style>
+.mermaid svg {
+  margin: 0 auto;
+}
+.mermaid-error pre {
+  white-space: pre-wrap;
+}
+</style>
