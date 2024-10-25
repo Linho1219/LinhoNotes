@@ -13,7 +13,7 @@ import { onMounted, ref } from "vue";
 import GraphRender from "./graphRender.vue";
 
 const MAX_HEIGHT = 350,
-  RATIO = 4 / 3;
+  RATIO = 0.75;
 
 const shellRef = ref<HTMLDivElement | null>(null);
 

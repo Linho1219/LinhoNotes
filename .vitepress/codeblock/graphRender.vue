@@ -15,6 +15,7 @@ import { ref, onMounted, watchEffect } from "vue";
 import functionPlot from "./function-plot/src/index";
 import yaml from "js-yaml";
 import { useData } from "vitepress";
+import type { FunctionPlotOptions } from "./function-plot/src/index";
 const { isDark } = useData();
 
 const props = defineProps({
@@ -31,10 +32,13 @@ const errorFlag = ref(false),
 onMounted(() => {
   if (plotRef.value) {
     try {
-      const options = {
+      const originalOpt = <FunctionPlotOptions>(
+        yaml.load(decodeURIComponent(props.code!))
+      );
+      const options: FunctionPlotOptions = {
         width: props.graphWidth,
         height: props.graphHeight,
-        ...(<object>yaml.load(decodeURIComponent(props.code!))),
+        ...originalOpt,
         target: plotRef.value,
       };
       functionPlot(options);
@@ -69,10 +73,11 @@ onMounted(() => {
 .graph-dark.graph-container .top-right-legend {
   filter: invert(100%) hue-rotate(180deg);
 }
-.graph-container .annotations,.graph-container .fn-text{
+.graph-container .annotations,
+.graph-container .fn-text {
   filter: brightness(70%);
 }
-.graph-dark.graph-container .annotations{
+.graph-dark.graph-container .annotations {
   filter: invert(100%) brightness(0);
 }
 .graph-container svg.function-plot {
