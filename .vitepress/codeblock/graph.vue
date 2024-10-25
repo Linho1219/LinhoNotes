@@ -5,7 +5,6 @@
       :code="props.code"
       :graphWidth="width"
       :graphHeight="height"
-      :key="key"
     ></GraphRender>
   </div>
 </template>
@@ -23,15 +22,13 @@ const props = defineProps({
   code: String,
 });
 const width = ref(0),
-  height = ref(0),
-  key = ref(0);
+  height = ref(0);
 
 const handleResize = () => {
   if (shellRef.value && width.value !== shellRef.value.clientWidth) {
     width.value = shellRef.value.clientWidth;
     height.value =
       width.value * RATIO > MAX_HEIGHT ? MAX_HEIGHT : width.value * RATIO;
-    key.value = width.value;
   }
 };
 onMounted(() => {

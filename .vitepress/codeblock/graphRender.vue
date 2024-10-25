@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watchEffect } from "vue";
 import functionPlot from "./function-plot/src/index";
 import yaml from "js-yaml";
 import { useData } from "vitepress";
@@ -31,13 +31,18 @@ const errorFlag = ref(false),
 onMounted(() => {
   if (plotRef.value) {
     try {
-      let a = functionPlot({
+      const options = {
         width: props.graphWidth,
         height: props.graphHeight,
         ...(<object>yaml.load(decodeURIComponent(props.code!))),
         target: plotRef.value,
+      };
+      functionPlot(options);
+      watchEffect(() => {
+        options.width = props.graphWidth;
+        options.height = props.graphHeight;
+        functionPlot(options);
       });
-      a.syncOptions;
     } catch (e) {
       errorFlag.value = true;
       errorDetails.value = e.toString().replace("\n", "<br/>");
@@ -55,7 +60,7 @@ onMounted(() => {
   filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%);
 }
 .graph-dark.graph-container .graph,
-.graph-dark.graph-container .tip{
+.graph-dark.graph-container .tip {
   filter: invert(100%) hue-rotate(180deg) brightness(80%) contrast(125%);
 }
 .graph-container svg.function-plot {
