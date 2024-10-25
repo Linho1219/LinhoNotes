@@ -26,11 +26,6 @@ mjx-container text {
   font-family: var(--vp-font-family-base);
 }
 
-/* Mermaid 示意图水平居中 */
-.mermaid svg {
-  margin: 0 auto;
-}
-
 /* 把 tip 框改成绿色 */
 :root {
   --vp-c-tip-soft: var(--vp-c-green-soft);

@@ -5,7 +5,7 @@
     ref="plotRef"
     :class="isDark ? 'graph-dark' : 'graph-light'"
   ></div>
-  <div v-if="errorFlag" class="graph-err caution custom-block github-alert">
+  <div v-if="errorFlag" class="graph-error caution custom-block github-alert">
     <p class="custom-block-title">函数渲染错误</p>
     <pre v-html="errorDetails"></pre>
   </div>
@@ -45,7 +45,7 @@ onMounted(() => {
       });
     } catch (e) {
       errorFlag.value = true;
-      errorDetails.value = e.toString().replace("\n", "<br/>");
+      errorDetails.value = e.toString();
     }
   }
 });
@@ -56,14 +56,29 @@ onMounted(() => {
   color: black;
   user-select: none;
 }
-.graph-dark.graph-container .canvas {
-  filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%);
+
+.graph-container {
+  filter: brightness(90%) hue-rotate(25deg);
+}
+
+.graph-dark.graph-container {
+  filter: invert(100%) hue-rotate(210deg) brightness(150%);
 }
 .graph-dark.graph-container .graph,
-.graph-dark.graph-container .tip {
-  filter: invert(100%) hue-rotate(180deg) brightness(80%) contrast(125%);
+.graph-dark.graph-container .tip,
+.graph-dark.graph-container .top-right-legend {
+  filter: invert(100%) hue-rotate(180deg);
+}
+.graph-container .annotations,.graph-container .fn-text{
+  filter: brightness(70%);
+}
+.graph-dark.graph-container .annotations{
+  filter: invert(100%) brightness(0);
 }
 .graph-container svg.function-plot {
   margin: 0 auto;
+}
+.graph-error pre {
+  white-space: pre-wrap;
 }
 </style>
