@@ -31,7 +31,7 @@ const handleResize = () => {
     width.value = shellRef.value.clientWidth;
     height.value =
       width.value * RATIO > MAX_HEIGHT ? MAX_HEIGHT : width.value * RATIO;
-    key.value = (key.value + 1) % 998244353;
+    key.value = width.value;
   }
 };
 onMounted(() => {

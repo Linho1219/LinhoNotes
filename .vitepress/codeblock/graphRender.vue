@@ -32,18 +32,16 @@ onMounted(() => {
   if (plotRef.value) {
     try {
       let a = functionPlot({
-        ...(<object>yaml.load(decodeURIComponent(props.code!))),
-        target: plotRef.value,
         width: props.graphWidth,
         height: props.graphHeight,
+        ...(<object>yaml.load(decodeURIComponent(props.code!))),
+        target: plotRef.value,
       });
       a.syncOptions;
     } catch (e) {
       errorFlag.value = true;
       errorDetails.value = e.toString().replace("\n", "<br/>");
     }
-    // errorFlag.value = true;
-    // errorDetails.value = "函数图像渲染还没跑通，后面再说";
   }
 });
 </script>
@@ -51,12 +49,14 @@ onMounted(() => {
 <style>
 .graph-container {
   color: black;
+  user-select: none;
 }
-.graph-dark.graph-container {
-  filter: invert(100%) hue-rotate(180deg) brightness(120%) contrast(85%);
+.graph-dark.graph-container .canvas {
+  filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%);
 }
-.graph-container svg {
-  max-width: 100%;
+.graph-dark.graph-container .graph,
+.graph-dark.graph-container .tip{
+  filter: invert(100%) hue-rotate(180deg) brightness(80%) contrast(125%);
 }
 .graph-container svg.function-plot {
   margin: 0 auto;
