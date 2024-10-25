@@ -1,10 +1,5 @@
 <template>
-  <div
-    v-if="!errorFlag"
-    class="graph-container"
-    ref="plotRef"
-    :class="isDark ? 'graph-dark' : 'graph-light'"
-  ></div>
+  <div v-if="!errorFlag" class="graph-container" ref="plotRef"></div>
   <div v-if="errorFlag" class="graph-error caution custom-block github-alert">
     <p class="custom-block-title">函数渲染错误</p>
     <pre v-html="errorDetails"></pre>
@@ -14,9 +9,7 @@
 import { ref, onMounted, watchEffect } from "vue";
 import functionPlot from "./function-plot/src/index";
 import yaml from "js-yaml";
-import { useData } from "vitepress";
-import type { FunctionPlotOptions } from "./function-plot/src/index";
-const { isDark } = useData();
+import type { FunctionPlotOptions } from "./function-plot/src/types";
 
 const props = defineProps({
   id: String,
@@ -29,23 +22,56 @@ const plotRef = ref<HTMLDivElement | null>(null);
 const errorFlag = ref(false),
   errorDetails = ref("");
 
+  type Size = [number, number];
+
+const X_DOMAIN: Size = [-6, 6];
+
+function computeScale(width: number, height: number, xScale: Size): Size {
+  const xDiff = xScale[1] - xScale[0];
+  const yDiff = (height * xDiff) / width;
+  return [-yDiff / 2, yDiff / 2];
+}
+
 onMounted(() => {
+  const generateOpt = (
+    originalOpt: FunctionPlotOptions,
+    [width, height]: Size,
+    target: HTMLElement
+  ): FunctionPlotOptions => ({
+    width,
+    height,
+    x: {
+      domain: originalOpt.y?.domain
+        ? computeScale(height, width, originalOpt.y.domain)
+        : X_DOMAIN,
+    },
+    y: {
+      domain: computeScale(width, height, originalOpt.x?.domain ?? X_DOMAIN),
+    },
+    ...originalOpt,
+    target,
+  });
+
   if (plotRef.value) {
     try {
       const originalOpt = <FunctionPlotOptions>(
         yaml.load(decodeURIComponent(props.code!))
       );
-      const options: FunctionPlotOptions = {
-        width: props.graphWidth,
-        height: props.graphHeight,
-        ...originalOpt,
-        target: plotRef.value,
-      };
-      functionPlot(options);
+      functionPlot(
+        generateOpt(
+          originalOpt,
+          [props.graphWidth!, props.graphHeight!],
+          plotRef.value
+        )
+      );
       watchEffect(() => {
-        options.width = props.graphWidth;
-        options.height = props.graphHeight;
-        functionPlot(options);
+        functionPlot(
+          generateOpt(
+            originalOpt,
+            [props.graphWidth!, props.graphHeight!],
+            plotRef.value!
+          )
+        );
       });
     } catch (e) {
       errorFlag.value = true;
@@ -65,19 +91,19 @@ onMounted(() => {
   filter: brightness(90%) hue-rotate(25deg);
 }
 
-.graph-dark.graph-container {
+.dark .graph-container {
   filter: invert(100%) hue-rotate(210deg) brightness(150%);
 }
-.graph-dark.graph-container .graph,
-.graph-dark.graph-container .tip,
-.graph-dark.graph-container .top-right-legend {
+.dark .graph-container .graph,
+.dark .graph-container .tip,
+.dark .graph-container .top-right-legend {
   filter: invert(100%) hue-rotate(180deg);
 }
 .graph-container .annotations,
 .graph-container .fn-text {
   filter: brightness(70%);
 }
-.graph-dark.graph-container .annotations {
+.dark .graph-container .annotations {
   filter: invert(100%) brightness(0);
 }
 .graph-container svg.function-plot {
