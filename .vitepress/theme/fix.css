@@ -1,3 +1,8 @@
+/* revert 标记图片颜色反转 */
+.dark img[alt^="&revert"] {
+  filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%);
+}
+
 /* 修复公式纵向滚动条 */
 mjx-container {
   overflow-y: hidden;
