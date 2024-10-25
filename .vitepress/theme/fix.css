@@ -29,6 +29,7 @@ mjx-container text {
 /* 把 tip 框改成绿色 */
 :root {
   --vp-c-tip-soft: var(--vp-c-green-soft);
+  --vp-badge-tip-bg: var(--vp-c-brand-soft);
 }
 
 /* 提示块分割线颜色修复 */

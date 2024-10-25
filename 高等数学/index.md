@@ -3,7 +3,7 @@
 
 ## 学科概况-TCU
 
-![必修](https://img.shields.io/badge/%E5%BF%85%E4%BF%AE-red) ![考试](https://img.shields.io/badge/%E8%80%83%E8%AF%95-gold) ![学分](https://img.shields.io/badge/%E5%AD%A6%E5%88%86-5.0-white)
+<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="info" text="学分 5.0" />
 
 授课教师：贺金陵。人很清楚。
 
@@ -41,7 +41,7 @@ $$
 
 ## 学科概况-XDU
 
-![必修](https://img.shields.io/badge/%E5%BF%85%E4%BF%AE-red) ![考试](https://img.shields.io/badge/%E8%80%83%E8%AF%95-gold) ![学分](https://img.shields.io/badge/%E5%AD%A6%E5%88%86-5.5-white)
+<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="info" text="学分 5.5" />
 
 ### 学科讲解
 
@@ -73,7 +73,7 @@ $$
 
 ## 学科概况-CSU
 
-![必修](https://img.shields.io/badge/%E5%BF%85%E4%BF%AE-red) ![考试](https://img.shields.io/badge/%E8%80%83%E8%AF%95-gold) ![学分](https://img.shields.io/badge/%E5%AD%A6%E5%88%86-5.0-white)
+<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="info" text="学分 5.0" />
 
 ### 老师：秦宣云
 

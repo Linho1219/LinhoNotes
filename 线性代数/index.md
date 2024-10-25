@@ -1,10 +1,10 @@
-# 简介：线性代数
+# 线性代数
 
-![必修](https://img.shields.io/badge/%E5%BF%85%E4%BF%AE-red) ![考试](https://img.shields.io/badge/%E8%80%83%E8%AF%95-gold) ![学分](https://img.shields.io/badge/%E5%AD%A6%E5%88%86-3.0-white)
+---
 
-学校授课教师：岳晓青。感觉讲得一般。
+<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="info" text="学分 3.0" />
 
-但是会看邮件，这点很好。
+学校授课教师：岳晓青。
 
 教材：同济 工程数学线性代数 第7版。
 

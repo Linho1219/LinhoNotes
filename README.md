@@ -9,13 +9,7 @@
 
 ## 标签
 
-使用 https://shields.io/ 生成。
-
-是否强制：![必修](https://img.shields.io/badge/%E5%BF%85%E4%BF%AE-red)![选修](https://img.shields.io/badge/%E9%80%89%E4%BF%AE-darkgreen)![自学](https://img.shields.io/badge/%E8%87%AA%E5%AD%A6-blue)
-
-考查方式：![考试](https://img.shields.io/badge/%E8%80%83%E8%AF%95-gold)![考查](https://img.shields.io/badge/%E8%80%83%E6%9F%A5-blue)
-
-学分：![学分](https://img.shields.io/badge/%E5%AD%A6%E5%88%86-3.0-white)
+<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="tip" text="一般" /> <Badge type="info" text="学分 5.0" />
 
 ## 格式建议
 
