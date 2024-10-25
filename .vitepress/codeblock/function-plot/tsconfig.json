@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "nodenext",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "declaration": true,
+    "paths": {
+      "*": ["node_modules/*"]
+    },
+    "types": ["node"],
+    "lib": ["es2022", "dom"]
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.js", "./src/**/*.d.ts"],
+  "exclude": ["src/stories/**/*"]
+}

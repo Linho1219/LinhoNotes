@@ -12,7 +12,7 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-// import functionPlot from "function-plot";
+import functionPlot from "./function-plot/src/index";
 import yaml from "js-yaml";
 import { useData } from "vitepress";
 const { isDark } = useData();
@@ -30,20 +30,20 @@ const errorFlag = ref(false),
 
 onMounted(() => {
   if (plotRef.value) {
-    // try {
-    //   let a = functionPlot({
-    //     ...(<object>yaml.load(decodeURIComponent(props.code!))),
-    //     target: plotRef.value,
-    //     width: props.graphWidth,
-    //     height: props.graphHeight,
-    //   });
-    //   a.syncOptions;
-    // } catch (e) {
-    //   errorFlag.value = true;
-    //   errorDetails.value = e.toString().replace("\n", "<br/>");
-    // }
-    errorFlag.value = true;
-    errorDetails.value = "函数图像渲染还没跑通，后面再说";
+    try {
+      let a = functionPlot({
+        ...(<object>yaml.load(decodeURIComponent(props.code!))),
+        target: plotRef.value,
+        width: props.graphWidth,
+        height: props.graphHeight,
+      });
+      a.syncOptions;
+    } catch (e) {
+      errorFlag.value = true;
+      errorDetails.value = e.toString().replace("\n", "<br/>");
+    }
+    // errorFlag.value = true;
+    // errorDetails.value = "函数图像渲染还没跑通，后面再说";
   }
 });
 </script>
