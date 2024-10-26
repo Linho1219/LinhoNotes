@@ -1,0 +1,50 @@
+/*====== 动态效果 ======*/
+
+@keyframes fade-in {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+}
+
+/* 960px+ 有左侧边栏 */
+@media only screen and (min-width: 960px) {
+  /* 正文切换动画 */
+  .vp-doc > div,
+  .VPHome {
+    animation: fade-in 0.3s;
+  }
+
+  /* 侧边栏指示条动画 */
+  .VPSidebarItem .indicator {
+    transform: translateY(30px);
+    transition: background 0.15s, transform 0.15s cubic-bezier(0.5,0,1,0.5);
+  }
+  .VPSidebarItem.is-active ~ .VPSidebarItem .indicator,
+  #VPSidebarNav .group:has(.is-active) ~ .group .indicator {
+    transform: translateY(-50px);
+  }
+  .VPSidebarItem.is-active .indicator {
+    transform: translateY(0);
+		transition: background 0.15s, transform 0.15s cubic-bezier(0,0.5,0.5,1);
+  }
+
+  /* 页脚点击动画 */
+  .VPLink.link.pager-link {
+    transition: transform 0.15s, border-color 0.25s;
+  }
+  .VPLink.link.pager-link.prev:active {
+    transform: translateX(-15px);
+  }
+  .VPLink.link.pager-link.next:active {
+    transform: translateX(15px);
+  }
+}
+
+/* 1280px+ 有右侧大纲 */
+@media only screen and (min-width: 1280px) {
+  /* 书签平滑跳转 */
+  html:has(.aside-container:hover) {
+    scroll-behavior: smooth;
+  }
+}
