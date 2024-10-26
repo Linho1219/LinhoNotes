@@ -3,7 +3,7 @@
   filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%);
 }
 
-.vp-doc img{
+.vp-doc img {
   border-radius: 5px;
 }
 
@@ -18,7 +18,7 @@ mjx-container {
 }
 
 .dark blockquote mjx-container {
-  color: #98989F;
+  color: #98989f;
 }
 
 /* 公式内文字字体定义 */
@@ -44,6 +44,15 @@ mjx-container text {
 /* 修复脚注返回按钮显示为 emoji */
 a.footnote-backref {
   font-family: sans-serif;
+}
+
+/* 高亮内容设置 */
+
+.vp-doc mark {
+  color: var(--vp-c-yellow-1);
+  background-color: var(--vp-c-yellow-soft);
+  padding: 2px 0;
+  border-radius: 2px;
 }
 
 /* 大屏下顶栏毛玻璃效果 */

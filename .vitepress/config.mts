@@ -1,6 +1,9 @@
+/// <reference path="./types.d.ts" />
+
 import sidebar from "./generateSidebar";
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
+import mdMark from 'markdown-it-mark'
 import { themeI18n, miscI18n } from "./i18n";
 import { UserConfig, DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
@@ -48,6 +51,7 @@ export default defineConfig({
     config: (md) => {
       md.use(mdFootnote);
       md.use(mdCheckbox);
+      md.use(mdMark);
       md.use(codePlugin);
     },
   },
