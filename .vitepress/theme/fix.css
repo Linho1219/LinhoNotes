@@ -104,6 +104,10 @@ img.VPImage.logo {
   background-color: #fff3;
 }
 
+.dark .vp-doc img[alt^="&revert"]::selection {
+  background-color: #0000003a;
+}
+
 /* 首页样式调整 */
 :root {
   --vp-home-hero-name-color: transparent;
