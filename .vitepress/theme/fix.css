@@ -51,8 +51,8 @@ a.footnote-backref {
 .vp-doc mark {
   color: var(--vp-c-yellow-1);
   background-color: var(--vp-c-yellow-soft);
-  padding: 2px 0;
-  border-radius: 2px;
+  box-shadow: var(--vp-c-yellow-soft) 0 0 0 2px;
+  border-radius: 1px;
 }
 
 /* 大屏下顶栏毛玻璃效果 */
