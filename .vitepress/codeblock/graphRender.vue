@@ -22,7 +22,7 @@ const plotRef = ref<HTMLDivElement | null>(null);
 const errorFlag = ref(false),
   errorDetails = ref("");
 
-  type Size = [number, number];
+type Size = [number, number];
 
 const X_DOMAIN: Size = [-6, 6];
 
@@ -57,21 +57,21 @@ onMounted(() => {
       const originalOpt = <FunctionPlotOptions>(
         yaml.load(decodeURIComponent(props.code!))
       );
-      functionPlot(
-        generateOpt(
-          originalOpt,
-          [props.graphWidth!, props.graphHeight!],
-          plotRef.value
-        )
-      );
       watchEffect(() => {
-        functionPlot(
-          generateOpt(
-            originalOpt,
-            [props.graphWidth!, props.graphHeight!],
-            plotRef.value!
-          )
-        );
+        if (plotRef.value && props.graphWidth && props.graphHeight) {
+          try {
+            functionPlot(
+              generateOpt(
+                originalOpt,
+                [props.graphWidth, props.graphHeight],
+                plotRef.value
+              )
+            );
+          } catch (e) {
+            errorFlag.value = true;
+            errorDetails.value = e.toString();
+          }
+        }
       });
     } catch (e) {
       errorFlag.value = true;
