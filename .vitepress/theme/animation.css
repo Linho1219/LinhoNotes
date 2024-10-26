@@ -7,6 +7,12 @@
   }
 }
 
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
 /* 960px+ 有左侧边栏 */
 @media only screen and (min-width: 960px) {
   /* 正文切换动画 */
@@ -54,4 +60,12 @@
   html:has(.VPLocalNavOutlineDropdown:hover) {
     scroll-behavior: smooth;
   }
+}
+
+/* 搜索框出现动画 */
+.VPLocalSearchBox .backdrop {
+  animation: fade 0.15s;
+}
+.VPLocalSearchBox .shell {
+  animation: fade-in 0.15s;
 }
