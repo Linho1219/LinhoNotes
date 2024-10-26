@@ -3,11 +3,12 @@
 import sidebar from "./generateSidebar";
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
-import mdMark from 'markdown-it-mark'
+import mdMark from "markdown-it-mark";
 import { themeI18n, miscI18n } from "./i18n";
 import { UserConfig, DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
 import codePlugin from "./codeblock/codeblockHijack";
+import nav from "./nav";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -17,11 +18,7 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/title_logo.svg",
-    nav: [
-      { text: "主页", link: "/" },
-      { text: "高数", link: "/高等数学/" },
-      { text: "线代", link: "/线性代数/" },
-    ],
+    nav,
     socialLinks: [
       { icon: "github", link: "https://github.com/Linho1219/LinhoNotes" },
     ],
@@ -60,3 +57,9 @@ export default defineConfig({
     hostname: "https://notes.linho.cc",
   },
 } as UserConfig<DefaultTheme.Config>);
+
+export type Nav = {
+  text: string;
+  link: string;
+  activeMatch?: string;
+}[];
