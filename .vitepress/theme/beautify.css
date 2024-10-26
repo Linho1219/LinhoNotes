@@ -1,0 +1,115 @@
+/*====== 静态样式美化 ======*/
+
+/* 公式内文字字体定义 */
+mjx-container text {
+  font-family: var(--vp-font-family-base);
+}
+
+/* 图片圆角 */
+.vp-doc img {
+  border-radius: 5px;
+}
+
+/* 侧边栏选中提示条 */
+.VPSidebarItem.is-active .indicator {
+  background: var(--vp-c-brand-1);
+}
+
+/* 大屏下顶栏毛玻璃效果 */
+@media only screen and (min-width: 1280px) {
+  :root {
+    --vp-nav-bg-color: #fff5;
+  }
+  .dark {
+    --vp-nav-bg-color: #1b1b1f70;
+  }
+  .content-body {
+    backdrop-filter: blur(15px);
+  }
+  .home .content-body {
+    backdrop-filter: none;
+  }
+}
+@media only screen and (min-width: 960px) {
+  .VPNavBar.home {
+    backdrop-filter: blur(15px);
+    --vp-nav-bg-color: #fff5;
+  }
+  .dark .VPNavBar.home {
+    --vp-nav-bg-color: #1b1b1f70;
+  }
+  .VPNavBar.home.top {
+    backdrop-filter: none;
+  }
+}
+
+/* 小屏下大纲毛玻璃效果 */
+@media only screen and (max-width: 960px) {
+  .VPLocalNav {
+    transition: background 0.15s, backdrop-filter 0.15s;
+  }
+  .VPLocalNav:not(:has(.VPLocalNavOutlineDropdown .items)) {
+    --vp-nav-bg-color: #fff5;
+    backdrop-filter: blur(15px);
+  }
+  .dark .VPLocalNav:not(:has(.VPLocalNavOutlineDropdown .items)) {
+    --vp-local-nav-bg-color: #1b1b1f70;
+  }
+}
+.VPLocalNavOutlineDropdown .items {
+  backdrop-filter: blur(15px);
+  background: transparent;
+  --vp-c-bg-soft: #fff9;
+}
+.dark .VPLocalNavOutlineDropdown .items {
+  --vp-c-bg-soft: #1b1b1f90;
+}
+
+/* 改善移动端点击效果 */
+* {
+  -webkit-tap-highlight-color: #0002;
+}
+.dark * {
+  -webkit-tap-highlight-color: #fff2;
+}
+
+/* 改善选择样式 */
+::selection {
+  background-color: #3451b240;
+}
+.dark ::selection {
+  background-color: #fff3;
+}
+
+.dark .vp-doc img[alt^="&revert"]::selection {
+  background-color: #0000003a;
+}
+
+/* 首页样式调整 */
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #746dc1 40%,
+    #228cc2
+  );
+  --vp-home-hero-image-background-image: linear-gradient(
+    50deg,
+    #07abfc50 50%,
+    #7367fc50 50%
+  );
+  --vp-home-hero-image-filter: blur(60px);
+}
+.dark {
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #7d76cc 40%,
+    #41d1ff
+  );
+}
+@media (min-width: 960px) {
+  .image-container .image-src {
+    max-width: 220px;
+    max-height: 220px;
+  }
+}

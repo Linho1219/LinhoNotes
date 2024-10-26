@@ -1,0 +1,20 @@
+/*====== 私有特性 ======*/
+
+/* revert 标记图片颜色反转 */
+.dark .vp-doc img[alt^="&revert"] {
+  filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%);
+}
+
+/* 高亮内容设置 */
+.vp-doc mark {
+  color: var(--vp-c-yellow-1);
+  background-color: var(--vp-c-yellow-soft);
+  box-shadow: var(--vp-c-yellow-soft) 0 0 0 2px;
+  border-radius: 1px;
+}
+
+/* 把 tip 框改成绿色 */
+:root {
+  --vp-c-tip-soft: var(--vp-c-green-soft);
+  --vp-badge-tip-bg: var(--vp-c-brand-soft);
+}

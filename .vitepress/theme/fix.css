@@ -1,11 +1,4 @@
-/* revert 标记图片颜色反转 */
-.dark .vp-doc img[alt^="&revert"] {
-  filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%);
-}
-
-.vp-doc img {
-  border-radius: 5px;
-}
+/*====== 修复问题 ======*/
 
 /* 修复公式纵向滚动条 */
 mjx-container {
@@ -16,27 +9,14 @@ mjx-container {
 .dark mjx-container {
   color: #dfdfd6;
 }
-
 .dark blockquote mjx-container {
   color: #98989f;
-}
-
-/* 公式内文字字体定义 */
-mjx-container text {
-  font-family: var(--vp-font-family-base);
-}
-
-/* 把 tip 框改成绿色 */
-:root {
-  --vp-c-tip-soft: var(--vp-c-green-soft);
-  --vp-badge-tip-bg: var(--vp-c-brand-soft);
 }
 
 /* 提示块分割线颜色修复 */
 .github-alert {
   --vp-c-divider: #0002;
 }
-
 .dark .github-alert {
   --vp-c-divider: #fff2;
 }
@@ -46,93 +26,7 @@ a.footnote-backref {
   font-family: sans-serif;
 }
 
-/* 高亮内容设置 */
-
-.vp-doc mark {
-  color: var(--vp-c-yellow-1);
-  background-color: var(--vp-c-yellow-soft);
-  box-shadow: var(--vp-c-yellow-soft) 0 0 0 2px;
-  border-radius: 1px;
-}
-
-/* 大屏下顶栏毛玻璃效果 */
-@media only screen and (min-width: 1280px) {
-  :root {
-    --vp-nav-bg-color: #fff5;
-  }
-  .dark {
-    --vp-nav-bg-color: #1b1b1f70;
-  }
-  .content-body {
-    backdrop-filter: blur(15px);
-  }
-  .home .content-body {
-    backdrop-filter: none;
-  }
-}
-@media only screen and (min-width: 960px) {
-  .VPNavBar.home {
-    backdrop-filter: blur(15px);
-    --vp-nav-bg-color: #fff5;
-  }
-  .dark .VPNavBar.home {
-    --vp-nav-bg-color: #1b1b1f70;
-  }
-  .VPNavBar.home.top {
-    backdrop-filter: none;
-  }
-}
-
 /* 顶栏 logo 大小修复 */
 img.VPImage.logo {
   transform: scale(1.25);
-}
-
-/* 改善移动端点击效果 */
-* {
-  -webkit-tap-highlight-color: #0002;
-}
-.dark * {
-  -webkit-tap-highlight-color: #fff2;
-}
-
-/* 改善选择样式 */
-::selection {
-  background-color: #3451b240;
-}
-.dark ::selection {
-  background-color: #fff3;
-}
-
-.dark .vp-doc img[alt^="&revert"]::selection {
-  background-color: #0000003a;
-}
-
-/* 首页样式调整 */
-:root {
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #746dc1 40%,
-    #228cc2
-  );
-  --vp-home-hero-image-background-image: linear-gradient(
-    50deg,
-    #07abfc50 50%,
-    #7367fc50 50%
-  );
-  --vp-home-hero-image-filter: blur(60px);
-}
-.dark {
-  --vp-home-hero-name-background: -webkit-linear-gradient(
-    120deg,
-    #7d76cc 40%,
-    #41d1ff
-  );
-}
-@media (min-width: 960px) {
-  .image-container .image-src {
-    max-width: 220px;
-    max-height: 220px;
-  }
 }
