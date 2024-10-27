@@ -6,7 +6,12 @@
     opacity: 0;
   }
 }
-
+@keyframes fade-in-left {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+}
 @keyframes fade {
   from {
     opacity: 0;
@@ -44,6 +49,14 @@
   }
   .VPLink.link.pager-link.next:active {
     transform: translateX(15px);
+  }
+
+  /* 左侧边栏出现与刷新动画 */
+  .VPSidebar {
+    animation: fade-in-left 0.2s;
+  }
+  .VPSidebar .VPLink {
+    animation: fade-in-left 0.2s;
   }
 }
 
