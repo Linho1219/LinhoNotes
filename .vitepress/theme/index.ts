@@ -4,6 +4,7 @@ import "./private.css";
 import "./fix.css";
 import "./beautify.css"
 import "./animation.css"
+import "./home.css"
 
 import Layout from "./layout.vue";
 import Mermaid from "../codeblock/mermaid.vue";
