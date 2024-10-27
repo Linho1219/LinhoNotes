@@ -54,9 +54,11 @@ onMounted(() => {
 
   if (plotRef.value) {
     try {
-      const originalOpt = <FunctionPlotOptions>(
+      const originalOpt = <FunctionPlotOptions | undefined>(
         yaml.load(decodeURIComponent(props.code!))
       );
+      if (typeof originalOpt !== "object")
+        throw `Illegal plot options: ${originalOpt}`;
       watchEffect(() => {
         if (plotRef.value && props.graphWidth && props.graphHeight) {
           try {
