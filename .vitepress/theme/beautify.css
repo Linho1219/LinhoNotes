@@ -72,3 +72,93 @@ mjx-container text {
 .dark .vp-doc img[alt^="&revert"]::selection {
   background-color: #0000003a;
 }
+
+/* 公式颜色优化 */
+mjx-container {
+  --formula-red: var(--vp-c-red-2);
+  --formula-green: var(--vp-c-green-2);
+  --formula-blue: var(--vp-c-indigo-2);
+  --formula-cyan: #008ab4;
+  --formula-magenta: var(--vp-c-sponsor);
+  --formula-yellow: #c5b419;
+  --formula-brown: var(--vp-c-yellow-1);
+  --formula-lime: #8ebd00;
+  --formula-olive: olive;
+  --formula-orange: #e67300;
+  --formula-pink: var(--vp-c-red-3);
+  --formula-purple: var(--vp-c-purple-2);
+  --formula-teal: teal;
+  --formula-violet: #8c2a8c;
+}
+.dark mjx-container {
+  --formula-red: var(--vp-c-red-2);
+  --formula-green: var(--vp-c-green-2);
+  --formula-blue: var(--vp-c-indigo-2);
+  --formula-cyan: #00B9F2;
+  --formula-magenta: #FB3199;
+  --formula-yellow: #FFEB3D;
+  --formula-brown: var(--vp-c-yellow-3);
+  --formula-lime: #BFFF00;
+  --formula-olive: rgb(154, 154, 0);
+  --formula-orange: var(--vp-c-yellow-1);
+  --formula-pink: var(--vp-c-red-1);
+  --formula-purple: var(--vp-c-purple-2);
+  --formula-teal: #00B1B1;
+  --formula-violet: violet;
+}
+mjx-container g[data-mml-node="mstyle"][fill="red"] {
+  fill: var(--formula-red);
+  stroke: var(--formula-red);
+}
+mjx-container g[data-mml-node="mstyle"][fill="green"] {
+  fill: var(--formula-green);
+  stroke: var(--formula-green);
+}
+mjx-container g[data-mml-node="mstyle"][fill="blue"] {
+  fill: var(--formula-blue);
+  stroke: var(--formula-blue);
+}
+mjx-container g[data-mml-node="mstyle"][fill="cyan"] {
+  fill: var(--formula-cyan);
+  stroke: var(--formula-cyan);
+}
+mjx-container g[data-mml-node="mstyle"][fill="magenta"] {
+  fill: var(--formula-magenta);
+  stroke: var(--formula-magenta);
+}
+mjx-container g[data-mml-node="mstyle"][fill="yellow"] {
+  fill: var(--formula-yellow);
+  stroke: var(--formula-yellow);
+}
+mjx-container g[data-mml-node="mstyle"][fill="brown"] {
+  fill: var(--formula-brown);
+  stroke: var(--formula-brown);
+}
+mjx-container g[data-mml-node="mstyle"][fill="lime"] {
+  fill: var(--formula-lime);
+  stroke: var(--formula-lime);
+}
+mjx-container g[data-mml-node="mstyle"][fill="olive"] {
+  fill: var(--formula-olive);
+  stroke: var(--formula-olive);
+}
+mjx-container g[data-mml-node="mstyle"][fill="orange"] {
+  fill: var(--formula-orange);
+  stroke: var(--formula-orange);
+}
+mjx-container g[data-mml-node="mstyle"][fill="pink"] {
+  fill: var(--formula-pink);
+  stroke: var(--formula-pink);
+}
+mjx-container g[data-mml-node="mstyle"][fill="purple"] {
+  fill: var(--formula-purple);
+  stroke: var(--formula-purple);
+}
+mjx-container g[data-mml-node="mstyle"][fill="teal"] {
+  fill: var(--formula-teal);
+  stroke: var(--formula-teal);
+}
+mjx-container g[data-mml-node="mstyle"][fill="violet"] {
+  fill: var(--formula-violet);
+  stroke: var(--formula-violet);
+}
