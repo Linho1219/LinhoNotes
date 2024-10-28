@@ -9,12 +9,14 @@ import { UserConfig, DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
 import codePlugin from "./codeblock/codeblockHijack";
 import nav from "./nav";
+import genreateSitemap from "./sitemap";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "LinhoNotes",
-  description: "一个本科笔记仓库",
+  description: "一个笔记仓库",
   lang: "zh-CN",
+  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/title_logo.svg",
@@ -56,10 +58,5 @@ export default defineConfig({
   sitemap: {
     hostname: "https://notes.linho.cc",
   },
+  buildEnd: genreateSitemap,
 } as UserConfig<DefaultTheme.Config>);
-
-export type Nav = {
-  text: string;
-  link: string;
-  activeMatch?: string;
-}[];

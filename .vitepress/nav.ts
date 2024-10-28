@@ -1,5 +1,10 @@
-import type { Nav } from "./config.mts";
 import { DefaultTheme } from "vitepress";
+
+type Nav = {
+  text: string;
+  link: string;
+  activeMatch?: string;
+}[];
 
 const nav: Nav = [
   { text: "高数", link: "高等数学" },
