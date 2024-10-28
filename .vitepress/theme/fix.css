@@ -5,14 +5,6 @@ mjx-container {
   overflow-y: hidden;
 }
 
-/* 修复公式大括号毛边 */
-.dark mjx-container {
-  color: #dfdfd6;
-}
-.dark blockquote mjx-container {
-  color: #98989f;
-}
-
 /* 提示块分割线颜色修复 */
 .github-alert {
   --vp-c-divider: #0002;
