@@ -80,7 +80,7 @@ mjx-container {
   --formula-blue: var(--vp-c-indigo-2);
   --formula-cyan: #008ab4;
   --formula-magenta: var(--vp-c-sponsor);
-  --formula-yellow: #c5b419;
+  --formula-yellow: var(--vp-c-yellow-3);
   --formula-brown: var(--vp-c-yellow-1);
   --formula-lime: #8ebd00;
   --formula-olive: olive;
