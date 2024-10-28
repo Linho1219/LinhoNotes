@@ -73,6 +73,28 @@ mjx-container text {
   background-color: #0000003a;
 }
 
+/* Algolia 搜索框 */
+:root {
+  --docsearch-hit-active-color: var(--vp-c-text-1);
+}
+.DocSearch-Modal {
+  box-shadow: #0005 0 15px 30px;
+}
+.DocSearch-Hit[aria-selected="true"] a {
+  background: var(--vp-c-brand-soft);
+}
+.DocSearch-Hit[aria-selected="true"] mark {
+  color: var(--vp-c-brand-1) !important;
+  text-decoration: none;
+}
+.DocSearch-Logo {
+  filter: grayscale(1) brightness(2.5);
+  opacity: 0.5;
+}
+.DocSearch-NoResults-Prefill-List {
+  display: none !important;
+}
+
 /* 公式颜色优化 */
 mjx-container {
   --formula-red: var(--vp-c-red-2);
@@ -94,16 +116,16 @@ mjx-container {
   --formula-red: var(--vp-c-red-2);
   --formula-green: var(--vp-c-green-2);
   --formula-blue: var(--vp-c-indigo-2);
-  --formula-cyan: #00B9F2;
-  --formula-magenta: #FB3199;
-  --formula-yellow: #FFEB3D;
+  --formula-cyan: #00b9f2;
+  --formula-magenta: #fb3199;
+  --formula-yellow: #ffeb3d;
   --formula-brown: var(--vp-c-yellow-3);
-  --formula-lime: #BFFF00;
+  --formula-lime: #bfff00;
   --formula-olive: rgb(154, 154, 0);
   --formula-orange: var(--vp-c-yellow-1);
   --formula-pink: var(--vp-c-red-1);
   --formula-purple: var(--vp-c-purple-2);
-  --formula-teal: #00B1B1;
+  --formula-teal: #00b1b1;
   --formula-violet: violet;
 }
 mjx-container g[data-mml-node="mstyle"][fill="red"] {

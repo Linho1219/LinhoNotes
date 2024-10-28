@@ -75,10 +75,26 @@
   }
 }
 
-/* 搜索框出现动画 */
-.VPLocalSearchBox .backdrop {
-  animation: fade 0.15s;
+/* Algolia 搜索框 */
+.DocSearch-Container {
+  background: transparent;
 }
-.VPLocalSearchBox .shell {
+#app {
+  transition: opacity 0.3s;
+}
+.DocSearch--active #app {
+  opacity: 0.3;
+}
+.DocSearch-Modal {
   animation: fade-in 0.15s;
+}
+.DocSearch-Hit a {
+  transition: background 0.2s;
+}
+.DocSearch-Hit span,
+.DocSearch-Hit-icon {
+  transition: color 0.2s;
+}
+.DocSearch-Hit-Select-Icon {
+  animation: fade-in-left 0.2s;
 }

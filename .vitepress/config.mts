@@ -4,7 +4,7 @@ import sidebar from "./generateSidebar";
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
 import mdMark from "markdown-it-mark";
-import { themeI18n, miscI18n } from "./i18n";
+import { themeI18n, miscI18n, searchI18n } from "./i18n";
 import { UserConfig, DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
 import codePlugin from "./codeblock/codeblockHijack";
@@ -24,8 +24,19 @@ export default defineConfig({
     socialLinks: [
       { icon: "github", link: "https://github.com/Linho1219/LinhoNotes" },
     ],
-    search:
-      process.env.NODE_ENV === "production" ? { provider: "local" } : false,
+    search: {
+      provider: "algolia",
+      options: {
+        appId: "VZX3XG9QDI",
+        apiKey: "5f1b16068879fe196235e0b2bf6a607a",
+        indexName: "linho",
+        placeholder: miscI18n.searchPlaceHolder,
+        buttonText: miscI18n.searchBtnText,
+        translations: searchI18n,
+        disableUserPersonalization: true,
+        maxResultsPerGroup: 7,
+      },
+    },
     sidebar: sidebar(),
     editLink: {
       pattern:
