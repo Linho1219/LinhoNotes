@@ -1,0 +1,4 @@
+Sitemap: https://notes.linho.cc/sitemap.xml
+
+User-agent: *
+Disallow:
