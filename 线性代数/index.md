@@ -2,21 +2,21 @@
 
 ---
 
-<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="info" text="学分 3.0" />
+<Badge type="warning" text="必修" />
+<Badge type="danger" text="考试" />
+<Badge type="info" text="学分 3.0" />
 
 学校授课教师：岳晓青。
 
-教材：同济 工程数学线性代数 第7版。
+教材：同济 工程数学线性代数 第 7 版。
 
-学校课程相关的电子内容放在[课堂派](https://www.ketangpai.com/)上面。后面使用中国大学MOOC来考核。
+学校课程相关的电子内容放在[课堂派](https://www.ketangpai.com/)上面。后面使用中国大学 MOOC 来考核。
 
 后面在 Bilibili 上自学。主要参考[线性代数基础与解法全集](https://www.bilibili.com/video/BV1Et421E7jk)、[一高数合集：线性代数](https://space.bilibili.com/1035929235/channel/collectiondetail?sid=2277667)。
 
-
-
 大学数学：高数-连续，线代-离散，概统-随机
 
-中心：解n元方程，对应n维空间（超平面）的解析几何
+中心：解 n 元方程，对应 n 维空间（超平面）的解析几何
 
 工具：行列式，矩阵……
 
@@ -26,3 +26,5 @@
 2. 从哪里来的
 3. 怎么定义的
 4. 有什么性质
+
+本项目的实数集使用 $\mathbb R$ 而非 $\bf R$ 表示。
