@@ -6,6 +6,7 @@ import { pangu } from "./util";
 const ignProjects = [".vitepress", ".github", ".git", "node_modules", "public"];
 const ignDirs = ["images"];
 const ignFiles = ["index.md"];
+const MAX_DEPTH = 2;
 
 function compareFileName(a: string, b: string) {
   const matchA = a.match(/^((\d+)(\.(\d+))?)\s/),
@@ -18,36 +19,40 @@ function compareFileName(a: string, b: string) {
   return indexA - indexB;
 }
 
-function generateSidebar(dir: string): DefaultTheme.SidebarItem[] {
-  if (!fs.existsSync(dir)) {
-    console.error(`Directory not found: ${dir}`);
+function generateSidebar(
+  folderPath: string,
+  depth = 0
+): DefaultTheme.SidebarItem[] {
+  if (!fs.existsSync(folderPath)) {
+    console.error(`Directory not found: ${folderPath}`);
     return [];
   }
-  const folders = fs
-    .readdirSync(dir, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory() && !ignDirs.includes(dirent.name))
-    .sort((a, b) => compareFileName(a.name, b.name));
-
-  const generateItems = (folderPath: string) =>
-    fs
-      .readdirSync(folderPath)
-      .filter((file) => file.endsWith(".md") && !ignFiles.includes(file))
-      .sort(compareFileName)
-      .map((file) => ({
-        text: pangu(path.basename(file, ".md")),
-        link: `/${folderPath}/${path.basename(file, ".md")}`,
-      }));
-
-  if (folders.length !== 0) {
-    // 文件夹模式
-    return folders.map((folder) => ({
+  const content = fs.readdirSync(folderPath, { withFileTypes: true });
+  const folders =
+    depth < MAX_DEPTH
+      ? content.filter(
+          (dirent) => dirent.isDirectory() && !ignDirs.includes(dirent.name)
+        )
+      : [];
+  const files = content.filter(
+    (dirent) =>
+      !dirent.isDirectory() &&
+      dirent.name.endsWith(".md") &&
+      !ignFiles.includes(dirent.name)
+  );
+  return [
+    ...files.map(({ name }) => ({
+      text: pangu(path.basename(name, ".md")),
+      link: `/${folderPath}/${path.basename(name, ".md")}`,
+    })),
+    ...folders.map((folder) => ({
       text: pangu(folder.name),
-      items: generateItems(`${dir}/${folder.name}`),
-    }));
-  } else {
-    // 文件模式
-    return generateItems(dir);
-  }
+      items: generateSidebar(`${folderPath}/${folder.name}`, depth + 1),
+      link: fs.existsSync(`${folderPath}/${folder.name}/index.md`)
+        ? `/${folderPath}/${folder.name}/`
+        : undefined,
+    })),
+  ].sort((a, b) => compareFileName(a.text, b.text));
 }
 
 export default function sidebar() {
