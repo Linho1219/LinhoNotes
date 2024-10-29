@@ -2,6 +2,10 @@
   <Layout>
     <template #doc-before>
       <Breadcrumb />
+      
+    </template>
+    <template #layout-bottom>
+      <SearchOverlay />
     </template>
   </Layout>
 </template>
@@ -11,6 +15,7 @@ import { nextTick, provide } from "vue";
 import { useData } from "vitepress";
 import Breadcrumb from "./breadcrumb.vue";
 import DefaultTheme from "vitepress/theme";
+import SearchOverlay from "./searchOverlay.vue";
 const { Layout } = DefaultTheme;
 const { isDark } = useData();
 

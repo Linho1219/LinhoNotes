@@ -76,15 +76,6 @@
 }
 
 /* Algolia 搜索框 */
-.DocSearch-Container {
-  background: transparent;
-}
-#app {
-  transition: opacity 0.3s;
-}
-.DocSearch--active #app {
-  opacity: 0.3;
-}
 .DocSearch-Modal {
   animation: fade-in 0.15s;
 }
