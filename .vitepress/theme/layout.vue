@@ -1,11 +1,17 @@
 <template>
-  <DefaultTheme.Layout />
+  <Layout>
+    <template #doc-before>
+      <Breadcrumb />
+    </template>
+  </Layout>
 </template>
 
 <script setup lang="ts">
-import DefaultTheme from "vitepress/theme";
 import { nextTick, provide } from "vue";
 import { useData } from "vitepress";
+import Breadcrumb from "./breadcrumb.vue";
+import DefaultTheme from "vitepress/theme";
+const { Layout } = DefaultTheme;
 const { isDark } = useData();
 
 const enableTransitions = () =>

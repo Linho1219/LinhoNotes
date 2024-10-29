@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { DefaultTheme } from "vitepress";
+import { pangu } from "./util";
 
 const ignProjects = [".vitepress", ".github", ".git", "node_modules", "public"];
 const ignDirs = ["images"];
@@ -16,11 +17,6 @@ function compareFileName(a: string, b: string) {
     indexB = Number(matchB[2]) * 1000 + NumberWithoutNaN(matchB[4]);
   return indexA - indexB;
 }
-
-const pangu = (str: string) =>
-  str
-    .replace(/([0-9A-Za-z&+\-])([\u4e00-\u9fff])/g, "$1 $2")
-    .replace(/([\u4e00-\u9fff])([0-9A-Za-z&+\-])/g, "$1 $2");
 
 function generateSidebar(dir: string): DefaultTheme.SidebarItem[] {
   if (!fs.existsSync(dir)) {
