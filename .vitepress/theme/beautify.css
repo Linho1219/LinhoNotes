@@ -10,11 +10,6 @@ mjx-container text {
   border-radius: 5px;
 }
 
-/* 侧边栏选中提示条 */
-.VPSidebarItem.is-active .indicator {
-  background: var(--vp-c-brand-1);
-}
-
 /* 大屏下顶栏毛玻璃效果 */
 @media only screen and (min-width: 1280px) {
   :root {

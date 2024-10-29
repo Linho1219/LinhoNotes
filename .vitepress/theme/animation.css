@@ -27,17 +27,20 @@
   }
 
   /* 侧边栏指示条动画 */
+  .VPSidebarItem.is-active > .item > .indicator {
+    background: var(--vp-c-brand-1);
+    transform: translateY(0);
+    transition: background 0.15s, transform 0.15s cubic-bezier(0, 0.5, 0.5, 1);
+  }
   .VPSidebarItem .indicator {
-    transform: translateY(30px);
+    transform: translateY(40px);
     transition: background 0.15s, transform 0.15s cubic-bezier(0.5, 0, 1, 0.5);
   }
   .VPSidebarItem.is-active ~ .VPSidebarItem .indicator,
+  .VPSidebarItem.level-0.is-active .items .indicator,
+  .VPSidebarItem.has-active ~ .VPSidebarItem .indicator,
   #VPSidebarNav .group:has(.is-active) ~ .group .indicator {
-    transform: translateY(-50px);
-  }
-  .VPSidebarItem.is-active .indicator {
-    transform: translateY(0);
-    transition: background 0.15s, transform 0.15s cubic-bezier(0, 0.5, 0.5, 1);
+    transform: translateY(-40px);
   }
 
   /* 页脚点击动画 */
