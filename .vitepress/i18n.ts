@@ -49,15 +49,12 @@ export const searchI18n = {
       navigateText: "导航",
       navigateUpKeyAriaLabel: "上箭头",
       navigateDownKeyAriaLabel: "下箭头",
-      closeText: "关闭",
+      closeText: "清空",
       closeKeyAriaLabel: "Esc 键",
-      searchByText: "Search by",
     },
     noResultsScreen: {
-      noResultsText: "找不到",
+      noResultsText: "未找到",
       suggestedQueryText: "尝试搜索",
-      reportMissingResultsText: "",
-      reportMissingResultsLinkText: "",
     },
   },
 } as const;
