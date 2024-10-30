@@ -2,9 +2,9 @@
 
 ---
 
-<T color="yellow" text="必修" />
-<T color="red" text="考试" />
-<T color="gray" text="学分 3.0" />
+<T c="yellow" t="必修" />
+<T c="red" t="考试" />
+<T c="gray" t="学分 3.0" />
 
 学校授课教师：岳晓青。
 

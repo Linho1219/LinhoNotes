@@ -9,7 +9,7 @@ import "./home.css";
 import Layout from "./layout.vue";
 import Mermaid from "../codeblock/mermaid.vue";
 import Graph from "../codeblock/graph.vue";
-import T from "./tag.vue";
+import Tag from "./tag.vue";
 
 export default <Theme>{
   extends: DefaultTheme,
@@ -17,6 +17,7 @@ export default <Theme>{
   enhanceApp: async ({ app }) => {
     app.component("Mermaid", Mermaid);
     app.component("Graph", Graph);
-    app.component("T", T);
+    app.component("T", Tag);
+    app.component("Tag", Tag);
   },
 };

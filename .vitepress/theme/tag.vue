@@ -1,11 +1,15 @@
 <template>
-  <span class="VPBadge" :class="props.color">{{ props.text }}</span>
+  <span class="VPBadge" :class="props.color ?? props.c">{{
+    props.text ?? props.t
+  }}</span>
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
   color: String,
   text: String,
+  c: String,
+  t: String,
 });
 </script>
 

@@ -2,9 +2,9 @@
 
 ## 学科概况-TCU
 
-<T color="yellow" text="必修" />
-<T color="red" text="考试" />
-<T color="gray" text="学分 5.0" />
+<T c="yellow" t="必修" />
+<T c="red" t="考试" />
+<T c="gray" t="学分 5.0" />
 
 授课教师：贺金陵。人很清楚。
 
@@ -44,9 +44,9 @@ $$
 
 ## 学科概况-XDU
 
-<T color="yellow" text="必修" />
-<T color="red" text="考试" />
-<T color="gray" text="学分 5.5" />
+<T c="yellow" t="必修" />
+<T c="red" t="考试" />
+<T c="gray" t="学分 5.5" />
 
 ### 学科讲解
 
@@ -76,9 +76,9 @@ $$
 
 ## 学科概况-CSU
 
-<T color="yellow" text="必修" />
-<T color="red" text="考试" />
-<T color="gray" text="学分 5.0" />
+<T c="yellow" t="必修" />
+<T c="red" t="考试" />
+<T c="gray" t="学分 5.0" />
 
 ### 老师：秦宣云
 

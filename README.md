@@ -10,32 +10,32 @@
 
 ## 标签
 
-<T color="red" text="红色" />
-<T color="orange" text="橙色" />
-<T color="yellow" text="黄色" />
-<T color="green" text="绿色" />
-<T color="blue" text="蓝色" />
-<T color="indigo" text="靛青" />
-<T color="purple" text="紫色" />
+<T c="red" t="红色" />
+<T c="orange" t="橙色" />
+<T c="yellow" t="黄色" />
+<T c="green" t="绿色" />
+<T c="blue" t="蓝色" />
+<T c="indigo" t="靛青" />
+<T c="purple" t="紫色" />
 <br/>
-<T color="pink" text="粉色" />
-<T color="magenta" text="洋红" />
-<T color="lime" text="青绿" />
-<T color="olive" text="橄榄" />
-<T color="cyan" text="青色" />
-<T color="teal" text="茶色" />
-<T color="gray" text="灰色" />
+<T c="pink" t="粉色" />
+<T c="magenta" t="洋红" />
+<T c="lime" t="青绿" />
+<T c="olive" t="橄榄" />
+<T c="cyan" t="青色" />
+<T c="teal" t="茶色" />
+<T c="gray" t="灰色" />
 
 ---
 
-<T color="yellow" text="必修" />
-<T color="red" text="考试" />
-<T color="gray" text="学分 5.0" />
-<T color="green" text="选修" />
-<T color="purple" text="考查" />
-<T color="gray" text="学分 2.0" />
-<T color="cyan" text="自学" />
-<T color="blue" text="思维题" />
+<T c="yellow" t="必修" />
+<T c="red" t="考试" />
+<T c="gray" t="学分 5.0" />
+<T c="green" t="选修" />
+<T c="purple" t="考查" />
+<T c="gray" t="学分 2.0" />
+<T c="cyan" t="自学" />
+<T c="blue" t="思维题" />
 
 ## 格式建议
 
