@@ -1,18 +1,44 @@
 <template>
-  <span class="VPBadge" :class="props.color ?? props.c">{{
-    props.text ?? props.t
-  }}</span>
+  <span class="VPBadge" :class="BadgeClass">
+    {{ BadgeText }} <slot></slot>
+  </span>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, useAttrs } from "vue";
 const props = defineProps({
   color: String,
   text: String,
   c: String,
   t: String,
 });
+const colorNames = [
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "indigo",
+  "purple",
+  "pink",
+  "magenta",
+  "lime",
+  "olive",
+  "cyan",
+  "teal",
+  "gray",
+];
 
+let colorStr = "";
+const attrs = useAttrs();
+for (let key in attrs)
+  if (typeof attrs[key] === "string" && colorNames.includes(key))
+    colorStr = key;
+
+colorStr = props.color ?? props.c ?? colorStr;
+
+const BadgeClass = ref(colorStr),
+  BadgeText = ref(props.text ?? props.t);
 </script>
 
 <style>
