@@ -47,13 +47,16 @@ export default defineConfig({
       level: [2, 3],
       label: miscI18n.outline,
     },
-    lastUpdated: {
-      text: miscI18n.lastUpdated,
-      formatOptions: {
-        dateStyle: "short",
-        timeStyle: "short",
-      },
-    },
+    lastUpdated:
+      process.env.NODE_ENV === "production"
+        ? {
+            text: miscI18n.lastUpdated,
+            formatOptions: {
+              dateStyle: "short",
+              timeStyle: "short",
+            },
+          }
+        : false,
     ...themeI18n,
   },
   markdown: {
