@@ -1,30 +1,34 @@
 # 简介：高等数学
 
-
 ## 学科概况-TCU
 
-<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="info" text="学分 5.0" />
+<T color="yellow" text="必修" />
+<T color="red" text="考试" />
+<T color="gray" text="学分 5.0" />
 
 授课教师：贺金陵。人很清楚。
 
 教材：同济大学高等数学第八版。
 
 考核方式：
+
 $$
 总分100 \left\{ \matrix{
   30\% :过程\left\{ \matrix{
-  10\% :{\rm{10次考勤}} \hfill \\ 
-  20\% :{\rm{小测试-14周前后课程基本结束时}} \hfill \\}  \right. \hfill \\ 
-  20\% :期中考-第三章凹凸性那里 \hfill \\ 
+  10\% :{\rm{10次考勤}} \hfill \\
+  20\% :{\rm{小测试-14周前后课程基本结束时}} \hfill \\}  \right. \hfill \\
+  20\% :期中考-第三章凹凸性那里 \hfill \\
   50\% :期末考 \hfill \\}  \right.
 $$
+
 同济高数同步课堂：https://gaoshutongbu.tongji.edu.cn/
 
 慕课：https://www.icourses.cn/
 
-答疑时间段：9-16~12-15，周一三四，一二九大楼B区102，中午12:15~1:15
+答疑时间段：9-16~12-15，周一三四，一二九大楼 B 区 102，中午 12:15~1:15
 
 补个希腊字母表（形式上与英文字母相同的大写字母已略去）：
+
 $$
 \begin{matrix}
   \alpha-alpha&\beta-beta&\Gamma\gamma-gamma&\Delta\delta-delta\\
@@ -35,19 +39,20 @@ $$
   \Phi\phi-phi&\chi-chi&\Psi\psi-psi&\Omega\omega-omega\\
 \end{matrix}
 $$
+
 参考一高数：
-
-
 
 ## 学科概况-XDU
 
-<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="info" text="学分 5.5" />
+<T color="yellow" text="必修" />
+<T color="red" text="考试" />
+<T color="gray" text="学分 5.5" />
 
 ### 学科讲解
 
 - 学科主体内容：微积分，微分方程，向量代数，空间解析几何
 - 分数组成：**`15%平时分` `10%*2课堂小测` `25%期中考` `40%期末考`**
-- 学期作业：对微积分的看法与认识，2k~3k字
+- 学期作业：对微积分的看法与认识，2k~3k 字
 
 ### 学习平台
 
@@ -69,11 +74,11 @@ $$
 - 《吉米多维奇高等数学习题精选精解》
 - 波利亚《如何解题》
 
-
-
 ## 学科概况-CSU
 
-<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="info" text="学分 5.0" />
+<T color="yellow" text="必修" />
+<T color="red" text="考试" />
+<T color="gray" text="学分 5.0" />
 
 ### 老师：秦宣云
 
@@ -90,11 +95,11 @@ $$
 $$
 总分100 \left\{ \matrix{
   40\% :平时\left\{ \matrix{
-  8\% :{\rm{考勤}} \hfill \\ 
+  8\% :{\rm{考勤}} \hfill \\
   12\% :{\rm{作业}} \hfill \\
   12\% :{\rm{导学}} \hfill \\
-  8\% :{\rm{期末复习：依据期末成绩而定}} \hfill \\}  \right. \hfill \\ 
+  8\% :{\rm{期末复习：依据期末成绩而定}} \hfill \\}  \right. \hfill \\
   60\% :期末考 \hfill \\}  \right.
 $$
 
-期末成绩需高于45分才可获得 期末复习 成绩
+期末成绩需高于 45 分才可获得 期末复习 成绩

@@ -2,9 +2,9 @@
 
 ---
 
-<Badge type="warning" text="必修" />
-<Badge type="danger" text="考试" />
-<Badge type="info" text="学分 3.0" />
+<T color="yellow" text="必修" />
+<T color="red" text="考试" />
+<T color="gray" text="学分 3.0" />
 
 学校授课教师：岳晓青。
 

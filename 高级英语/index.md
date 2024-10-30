@@ -1,6 +1,10 @@
 # Intro: Advanced English (Culture)
 
-![必修](https://img.shields.io/badge/%E5%BF%85%E4%BF%AE-red) ![考查](https://img.shields.io/badge/%E8%80%83%E6%9F%A5-blue) ![学分](https://img.shields.io/badge/%E5%AD%A6%E5%88%86-2.0-white)
+---
+
+<T color="yellow" text="必修" />
+<T color="purple" text="考查" />
+<T color="gray" text="学分 2.0" />
 
 *Course for students exempted from English.*
 

@@ -1,4 +1,5 @@
 # LinhoNotes
+
 一些本科课程笔记。仓库由 lhp 牵头。
 
 目前 zdy， gby 和 zst 已加入。
@@ -9,7 +10,32 @@
 
 ## 标签
 
-<Badge type="warning" text="必修" /> <Badge type="danger" text="考试" /> <Badge type="tip" text="一般" /> <Badge type="info" text="学分 5.0" />
+<T color="red" text="红色" />
+<T color="orange" text="橙色" />
+<T color="yellow" text="黄色" />
+<T color="green" text="绿色" />
+<T color="blue" text="蓝色" />
+<T color="indigo" text="靛青" />
+<T color="purple" text="紫色" />
+<br/>
+<T color="pink" text="粉色" />
+<T color="magenta" text="洋红" />
+<T color="lime" text="青绿" />
+<T color="olive" text="橄榄" />
+<T color="cyan" text="青色" />
+<T color="teal" text="茶色" />
+<T color="gray" text="灰色" />
+
+---
+
+<T color="yellow" text="必修" />
+<T color="red" text="考试" />
+<T color="gray" text="学分 5.0" />
+<T color="green" text="选修" />
+<T color="purple" text="考查" />
+<T color="gray" text="学分 2.0" />
+<T color="cyan" text="自学" />
+<T color="blue" text="思维题" />
 
 ## 格式建议
 
@@ -36,7 +62,7 @@
 
 ```css
 p:not(li p) {
-    text-indent:2em;
+  text-indent: 2em;
 }
 ```
 
@@ -46,6 +72,6 @@ $\LaTeX$ 公式的书写因标准古早且不统一，不作强求，但需要�
 
 ## 为什么不用正经的笔记软件？
 
-因为对git不太熟悉，想多熟悉一下git的用法，免得再去学一个新的。再说，git的版本管理什么的也很方便，完全可以胜任这种简单的小任务。
+因为对 git 不太熟悉，想多熟悉一下 git 的用法，免得再去学一个新的。再说，git 的版本管理什么的也很方便，完全可以胜任这种简单的小任务。
 
-~~更重要的是可以天天发commit显得我很勤奋！~~
+~~更重要的是可以天天发 commit 显得我很勤奋！~~
