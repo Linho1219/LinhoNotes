@@ -9,8 +9,9 @@ const ignFiles = ["index.md"];
 const MAX_DEPTH = 2;
 
 function compareFileName(a: string, b: string) {
-  const matchA = a.match(/^((\d+)(\.(\d+))?)\s/),
-    matchB = b.match(/^((\d+)(\.(\d+))?)\s/);
+  const extractNum = /^((\d+)(\.(\d+))?)\s/;
+  const matchA = a.match(extractNum),
+    matchB = b.match(extractNum);
   if (matchA === null || matchB === null) return a.localeCompare(b);
   const NumberWithoutNaN = (str: string) =>
     isNaN(Number(str)) ? 0 : Number(str);
