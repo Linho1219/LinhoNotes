@@ -2,8 +2,8 @@
 
 ---
 
-<T t="必修" yellow />
-<T t="考试" red />
+<T t="必修" yellow /> 
+<T t="考试" red /> 
 <T t="学分 3.0" gray />
 
 学校授课教师：岳晓青。

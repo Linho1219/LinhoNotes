@@ -43,8 +43,7 @@ const BadgeClass = ref(colorStr),
 
 <style>
 .VPBadge {
-  margin-left: 0;
-  margin-right: 5px;
+  margin-left: 0px;
 }
 h1 .VPBadge,
 h2 .VPBadge,
