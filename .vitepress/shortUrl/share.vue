@@ -55,8 +55,12 @@ function copyLink() {
 onMounted(() => {
   watchEffect(() => {
     const path = page.value.filePath.replace(/(index)?\.md$/, "");
+    if (encodeURI(path).length < 10)
+      link.value = `${baseUrl}/${encodeURI(path)}`;
+    else {
       const hash = md5(path).slice(0, 10);
       link.value = `${baseUrl}/s?q=${hash}`;
+    }
   });
   watchEffect(() => {
     background.value = isDark.value ? "#202127" : "#ffffff";
