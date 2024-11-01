@@ -2,11 +2,14 @@
   "devDependencies": {
     "@babel/core": "^7.25.9",
     "@babel/preset-env": "^7.25.9",
+    "@types/blueimp-md5": "^2.18.2",
     "@types/d3": "^7.4.0",
     "@types/events": "^3.0.0",
     "@types/js-yaml": "^4.0.9",
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node": "^22.7.5",
+    "axios": "^1.7.7",
+    "blueimp-md5": "^2.19.0",
     "built-in-math-eval": "^0.3.0",
     "d3-axis": "^3.0.0",
     "d3-color": "^3.1.0",
@@ -24,6 +27,7 @@
     "markdown-it-mathjax3": "^4.3.2",
     "markdown-it-task-lists": "^2.1.1",
     "mermaid": "^11.3.0",
+    "qrcode.vue": "^3.5.1",
     "vitepress": "^1.4.1"
   },
   "scripts": {

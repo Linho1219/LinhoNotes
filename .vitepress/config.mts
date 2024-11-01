@@ -6,10 +6,12 @@ import mdMark from "markdown-it-mark";
 import { UserConfig, DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
+import { baseUrl } from "./util";
 import codePlugin from "./codeblock/codeblockHijack";
 import nav from "./nav";
 import sidebar from "./sidebar";
 import genreateSitemap from "./sitemap";
+import mapShortUrl from "./shortUrl/mapShortUrl";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -69,8 +71,14 @@ export default defineConfig({
     },
   },
   cleanUrls: true,
-  sitemap: {
-    hostname: "https://notes.linho.cc",
+  rewrites: {
+    "shortUrl.md": "s.md",
   },
-  buildEnd: genreateSitemap,
+  sitemap: {
+    hostname: baseUrl,
+  },
+  buildEnd: (siteConfig) => {
+    genreateSitemap(siteConfig);
+    mapShortUrl(siteConfig);
+  },
 } as UserConfig<DefaultTheme.Config>);

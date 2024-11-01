@@ -10,6 +10,7 @@ import Layout from "./layout.vue";
 import Mermaid from "../codeblock/mermaid.vue";
 import Graph from "../codeblock/graph.vue";
 import Tag from "./tag.vue";
+import Share from "../shortUrl/share.vue";
 
 export default <Theme>{
   extends: DefaultTheme,
@@ -19,5 +20,6 @@ export default <Theme>{
     app.component("Graph", Graph);
     app.component("T", Tag);
     app.component("Tag", Tag);
+    app.component("Share", Share);
   },
 };

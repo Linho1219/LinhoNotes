@@ -196,3 +196,7 @@ mjx-container g[data-mml-node="mstyle"][fill="teal"] {
   fill: var(--ln-c-teal);
   stroke: var(--ln-c-teal);
 }
+
+#VPNavScreen .container{
+  padding-bottom: 40px;
+}

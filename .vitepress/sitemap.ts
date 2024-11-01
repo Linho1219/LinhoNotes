@@ -1,10 +1,10 @@
 import fs from "fs";
 import { SiteConfig } from "vitepress";
+import { baseUrl } from "./util";
 
 export default async function genreateSitemap(siteConfig: SiteConfig) {
-  const baseURL = "https://notes.linho.cc";
   const siteMapArr = siteConfig.pages.map(
-    (page) => `${baseURL}/${encodeURI(page.replace(/\.md$/, ".html"))}`
+    (page) => `${baseUrl}/${encodeURI(page.replace(/\.md$/, ".html"))}`
   );
   try {
     fs.writeFileSync(`${siteConfig.outDir}/sitemap.txt`, siteMapArr.join("\n"));

@@ -19,11 +19,16 @@ const nav: Nav = [
 const escapeRegExp = (str: string) =>
   str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-const parseNav = (orig: Nav): DefaultTheme.NavItem[] =>
-  orig.map((orig) => ({
+const parseNav = (orig: Nav): DefaultTheme.NavItem[] => [
+  ...orig.map((orig) => ({
     text: orig.text,
     link: `/${orig.link}/`,
     activeMatch: orig.activeMatch ?? escapeRegExp(`/${orig.link}/`),
-  }));
+  })),
+  {
+    text: "分享",
+    items: [{ component: "Share" }],
+  },
+];
 
 export default parseNav(nav);

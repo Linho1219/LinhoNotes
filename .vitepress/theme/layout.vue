@@ -2,7 +2,6 @@
   <Layout>
     <template #doc-before>
       <Breadcrumb />
-      
     </template>
     <template #layout-bottom>
       <SearchOverlay />
