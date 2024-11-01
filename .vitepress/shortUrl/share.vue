@@ -150,7 +150,7 @@ onMounted(() => {
     padding: 8px 0;
     line-height: 18px;
 
-    background: #75798e10;
+    background: var(--vp-c-bg-soft);
     border-radius: 3px;
     border: var(--vp-c-divider) 1px solid;
   }
