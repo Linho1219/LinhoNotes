@@ -41,12 +41,14 @@ const expand = ref(false);
 const foreground = ref(""),
   background = ref("");
 
+let timer: NodeJS.Timeout | false = false;
 function copyLink() {
   if (!import.meta.env.SSR) {
     navigator.clipboard.writeText(link.value).then(() => {
       expand.value = true;
-      setTimeout(() => {
-        expand.value = false;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        expand.value = timer = false;
       }, 1500);
     });
   }
