@@ -5,8 +5,8 @@
       :size="120"
       render-as="svg"
       level="L"
-      :background="isDark ? '#202127' : '#ffffff'"
-      :foreground="isDark ? '#D3D3CC' : '#3C3C43'"
+      :background="background"
+      :foreground="foreground"
     />
     <button class="copylink" @click="copyLink()">
       复制链接<span
@@ -14,21 +14,13 @@
         :class="expand ? 'expanded' : 'folded'"
       >
         <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          t="1730447699309"
           class="copy-indicator"
           viewBox="0 0 1024 1024"
-          version="1.1"
-          p-id="4247"
-          data-darkreader-inline-fill=""
           width="18"
           height="18"
         >
           <path
             d="M401.3 690.5L189.5 478.6l-0.4-0.4c-14.1-13.7-36.6-13.5-50.5 0.4-14.1 14.1-14.1 36.9 0 50.9l237.3 237.3 0.4 0.4c14.1 13.7 36.6 13.5 50.5-0.4l458.7-458.7 0.4-0.4c13.7-14.1 13.5-36.6-0.4-50.5-14.1-14.1-36.9-14.1-50.9 0L401.3 690.5z"
-            fill="#A8A8A8"
-            p-id="4248"
           />
         </svg>
       </span>
@@ -40,18 +32,15 @@
 /// <reference path="../types.d.ts" />
 import QRCodeVue from "qrcode.vue";
 import md5 from "blueimp-md5";
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, onMounted } from "vue";
 import { useData } from "vitepress";
 import { baseUrl } from "../util";
 const { page, isDark } = useData();
 const link = ref("");
 const expand = ref(false);
+const foreground = ref(""),
+  background = ref("");
 
-watchEffect(() => {
-  const path = page.value.filePath.replace(/(index)?\.md$/, "");
-  const hash = md5(path).slice(0, 10);
-  link.value = `${baseUrl}/s?q=${hash}`;
-});
 function copyLink() {
   if (!import.meta.env.SSR) {
     navigator.clipboard.writeText(link.value).then(() => {
@@ -62,6 +51,18 @@ function copyLink() {
     });
   }
 }
+
+onMounted(() => {
+  watchEffect(() => {
+    const path = page.value.filePath.replace(/(index)?\.md$/, "");
+      const hash = md5(path).slice(0, 10);
+      link.value = `${baseUrl}/s?q=${hash}`;
+  });
+  watchEffect(() => {
+    background.value = isDark.value ? "#202127" : "#ffffff";
+    foreground.value = isDark.value ? "#D3D3CC" : "#3C3C43";
+  });
+});
 </script>
 
 <style>
