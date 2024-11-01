@@ -5,13 +5,16 @@
 </template>
 
 <script setup lang="ts">
+/// <reference path="../types.d.ts" />
 import { ref, onUnmounted } from "vue";
 const isActive = ref(false);
-const observer = new MutationObserver(() => {
-  isActive.value = document.body.classList.contains("DocSearch--active");
-});
-observer.observe(document.body, { attributes: true });
-onUnmounted(() => observer.disconnect());
+if (!import.meta.env.SSR) {
+  const observer = new MutationObserver(() => {
+    isActive.value = document.body.classList.contains("DocSearch--active");
+  });
+  observer.observe(document.body, { attributes: true });
+  onUnmounted(() => observer.disconnect());
+}
 </script>
 
 <style scoped>
@@ -23,7 +26,7 @@ onUnmounted(() => observer.disconnect());
   height: 100%;
   background-color: #202127;
   z-index: 199;
-	opacity: 0.4;
+  opacity: 0.4;
   transition: opacity 0.2s;
 }
 .fade-enter-active,
@@ -33,9 +36,9 @@ onUnmounted(() => observer.disconnect());
 .fade-enter-to {
   opacity: 0.4;
 }
-@media screen and (max-width:760px) {
-	.search-overlay{
-		display: none;
-	}
+@media screen and (max-width: 760px) {
+  .search-overlay {
+    display: none;
+  }
 }
 </style>
