@@ -25,6 +25,7 @@ const parseNav = (orig: Nav): DefaultTheme.NavItem[] => [
     link: `/${orig.link}/`,
     activeMatch: orig.activeMatch ?? escapeRegExp(`/${orig.link}/`),
   })),
+  { component: "NavDivider" },
   {
     text: "分享",
     items: [{ component: "Share" }],
