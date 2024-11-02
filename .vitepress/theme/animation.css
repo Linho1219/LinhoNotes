@@ -67,6 +67,51 @@
   html:has(.footnote-ref:hover) {
     scroll-behavior: smooth;
   }
+
+  /* 链接样式优化 */
+  .vp-doc a {
+    text-decoration: none;
+    position: relative;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    transition: background 0.2s;
+  }
+  .vp-doc a:hover {
+    color: var(--vp-c-brand-1);
+    background: var(--vp-c-brand-soft);
+  }
+  .vp-doc a:active {
+    opacity: 0.6;
+  }
+  .vp-doc a[target="_blank"]::after {
+    content: "";
+    margin-left: 1px !important;
+    margin-right: 1px !important;
+    color: inherit !important;
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  .vp-doc a::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    border-bottom: var(--vp-c-brand-1) 2px solid;
+    right: 0;
+    width: 0;
+    bottom: -2px;
+    height: 0;
+    transition: width 0.3s;
+    opacity: 0.8;
+  }
+  .vp-doc a:hover::before {
+    width: 100%;
+    left: 0;
+    right: unset;
+  }
+
+  .edit-link-button:active{
+    opacity: 0.6;
+  }
 }
 
 /* 1280px+ 有右侧大纲 */
