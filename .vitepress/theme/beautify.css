@@ -48,6 +48,15 @@
   --ln-c-gray-soft: var(--vp-c-gray-soft);
 }
 
+/* 字体定义 */
+:root {
+  --vp-font-family-base: "HarmonyOS Sans SC", "HarmonyOS Sans SC",
+    "Punctuation SC", "Inter", ui-sans-serif, system-ui, "PingFang SC",
+    "Noto Sans CJK SC", "Noto Sans SC", "Heiti SC", "Microsoft YaHei",
+    "DengXian", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 /* 公式内文字字体定义 */
 mjx-container text {
   font-family: var(--vp-font-family-base);
@@ -197,6 +206,6 @@ mjx-container g[data-mml-node="mstyle"][fill="teal"] {
   stroke: var(--ln-c-teal);
 }
 
-#VPNavScreen .container{
+#VPNavScreen .container {
   padding-bottom: 40px;
 }

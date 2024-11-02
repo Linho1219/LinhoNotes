@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
+import DefaultTheme from "vitepress/theme-without-fonts";
 import { nextTick, provide } from "vue";
 import { useData } from "vitepress";
 import Breadcrumb from "./breadcrumb.vue";
-import DefaultTheme from "vitepress/theme";
 import SearchOverlay from "./searchOverlay.vue";
 const { Layout } = DefaultTheme;
 const { isDark } = useData();
