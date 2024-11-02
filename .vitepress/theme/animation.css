@@ -69,21 +69,25 @@
   }
 
   /* 链接样式优化 */
-  .vp-doc a {
+  .vp-doc p a {
+    display: inline-block;
+    height: 1.4em;
+    line-height: 1.3em;
+    vertical-align: baseline;
     text-decoration: none;
     position: relative;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     transition: background 0.2s;
   }
-  .vp-doc a:hover {
+  .vp-doc p a:hover {
     color: var(--vp-c-brand-1);
     background: var(--vp-c-brand-soft);
   }
-  .vp-doc a:active {
+  .vp-doc p a:active {
     opacity: 0.6;
   }
-  .vp-doc a[target="_blank"]::after {
+  .vp-doc p a[target="_blank"]::after {
     content: "";
     margin-left: 1px !important;
     margin-right: 1px !important;
@@ -91,25 +95,24 @@
     transform: scale(1.2);
     opacity: 0.8;
   }
-  .vp-doc a::before {
+  .vp-doc p a::before {
     content: "";
     display: inline-block;
     position: absolute;
     border-bottom: var(--vp-c-brand-1) 2px solid;
     right: 0;
     width: 0;
-    bottom: -2px;
+    bottom: 0;
     height: 0;
     transition: width 0.3s;
     opacity: 0.8;
   }
-  .vp-doc a:hover::before {
+  .vp-doc p a:hover::before {
     width: 100%;
     left: 0;
     right: unset;
   }
-
-  .edit-link-button:active{
+  .edit-link-button:active {
     opacity: 0.6;
   }
 }

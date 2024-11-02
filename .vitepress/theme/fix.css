@@ -22,3 +22,8 @@ a.footnote-backref {
 img.VPImage.logo {
   transform: scale(1.25);
 }
+
+/* 隐藏 H1 anchor */
+.vp-doc h1 .header-anchor {
+  display: none;
+}
