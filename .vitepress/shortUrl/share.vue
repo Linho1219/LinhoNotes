@@ -123,7 +123,6 @@ onMounted(() => {
     right: 0;
     bottom: 0;
     height: 40px;
-    line-height: 18px;
 
     color: var(--vp-c-text-1);
     background: #75798e10;
