@@ -13,8 +13,8 @@
 import DefaultTheme from "vitepress/theme-without-fonts";
 import { nextTick, provide } from "vue";
 import { useData } from "vitepress";
-import Breadcrumb from "./breadcrumb.vue";
-import SearchOverlay from "./searchOverlay.vue";
+import Breadcrumb from "./components/breadcrumb.vue";
+import SearchOverlay from "./components/searchOverlay.vue";
 const { Layout } = DefaultTheme;
 const { isDark } = useData();
 

@@ -13,7 +13,7 @@
 import { useData } from "vitepress";
 const { page } = useData();
 import { ref, watchEffect } from "vue";
-import { pangu } from "../util";
+import { pangu } from "../../util";
 
 type Breadcrumb = {
   name: string;

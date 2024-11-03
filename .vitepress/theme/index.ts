@@ -1,17 +1,17 @@
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme-without-fonts";
-import "./private.css";
-import "./fix.css";
-import "./beautify.css";
-import "./animation.css";
-import "./home.css";
+import "./styles/private.css";
+import "./styles/fix.css";
+import "./styles/beautify.css";
+import "./styles/animation.css";
+import "./styles/home.css";
 
 import Layout from "./layout.vue";
 import Mermaid from "../codeblock/mermaid.vue";
 import Graph from "../codeblock/graph.vue";
-import Tag from "./tag.vue";
+import Tag from "./components/tag.vue";
 import Share from "../shortUrl/share.vue";
-import NavDivider from "./navDivider.vue";
+import NavDivider from "./components/navDivider.vue";
 
 export default <Theme>{
   extends: DefaultTheme,
