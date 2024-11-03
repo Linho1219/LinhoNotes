@@ -69,7 +69,8 @@
   }
 
   /* 链接样式优化 */
-  .vp-doc p a {
+  .vp-doc p a,
+  .vp-doc li a {
     display: inline-block;
     height: 1.4em;
     line-height: 1.3em;
@@ -80,14 +81,17 @@
     border-top-right-radius: 2px;
     transition: background 0.2s;
   }
-  .vp-doc p a:hover {
+  .vp-doc p a:hover,
+  .vp-doc li a:hover {
     color: var(--vp-c-brand-1);
     background: var(--vp-c-brand-soft);
   }
-  .vp-doc p a:active {
+  .vp-doc p a:active,
+  .vp-doc li a:active {
     opacity: 0.6;
   }
-  .vp-doc p a[target="_blank"]::after {
+  .vp-doc p a[target="_blank"]::after,
+  .vp-doc li a[target="_blank"]::after {
     content: "";
     margin-left: 1px !important;
     margin-right: 1px !important;
@@ -95,7 +99,8 @@
     transform: scale(1.2);
     opacity: 0.8;
   }
-  .vp-doc p a::before {
+  .vp-doc p a::before,
+  .vp-doc li a::before {
     content: "";
     display: inline-block;
     position: absolute;
@@ -107,7 +112,8 @@
     transition: width 0.3s;
     opacity: 0.8;
   }
-  .vp-doc p a:hover::before {
+  .vp-doc p a:hover::before,
+  .vp-doc li a:hover::before {
     width: 100%;
     left: 0;
     right: unset;
