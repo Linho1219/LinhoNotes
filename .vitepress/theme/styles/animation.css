@@ -71,6 +71,9 @@
   /* 链接样式优化 */
   .vp-doc p a,
   .vp-doc li a {
+    --link-color: var(--vp-c-brand-1);
+    --link-soft: var(--vp-c-brand-soft);
+    color: var(--link-color);
     display: inline-block;
     height: 1.4em;
     line-height: 1.3em;
@@ -83,12 +86,13 @@
   }
   .vp-doc p a:hover,
   .vp-doc li a:hover {
-    color: var(--vp-c-brand-1);
-    background: var(--vp-c-brand-soft);
+    color: var(--link-color) !important;
+    background: var(--link-soft);
+    opacity: 1 !important;
   }
   .vp-doc p a:active,
   .vp-doc li a:active {
-    opacity: 0.6;
+    opacity: 0.6 !important;
   }
   .vp-doc p a[target="_blank"]::after,
   .vp-doc li a[target="_blank"]::after {
@@ -104,7 +108,7 @@
     content: "";
     display: inline-block;
     position: absolute;
-    border-bottom: var(--vp-c-brand-1) 2px solid;
+    border-bottom: var(--link-color) 2px solid;
     right: 0;
     width: 0;
     bottom: 0;
@@ -120,6 +124,22 @@
   }
   .edit-link-button:active {
     opacity: 0.6;
+  }
+  .custom-block.tip a {
+    --link-soft: var(--vp-c-tip-soft);
+    --link-color: var(--vp-c-tip-1);
+  }
+  .custom-block.caution a {
+    --link-soft: var(--vp-c-caution-soft);
+    --link-color: var(--vp-c-caution-1);
+  }
+  .custom-block.warning a {
+    --link-soft: var(--vp-c-warning-soft);
+    --link-color: var(--vp-c-warning-1);
+  }
+  .custom-block.important a {
+    --link-soft: var(--vp-c-purple-soft);
+    --link-color: var(--vp-c-purple-1);
   }
 }
 
