@@ -62,7 +62,7 @@ When a foreigner is in Japan, he will discover that Japanese ladies are sometime
 
 Actually, the three layers are closely connected and influence one another. The inner nucleus layer influences the middle layer, and then the middle layer works on the outer layer. What we can see every day is usually what is shown in the outer layer. But to understand and control the middle layer and inner nucleus layer is the goal of studying culture.
 
-#### 1.3 Characteristics of Culture
+### 1.3 Characteristics of Culture
 
 In order to better understand culture, it is useful to examine its characteristics. The following six major characteristics are generally accepted and shared around the world.
 
@@ -90,7 +90,7 @@ Innovation or cultural innovation refers to the introduction of new thoughts, no
 
 Culture is ***ethnocentric***. Ethnocentrism is the belief that your own cultural background, including ways of analyzing problems, values, beliefs, language, etc., is superior. Ethnocentrism is the tendency to look at the world primarily from the perspective of one’s own culture. Ethnocentrists believe their culture is the central culture and other cultures are incorrect, ineffective, or ***quaint***. They may take it for granted that their own cultural behaviors are the standard ones and different behaviors are alien.
 
-## Communication
+## 2 Communication
 
 Communication, the basis of all human contact, occurs wherever there are human beings. When a baby is born, it cries. The crying is communication. When you achieve your goal, your friends come and say, “Congratulations!” The word “congratulations” is communication. When you run into a friend on your way to school in the morning, you greet him, “Good morning!” The expression “good morning” is communication.
 
