@@ -1,5 +1,10 @@
 <template>
-  <div v-if="!errorFlag" class="graph-container" ref="plotRef"></div>
+  <div
+    v-if="!errorFlag"
+    class="graph-container"
+    ref="plotRef"
+    :class="disableZoom ? 'disable-zoom' : ''"
+  ></div>
   <div v-if="errorFlag" class="graph-error caution custom-block github-alert">
     <p class="custom-block-title">函数渲染错误</p>
     <pre v-html="errorDetails"></pre>
@@ -20,7 +25,8 @@ const props = defineProps({
 
 const plotRef = ref<HTMLDivElement | null>(null);
 const errorFlag = ref(false),
-  errorDetails = ref("");
+  errorDetails = ref(""),
+  disableZoom = ref(false);
 
 type Size = [number, number];
 
@@ -59,6 +65,9 @@ onMounted(() => {
       );
       if (typeof originalOpt !== "object")
         throw `Illegal plot options: ${originalOpt}`;
+      if (originalOpt.disableZoom) {
+        disableZoom.value = true;
+      }
       watchEffect(() => {
         if (plotRef.value && props.graphWidth && props.graphHeight) {
           try {
@@ -88,30 +97,23 @@ onMounted(() => {
   color: black;
   user-select: none;
 }
-
 .graph-container {
-  filter: brightness(90%) hue-rotate(25deg);
+  filter: hue-rotate(25deg) brightness(75%);
 }
 
 .dark .graph-container {
-  filter: invert(100%) hue-rotate(210deg) brightness(150%);
-}
-.dark .graph-container .graph,
-.dark .graph-container .tip,
-.dark .graph-container .top-right-legend {
-  filter: invert(100%) hue-rotate(180deg);
-}
-.graph-container .annotations,
-.graph-container .fn-text {
-  filter: brightness(70%);
+  filter: invert(100%) hue-rotate(210deg) brightness(133%);
 }
 .dark .graph-container .annotations {
-  filter: invert(100%) brightness(0);
+  filter: contrast(30%);
 }
-.graph-container svg.function-plot {
-  margin: 0 auto;
+.graph-container .fn-text {
+  filter: brightness(60%) saturate(150%);
 }
 .graph-error pre {
   white-space: pre-wrap;
+}
+.graph-container.disable-zoom .zoom-and-drag {
+  display: none;
 }
 </style>
