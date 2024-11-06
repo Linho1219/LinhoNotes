@@ -3,11 +3,15 @@
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
 import mdMark from "markdown-it-mark";
+import mdPlot from "./codeblock/codeblockPlugin";
+import mdFootNotePlus from "./footnote/footnotePlugin";
+
 import { UserConfig, DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
+
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
 import { baseUrl } from "./util";
-import codePlugin from "./codeblock/codeblockHijack";
+
 import nav from "./nav";
 import sidebar from "./sidebar";
 import genreateSitemap from "./sitemap";
@@ -65,9 +69,10 @@ export default defineConfig({
     math: true,
     config: (md) => {
       md.use(mdFootnote);
+      md.use(mdFootNotePlus);
       md.use(mdCheckbox);
       md.use(mdMark);
-      md.use(codePlugin);
+      md.use(mdPlot);
     },
   },
   cleanUrls: true,
