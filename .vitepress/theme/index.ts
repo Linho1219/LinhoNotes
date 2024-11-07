@@ -13,6 +13,8 @@ import Tag from "./components/tag.vue";
 import Share from "../shortUrl/share.vue";
 import NavDivider from "./components/navDivider.vue";
 import Cadpa from "./components/cadpa.vue";
+import Footnote from "../footnote/footnote.vue";
+import FootnoteRef from "../footnote/footnoteRef.vue";
 
 export default <Theme>{
   extends: DefaultTheme,
@@ -24,6 +26,8 @@ export default <Theme>{
     app.component("Tag", Tag);
     app.component("NavDivider", NavDivider);
     app.component("Share", Share);
+    app.component("Footnote", Footnote);
+    app.component("FootnoteRef", FootnoteRef);
     app.component("CADPA", Cadpa);
   },
 };

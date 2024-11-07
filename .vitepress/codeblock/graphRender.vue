@@ -11,6 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
+/// <reference path="../types.d.ts" />
 import { ref, onMounted, watchEffect } from "vue";
 import functionPlot from "./function-plot/src/index";
 import yaml from "js-yaml";
@@ -39,6 +40,7 @@ function computeScale(width: number, height: number, xScale: Size): Size {
 }
 
 onMounted(() => {
+  if (import.meta.env.SSR) return;
   const generateOpt = (
     originalOpt: FunctionPlotOptions,
     [width, height]: Size,

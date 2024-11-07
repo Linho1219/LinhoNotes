@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-/// <reference path="../types.d.ts" />
+/// <reference path="../../types.d.ts" />
 import { ref, onUnmounted } from "vue";
 const isActive = ref(false);
 if (!import.meta.env.SSR) {

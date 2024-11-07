@@ -47,6 +47,26 @@
   --ln-c-gray: var(--vp-c-text-2);
   --ln-c-gray-soft: var(--vp-c-gray-soft);
 }
+a {
+  --link-soft: var(--vp-c-brand-soft);
+  --link-color: var(--vp-c-brand-1);
+}
+.custom-block.tip a {
+  --link-soft: var(--vp-c-tip-soft);
+  --link-color: var(--vp-c-tip-1);
+}
+.custom-block.caution a {
+  --link-soft: var(--vp-c-caution-soft);
+  --link-color: var(--vp-c-caution-1);
+}
+.custom-block.warning a {
+  --link-soft: var(--vp-c-warning-soft);
+  --link-color: var(--vp-c-warning-1);
+}
+.custom-block.important a {
+  --link-soft: var(--vp-c-purple-soft);
+  --link-color: var(--vp-c-purple-1);
+}
 
 /* 字体定义 */
 :root {

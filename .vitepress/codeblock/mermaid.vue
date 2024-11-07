@@ -13,7 +13,6 @@
 
 <script setup lang="ts">
 /// <reference path="../types.d.ts" />
-import { useData } from "vitepress";
 
 const props = defineProps({
   id: String,

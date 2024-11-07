@@ -27,3 +27,23 @@ img.VPImage.logo {
 .vp-doc h1 .header-anchor {
   display: none;
 }
+
+/* 外链提示图标 */
+.vp-doc a[target="_blank"]::after {
+  content: "";
+  margin-left: 1px !important;
+  margin-right: 1px !important;
+  color: inherit !important;
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+/* 隐藏标题后面的脚注提示条 */
+h1 + .footnotes-sep,
+h2 + .footnotes-sep,
+h3 + .footnotes-sep,
+h4 + .footnotes-sep,
+h5 + .footnotes-sep,
+h6 + .footnotes-sep {
+  display: none;
+}
