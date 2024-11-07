@@ -2,7 +2,7 @@
 layout: false
 ---
 
-<Jumper></Jumper>
+<ClientOnly><Jumper /></ClientOnly>
 
 <script lang="ts" setup>
 import Jumper from '/.vitepress/shortUrl/jumper.vue'

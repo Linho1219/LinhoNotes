@@ -17,8 +17,6 @@ const handleEvent = (id: string) => {
     emitter.emit("on-return-footnote", liRef.value.innerHTML);
   }
 };
-if (!import.meta.env.SSR) {
-  onMounted(() => emitter.on("on-query-footnote", handleEvent));
-  onUnmounted(() => emitter.off("on-query-footnote", handleEvent));
-}
+onMounted(() => emitter.on("on-query-footnote", handleEvent));
+onUnmounted(() => emitter.off("on-query-footnote", handleEvent));
 </script>

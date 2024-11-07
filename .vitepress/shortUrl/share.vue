@@ -1,35 +1,37 @@
 <template>
   <div class="share-panel">
-    <QRCodeVue
-      :value="link"
-      :size="120"
-      render-as="svg"
-      level="L"
-      :background="background"
-      :foreground="foreground"
-    />
-    <button class="copylink" @click="copyLink()">
-      复制链接<span
-        class="copy-indicator-wrapper"
-        :class="expand ? 'expanded' : 'folded'"
-      >
-        <svg
-          class="copy-indicator"
-          viewBox="0 0 1024 1024"
-          width="18"
-          height="18"
+    <noscript>您已禁用 JavaScript</noscript>
+    <ClientOnly>
+      <QRCodeVue
+        :value="link"
+        :size="120"
+        render-as="svg"
+        level="L"
+        :background="background"
+        :foreground="foreground"
+      />
+      <button class="copylink" @click="copyLink()">
+        复制链接<span
+          class="copy-indicator-wrapper"
+          :class="expand ? 'expanded' : 'folded'"
         >
-          <path
-            d="M401.3 690.5L189.5 478.6l-0.4-0.4c-14.1-13.7-36.6-13.5-50.5 0.4-14.1 14.1-14.1 36.9 0 50.9l237.3 237.3 0.4 0.4c14.1 13.7 36.6 13.5 50.5-0.4l458.7-458.7 0.4-0.4c13.7-14.1 13.5-36.6-0.4-50.5-14.1-14.1-36.9-14.1-50.9 0L401.3 690.5z"
-          />
-        </svg>
-      </span>
-    </button>
+          <svg
+            class="copy-indicator"
+            viewBox="0 0 1024 1024"
+            width="18"
+            height="18"
+          >
+            <path
+              d="M401.3 690.5L189.5 478.6l-0.4-0.4c-14.1-13.7-36.6-13.5-50.5 0.4-14.1 14.1-14.1 36.9 0 50.9l237.3 237.3 0.4 0.4c14.1 13.7 36.6 13.5 50.5-0.4l458.7-458.7 0.4-0.4c13.7-14.1 13.5-36.6-0.4-50.5-14.1-14.1-36.9-14.1-50.9 0L401.3 690.5z"
+            />
+          </svg>
+        </span>
+      </button>
+    </ClientOnly>
   </div>
 </template>
 
 <script setup lang="ts">
-/// <reference path="../types.d.ts" />
 import QRCodeVue from "qrcode.vue";
 import md5 from "blueimp-md5";
 import { ref, watchEffect, onMounted } from "vue";
@@ -42,16 +44,15 @@ const foreground = ref(""),
   background = ref("");
 
 let timer: NodeJS.Timeout | false = false;
+
 function copyLink() {
-  if (!import.meta.env.SSR) {
-    navigator.clipboard.writeText(link.value).then(() => {
-      expand.value = true;
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
-        expand.value = timer = false;
-      }, 1500);
-    });
-  }
+  navigator.clipboard.writeText(link.value).then(() => {
+    expand.value = true;
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      expand.value = timer = false;
+    }, 1500);
+  });
 }
 
 onMounted(() => {

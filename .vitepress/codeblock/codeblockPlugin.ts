@@ -7,13 +7,13 @@ export default function mdPlot(md: MarkdownIt): void {
     const language = token.info.trim();
 
     if (language.startsWith("mermaid"))
-      return `<Mermaid id="mermaid-${idx}" code="${encodeURIComponent(
+      return `<ClientOnly><Mermaid id="mermaid-${idx}" code="${encodeURIComponent(
         token.content
-      )}"></Mermaid>`;
+      )}"></Mermaid></ClientOnly>`;
     if (language.startsWith("graph"))
-      return `<Graph id="funcion-${idx}" code="${encodeURIComponent(
+      return `<ClientOnly><Graph id="funcion-${idx}" code="${encodeURIComponent(
         token.content
-      )}"></Graph>`;
+      )}"></Graph></ClientOnly>`;
     return fence(tokens, idx, options, env, self);
   };
 }

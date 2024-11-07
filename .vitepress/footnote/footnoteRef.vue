@@ -9,9 +9,9 @@
       :href="`#fn${props.id}`"
       :id="`fnref${props.refid}`"
       class="footnote-link escape-animate"
-      ><span class="brackets">[</span>{{ props.caption
-      }}<span class="brackets">]</span></a
     >
+      {{ props.caption }}
+    </a>
     <transition name="footnote-card-fade">
       <div
         v-if="isLoaded"

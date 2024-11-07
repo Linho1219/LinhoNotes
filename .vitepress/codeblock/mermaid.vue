@@ -12,7 +12,6 @@
 </template>
 
 <script setup lang="ts">
-/// <reference path="../types.d.ts" />
 
 const props = defineProps({
   id: String,
@@ -28,23 +27,21 @@ const svgRef = ref(""),
 
 const code = decodeURIComponent(props.code!);
 
-if (!import.meta.env.SSR) {
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: "neutral",
-    fontFamily: "var(--vp-font-family-base)",
-  });
-  mermaid.render(props.id!, code).then(
-    (result) => {
-      svgRef.value = result.svg;
-    },
-    (error) => {
-      errorFlag.value = true;
-      errorDetails.value = error.toString();
-      console.error(error);
-    }
-  );
-}
+mermaid.initialize({
+  startOnLoad: false,
+  theme: "neutral",
+  fontFamily: "var(--vp-font-family-base)",
+});
+mermaid.render(props.id!, code).then(
+  (result) => {
+    svgRef.value = result.svg;
+  },
+  (error) => {
+    errorFlag.value = true;
+    errorDetails.value = error.toString();
+    console.error(error);
+  }
+);
 </script>
 
 <style>
