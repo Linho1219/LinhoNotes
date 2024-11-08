@@ -28,6 +28,8 @@
   }
 }
 
-.VPHome .items .item.grid-6{
-  width: calc(100% / 4);
+@media (min-width: 1280px) {
+  .VPHome .items .item.grid-6 {
+    width: calc(100% / 4);
+  }
 }
