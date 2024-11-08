@@ -27,3 +27,7 @@
     max-height: 220px;
   }
 }
+
+.VPHome .items .item.grid-6{
+  width: calc(100% / 4);
+}

@@ -37,6 +37,18 @@ features:
   - title: 算法相关
     details: 包含算法学习与做题笔记。基于 C++。
     link: 算法相关
+  - title: 图论
+    details: 图论选修课笔记。贴近数学而非算法，因此独立成项。
+    link: 图论
+  - title: 思政相关
+    details: 你说得对，但是这是中国特色社会主义教育内容。
+    link: 思政相关
+  - title: 高中物理
+    details: 高中物理笔记数字化项目。非紧要项目，缓慢更新。
+    link: 高中物理
+  - title: 仓库贡献指南
+    details: 包含本项目的写作规范、开发文档以及私有 Markdown 语法。
+    link: 仓库贡献指南
   - title: 杂项
     details: 如题，杂七杂八的东西。还不少。
     link: 杂项
