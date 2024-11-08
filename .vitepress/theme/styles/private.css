@@ -1,8 +1,12 @@
 /*====== 私有特性 ======*/
 
 /* revert 标记图片颜色反转 */
-.dark .vp-doc img[alt^="&revert"] {
+.dark .vp-doc img[alt*="&revert"] {
   filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%);
+}
+
+.vp-doc img[alt*="&small"] {
+  max-height: 200px;
 }
 
 /* 高亮内容设置 */
