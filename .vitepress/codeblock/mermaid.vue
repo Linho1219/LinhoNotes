@@ -57,7 +57,7 @@ mermaid.render(props.id!, code).then(
   white-space: pre-wrap;
 }
 .dark .mermaid_container {
-  filter: invert() contrast(80%);
+  filter: invert() contrast(80%) brightness(120%);
   text-shadow: #fff 0 0 3px, #fff 0 0 8px;
 }
 .dark .mermaid_container text {

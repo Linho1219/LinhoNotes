@@ -2,7 +2,7 @@
 
 /* revert 标记图片颜色反转 */
 .dark .vp-doc img[alt*="&revert"] {
-  filter: invert(100%) hue-rotate(180deg) brightness(125%) contrast(80%);
+  filter: invert(100%) hue-rotate(180deg) contrast(80%);
 }
 
 /* 图片大小标记 */
