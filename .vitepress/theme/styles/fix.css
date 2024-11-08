@@ -28,6 +28,22 @@ img.VPImage.logo {
   display: none;
 }
 
+/* 缩小表格空隙 */
+.vp-doc th,
+.vp-doc td {
+  padding: 4px 8px;
+}
+.vp-doc table {
+  margin: 20px auto;
+  width: max-content;
+  max-width: 100%;
+}
+
+/* 修复溢出问题 */
+.vp-doc p {
+  max-width: 100%;
+}
+
 /* 外链提示图标 */
 .vp-doc a[target="_blank"]::after {
   content: "";
