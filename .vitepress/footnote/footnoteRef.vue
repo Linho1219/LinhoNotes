@@ -146,11 +146,11 @@ function loadContent(event: PointerEvent) {
 }
 .footnote-card-fade-enter-active {
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 .footnote-card-fade-leave-active {
   opacity: 0 !important;
-  transition: opacity 0.3s;
+  transition: opacity 0.2s;
 }
 .footnote-card-fade-enter-to {
   opacity: 1;
