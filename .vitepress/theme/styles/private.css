@@ -1,7 +1,7 @@
 /*====== 私有特性 ======*/
 
-/* revert 标记图片颜色反转 */
-.dark .vp-doc img[alt*="&revert"] {
+/* 图片颜色反转 */
+.dark .vp-doc img:not([alt*="&keep-color"]) {
   filter: invert(100%) hue-rotate(180deg) contrast(80%);
 }
 

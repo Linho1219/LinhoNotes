@@ -142,7 +142,7 @@ mjx-container text {
   background-color: #fff3;
 }
 
-.dark .vp-doc img[alt^="&revert"]::selection {
+.dark .vp-doc img:not([alt*="&keep-color"])::selection {
   background-color: #0000003a;
 }
 
