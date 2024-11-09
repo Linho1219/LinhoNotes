@@ -12,15 +12,15 @@
 
 例如，对于下面这个无向图：
 
-![&revert](.\images\01.png)
+![&small](./images/01.png)
 
 它的最小生成树的 Kruskal 重构树如下：
 
-![&revert](.\images\02.png)
+![&medium](./images/02.png)
 
 再附一个网上找到的解构 Kruskal 重构树 建树过程的图片（左边是图，右边是 Kruskal 重构树）：
 
-![&revert](./images/03.png)
+![](./images/03.png)
 
 ## 重构树性质
 
