@@ -90,8 +90,8 @@ function loadContent(event: PointerEvent) {
   display: block;
   left: calc(50% - 13px);
   top: calc(100% + 8px);
-  padding: 6px 12px;
-  max-width: 20em;
+  padding: 8px 12px;
+  max-width: calc(18rem + 26px);
   width: max-content;
   background: var(--vp-c-bg-elv);
   border: var(--vp-c-divider) 1px solid;
@@ -102,6 +102,7 @@ function loadContent(event: PointerEvent) {
   text-decoration: none;
   font-style: normal;
   font-size: 16px;
+  line-height: 1.5em;
 }
 
 .footnote-ref-card::before {

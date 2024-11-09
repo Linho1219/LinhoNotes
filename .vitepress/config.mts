@@ -5,6 +5,7 @@ import mdCheckbox from "markdown-it-task-lists";
 import mdMark from "markdown-it-mark";
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
+import mdEquationSpacing from "./heti/equationSpacing";
 
 import { UserConfig, DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
@@ -73,6 +74,7 @@ export default defineConfig({
       md.use(mdCheckbox);
       md.use(mdMark);
       md.use(mdPlot);
+      md.use(mdEquationSpacing);
     },
   },
   cleanUrls: true,
