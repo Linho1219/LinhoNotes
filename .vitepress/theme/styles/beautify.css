@@ -136,7 +136,7 @@ mjx-container text {
 
 /* 改善选择样式 */
 ::selection {
-  background-color: #3451b240;
+  background-color: #3451b230;
 }
 .dark ::selection {
   background-color: #fff3;
