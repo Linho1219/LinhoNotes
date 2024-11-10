@@ -18,7 +18,7 @@
 
 ![&medium](./images/02.png)
 
-再附一个网上找到的解构 Kruskal 重构树 建树过程的图片（左边是图，右边是 Kruskal 重构树）：
+再附一个网上找到的解构 Kruskal 重构树 建树过程的图片（最大生成树，左边是图，右边是 Kruskal 重构树）
 
 ![](./images/03.png)
 
