@@ -4,7 +4,7 @@ import { baseUrl } from "./util";
 
 export default async function genreateSitemap(siteConfig: SiteConfig) {
   const siteMapArr = siteConfig.pages.map(
-    (page) => `${baseUrl}/${encodeURI(page.replace(/\.md$/, ".html"))}`
+    (page) => `${baseUrl}/${encodeURI(page.replace(/(index)?\.md$/, ""))}`
   );
   try {
     fs.writeFileSync(`${siteConfig.outDir}/sitemap.txt`, siteMapArr.join("\n"));
