@@ -8,6 +8,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node": "^22.7.5",
+    "@types/pangu": "^4.0.2",
     "axios": "^1.7.7",
     "blueimp-md5": "^2.19.0",
     "built-in-math-eval": "^0.3.0",
@@ -28,6 +29,7 @@
     "markdown-it-task-lists": "^2.1.1",
     "mermaid": "^11.3.0",
     "mitt": "^3.0.1",
+    "pangu": "^4.0.7",
     "qrcode.vue": "^3.5.1",
     "vitepress": "^1.4.1"
   },

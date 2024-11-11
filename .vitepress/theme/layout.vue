@@ -3,9 +3,6 @@
     <template #doc-before>
       <Breadcrumb />
     </template>
-    <template #doc-bottom>
-      <ClientOnly> <Heti /> </ClientOnly>
-    </template>
     <template #layout-bottom>
       <ClientOnly> <SearchOverlay /> </ClientOnly>
     </template>
@@ -18,7 +15,6 @@ import { nextTick, provide } from "vue";
 import { useData } from "vitepress";
 import Breadcrumb from "./components/breadcrumb.vue";
 import SearchOverlay from "./components/searchOverlay.vue";
-import Heti from "../heti/heti.vue";
 const { Layout } = DefaultTheme;
 const { isDark } = useData();
 

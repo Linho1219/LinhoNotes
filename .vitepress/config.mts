@@ -5,7 +5,7 @@ import mdCheckbox from "markdown-it-task-lists";
 import mdMark from "markdown-it-mark";
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
-import mdAdjustSpacing from "./heti/adjustSpacing";
+import mdAdjustSpacing from "./adjustSpacing";
 
 import { UserConfig, DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
