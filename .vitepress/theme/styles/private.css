@@ -37,9 +37,12 @@ punc-spacing {
 .punc-half {
   margin-inline-end: -0.5em;
 }
-.punc-before-half {
-  margin-inline-start: -0.5em;
-}
 .punc-quarter {
   margin-inline-end: -0.25em;
+}
+.punc-before-less {
+  margin-inline-start: -0.4em;
+}
+.punc-before-more {
+  margin-inline-start: -0.6em;
 }

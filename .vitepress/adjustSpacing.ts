@@ -54,7 +54,10 @@ const punctuationAdjust = (str: string) =>
 
 const punctuationAdjustStart = (str: string) =>
   str.replace(new RegExp(`^[${REG_BD_OPEN}]`), (substr) =>
-    getWrapper("punc-before-half", substr)
+    getWrapper(
+      substr === "《" ? "punc-before-less" : "punc-before-more",
+      substr
+    )
   );
 
 export default function mdAdjustSpacing(md: MarkdownIt) {
