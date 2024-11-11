@@ -3,9 +3,9 @@
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
 import mdMark from "markdown-it-mark";
+import mdAutoSpacing from "markdown-it-autospace";
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
-import mdAdjustSpacing from "./adjustSpacing";
 
 import { UserConfig, DefaultTheme } from "vitepress";
 import { defineConfig } from "vitepress";
@@ -74,7 +74,11 @@ export default defineConfig({
       md.use(mdCheckbox);
       md.use(mdMark);
       md.use(mdPlot);
-      md.use(mdAdjustSpacing);
+      console.log(mdAutoSpacing, mdAutoSpacing.apply);
+      md.use(mdAutoSpacing, {
+        pangu: true,
+        mojikumi: true,
+      });
     },
   },
   cleanUrls: true,
