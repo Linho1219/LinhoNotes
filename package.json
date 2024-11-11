@@ -12,6 +12,7 @@
     "axios": "^1.7.7",
     "blueimp-md5": "^2.19.0",
     "built-in-math-eval": "^0.3.0",
+    "cross-env": "^7.0.3",
     "d3-axis": "^3.0.0",
     "d3-color": "^3.1.0",
     "d3-format": "^3.1.0",
@@ -35,7 +36,7 @@
   },
   "scripts": {
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
+    "docs:build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' vitepress build",
     "docs:preview": "vitepress preview"
   }
 }
