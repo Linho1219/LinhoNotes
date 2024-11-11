@@ -1,8 +1,9 @@
 /*====== 修复问题 ======*/
 
-/* 修复公式纵向滚动条 */
+/* 修复公式纵向滚动条；标点避头尾修复 */
 mjx-container {
   overflow-y: hidden;
+  white-space: nowrap;
 }
 
 /* 提示块分割线颜色修复 */
