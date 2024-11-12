@@ -24,7 +24,6 @@
     "events": "^3.3.0",
     "interval-arithmetic-eval": "^0.5.1",
     "js-yaml": "^4.1.0",
-    "markdown-it-autospace": "^1.0.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-mark": "^4.0.0",
     "markdown-it-mathjax3": "^4.3.2",
@@ -39,5 +38,8 @@
     "docs:dev": "vitepress dev",
     "docs:build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' vitepress build",
     "docs:preview": "vitepress preview"
+  },
+  "dependencies": {
+    "markdown-it-autospace": "^1.0.2"
   }
 }
