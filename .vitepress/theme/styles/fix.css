@@ -48,8 +48,9 @@ img.VPImage.logo {
 /* 外链提示图标 */
 .vp-doc a[target="_blank"]::after {
   content: "";
-  margin-left: 1px !important;
-  margin-right: 1px !important;
+  width: 0.7em !important;
+  height: 0.7em !important;
+  margin-left: 0.1em !important;
   color: inherit !important;
   transform: scale(1.2);
   opacity: 0.8;
