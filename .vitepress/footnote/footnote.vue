@@ -12,10 +12,8 @@ const props = defineProps({
 });
 const liRef = ref<HTMLDivElement | null>(null);
 const handleEvent = (id: string) => {
-  if (id === props.id && liRef.value !== null) {
-    console.log("send", liRef.value.innerHTML);
+  if (id === props.id && liRef.value !== null)
     emitter.emit("on-return-footnote", liRef.value.innerHTML);
-  }
 };
 onMounted(() => emitter.on("on-query-footnote", handleEvent));
 onUnmounted(() => emitter.off("on-query-footnote", handleEvent));

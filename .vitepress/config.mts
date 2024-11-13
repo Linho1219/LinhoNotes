@@ -74,7 +74,6 @@ export default defineConfig({
       md.use(mdCheckbox);
       md.use(mdMark);
       md.use(mdPlot);
-      console.log(mdAutoSpacing, mdAutoSpacing.apply);
       md.use(mdAutoSpacing, {
         pangu: true,
         mojikumi: true,

@@ -36,9 +36,7 @@ const isHover = ref(false),
   content = ref("");
 function loadContent(event: PointerEvent) {
   if (event.pointerType === "touch") return;
-  console.log("query", props.id!);
   const handleEvent = (footContent: string) => {
-    console.log("get", footContent);
     content.value = footContent.replace(/(^<p>)|(<\/p>$)/g, "");
     isLoaded.value = true;
     emitter.off("on-return-footnote", handleEvent);
