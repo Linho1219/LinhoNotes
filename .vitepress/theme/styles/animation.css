@@ -70,20 +70,17 @@
 
   /* 链接样式优化 */
   .vp-doc a:not(.escape-animate, .escape-animate a) {
+    white-space: nowrap;
     color: var(--link-color);
-    display: inline-block;
-    height: 1.4em;
-    line-height: 1.3em;
-    vertical-align: baseline;
     text-decoration: none;
     position: relative;
-    border-top-left-radius: 2px;
-    border-top-right-radius: 2px;
-    transition: background 0.2s;
+    border-radius: 2px;
+    transition: background 0.2s, box-shadow 0.2s;
   }
   .vp-doc a:not(.escape-animate, .escape-animate a):hover {
     color: var(--link-color) !important;
     background: var(--link-soft);
+    box-shadow: var(--link-soft) 0 0 0 3px;
     opacity: 1 !important;
   }
   .vp-doc a:not(.escape-animate, .escape-animate a):active {
@@ -96,8 +93,8 @@
     border-bottom: var(--link-color) 2px solid;
     right: 0;
     width: 0;
-    bottom: 0;
-    height: 0;
+    bottom: -3px;
+    height: 4px;
     transition: width 0.3s;
     opacity: 0.8;
   }
