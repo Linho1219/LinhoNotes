@@ -1,4 +1,4 @@
-# 元组类型（Tuple Types） 学习笔记
+# 元组类型（Tuple Types）学习笔记
 
 ### 基本形式
 
@@ -48,7 +48,7 @@ int main() {
 
 ### 特殊形式 `std::pair`
 
-`pair` 类型在 C++ 中是 `std::pair`，是一种特殊的**二元组类型（Binary Tuple Type）**，定义于头文件`#include <utility>` 。通常用来存储一对值。`std::pair` 也是 C++ 标准库中的一个泛型类模板，但和 `std::tuple` 不同，它只包含两个元素。这两个元素可以是任意类型，并且可以不同，因此 `std::pair` 常用于表达键值对、成对数据或二维坐标等场景。
+`pair` 类型在 C++ 中是 `std::pair`，是一种特殊的**二元组类型（Binary Tuple Type）**，定义于头文件`#include <utility>`。通常用来存储一对值。`std::pair` 也是 C++ 标准库中的一个泛型类模板，但和 `std::tuple` 不同，它只包含两个元素。这两个元素可以是任意类型，并且可以不同，因此 `std::pair` 常用于表达键值对、成对数据或二维坐标等场景。
 
 #### 特点
 

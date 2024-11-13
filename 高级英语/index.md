@@ -10,7 +10,7 @@
 
 Teacher: 钱利华 56933769@qq.com
 
-Textbook: 《跨文化交际》*Cross-cultural Communication*
+Textbook:《跨文化交际》*Cross-cultural Communication*
 
 I overslept and missed the very first class, then sent an email to the teacher pretending there was an issue with the course registration system to get away with it.
 
