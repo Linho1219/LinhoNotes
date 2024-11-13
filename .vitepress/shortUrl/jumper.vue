@@ -1,3 +1,7 @@
+<template>
+  <noscript>您已禁用 JavaScript。请启用 JavaScript 后刷新页面。</noscript>
+</template>
+
 <script setup lang="ts">
 import axios from "axios";
 import { onMounted } from "vue";
@@ -6,9 +10,14 @@ const router = useRouter();
 onMounted(() => {
   const id = window.location.search.match(/\?q=(.{10})$/)?.[1];
   if (id)
-    axios.get("/shortmap.json").then((res) => {
-      router.go(`./${encodeURI(res.data[id])}`);
-    });
+    axios.get("/shortmap.json").then(
+      (res) => {
+        if (typeof res.data[id] !== "undefined")
+          router.go(`./${encodeURI(res.data[id])}`);
+        else router.go(`./404`);
+      },
+      () => router.go(`./404`)
+    );
   else router.go(`./404`);
 });
 </script>
