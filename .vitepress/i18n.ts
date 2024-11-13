@@ -1,4 +1,6 @@
-export const themeI18n = {
+import type { DefaultTheme } from "vitepress";
+
+export const themeI18n: DefaultTheme.Config = {
   docFooter: {
     prev: "上一篇",
     next: "下一篇",
@@ -8,9 +10,15 @@ export const themeI18n = {
   darkModeSwitchTitle: "切换到深色模式",
   returnToTopLabel: "返回顶部",
   sidebarMenuLabel: "项目目录",
+  notFound: {
+    quote:
+      "仓库中找不到这个页面。但你可以点击右上角的 Github 图标加入我们，一起为仓库添砖加瓦！",
+    linkText: "返回首页",
+    linkLabel: "返回首页",
+  },
 } as const;
 
-export const miscI18n = {
+export const miscI18n: Record<string, string> = {
   editLink: "在 Github 上查看此页",
   outline: "本页大纲",
   lastUpdated: "最后更新于",
@@ -18,7 +26,7 @@ export const miscI18n = {
   searchBtnText: "搜索",
 } as const;
 
-export const searchI18n = {
+export const searchI18n: DefaultTheme.AlgoliaSearchOptions["translations"] = {
   button: {
     buttonText: "搜索",
     buttonAriaLabel: "搜索",
@@ -29,7 +37,6 @@ export const searchI18n = {
       resetButtonAriaLabel: "清空",
       cancelButtonText: "取消",
       cancelButtonAriaLabel: "取消",
-      searchInputLabel: "搜索",
     },
     startScreen: {
       recentSearchesTitle: "最近",
@@ -54,7 +61,6 @@ export const searchI18n = {
     },
     noResultsScreen: {
       noResultsText: "未找到",
-      suggestedQueryText: "尝试搜索",
     },
   },
 } as const;
