@@ -20,8 +20,11 @@ a.footnote-backref {
 }
 
 /* 顶栏 logo 大小修复 */
+:root {
+  --vp-nav-logo-height: 30px;
+}
 img.VPImage.logo {
-  transform: scale(1.25);
+  margin-right: 4px;
 }
 
 /* 隐藏 H1 anchor */
