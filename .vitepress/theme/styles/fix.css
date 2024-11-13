@@ -6,6 +6,11 @@ mjx-container {
   white-space: nowrap;
 }
 
+/* blockquote 内段间距修复 */
+.vp-doc blockquote > p {
+  margin: 8px 0;
+}
+
 /* 提示块分割线颜色修复 */
 .github-alert {
   --vp-c-divider: #0002;
