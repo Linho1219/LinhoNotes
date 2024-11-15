@@ -5,29 +5,35 @@ export const pangu = (str: string) =>
 
 export const baseUrl = "https://notes.linho.cc";
 
-type Contributor = {
+export type Contributor = {
+  nickname: string;
   username: string;
   emailHash: string[];
 };
 
-export const contributors: Contributor[] = [
+export const fullContributorList: Contributor[] = [
   {
-    username: "Linho",
+    nickname: "Linho",
+    username: "Linho1219",
     emailHash: ["81c7445a52", "0c5b28c9ad"],
   },
   {
+    nickname: "Horrible",
     username: "Horrible120",
-    emailHash: ["fcf0370694"],
+    emailHash: ["fcf0370694", "f408246931"],
   },
   {
+    nickname: "GBY.",
     username: "SkinCrab",
     emailHash: ["7368906deb"],
   },
   {
+    nickname: "Acha",
     username: "acha666",
-    emailHash: ["d772a76fa1"],
+    emailHash: ["d772a76fa1", "15e5ea97d8"],
   },
   {
+    nickname: "Cindy Fang",
     username: "CindyFang0716",
     emailHash: ["2e08b8e801"],
   },

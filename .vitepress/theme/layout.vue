@@ -3,8 +3,11 @@
     <template #doc-before>
       <Breadcrumb />
     </template>
+    <template #doc-footer-before>
+      <Contributors />
+    </template>
     <template #layout-bottom>
-      <ClientOnly> <SearchOverlay /> </ClientOnly>
+      <SearchOverlay />
     </template>
   </Layout>
 </template>
@@ -15,6 +18,7 @@ import { nextTick, provide } from "vue";
 import { useData } from "vitepress";
 import Breadcrumb from "./components/breadcrumb.vue";
 import SearchOverlay from "./components/searchOverlay.vue";
+import Contributors from "./components/contributors.vue";
 const { Layout } = DefaultTheme;
 const { isDark } = useData();
 
