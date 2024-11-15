@@ -21,7 +21,7 @@ export default function mirrorAvartar() {
     console.log(username);
     downloadImage(
       `https://github.com/${username}.png`,
-      `public/avartars/${username}.png`
+      `./public/avartars/${username}.png`
     ).then(
       () => console.log(`${username}.png downloaded successfully`),
       () => console.error(`Error downloading ${username}.png`)
