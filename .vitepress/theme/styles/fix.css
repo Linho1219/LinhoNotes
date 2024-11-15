@@ -6,8 +6,11 @@ mjx-container {
   white-space: nowrap;
 }
 
-/* blockquote 内段间距修复 */
-.vp-doc blockquote > p {
+/* blockquote 与 li 内段间距修复 */
+.vp-doc blockquote p {
+  margin: 8px 0;
+}
+.vp-doc li p {
   margin: 8px 0;
 }
 
