@@ -12,7 +12,7 @@
       <span class="nickname">{{ person.nickname }}</span>
       <span class="username">{{ person.username }}</span>
       <a
-        class="github-link"
+        class="github-link vpi-social-github"
         :href="`https://github.com/${person.username}/`"
         aria-label="github"
         target="_blank"
@@ -120,16 +120,13 @@ watchEffect(() => {
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  mask: url("https://api.iconify.design/simple-icons/github.svg");
-  mask-size: 100% 100%;
-  background-color: var(--vp-c-text-3);
+  --icon: url("https://api.iconify.design/simple-icons/github.svg");
+  color: var(--vp-c-text-3);
   transition: background 0.2s;
 }
-
 .contributor .github-link:hover {
   background-color: var(--vp-c-text-2);
 }
-
 .contributor .github-link:active {
   opacity: 0.5;
 }
