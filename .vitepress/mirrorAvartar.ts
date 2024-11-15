@@ -24,7 +24,7 @@ export default async function mirrorAvartar() {
   let cnt = 0;
   return new Promise((resolve) => {
     for (const { username } of fullContributorList) {
-      console.log(username);
+      // console.log(username);
       fs.mkdirSync("./public/avartars", { recursive: true });
       cnt++;
       downloadImage(
