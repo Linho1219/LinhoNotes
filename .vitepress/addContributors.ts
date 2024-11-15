@@ -3,7 +3,7 @@ import { exec } from "child_process";
 import md5 from "blueimp-md5";
 
 const getContributorsMd5 = async (filePath: string): Promise<string[]> =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     const command = `git log --follow --pretty=format:"%ae\u200E%s" -- "${filePath}"`;
     exec(command, (error, stdout) => {
       if (error) {

@@ -1,7 +1,8 @@
 <template>
-  <h4 id="contributor-title">本文贡献者</h4>
+  <h4 v-if="displayEnabled" id="contributor-title">本文贡献者</h4>
   <div
     id="contributors"
+    v-if="displayEnabled"
     :class="
       contributorList.length % 3 && !(contributorList.length % 2) ? 'row-2' : ''
     "
@@ -25,24 +26,25 @@ import { fullContributorList } from "../../util";
 import { useData } from "vitepress";
 import type { Contributor } from "../../util";
 const { frontmatter } = useData();
+const displayEnabled = ref(true);
 const contributorList = ref(<Contributor[]>[]);
 
 watchEffect(() => {
-  try {
-    contributorList.value = Array.from(
-      new Set(
-        (<string>frontmatter.value.contributorList)
-          .split(",")
-          .map((md5) =>
-            fullContributorList.find(({ emailHash }) => emailHash.includes(md5))
-          )
-          .filter((person) => person !== undefined)
-          .reverse()
-      )
-    );
-  } catch (e) {
-    console.error(e);
+  if (typeof frontmatter.value.contributorList !== "string") {
+    displayEnabled.value = false;
+    return;
   }
+  contributorList.value = Array.from(
+    new Set(
+      (<string>frontmatter.value.contributorList)
+        .split(",")
+        .map((md5) =>
+          fullContributorList.find(({ emailHash }) => emailHash.includes(md5))
+        )
+        .filter((person) => person !== undefined)
+        .reverse()
+    )
+  );
 });
 </script>
 
