@@ -19,12 +19,13 @@ async function downloadImage(url: string, savePath: string) {
 export default function mirrorAvartar() {
   for (const { username } of fullContributorList) {
     console.log(username);
+    fs.mkdirSync("./public/avartars", { recursive: true });
     downloadImage(
       `https://github.com/${username}.png`,
       `./public/avartars/${username}.png`
     ).then(
       () => console.log(`${username}.png downloaded successfully`),
-      () => console.error(`Error downloading ${username}.png`)
+      (err) => console.error(`Error downloading ${username}.png: ${err}`)
     );
   }
 }
