@@ -1,6 +1,11 @@
 <template>
   <h4 id="contributor-title">本文贡献者</h4>
-  <div id="contributors">
+  <div
+    id="contributors"
+    :class="
+      contributorList.length % 3 && !(contributorList.length % 2) ? 'row-2' : ''
+    "
+  >
     <div v-for="person in contributorList" class="contributor">
       <img :src="`https://github.com/${person.username}.png`" class="avartar" />
       <span class="nickname">{{ person.nickname }}</span>
@@ -74,6 +79,15 @@ watchEffect(() => {
 @media (min-width: 640px) {
   .contributor {
     max-width: calc(50% - 8px);
+  }
+  #contributors.row-2 .contributor {
+    min-width: calc(50% - 8px);
+  }
+}
+
+@media (max-width: 640px) {
+  .contributor {
+    flex-basis: 100% !important;
   }
 }
 
