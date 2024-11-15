@@ -6,13 +6,21 @@ const getContributorsMd5 = async (filePath: string): Promise<string[]> =>
   new Promise((resolve, reject) => {
     const command = `git log --follow --pretty=format:"%ae\u200E%s" -- "${filePath}"`;
     exec(command, (error, stdout) => {
-      if (error) return reject(error);
+      if (error) {
+        console.error(error);
+        return resolve([]);
+      }
       // console.log(stdout);
-      const contributors = Array.from(new Set(stdout.trim().split("\n")))
-        .map((commit) => commit.split("\u200E"))
-        .filter((commit) => !commit[1].startsWith("Merge branch"))
-        .map((commit) => md5(commit[0]).substring(0, 10));
-      resolve(contributors);
+      try {
+        const contributors = Array.from(new Set(stdout.trim().split("\n")))
+          .map((commit) => commit.split("\u200E"))
+          .filter((commit) => !commit[1]?.startsWith("Merge branch"))
+          .map((commit) => md5(commit[0]).substring(0, 10));
+        resolve(contributors);
+      } catch (e) {
+        console.error(e);
+        resolve([]);
+      }
     });
   });
 
@@ -26,7 +34,7 @@ const addContributors = ((): Plugin => {
     },
     async transform(code, id) {
       if (id.endsWith(".md") && code.trim().match(/^---\r?\n/) === null) {
-        const path = id.substring(rootDir.length);
+        // const path = id.substring(rootDir.length);
         return (
           `---\ncontributorList: ${(
             await getContributorsMd5(id)

@@ -21,24 +21,23 @@ import { useData } from "vitepress";
 import type { Contributor } from "../../util";
 const { frontmatter } = useData();
 const contributorList = ref(<Contributor[]>[]);
-function print(a: any) {
-  return a;
-}
 
 watchEffect(() => {
-  contributorList.value = Array.from(
-    new Set(
-      print(
+  try {
+    contributorList.value = Array.from(
+      new Set(
         (<string>frontmatter.value.contributorList)
           .split(",")
           .map((md5) =>
             fullContributorList.find(({ emailHash }) => emailHash.includes(md5))
           )
+          .filter((person) => person !== undefined)
+          .reverse()
       )
-        .filter((person) => person !== undefined)
-        .reverse()
-    )
-  );
+    );
+  } catch (e) {
+    console.error(e);
+  }
 });
 </script>
 
