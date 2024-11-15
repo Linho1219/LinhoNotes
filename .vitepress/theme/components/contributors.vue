@@ -8,7 +8,7 @@
     "
   >
     <div v-for="person in contributorList" class="contributor">
-      <img :src="`https://github.com/${person.username}.png`" class="avartar" />
+      <img :src="`/avartars/${person.username}.png`" class="avartar" />
       <span class="nickname">{{ person.nickname }}</span>
       <span class="username">{{ person.username }}</span>
       <a

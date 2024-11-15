@@ -16,6 +16,9 @@ import nav from "./nav";
 import sidebar from "./sidebar";
 import genreateSitemap from "./sitemap";
 import mapShortUrl from "./shortUrl/mapShortUrl";
+import mirrorAvartar from "./mirrorAvartar";
+
+mirrorAvartar();
 
 // https://vitepress.dev/reference/site-config
 export default {
