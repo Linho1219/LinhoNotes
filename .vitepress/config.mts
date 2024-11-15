@@ -8,7 +8,6 @@ import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
 
 import { UserConfig, DefaultTheme } from "vitepress";
-import { defineConfig } from "vitepress";
 
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
 import { baseUrl } from "./util";
@@ -19,7 +18,7 @@ import genreateSitemap from "./sitemap";
 import mapShortUrl from "./shortUrl/mapShortUrl";
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default {
   title: "LinhoNotes",
   description: "一个笔记仓库",
   lang: "zh-CN",
@@ -91,4 +90,11 @@ export default defineConfig({
     genreateSitemap(siteConfig);
     mapShortUrl(siteConfig);
   },
-} as UserConfig<DefaultTheme.Config>);
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag) => tag.startsWith("punc-"),
+      },
+    },
+  },
+} as UserConfig<DefaultTheme.Config>;
