@@ -70,7 +70,6 @@
 
   /* 链接样式优化 */
   .vp-doc a:not(.escape-animate, .escape-animate a) {
-    white-space: nowrap;
     color: var(--link-color);
     text-decoration: none;
     position: relative;
