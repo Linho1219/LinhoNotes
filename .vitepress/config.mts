@@ -18,7 +18,7 @@ import genreateSitemap from "./sitemap";
 import mapShortUrl from "./shortUrl/mapShortUrl";
 import mirrorAvartar from "./mirrorAvartar";
 
-await mirrorAvartar();
+if (process.env.NODE_ENV === "production") await mirrorAvartar();
 
 // https://vitepress.dev/reference/site-config
 export default {
