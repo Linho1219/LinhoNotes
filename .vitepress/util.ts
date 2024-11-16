@@ -38,7 +38,7 @@ export const fullContributorList: Contributor[] = [
     emailHash: ["2e08b8e801"],
   },
   {
-    nickname: "Su-Zi-Zhan",
+    nickname: "LRJ",
     username: "Su-Zi-Zhan",
     emailHash: ["18c6a8f3f6"],
   },
