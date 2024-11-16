@@ -60,7 +60,7 @@ export const fullContributorList: Contributor[] = [
 
 /*===== 类型定义 =====*/
 
-export type GlobolConfig = {
+type GlobolConfig = {
   /** 网站标题 */
   title: string;
   /** 网站描述 */
@@ -85,7 +85,7 @@ export type Contributor = {
   emailHash: string[];
 };
 
-export type SidebarConfig = {
+type SidebarConfig = {
   /** 根目录下忽略的目录名称 */
   ignProjects: string[];
   /** 全局忽略的目录名称 */
