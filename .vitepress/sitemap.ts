@@ -1,11 +1,12 @@
 import fs from "fs";
 import { SiteConfig } from "vitepress";
-import { baseUrl } from "./util";
+import { globolConfig } from "./manualConfig";
 
 /** 生成 txt 格式 sitemap */
 export default async function genreateSitemap(siteConfig: SiteConfig) {
   const siteMapArr = siteConfig.pages.map(
-    (page) => `${baseUrl}/${encodeURI(page.replace(/(index)?\.md$/, ""))}`
+    (page) =>
+      `${globolConfig.baseUrl}/${encodeURI(page.replace(/(index)?\.md$/, ""))}`
   );
   try {
     fs.writeFileSync(`${siteConfig.outDir}/sitemap.txt`, siteMapArr.join("\n"));

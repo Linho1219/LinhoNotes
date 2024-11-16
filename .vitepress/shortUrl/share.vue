@@ -1,33 +1,32 @@
 <template>
   <div class="share-panel">
-    <noscript>您已禁用 JavaScript</noscript>
-    <ClientOnly>
-      <QRCodeVue
-        :value="link"
-        :size="120"
-        render-as="svg"
-        level="L"
-        :background="background"
-        :foreground="foreground"
-      />
-      <button class="copylink" @click="copyLink()">
-        复制链接<span
-          class="copy-indicator-wrapper"
-          :class="expand ? 'expanded' : 'folded'"
+    <noscript>{{ miscI18n.javascriptDisabled }}</noscript>
+    <QRCodeVue
+      :value="link"
+      :size="120"
+      render-as="svg"
+      level="L"
+      :background="background"
+      :foreground="foreground"
+    />
+    <button class="copylink" @click="copyLink()">
+      {{ miscI18n.copyLink }}
+      <span
+        class="copy-indicator-wrapper"
+        :class="expand ? 'expanded' : 'folded'"
+      >
+        <svg
+          class="copy-indicator"
+          viewBox="0 0 1024 1024"
+          width="18"
+          height="18"
         >
-          <svg
-            class="copy-indicator"
-            viewBox="0 0 1024 1024"
-            width="18"
-            height="18"
-          >
-            <path
-              d="M401.3 690.5L189.5 478.6l-0.4-0.4c-14.1-13.7-36.6-13.5-50.5 0.4-14.1 14.1-14.1 36.9 0 50.9l237.3 237.3 0.4 0.4c14.1 13.7 36.6 13.5 50.5-0.4l458.7-458.7 0.4-0.4c13.7-14.1 13.5-36.6-0.4-50.5-14.1-14.1-36.9-14.1-50.9 0L401.3 690.5z"
-            />
-          </svg>
-        </span>
-      </button>
-    </ClientOnly>
+          <path
+            d="M401.3 690.5L189.5 478.6l-0.4-0.4c-14.1-13.7-36.6-13.5-50.5 0.4-14.1 14.1-14.1 36.9 0 50.9l237.3 237.3 0.4 0.4c14.1 13.7 36.6 13.5 50.5-0.4l458.7-458.7 0.4-0.4c13.7-14.1 13.5-36.6-0.4-50.5-14.1-14.1-36.9-14.1-50.9 0L401.3 690.5z"
+          />
+        </svg>
+      </span>
+    </button>
   </div>
 </template>
 
@@ -36,7 +35,9 @@ import QRCodeVue from "qrcode.vue";
 import md5 from "blueimp-md5";
 import { ref, watchEffect, onMounted } from "vue";
 import { useData } from "vitepress";
-import { baseUrl } from "../util";
+import { globolConfig } from "../manualConfig";
+import { miscI18n } from "../i18n";
+
 const { page, isDark } = useData();
 const link = ref("");
 const expand = ref(false);
@@ -59,11 +60,8 @@ onMounted(() => {
   watchEffect(() => {
     const path = page.value.filePath.replace(/(index)?\.md$/, "");
     if (encodeURI(path).length < 10)
-      link.value = `${baseUrl}/${encodeURI(path)}`;
-    else {
-      const hash = md5(path).slice(0, 10);
-      link.value = `${baseUrl}/s?q=${hash}`;
-    }
+      link.value = `${globolConfig.baseUrl}/${encodeURI(path)}`;
+    else link.value = `${globolConfig.baseUrl}/s?q=${md5(path).slice(0, 10)}`;
   });
   watchEffect(() => {
     background.value = isDark.value ? "#202127" : "#ffffff";

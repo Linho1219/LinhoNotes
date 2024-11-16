@@ -26,6 +26,8 @@ export const miscI18n: MiscI18n = {
   lastUpdated: "最后更新于",
   searchPlaceHolder: "输入关键词",
   searchBtnText: "搜索",
+  copyLink: "复制链接",
+  javascriptDisabled: "您已禁用 JavaScript",
 } as const;
 
 /** Algolia DocSearch 搜索框的文本翻译 */
@@ -87,4 +89,8 @@ type MiscI18n = {
   /** 顶栏搜索框按钮 PlaceHolder
    * @default 'Search' */
   searchBtnText: string;
+  /** 顶栏分享框复制链接 */
+  copyLink: string;
+  /** 已禁用 JavaScript */
+  javascriptDisabled: string;
 };

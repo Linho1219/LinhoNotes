@@ -1,12 +1,10 @@
 import fs from "fs";
 import path from "path";
 import { DefaultTheme } from "vitepress";
-import { pangu } from "./util";
+import pangu from "pangu";
+import { sidebarConfig } from "./manualConfig";
 
-const ignProjects = [".vitepress", ".github", ".git", "node_modules", "public"];
-const ignDirs = ["images"];
-const ignFiles = ["index.md"];
-const maxDepth = 2;
+const { ignProjects, ignDirs, ignFiles, maxDepth } = sidebarConfig;
 
 function compareFileName(a: string, b: string) {
   const extractNum = /^((\d+)(\.(\d+))?)\s/;
@@ -42,18 +40,18 @@ function generateSidebar(
       !ignFiles.includes(dirent.name)
   );
   return [
-    ...files.map(({ name }) => ({
-      text: pangu(path.basename(name, ".md")),
+    ...(files.map(({ name }) => ({
+      text: pangu.spacing(path.basename(name, ".md")),
       link: `/${folderPath}/${path.basename(name, ".md")}`,
-    })) as DefaultTheme.SidebarItem[],
-    ...folders.map((folder) => ({
-      text: pangu(folder.name),
+    })) as DefaultTheme.SidebarItem[]),
+    ...(folders.map((folder) => ({
+      text: pangu.spacing(folder.name),
       items: generateSidebar(`${folderPath}/${folder.name}`, depth + 1),
       link: fs.existsSync(`${folderPath}/${folder.name}/index.md`)
         ? `/${folderPath}/${folder.name}/`
         : undefined,
-        collapsed: depth === 0 ? false : undefined,
-    })) as DefaultTheme.SidebarItem[],
+      collapsed: depth === 0 ? false : undefined,
+    })) as DefaultTheme.SidebarItem[]),
   ].sort((a, b) => compareFileName(a.text!, b.text!));
 }
 

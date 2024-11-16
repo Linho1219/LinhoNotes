@@ -13,7 +13,7 @@
 import { useData } from "vitepress";
 const { page } = useData();
 import { ref, watchEffect } from "vue";
-import { pangu } from "../../util";
+import pangu from "pangu";
 
 type Breadcrumb = {
   name: string;
@@ -25,8 +25,8 @@ watchEffect(() => {
   items.value = page.value.filePath
     .split("/")
     .slice(0, -1)
-    .map((item, index, arr) => ({
-      name: pangu(item),
+    .map((item, index) => ({
+      name: pangu.spacing(item),
       first: !index,
     }));
 });
