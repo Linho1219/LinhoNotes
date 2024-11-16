@@ -6,6 +6,7 @@ type ShortUrlMap = {
   [key: string]: string;
 };
 
+/** 生成短链接哈希表 */
 export default async function mapShortUrl(siteConfig: SiteConfig) {
   const shortMap: ShortUrlMap = {};
   siteConfig.pages.forEach((path) => {

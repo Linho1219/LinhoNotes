@@ -6,7 +6,7 @@ import { pangu } from "./util";
 const ignProjects = [".vitepress", ".github", ".git", "node_modules", "public"];
 const ignDirs = ["images"];
 const ignFiles = ["index.md"];
-const MAX_DEPTH = 2;
+const maxDepth = 2;
 
 function compareFileName(a: string, b: string) {
   const extractNum = /^((\d+)(\.(\d+))?)\s/;
@@ -30,7 +30,7 @@ function generateSidebar(
   }
   const content = fs.readdirSync(folderPath, { withFileTypes: true });
   const folders =
-    depth < MAX_DEPTH
+    depth < maxDepth
       ? content.filter(
           (dirent) => dirent.isDirectory() && !ignDirs.includes(dirent.name)
         )

@@ -8,10 +8,6 @@ async function downloadImage(url: string, savePath: string) {
     url,
     method: "GET",
     responseType: "stream",
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
-    },
   });
   response.data.pipe(writer);
   return new Promise((resolve, reject) => {
@@ -20,30 +16,21 @@ async function downloadImage(url: string, savePath: string) {
   });
 }
 
+/** 将贡献者的头像存入 `./public/avartars`，打包进网站 */
 export default async function mirrorAvartar() {
-  let cnt = 0;
+  let cnt = fullContributorList.length;
   return new Promise((resolve) => {
     for (const { username } of fullContributorList) {
-      // console.log(username);
       fs.mkdirSync("./public/avartars", { recursive: true });
-      cnt++;
       downloadImage(
         `https://github.com/${username}.png`,
         `./public/avartars/${username}.png`
       )
         .then(
-          () => {
-            console.log(`${username}.png downloaded successfully`);
-            cnt--;
-          },
-          (err) => {
-            console.error(`Error downloading ${username}.png: ${err}`);
-            cnt--;
-          }
+          () => console.log(`${username}.png downloaded successfully`),
+          (err) => console.error(`${username}.png failed:\n  ${err}`)
         )
-        .finally(() => {
-          if (cnt === 0) resolve(null);
-        });
+        .finally(() => (--cnt ? resolve(null) : null));
     }
   });
 }

@@ -3,9 +3,11 @@ import { DefaultTheme } from "vitepress";
 type Nav = {
   text: string;
   link: string;
+  /** 链接高亮匹配正则 */
   activeMatch?: string;
 }[];
 
+/** 顶部导航栏配置 */
 const nav: Nav = [
   { text: "高数", link: "高等数学" },
   { text: "线代", link: "线性代数" },
