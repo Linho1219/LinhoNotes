@@ -22,9 +22,9 @@ features:
   - title: 线性代数
     details: 基于同济第七版《工程数学：线性代数》教材。持续更新中。
     link: 线性代数
-  - title: 高级英语
-    details: 同济英语半免生课程。仓库收录使用的教学材料。
-    link: 高级英语
+  - title: 数学分析
+    details: 又称高级微积分，分析学中最古老、最基本的分支。
+    link: 数学分析
   - title: 机甲大师
     details: RoboMaster 是大疆承办，面向全球大学生开展的机器人竞赛。
     link: 机甲大师
