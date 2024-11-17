@@ -4,13 +4,14 @@ import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
 import mdMark from "markdown-it-mark";
 import mdAutoSpacing from "markdown-it-autospace";
+
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
-
-import { UserConfig, DefaultTheme } from "vitepress";
+import { createContainer } from "./customContainer";
 
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
-import { baseUrl } from "./util";
+import { globolConfig } from "./manualConfig";
+const { title, description, baseUrl } = globolConfig;
 
 import nav from "./nav";
 import sidebar from "./sidebar";
@@ -18,12 +19,14 @@ import genreateSitemap from "./sitemap";
 import mapShortUrl from "./shortUrl/mapShortUrl";
 import mirrorAvartar from "./mirrorAvartar";
 
+import type { UserConfig, DefaultTheme } from "vitepress";
+
 if (process.env.NODE_ENV === "production") await mirrorAvartar();
 
 // https://vitepress.dev/reference/site-config
 export default {
-  title: "LinhoNotes",
-  description: "一个笔记仓库",
+  title,
+  description,
   lang: "zh-CN",
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
@@ -75,6 +78,14 @@ export default {
       md.use(mdFootNotePlus);
       md.use(mdCheckbox);
       md.use(mdMark);
+      md.use(
+        ...createContainer(
+          "example",
+          "例",
+          { numbered: true, themeAlias: ["note"] },
+          md
+        )
+      );
       md.use(mdPlot);
       md.use(mdAutoSpacing, {
         pangu: true,

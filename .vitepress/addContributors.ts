@@ -2,6 +2,11 @@ import type { Plugin } from "vite";
 import { exec } from "child_process";
 import md5 from "blueimp-md5";
 
+/**
+ * 通过 Git 获取文件的贡献者列表，输出贡献者邮箱的 MD5 的前 10 位。
+ * 跟踪重命名。不包含 Merge branch 引起的更改。
+ * @param filePath 需查询的文件路径
+ */
 const getContributorsMd5 = async (filePath: string): Promise<string[]> =>
   new Promise((resolve) => {
     const command = `git log --follow --pretty=format:"%ae\u200E%s" -- "${filePath}"`;
@@ -24,6 +29,7 @@ const getContributorsMd5 = async (filePath: string): Promise<string[]> =>
     });
   });
 
+/** 在每个 .md 文件的 Frontmatter 中加上贡献者信息。若 Frontmatter 存在则跳过。 */
 const addContributors = ((): Plugin => {
   let rootDir = "";
   return {

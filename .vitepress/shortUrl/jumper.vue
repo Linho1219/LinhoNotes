@@ -1,11 +1,10 @@
-<template>
-  <noscript>您已禁用 JavaScript。请启用 JavaScript 后刷新页面。</noscript>
-</template>
+<template></template>
 
 <script setup lang="ts">
 import axios from "axios";
 import { onMounted } from "vue";
 import { useRouter } from "vitepress";
+
 const router = useRouter();
 onMounted(() => {
   const id = window.location.search.match(/\?q=(.{10})$/)?.[1];

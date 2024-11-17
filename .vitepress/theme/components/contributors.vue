@@ -22,9 +22,9 @@
 </template>
 <script lang="ts" setup>
 import { watchEffect, ref } from "vue";
-import { fullContributorList } from "../../util";
+import { fullContributorList } from "../../manualConfig";
 import { useData } from "vitepress";
-import type { Contributor } from "../../util";
+import type { Contributor } from "../../manualConfig";
 const { frontmatter } = useData();
 const displayEnabled = ref(true);
 const contributorList = ref(<Contributor[]>[]);

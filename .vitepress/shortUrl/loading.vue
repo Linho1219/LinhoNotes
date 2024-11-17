@@ -1,10 +1,21 @@
 <template>
+  <noscript>{{ miscI18n.javascriptDisabled }}</noscript>
   <div id="loader">
     <div id="shadow"></div>
     <div id="box"></div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { miscI18n } from "../i18n";
+</script>
+
 <style>
+noscript{
+  font-size:30px;
+  margin-top: 30px;
+}
+
 #loader {
   position: fixed;
   top: calc(50vh - 20px);
