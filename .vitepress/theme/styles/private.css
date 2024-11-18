@@ -46,3 +46,11 @@ punc-spacing {
 .punc-before-more {
   margin-inline-start: -0.6em;
 }
+
+/* 例题框背景色 */
+.custom-block.example {
+  background-color: rgba(142, 150, 170, 0.08);
+}
+.dark .custom-block.example {
+  background-color: rgba(101, 117, 133, 0.08);
+}
