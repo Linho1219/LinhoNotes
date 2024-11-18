@@ -5,6 +5,7 @@ import "./styles/fix.css";
 import "./styles/beautify.css";
 import "./styles/animation.css";
 import "./styles/home.css";
+import "./styles/print.css";
 
 import Layout from "./layout.vue";
 import Mermaid from "../codeblock/mermaid.vue";

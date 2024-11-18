@@ -1,0 +1,21 @@
+@media print {
+  .VPNav,
+  .VPLocalNav,
+  .prev-next,
+  .edit-link-button {
+    display: none !important;
+  }
+  .doc-source {
+    display: block !important;
+  }
+  .last-updated {
+    width: 100%;
+  }
+  .edit-info,
+  .content {
+    padding-bottom: 0 !important;
+  }
+  mjx-container svg * {
+    stroke: none;
+  }
+}
