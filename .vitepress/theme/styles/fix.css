@@ -82,3 +82,21 @@ h5 + .footnotes-sep,
 h6 + .footnotes-sep {
   display: none;
 }
+
+/* 修复多级列表 marker 样式 */
+.vp-doc :is(ol, ul) ol {
+  list-style: lower-roman;
+}
+.vp-doc :is(ol, ul) :is(ol, ul) ol {
+  list-style: lower-latin;
+}
+.vp-doc :is(ol, ul) :is(ol, ul) :is(ol, ul) ol {
+  list-style: lower-greek;
+}
+
+.vp-doc :is(ol, ul) ul {
+  list-style: circle;
+}
+.vp-doc :is(ol, ul) :is(ol, ul) ul {
+  list-style: square;
+}
