@@ -8,7 +8,7 @@
     "
   >
     <div v-for="person in contributorList" class="contributor">
-      <img :src="`/avartars/${person.username}.png`" class="avartar" />
+      <img :src="`/avatars/${person.username}.png`" class="avatar" />
       <span class="nickname">{{ person.nickname }}</span>
       <span class="username">{{ person.username }}</span>
       <a
@@ -110,7 +110,7 @@ watchEffect(() => {
   }
 }
 
-.contributor .avartar {
+.contributor .avatar {
   position: absolute;
   margin-right: 10px;
   border-radius: 50%;

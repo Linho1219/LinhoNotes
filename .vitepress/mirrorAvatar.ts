@@ -16,15 +16,15 @@ async function downloadImage(url: string, savePath: string) {
   });
 }
 
-/** 将贡献者的头像存入 `./public/avartars`，打包进网站 */
-export default async function mirrorAvartar() {
+/** 将贡献者的头像存入 `./public/avatars`，打包进网站 */
+export default async function mirrorAvatar() {
   let cnt = fullContributorList.length;
   return new Promise((resolve) => {
     for (const { username } of fullContributorList) {
-      fs.mkdirSync("./public/avartars", { recursive: true });
+      fs.mkdirSync("./public/avatars", { recursive: true });
       downloadImage(
         `https://github.com/${username}.png`,
-        `./public/avartars/${username}.png`
+        `./public/avatars/${username}.png`
       )
         .then(
           () => console.log(`${username}.png downloaded successfully`),
