@@ -19,6 +19,6 @@ export default async function mapShortUrl(siteConfig: SiteConfig) {
       JSON.stringify(shortMap)
     );
   } catch (err) {
-    console.error("Create sitemap.txt failed!", err);
+    console.error("Create shortmap.json failed!", err);
   }
 }

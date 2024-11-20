@@ -4,6 +4,7 @@
 mjx-container {
   overflow-y: hidden;
   white-space: nowrap;
+  outline: none;
 }
 
 /* blockquote 与 li 内段间距修复 */
@@ -15,11 +16,17 @@ mjx-container {
 }
 
 /* 提示块分割线颜色修复 */
-.github-alert {
+.custom-block {
   --vp-c-divider: #0002;
 }
-.dark .github-alert {
+.dark .custom-block {
   --vp-c-divider: #fff2;
+}
+
+/* 提示框嵌套边距修复 */
+.custom-block .custom-block {
+  padding: 12px 16px 4px;
+  margin: 12px 0;
 }
 
 /* 修复脚注返回按钮显示为 emoji */
@@ -75,4 +82,31 @@ h4 + .footnotes-sep,
 h5 + .footnotes-sep,
 h6 + .footnotes-sep {
   display: none;
+}
+
+/* 修复多级列表 marker 样式 */
+.vp-doc :is(ol, ul) ol {
+  list-style: lower-roman;
+}
+.vp-doc :is(ol, ul) :is(ol, ul) ol {
+  list-style: lower-latin;
+}
+.vp-doc :is(ol, ul) :is(ol, ul) :is(ol, ul) ol {
+  list-style: lower-greek;
+}
+
+.vp-doc :is(ol, ul) ul {
+  list-style: circle;
+}
+.vp-doc :is(ol, ul) :is(ol, ul) ul {
+  list-style: square;
+}
+
+/* 调整提示框字号 */
+:root {
+  --vp-custom-block-font-size: 15px;
+  --vp-custom-block-code-font-size: 14px;
+}
+.custom-block mjx-container {
+  font-size: 16px;
 }

@@ -8,7 +8,7 @@
     "
   >
     <div v-for="person in contributorList" class="contributor">
-      <img :src="`/avartars/${person.username}.png`" class="avartar" />
+      <img :src="`/avatars/${person.username}.png`" class="avatar" />
       <span class="nickname">{{ person.nickname }}</span>
       <span class="username">{{ person.username }}</span>
       <a
@@ -19,15 +19,26 @@
       ></a>
     </div>
   </div>
+  <div class="doc-source">
+    <p class="VPDocSource">
+      本文来源: <a :href="link" class="VPDocSourceLink">{{ link }}</a
+      >，转载请标明出处。
+    </p>
+  </div>
 </template>
+
 <script lang="ts" setup>
 import { watchEffect, ref } from "vue";
-import { fullContributorList } from "../../manualConfig";
 import { useData } from "vitepress";
+import md5 from "blueimp-md5";
+import { fullContributorList } from "../../manualConfig";
 import type { Contributor } from "../../manualConfig";
-const { frontmatter } = useData();
+import { globolConfig } from "../../manualConfig";
+
+const { page, frontmatter } = useData();
 const displayEnabled = ref(true);
 const contributorList = ref(<Contributor[]>[]);
+const link = ref("");
 
 watchEffect(() => {
   if (typeof frontmatter.value.contributorList !== "string") {
@@ -45,6 +56,12 @@ watchEffect(() => {
         .reverse()
     )
   );
+});
+watchEffect(() => {
+  const path = page.value.filePath.replace(/(index)?\.md$/, "");
+  if (encodeURI(path).length < 10)
+    link.value = `${globolConfig.baseUrl}/${encodeURI(path)}`;
+  else link.value = `${globolConfig.baseUrl}/s?q=${md5(path).slice(0, 10)}`;
 });
 </script>
 
@@ -93,7 +110,7 @@ watchEffect(() => {
   }
 }
 
-.contributor .avartar {
+.contributor .avatar {
   position: absolute;
   margin-right: 10px;
   border-radius: 50%;
@@ -129,5 +146,16 @@ watchEffect(() => {
 }
 .contributor .github-link:active {
   opacity: 0.5;
+}
+.VPDocSource {
+  font-weight: bold;
+}
+.VPDocSourceLink {
+  color: var(--vp-c-brand);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.doc-source{
+  display: none;
 }
 </style>

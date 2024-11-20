@@ -7,6 +7,7 @@ import mdAutoSpacing from "markdown-it-autospace";
 
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
+import mdMjxErrWarning from "./mjxErrWarning";
 import { createContainer } from "./customContainer";
 
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
@@ -17,11 +18,11 @@ import nav from "./nav";
 import sidebar from "./sidebar";
 import genreateSitemap from "./sitemap";
 import mapShortUrl from "./shortUrl/mapShortUrl";
-import mirrorAvartar from "./mirrorAvartar";
+import mirrorAvatar from "./mirrorAvatar";
 
 import type { UserConfig, DefaultTheme } from "vitepress";
 
-if (process.env.NODE_ENV === "production") await mirrorAvartar();
+if (process.env.NODE_ENV === "production") await mirrorAvatar();
 
 // https://vitepress.dev/reference/site-config
 export default {
@@ -78,6 +79,7 @@ export default {
       md.use(mdFootNotePlus);
       md.use(mdCheckbox);
       md.use(mdMark);
+      md.use(mdMjxErrWarning);
       md.use(
         ...createContainer(
           "example",
