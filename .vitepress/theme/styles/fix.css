@@ -4,6 +4,7 @@
 mjx-container {
   overflow-y: hidden;
   white-space: nowrap;
+  outline: none;
 }
 
 /* blockquote 与 li 内段间距修复 */
@@ -99,4 +100,13 @@ h6 + .footnotes-sep {
 }
 .vp-doc :is(ol, ul) :is(ol, ul) ul {
   list-style: square;
+}
+
+/* 调整提示框字号 */
+:root {
+  --vp-custom-block-font-size: 15px;
+  --vp-custom-block-code-font-size: 14px;
+}
+.custom-block mjx-container {
+  font-size: 16px;
 }
