@@ -1,6 +1,6 @@
 import { DefaultTheme } from "vitepress";
-import { nav } from "./manualConfig";
-import type { Nav } from "./manualConfig";
+import { nav } from "../manualConfig";
+import type { Nav } from "../manualConfig";
 
 const escapeRegExp = (str: string) =>
   str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

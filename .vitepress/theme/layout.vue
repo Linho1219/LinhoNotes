@@ -18,7 +18,7 @@ import { nextTick, provide } from "vue";
 import { useData } from "vitepress";
 import Breadcrumb from "./components/breadcrumb.vue";
 import SearchOverlay from "./components/searchOverlay.vue";
-import Contributors from "./components/contributors.vue";
+import Contributors from "../contributors/contributors.vue";
 const { Layout } = DefaultTheme;
 const { isDark } = useData();
 

@@ -7,22 +7,19 @@ import mdAutoSpacing from "markdown-it-autospace";
 
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
-import mdMjxErrWarning from "./mjxErrWarning";
-import { createContainer } from "./customContainer";
+import mdMjxErrWarning from "./siteData/mjxErrWarning";
+import { createContainer } from "./siteData/customContainer";
 
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
-import { globolConfig } from "./manualConfig";
-const { title, description, baseUrl } = globolConfig;
+import { globalConfig } from "./manualConfig";
+const { title, description, baseUrl } = globalConfig;
 
-import nav from "./nav";
-import sidebar from "./sidebar";
+import nav from "./siteData/nav";
+import sidebar from "./siteData/sidebar";
 import genreateSitemap from "./sitemap";
 import mapShortUrl from "./shortUrl/mapShortUrl";
-import mirrorAvatar from "./mirrorAvatar";
 
 import type { UserConfig, DefaultTheme } from "vitepress";
-
-if (process.env.NODE_ENV === "production") await mirrorAvatar();
 
 // https://vitepress.dev/reference/site-config
 export default {
