@@ -3,7 +3,9 @@ export const globalConfig: GlobalConfig = {
   title: "LinhoNotes",
   description: "一个笔记仓库",
   baseUrl: "https://notes.linho.cc",
-};
+  owner: "Linho1219",
+  repo: "LinhoNotes",
+} as const;
 
 /** 顶部导航栏配置 */
 export const nav: Nav = [
@@ -67,6 +69,10 @@ type GlobalConfig = {
   description: string;
   /** 网站地址 */
   baseUrl: `https://${string}`;
+  /** 仓库所有者用户名 */
+  owner: string;
+  /** 仓库名 */
+  repo: string;
 };
 
 export type Nav = {
