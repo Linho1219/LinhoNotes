@@ -31,9 +31,9 @@
 import { watchEffect, ref } from "vue";
 import { useData } from "vitepress";
 import md5 from "blueimp-md5";
-import { fullContributorList } from "../../manualConfig";
-import type { Contributor } from "../../manualConfig";
-import { globalConfig } from "../../manualConfig";
+import { fullContributorList } from "../manualConfig";
+import type { Contributor } from "../manualConfig";
+import { globalConfig } from "../manualConfig";
 
 const { page, frontmatter } = useData();
 const displayEnabled = ref(true);

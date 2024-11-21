@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { DefaultTheme } from "vitepress";
 import pangu from "pangu";
-import { sidebarConfig } from "./manualConfig";
+import { sidebarConfig } from "../manualConfig";
 
 const { ignProjects, ignDirs, ignFiles, maxDepth } = sidebarConfig;
 

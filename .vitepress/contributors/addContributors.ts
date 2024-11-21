@@ -1,6 +1,12 @@
 import type { Plugin } from "vite";
 import { exec } from "child_process";
+import { Octokit } from "@octokit/rest";
 import md5 from "blueimp-md5";
+
+type Commit = {
+  email: string;
+  sha1: string;
+};
 
 /**
  * 通过 Git 获取文件的贡献者列表，输出贡献者邮箱的 MD5 的前 10 位。
@@ -15,7 +21,6 @@ const getContributorsMd5 = async (filePath: string): Promise<string[]> =>
         console.error(error);
         return resolve([]);
       }
-      // console.log(stdout);
       try {
         const contributors = Array.from(new Set(stdout.trim().split("\n")))
           .map((commit) => commit.split("\u200E"))
@@ -32,6 +37,7 @@ const getContributorsMd5 = async (filePath: string): Promise<string[]> =>
 /** 在每个 .md 文件的 Frontmatter 中加上贡献者信息。若 Frontmatter 存在则跳过。 */
 const addContributors = ((): Plugin => {
   let rootDir = "";
+  const octokit = new Octokit();
   return {
     name: "add-contributors",
     enforce: "pre",
@@ -39,14 +45,14 @@ const addContributors = ((): Plugin => {
       rootDir = resolvedConfig.root;
     },
     async transform(code, id) {
-      if (id.endsWith(".md") && code.trim().match(/^---\r?\n/) === null) {
-        // const path = id.substring(rootDir.length);
-        return (
-          `---\ncontributorList: ${(
-            await getContributorsMd5(id)
-          ).join()}\n---\n\n` + code
-        );
-      }
+      if (!id.endsWith(".md") || code.trim().match(/^---\r?\n/) !== null)
+        return;
+      
+      return (
+        `---\ncontributorList: ${(
+          await getContributorsMd5(id)
+        ).join()}\n---\n\n` + code
+      );
     },
   };
 })();

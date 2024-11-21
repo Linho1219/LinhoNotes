@@ -1,6 +1,6 @@
 import fs from "fs";
 import axios from "axios";
-import { fullContributorList } from "./manualConfig";
+import { fullContributorList } from "../manualConfig";
 
 async function downloadImage(url: string, savePath: string) {
   const writer = fs.createWriteStream(savePath);
