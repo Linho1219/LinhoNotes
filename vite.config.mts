@@ -5,5 +5,5 @@ export default {
   build: {
     chunkSizeWarningLimit: 4096,
   },
-  plugins: process.env.NODE_ENV === "production" ? [addContributors] : [],
+  plugins: true ? [addContributors] : [],
 } as UserConfig;

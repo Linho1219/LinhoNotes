@@ -31,9 +31,12 @@
 import { watchEffect, ref } from "vue";
 import { useData } from "vitepress";
 import md5 from "blueimp-md5";
-import { fullContributorList } from "../manualConfig";
-import type { Contributor } from "../manualConfig";
 import { globalConfig } from "../manualConfig";
+
+type Contributor = {
+  username: string;
+  nickname: string;
+};
 
 const { page, frontmatter } = useData();
 const displayEnabled = ref(true);
@@ -45,17 +48,10 @@ watchEffect(() => {
     displayEnabled.value = false;
     return;
   }
-  contributorList.value = Array.from(
-    new Set(
-      (<string>frontmatter.value.contributorList)
-        .split(",")
-        .map((md5) =>
-          fullContributorList.find(({ emailHash }) => emailHash.includes(md5))
-        )
-        .filter((person) => person !== undefined)
-        .reverse()
-    )
-  );
+  contributorList.value = frontmatter.value.contributorList
+    .split(";")
+    .map((raw) => raw.split(","))
+    .map(([nickname, username]) => ({ nickname, username }));
 });
 watchEffect(() => {
   const path = page.value.filePath.replace(/(index)?\.md$/, "");
@@ -155,7 +151,7 @@ watchEffect(() => {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-.doc-source{
+.doc-source {
   display: none;
 }
 </style>

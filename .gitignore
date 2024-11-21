@@ -4,3 +4,4 @@ node_modules
 .vitepress/.temp
 public/avatars
 test.ts
+.env

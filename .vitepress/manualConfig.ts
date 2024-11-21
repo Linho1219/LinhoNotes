@@ -26,40 +26,6 @@ export const sidebarConfig: SidebarConfig = {
   maxDepth: 2,
 };
 
-/** 贡献者清单 */
-export const fullContributorList: Contributor[] = [
-  {
-    nickname: "Linho",
-    username: "Linho1219",
-    emailHash: ["81c7445a52", "0c5b28c9ad"],
-  },
-  {
-    nickname: "Horrible",
-    username: "Horrible120",
-    emailHash: ["fcf0370694", "f408246931"],
-  },
-  {
-    nickname: "GBY.",
-    username: "SkinCrab",
-    emailHash: ["7368906deb"],
-  },
-  {
-    nickname: "Acha",
-    username: "acha666",
-    emailHash: ["d772a76fa1", "15e5ea97d8"],
-  },
-  {
-    nickname: "Cindy Fang",
-    username: "CindyFang0716",
-    emailHash: ["2e08b8e801"],
-  },
-  {
-    nickname: "LRJ",
-    username: "Su-Zi-Zhan",
-    emailHash: ["18c6a8f3f6"],
-  },
-];
-
 /*===== 类型定义 =====*/
 
 type GlobalConfig = {
@@ -81,15 +47,6 @@ export type Nav = {
   /** 链接高亮匹配正则 */
   activeMatch?: string;
 }[];
-
-export type Contributor = {
-  /** Github 昵称 */
-  nickname: string;
-  /** Github 用户名（链接地址） */
-  username: string;
-  /** Git 邮箱哈希值前 10 位 */
-  emailHash: string[];
-};
 
 type SidebarConfig = {
   /** 根目录下忽略的目录名称 */

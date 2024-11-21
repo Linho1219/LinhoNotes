@@ -18,11 +18,8 @@ import nav from "./siteData/nav";
 import sidebar from "./siteData/sidebar";
 import genreateSitemap from "./sitemap";
 import mapShortUrl from "./shortUrl/mapShortUrl";
-import mirrorAvatar from "./contributors/mirrorAvatar";
 
 import type { UserConfig, DefaultTheme } from "vitepress";
-
-if (process.env.NODE_ENV === "production") await mirrorAvatar();
 
 // https://vitepress.dev/reference/site-config
 export default {
