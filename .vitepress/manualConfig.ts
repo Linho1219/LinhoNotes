@@ -1,5 +1,5 @@
 /** 站点配置 */
-export const globolConfig: GlobolConfig = {
+export const globalConfig: GlobalConfig = {
   title: "LinhoNotes",
   description: "一个笔记仓库",
   baseUrl: "https://notes.linho.cc",
@@ -60,7 +60,7 @@ export const fullContributorList: Contributor[] = [
 
 /*===== 类型定义 =====*/
 
-type GlobolConfig = {
+type GlobalConfig = {
   /** 网站标题 */
   title: string;
   /** 网站描述 */

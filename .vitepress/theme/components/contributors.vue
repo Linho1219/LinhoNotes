@@ -33,7 +33,7 @@ import { useData } from "vitepress";
 import md5 from "blueimp-md5";
 import { fullContributorList } from "../../manualConfig";
 import type { Contributor } from "../../manualConfig";
-import { globolConfig } from "../../manualConfig";
+import { globalConfig } from "../../manualConfig";
 
 const { page, frontmatter } = useData();
 const displayEnabled = ref(true);
@@ -60,8 +60,8 @@ watchEffect(() => {
 watchEffect(() => {
   const path = page.value.filePath.replace(/(index)?\.md$/, "");
   if (encodeURI(path).length < 10)
-    link.value = `${globolConfig.baseUrl}/${encodeURI(path)}`;
-  else link.value = `${globolConfig.baseUrl}/s?q=${md5(path).slice(0, 10)}`;
+    link.value = `${globalConfig.baseUrl}/${encodeURI(path)}`;
+  else link.value = `${globalConfig.baseUrl}/s?q=${md5(path).slice(0, 10)}`;
 });
 </script>
 

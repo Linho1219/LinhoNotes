@@ -11,8 +11,8 @@ import mdMjxErrWarning from "./mjxErrWarning";
 import { createContainer } from "./customContainer";
 
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
-import { globolConfig } from "./manualConfig";
-const { title, description, baseUrl } = globolConfig;
+import { globalConfig } from "./manualConfig";
+const { title, description, baseUrl } = globalConfig;
 
 import nav from "./nav";
 import sidebar from "./sidebar";
