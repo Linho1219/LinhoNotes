@@ -1,7 +1,6 @@
 import "dotenv/config";
 
 import type { Plugin } from "vite";
-import { exec } from "child_process";
 import fs from "fs";
 import axios from "axios";
 import simpleGit from "simple-git";
@@ -18,7 +17,7 @@ async function getRepoContributors(): Promise<
     .split("\n")
     .reverse();
   const contributors = new Map();
-  if (!log) throw new Error("Uexpected log");
+  if (!log) throw new Error("Unexpected log");
   log.forEach((commit) => {
     const [sha, email] = commit.split(" ");
     if (!contributors.has(email)) {
@@ -28,28 +27,22 @@ async function getRepoContributors(): Promise<
   return Array.from(contributors).map(([email, sha1]) => ({ email, sha1 }));
 }
 
-const getEmailList = async (filePath: string): Promise<string[]> =>
-  new Promise((resolve) => {
-    const command = `git log --follow --pretty=format:"%ae\u200E%s" -- "${filePath}"`; // 输出邮箱和标题，跟踪重命名
-    exec(command, (error, stdout) => {
-      if (error) {
-        console.error(error);
-        return resolve([]);
-      }
-      resolve(
-        Array.from(
-          new Set(
-            stdout
-              .trim()
-              .split("\n")
-              .map((rawline) => rawline.split("\u200E"))
-              .filter((commit) => !commit[1]?.startsWith("Merge branch"))
-              .map(([email]) => email)
-          )
-        )
-      );
-    });
-  });
+async function getEmailList(filePath: string): Promise<string[]> {
+  const log = (
+    await git.log(["--follow", "--format=%ae\u200E%s", filePath])
+  ).latest?.hash
+    .split("\n")
+    .reverse();
+  if (!log) throw new Error("Unexpected log");
+  return Array.from(
+    new Set(
+      log
+        .map((rawline) => rawline.split("\u200E"))
+        .filter((commit) => !commit[1]?.startsWith("Merge branch"))
+        .map(([email]) => email)
+    )
+  );
+}
 
 async function queryUserName(
   { email, sha1 },
@@ -122,15 +115,18 @@ const addContributors = (async (): Promise<Plugin> => {
     emailTuples,
     octokit
   );
-  fs.mkdirSync("./public/avatars", { recursive: true });
-  try {
-    await Promise.all(
-      contributorsCache.map(({ username, avatar }) =>
-        downloadImage(avatar, `./public/avatars/${username}.png`)
-      )
-    );
-  } catch (e) {
-    console.error("Avatar download failed");
+  if (process.env.NODE_ENV === "production") {
+    // 下载头像
+    fs.mkdirSync("./public/avatars", { recursive: true });
+    try {
+      await Promise.all(
+        contributorsCache.map(({ username, avatar }) =>
+          downloadImage(avatar, `./public/avatars/${username}.png`)
+        )
+      );
+    } catch (e) {
+      console.error("Avatar download failed");
+    }
   }
   return {
     name: "add-contributors",

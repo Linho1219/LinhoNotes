@@ -8,7 +8,7 @@
     "
   >
     <div v-for="person in contributorList" class="contributor">
-      <img :src="`/avatars/${person.username}.png`" class="avatar" />
+      <img :src="person.avatar" class="avatar" />
       <span class="nickname">{{ person.nickname }}</span>
       <span class="username">{{ person.username }}</span>
       <a
@@ -36,6 +36,7 @@ import { globalConfig } from "../manualConfig";
 type Contributor = {
   username: string;
   nickname: string;
+  avatar: string;
 };
 
 const { page, frontmatter } = useData();
@@ -51,7 +52,14 @@ watchEffect(() => {
   contributorList.value = frontmatter.value.contributorList
     .split(";")
     .map((raw) => raw.split(","))
-    .map(([nickname, username]) => ({ nickname, username }));
+    .map(([nickname, username]) => ({
+      nickname,
+      username,
+      avatar:
+        process.env.NODE_ENV === "production"
+          ? `/avatars/${username}.png`
+          : `https://github.com/${username}.png`,
+    }));
 });
 watchEffect(() => {
   const path = page.value.filePath.replace(/(index)?\.md$/, "");
