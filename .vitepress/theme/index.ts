@@ -1,5 +1,9 @@
 import type { Theme } from "vitepress";
+import { useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme-without-fonts";
+import imageViewer from "vitepress-plugin-image-viewer";
+
+import "viewerjs/dist/viewer.min.css";
 import "./styles/private.css";
 import "./styles/fix.css";
 import "./styles/beautify.css";
@@ -30,5 +34,14 @@ export default <Theme>{
     app.component("Footnote", Footnote);
     app.component("FootnoteRef", FootnoteRef);
     app.component("CADPA", Cadpa);
+  },
+  setup: () => {
+    const route = useRoute();
+    imageViewer(route, ".vp-doc", {
+      button: false,
+      navbar: false,
+      title: false,
+      zIndex: 180,
+    });
   },
 };
