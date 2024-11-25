@@ -88,6 +88,12 @@ mjx-container text {
   border-radius: 5px;
 }
 
+/* 删除线文字颜色调整 */
+.vp-doc s {
+  color: var(--vp-c-text-2);
+  text-decoration-color: var(--vp-c-text-1);
+}
+
 /* 大屏下顶栏毛玻璃效果 */
 @media only screen and (min-width: 1280px) {
   :root {

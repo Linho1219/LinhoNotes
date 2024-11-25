@@ -14,6 +14,11 @@ mjx-container {
 .vp-doc li p {
   margin: 8px 0;
 }
+.vp-doc blockquote div[class*="language-"],
+.vp-doc .custom-block div[class*="language-"] {
+  margin: 16px 0;
+  font-size: 16px;
+}
 
 /* 提示块分割线颜色修复 */
 .custom-block {
@@ -109,4 +114,51 @@ h6 + .footnotes-sep {
 }
 .custom-block mjx-container {
   font-size: 16px;
+}
+
+/* 图片点击放大样式修复 */
+
+.viewer-move {
+  --gray: #eee;
+  --size: 15px;
+  background-color: white;
+  background-image: linear-gradient(
+      45deg,
+      var(--gray) 25%,
+      transparent 0,
+      transparent 75%,
+      var(--gray) 0
+    ),
+    linear-gradient(
+      45deg,
+      var(--gray) 25%,
+      transparent 0,
+      transparent 75%,
+      var(--gray) 0
+    );
+  background-position:
+    0 0,
+    var(--size) var(--size);
+  background-size: calc(var(--size) * 2) calc(var(--size) * 2);
+  background-attachment: fixed;
+}
+
+.viewer-transition.viewer-move {
+  transition:
+    margin 0.15s,
+    width 0.15s,
+    height 0.15s;
+}
+
+.viewer-backdrop {
+  background: #20212780 !important;
+}
+
+.viewer-footer {
+  width: fit-content;
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
