@@ -99,7 +99,9 @@ $$
 
 $$
 E\subset\bigcup_{\alpha=1}^{+\infty}\stackrel{\epsilon}{J}_{\alpha}
-$$且
+$$
+
+且
 
 $$
 \sum_{\alpha=1}^{+\infty}|\stackrel{\epsilon}{J}_{\alpha}|<\epsilon.
