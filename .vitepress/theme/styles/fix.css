@@ -118,6 +118,10 @@ h6 + .footnotes-sep {
 
 /* 图片点击放大样式修复 */
 
+.vp-doc img {
+  cursor: zoom-in;
+}
+
 .viewer-move {
   --gray: #eee;
   --size: 15px;
@@ -141,13 +145,7 @@ h6 + .footnotes-sep {
     var(--size) var(--size);
   background-size: calc(var(--size) * 2) calc(var(--size) * 2);
   background-attachment: fixed;
-}
-
-.viewer-transition.viewer-move {
-  transition:
-    margin 0.15s,
-    width 0.15s,
-    height 0.15s;
+  animation: fade 0.2s;
 }
 
 .viewer-backdrop {
@@ -161,4 +159,5 @@ h6 + .footnotes-sep {
   left: 0;
   right: 0;
   bottom: 0;
+  animation: fade-in 0.2s;
 }
