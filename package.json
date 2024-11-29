@@ -40,8 +40,7 @@
     "prettier": "^3.3.3",
     "qrcode.vue": "^3.5.1",
     "simple-git": "^3.27.0",
-    "vitepress": "^1.4.1",
-    "vitepress-plugin-image-viewer": "^1.1.5"
+    "vitepress": "^1.4.1"
   },
   "scripts": {
     "docs:dev": "vitepress dev",
