@@ -17,6 +17,7 @@ import NavDivider from "./components/navDivider.vue";
 import Cadpa from "./components/cadpa.vue";
 import Footnote from "../footnote/footnote.vue";
 import FootnoteRef from "../footnote/footnoteRef.vue";
+import ImageWrapper from "../imageViewer/imageWrapper.vue";
 
 export default <Theme>{
   extends: DefaultTheme,
@@ -30,6 +31,7 @@ export default <Theme>{
     app.component("Share", Share);
     app.component("Footnote", Footnote);
     app.component("FootnoteRef", FootnoteRef);
+    app.component("ImageWrapper", ImageWrapper);
     app.component("CADPA", Cadpa);
   },
 };

@@ -7,6 +7,7 @@ import mdAutoSpacing from "markdown-it-autospace";
 
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
+import mdImageViewer from "./imageViewer/imagePlugin";
 import mdMjxErrWarning from "./siteData/mjxErrWarning";
 import { createContainer } from "./siteData/customContainer";
 
@@ -77,6 +78,7 @@ export default {
       md.use(mdCheckbox);
       md.use(mdMark);
       md.use(mdMjxErrWarning);
+      md.use(mdImageViewer);
       md.use(
         ...createContainer(
           "example",
