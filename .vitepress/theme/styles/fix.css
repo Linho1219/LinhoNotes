@@ -147,7 +147,9 @@ h6 + .footnotes-sep {
   background-attachment: fixed;
   animation: fade 0.2s;
 }
-
+.viewer-move:active {
+  cursor: grabbing;
+}
 .viewer-backdrop {
   background: #20212780 !important;
 }
