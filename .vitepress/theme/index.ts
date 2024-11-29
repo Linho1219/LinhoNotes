@@ -41,6 +41,7 @@ export default <Theme>{
       button: false,
       navbar: false,
       title: false,
+      transition: false,
       zIndex: 180,
     });
   },
