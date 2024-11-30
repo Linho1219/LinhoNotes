@@ -1,22 +1,23 @@
 <template>
   <transition name="fade">
-    <div v-if="props.display" class="viewer-wrapper">
+    <div v-if="props.display" class="viewer-wrapper" @wheel="handleScroll">
       <div class="viewer-overlay" @click="emits('close')"></div>
       <img
         :src="props.src"
         :alt="props.alt"
-        :style="`top:${windowHeight / 2}px;left:${windowWidth / 2}px;width:${(props.initWidth ?? 100) * scale}px;height:${(props.initHeight ?? 100) * scale}px;`"
+        :style="`top:${positionTop}px;left:${positionLeft}px;width:${currentWidth}px;height:${currentHeight}px;`"
         class="viewer-img"
+        :class="isDragging ? 'dragging' : ''"
         draggable="false"
-        @wheel="handleScroll"
+        @mousedown="handleDrag"
       />
-      <div class="viewer-toolbar"></div>
+      <div class="viewer-toolbar">{{ Math.round(scale * 100) }}%</div>
     </div>
   </transition>
 </template>
 
 <script setup lang="ts">
-import { watchEffect, ref, onMounted, onUnmounted } from "vue";
+import { watchEffect, ref, computed, onUnmounted } from "vue";
 const emits = defineEmits(["close"]);
 const props = defineProps({
   src: String,
@@ -26,25 +27,70 @@ const props = defineProps({
   display: Boolean,
 });
 
-watchEffect(
-  () => (document.body.style.overflow = props.display ? "hidden" : "")
-);
-
 const windowWidth = ref(0),
   windowHeight = ref(0);
+const positionX = ref(0),
+  positionY = ref(0);
+const currentWidth = computed(() => props.initWidth! * scale.value),
+  currentHeight = computed(() => props.initHeight! * scale.value);
+const positionTop = computed(() => positionY.value - currentHeight.value / 2);
+const positionLeft = computed(() => positionX.value - currentWidth.value / 2);
+const isDragging = ref(false);
+
+// 维护窗口大小信息
 const getWindowResize = () =>
   ({ innerWidth: windowWidth.value, innerHeight: windowHeight.value } = window);
-onMounted(() => {
-  getWindowResize();
-  window.addEventListener("resize", getWindowResize);
+watchEffect(() => {
+  if (props.display) {
+    getWindowResize();
+    positionX.value = windowWidth.value / 2;
+    positionY.value = windowHeight.value / 2;
+    scale.value = 1;
+    window.addEventListener("resize", getWindowResize);
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+    window.removeEventListener("resize", getWindowResize);
+  }
 });
 onUnmounted(() => window.removeEventListener("resize", getWindowResize));
 
 const scale = ref(1);
+const convertRatio = (delta: number) =>
+  delta > 0 ? 1 + delta : 1 / (1 - delta);
 const limitRange = (input: number, [min, max]: [number, number]) =>
   input > max ? max : input < min ? min : input;
-const handleScroll = ({ deltaY }: WheelEvent) =>
-  (scale.value = limitRange(scale.value + deltaY / 100, [0.5, 5]));
+const handleScroll = (event: WheelEvent) => {
+  console.log(event);
+  const newscale = limitRange(
+    scale.value * convertRatio(-event.deltaY / 500),
+    [0.5, 50]
+  );
+  isDragging.value = Math.abs(event.deltaY) < 50;
+  positionX.value =
+    event.x - ((event.x - positionX.value) / scale.value) * newscale;
+  positionY.value =
+    event.y - ((event.y - positionY.value) / scale.value) * newscale;
+  scale.value = newscale;
+};
+
+const handleDrag = (event: MouseEvent) => {
+  console.log(event);
+  const beginX = event.x - positionX.value,
+    beginY = event.y - positionY.value;
+  const onMouseMove = (event: MouseEvent) => {
+    positionX.value = event.clientX - beginX;
+    positionY.value = event.clientY - beginY;
+  };
+  const onMouseUp = () => {
+    isDragging.value = false;
+    document.removeEventListener("mousemove", onMouseMove);
+    document.removeEventListener("mouseup", onMouseUp);
+  };
+  isDragging.value = true;
+  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mouseup", onMouseUp);
+};
 </script>
 <style>
 .viewer-wrapper {
@@ -66,7 +112,6 @@ const handleScroll = ({ deltaY }: WheelEvent) =>
 }
 .viewer-img {
   position: absolute;
-  transform: translate(-50%, -50%);
   max-width: unset;
 }
 .viewer-toolbar {
@@ -103,6 +148,10 @@ const handleScroll = ({ deltaY }: WheelEvent) =>
   background-size: calc(var(--size) * 2) calc(var(--size) * 2);
   background-attachment: fixed;
   cursor: grab;
+  transition: all 0.1s;
+}
+.viewer-img.dragging {
+  transition: none !important;
 }
 .viewer-img:active {
   cursor: grabbing;
