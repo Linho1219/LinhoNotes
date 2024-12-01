@@ -7,6 +7,7 @@ import mdAutoSpacing from "markdown-it-autospace";
 
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
+import mdImageViewer from "./imageViewer/imagePlugin";
 import mdMjxErrWarning from "./siteData/mjxErrWarning";
 import { createContainer } from "./siteData/customContainer";
 
@@ -26,7 +27,17 @@ export default {
   title,
   description,
   lang: "zh-CN",
-  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+  head: [
+    ["link", { rel: "icon", href: "/favicon.ico" }],
+    [
+      "meta",
+      {
+        name: "viewport",
+        content:
+          "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
+      },
+    ],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/title_logo.svg",
@@ -77,6 +88,7 @@ export default {
       md.use(mdCheckbox);
       md.use(mdMark);
       md.use(mdMjxErrWarning);
+      md.use(mdImageViewer);
       md.use(
         ...createContainer(
           "example",

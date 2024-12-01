@@ -3,7 +3,7 @@
     v-if="!errorFlag"
     class="graph-container"
     ref="plotRef"
-    :class="disableZoom ? 'disable-zoom' : ''"
+    :class="{ 'disable-zoom': disableZoom }"
   ></div>
   <div v-if="errorFlag" class="graph-error caution custom-block github-alert">
     <p class="custom-block-title">函数渲染错误</p>
