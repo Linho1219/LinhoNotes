@@ -48,7 +48,8 @@
     "docs:preview": "vitepress preview",
     "dev": "vitepress dev",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' vitepress build",
-    "preview": "vitepress preview"
+    "preview": "vitepress preview",
+    "devexp": "vitepress dev --host"
   },
   "dependencies": {
     "@octokit/rest": "^21.0.2"

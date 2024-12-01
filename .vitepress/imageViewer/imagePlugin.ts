@@ -6,7 +6,6 @@ export default function mdImageViewer(md: MarkdownIt): void {
     const alt = slf.renderInlineAsText(token.children!, options, env),
       src = token.attrs?.find(([attr]) => attr === "src")?.[1];
     token.attrs![token.attrIndex("alt")][1] = alt;
-    console.log(token);
     return `<ImageWrapper src="${src}" alt="${alt}" />`;
   };
 }
