@@ -3,9 +3,9 @@
   <div
     id="contributors"
     v-if="displayEnabled"
-    :class="{
-      'row-2': contributorList.length % 3 && !(contributorList.length % 2),
-    }"
+    :class="
+      contributorList.length % 3 && !(contributorList.length % 2) ? 'row-2' : ''
+    "
   >
     <div v-for="person in contributorList" class="contributor">
       <img :src="person.avatar" class="avatar" />

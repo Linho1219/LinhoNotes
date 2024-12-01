@@ -1,6 +1,9 @@
 import type { Theme } from "vitepress";
+import { useRoute } from "vitepress";
 import DefaultTheme from "vitepress/theme-without-fonts";
+import imageViewer from "vitepress-plugin-image-viewer";
 
+import "viewerjs/dist/viewer.min.css";
 import "./styles/private.css";
 import "./styles/fix.css";
 import "./styles/beautify.css";
@@ -17,7 +20,6 @@ import NavDivider from "./components/navDivider.vue";
 import Cadpa from "./components/cadpa.vue";
 import Footnote from "../footnote/footnote.vue";
 import FootnoteRef from "../footnote/footnoteRef.vue";
-import ImageWrapper from "../imageViewer/imageWrapper.vue";
 
 export default <Theme>{
   extends: DefaultTheme,
@@ -31,7 +33,16 @@ export default <Theme>{
     app.component("Share", Share);
     app.component("Footnote", Footnote);
     app.component("FootnoteRef", FootnoteRef);
-    app.component("ImageWrapper", ImageWrapper);
     app.component("CADPA", Cadpa);
+  },
+  setup: () => {
+    const route = useRoute();
+    imageViewer(route, ".vp-doc", {
+      button: false,
+      navbar: false,
+      title: false,
+      transition: false,
+      zIndex: 180,
+    });
   },
 };

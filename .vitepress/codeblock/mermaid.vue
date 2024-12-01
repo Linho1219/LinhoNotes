@@ -1,21 +1,6 @@
 <template>
   <div class="mermaid">
-    <div
-      v-if="!errorFlag"
-      class="mermaid_container viewer-trigger"
-      v-html="svgRef"
-      @click="viewerOpened = true"
-    ></div>
-    <Teleport to="body">
-      <ImageViewer
-        :svg="svgRef"
-        alt=""
-        :initWidth="initWidth"
-        :initHeight="initHeight"
-        :display="viewerOpened"
-        @close="viewerOpened = false"
-      />
-    </Teleport>
+    <div v-if="!errorFlag" class="mermaid_container" v-html="svgRef"></div>
     <div
       v-if="errorFlag"
       class="mermaid-error caution custom-block github-alert"
@@ -32,16 +17,12 @@ const props = defineProps({
   code: String,
 });
 
-import { ref } from "vue";
+import { ref, onMounted, watchEffect } from "vue";
 import mermaid from "mermaid";
-import ImageViewer from "../imageViewer/imageViewer.vue";
 
 const svgRef = ref(""),
   errorFlag = ref(false),
   errorDetails = ref("");
-const viewerOpened = ref(false);
-const initWidth = ref(0),
-  initHeight = ref(0);
 
 const code = decodeURIComponent(props.code!);
 
@@ -53,12 +34,6 @@ mermaid.initialize({
 mermaid.render(props.id!, code).then(
   (result) => {
     svgRef.value = result.svg;
-    const viewBox = <[number, number, number, number]>result.svg
-      .match(/viewBox="([^"]+)"/)![1]
-      .split(" ")
-      .map((num) => Number(num));
-    initWidth.value = viewBox[2];
-    initHeight.value = viewBox[3];
   },
   (error) => {
     errorFlag.value = true;

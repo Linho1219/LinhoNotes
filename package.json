@@ -40,7 +40,8 @@
     "prettier": "^3.3.3",
     "qrcode.vue": "^3.5.1",
     "simple-git": "^3.27.0",
-    "vitepress": "^1.4.1"
+    "vitepress": "^1.4.1",
+    "vitepress-plugin-image-viewer": "^1.1.5"
   },
   "scripts": {
     "docs:dev": "vitepress dev",
@@ -48,8 +49,7 @@
     "docs:preview": "vitepress preview",
     "dev": "vitepress dev",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' vitepress build",
-    "preview": "vitepress preview",
-    "devexp": "vitepress dev --host"
+    "preview": "vitepress preview"
   },
   "dependencies": {
     "@octokit/rest": "^21.0.2"
