@@ -84,6 +84,7 @@ const style = computed(() => ({
   left: position.x - (props.initWidth! * scale.value) / 2 + "px",
 }));
 const transitionEnabled = ref(false);
+const filterEnabled = ref(false);
 
 // 维护窗口大小信息
 const getWindowResize = () =>
@@ -104,6 +105,9 @@ watchEffect(() => {
     );
     window.addEventListener("resize", getWindowResize);
     document.body.style.overflow = "hidden";
+    filterEnabled.value = Boolean(
+      isDark.value && (props.svg || !props.alt?.includes(("&keep-color")))
+    );
   } else {
     document.body.style.overflow = "";
     window.removeEventListener("resize", getWindowResize);
@@ -141,6 +145,97 @@ const handleDrag = (event: MouseEvent | PointerEvent) => {
   transitionEnabled.value = false;
   document.addEventListener("mousemove", onMouseMove);
   document.addEventListener("mouseup", onMouseUp);
+};
+
+let onTouching = false;
+const handleTouch = (event: TouchEvent) => {
+  if (onTouching) return;
+  onTouching = true;
+  transitionEnabled.value = false;
+  /** 触摸相关状态 */
+  type TouchData =
+    | {
+        type: "drag";
+        x: number;
+        y: number;
+      }
+    | {
+        type: "zoom";
+        x: number;
+        y: number;
+        distance: number;
+      };
+  let begin: TouchData;
+  let lastScale = scale.value;
+  const timeStamp = Number(new Date());
+  const originalPosition = { x: position.x, y: position.y };
+  const getDistance = (dx: number, dy: number) => (dx ** 2 + dy ** 2) ** 0.5;
+  const init = (type: "drag" | "zoom", event: TouchEvent): TouchData =>
+    type === "drag"
+      ? {
+          type,
+          x: event.touches[0].clientX - position.x,
+          y: event.touches[0].clientY - position.y,
+        }
+      : {
+          type,
+          x:
+            (event.touches[0].clientX + event.touches[1].clientX) / 2 -
+            position.x,
+          y:
+            (event.touches[0].clientY + event.touches[1].clientY) / 2 -
+            position.y,
+          distance: getDistance(
+            event.touches[1].clientX - event.touches[0].clientX,
+            event.touches[1].clientY - event.touches[0].clientY
+          ),
+        };
+  if (event.touches.length === 1) {
+    begin = init("drag", event);
+  } else if (event.touches.length === 2) {
+    begin = init("zoom", event);
+    lastScale = scale.value;
+  }
+  const onTouchMove = (event: TouchEvent) => {
+    if (!begin) return;
+    transitionEnabled.value = false;
+    if (event.touches.length === 1) {
+      if (begin.type !== "drag") return (begin = init("drag", event));
+      position.x = event.touches[0].clientX - begin.x;
+      position.y = event.touches[0].clientY - begin.y;
+    } else if (event.touches.length === 2) {
+      if (begin.type !== "zoom") return (begin = init("zoom", event));
+      const dx = event.touches[1].clientX - event.touches[0].clientX;
+      const dy = event.touches[1].clientY - event.touches[0].clientY;
+      const newScale = limitRange(
+        (lastScale * getDistance(dx, dy)) / begin.distance
+      );
+      const newPosition = {
+        x: (event.touches[0].clientX + event.touches[1].clientX) / 2,
+        y: (event.touches[0].clientY + event.touches[1].clientY) / 2,
+      };
+      position.x = newPosition.x - begin.x * (newScale / lastScale);
+      position.y = newPosition.y - begin.y * (newScale / lastScale);
+      scale.value = newScale;
+    }
+  };
+  const onTouchEnd = (event: TouchEvent) => {
+    if (event.touches.length !== 0) return;
+    onTouching = false;
+    document.removeEventListener("touchmove", onTouchMove);
+    document.removeEventListener("touchend", onTouchEnd);
+    if (
+      begin.type === "drag" &&
+      Number(new Date()) - timeStamp < 100 &&
+      getDistance(
+        originalPosition.x - position.x,
+        originalPosition.y - position.y
+      ) < 5
+    )
+      emits("close");
+  };
+  document.addEventListener("touchmove", onTouchMove);
+  document.addEventListener("touchend", onTouchEnd);
 };
 </script>
 <style>
