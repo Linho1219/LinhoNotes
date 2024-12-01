@@ -48,6 +48,7 @@
 </template>
 
 <script setup lang="ts">
+/// <reference path="../types.d.ts" />
 import { watchEffect, ref, computed, reactive, onUnmounted } from "vue";
 import { useData } from "vitepress";
 const { isDark } = useData();
@@ -96,6 +97,7 @@ interface Limit {
 const limitRatio = (...limitValues: Limit[]) =>
   Math.min(1, ...limitValues.map(({ value, limit }) => limit / value));
 watchEffect(() => {
+  if(!import.meta.env.SSR)
   if (props.display) {
     getWindowResize();
     [position.x, position.y] = [frame.width / 2, frame.height / 2];
