@@ -12,8 +12,37 @@
         :class="{ filter: filterEnabled, transition: transitionEnabled }"
         :style="style"
         @mousedown="handleDrag"
-      />
-      <div class="viewer-toolbar">{{ Math.round(scale * 100) }}%</div>
+      >
+        <img
+          v-if="props.src"
+          class="viewer-img-inner image"
+          :src="props.src"
+          :alt="props.alt"
+          :class="{ pixel: scale > 5 && !props.src?.endsWith('svg') }"
+          draggable="false"
+        />
+        <div
+          v-if="props.svg"
+          class="viewer-img-inner svg"
+          v-html="props.svg"
+        ></div>
+      </div>
+      <div class="viewer-toolbar" @touchstart.stop="null">
+        {{ Math.round(scale * 100) }}%
+        <button
+          v-if="isDark"
+          class="viewer-filter"
+          :class="{ enabled: filterEnabled && isDark }"
+          @click="filterEnabled = !filterEnabled"
+        >
+          <svg height="22" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="m19 19l-7-8v8H5l7-8V5h7m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"
+            />
+          </svg>
+        </button>
+      </div>
     </div>
   </transition>
 </template>
@@ -206,6 +235,22 @@ const handleDrag = (event: MouseEvent | PointerEvent) => {
   box-shadow: #0005 0 0 15px;
   transition: transform 0.2s cubic-bezier(0.08, 0.61, 0.45, 1);
 }
+.viewer-filter {
+  vertical-align: text-bottom;
+  padding-left: 10px;
+  margin-left: 6px;
+  border-left: 1px solid #fff6;
+  transition: color 0.1s;
+}
+.viewer-filter.enabled {
+  color: var(--vp-c-brand);
+}
+.viewer-img.filter {
+  --white: black;
+  --gray: #141417;
+}
+.viewer-img.filter .viewer-img-inner {
+  filter: invert(100%) hue-rotate(180deg) contrast(80%);
 }
 </style>
 
