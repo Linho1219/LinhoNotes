@@ -6,7 +6,7 @@
       @wheel="handleScroll"
       @touchstart="handleTouch"
     >
-      <div class="viewer-overlay" @click="emits('close')"></div>
+      <div class="viewer-overlay" @click="close()"></div>
       <div
         class="viewer-img"
         :class="{ filter: filterEnabled, transition: transitionEnabled }"
@@ -53,6 +53,7 @@ import { watchEffect, ref, computed, reactive, onUnmounted } from "vue";
 import { useData } from "vitepress";
 const { isDark } = useData();
 const emits = defineEmits(["close"]);
+const close = () => emits("close");
 const props = defineProps({
   src: String,
   svg: String,
@@ -96,8 +97,13 @@ interface Limit {
 }
 const limitRatio = (...limitValues: Limit[]) =>
   Math.min(1, ...limitValues.map(({ value, limit }) => limit / value));
+
+/** 是否打开过 */
+let openedFlag = false;
+
+/** 监听开启关闭 */
 watchEffect(() => {
-  if(!import.meta.env.SSR)
+  if (import.meta.env.SSR) return;
   if (props.display) {
     getWindowResize();
     [position.x, position.y] = [frame.width / 2, frame.height / 2];
@@ -108,18 +114,19 @@ watchEffect(() => {
     window.addEventListener("resize", getWindowResize);
     document.body.style.overflow = "hidden";
     filterEnabled.value = Boolean(
-      isDark.value && (props.svg || !props.alt?.includes(("&keep-color")))
+      isDark.value && (props.svg || !props.alt?.includes("&keep-color"))
     );
-  } else {
+    openedFlag = true;
+  } else if (openedFlag) {
     document.body.style.overflow = "";
     window.removeEventListener("resize", getWindowResize);
   }
 });
 onUnmounted(() => window.removeEventListener("resize", getWindowResize));
 
-/** 滚轮缩放 */
 const convertRatio = (delta: number) =>
   delta > 0 ? 1 + delta : 1 / (1 - delta);
+/** 滚轮缩放 */
 const handleScroll = (event: WheelEvent) => {
   const newScale = limitRange(scale.value * convertRatio(-event.deltaY / 500));
   transitionEnabled.value = Math.abs(event.deltaY) > 50;
@@ -150,11 +157,13 @@ const handleDrag = (event: MouseEvent | PointerEvent) => {
 };
 
 let onTouching = false;
+let lastTap = 0,
+  closeTimer: NodeJS.Timeout;
+/** 触屏 */
 const handleTouch = (event: TouchEvent) => {
   if (onTouching) return;
   onTouching = true;
   transitionEnabled.value = false;
-  /** 触摸相关状态 */
   type TouchData =
     | {
         type: "drag";
@@ -233,8 +242,25 @@ const handleTouch = (event: TouchEvent) => {
         originalPosition.x - position.x,
         originalPosition.y - position.y
       ) < 5
-    )
-      emits("close");
+    ) {
+      // 单击关闭，双击放大/缩小
+      if (!lastTap || timeStamp - lastTap > 300) {
+        closeTimer = setTimeout(close, 300);
+        lastTap = Number(new Date());
+      } else {
+        transitionEnabled.value = true;
+        setTimeout(() => {
+          const newScale =
+            scale.value * 3 > 10
+              ? scale.value / 3
+              : limitRange(scale.value * 3);
+          position.x += begin.x - (begin.x / scale.value) * newScale;
+          position.y += begin.y - (begin.y / scale.value) * newScale;
+          scale.value = newScale;
+        }, 50);
+        clearTimeout(closeTimer);
+      }
+    }
   };
   document.addEventListener("touchmove", onTouchMove);
   document.addEventListener("touchend", onTouchEnd);
@@ -259,11 +285,11 @@ const handleTouch = (event: TouchEvent) => {
   background-color: #1e1e22;
   opacity: 0.4;
 }
+
 .viewer-img {
   position: absolute;
   max-width: unset;
 }
-
 .viewer-img {
   --white: white;
   --gray: #f3f3f3;
@@ -328,7 +354,7 @@ const handleTouch = (event: TouchEvent) => {
   border-radius: 5px;
   background: #2b2b2fa0;
   color: white;
-  border:#8885 1px solid;
+  border: #8885 1px solid;
   box-shadow: #0005 0 0 15px;
   transition: transform 0.2s cubic-bezier(0.08, 0.61, 0.45, 1);
 }
@@ -355,7 +381,7 @@ const handleTouch = (event: TouchEvent) => {
 .viewer-wrapper {
   transition: opacity 0.2s;
 }
-.viewer-fade-enter-from .viewer-toolbar{
+.viewer-fade-enter-from .viewer-toolbar {
   transform: translateY(15px);
 }
 .viewer-fade-enter-active,
