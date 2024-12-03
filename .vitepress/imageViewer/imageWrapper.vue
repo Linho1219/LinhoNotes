@@ -2,16 +2,14 @@
   <div class="viewer-trigger" @click="viewerOpened = true" ref="triggerEle">
     <slot></slot>
   </div>
-  <Teleport to="body">
-    <ImageViewer
-      :src="slotSrc"
-      :alt="slotAlt"
-      :initWidth="initWidth"
-      :initHeight="initHeight"
-      :display="viewerOpened"
-      @close="viewerOpened = false"
-    />
-  </Teleport>
+  <ImageViewer
+    :src="slotSrc"
+    :alt="slotAlt"
+    :initWidth="initWidth"
+    :initHeight="initHeight"
+    :display="viewerOpened"
+    @close="viewerOpened = false"
+  />
 </template>
 
 <script setup lang="ts">
