@@ -9,7 +9,11 @@
       <div class="viewer-overlay" @click="close()"></div>
       <div
         class="viewer-img"
-        :class="{ filter: filterEnabled, transition: transitionEnabled }"
+        :class="{
+          filter: filterEnabled,
+          filteroff: !filterEnabled,
+          transition: transitionEnabled,
+        }"
         :style="style"
         @mousedown="handleDrag"
       >
@@ -373,7 +377,10 @@ const handleTouch = (event: TouchEvent) => {
   --gray: #141417;
 }
 .viewer-img.filter .viewer-img-inner {
-  filter: invert(100%) hue-rotate(180deg) contrast(80%);
+  filter: invert(100%) hue-rotate(180deg) contrast(80%) !important;
+}
+.viewer-img.filteroff .viewer-img-inner {
+  filter: none !important;
 }
 </style>
 
