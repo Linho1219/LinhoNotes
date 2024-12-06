@@ -58,9 +58,6 @@
   .VPSidebar {
     animation: fade-in-left 0.2s;
   }
-  .VPSidebar .VPLink {
-    animation: fade 0.2s;
-  }
 
   /* 脚注平滑跳转 */
   html:has(.footnote-backref:hover),
