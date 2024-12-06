@@ -14,6 +14,7 @@
 import { ref, onMounted, watchEffect } from "vue";
 import functionPlot from "./function-plot/src/index";
 import yaml from "js-yaml";
+import JSON5 from "json5";
 import type { FunctionPlotOptions } from "./function-plot/src/types";
 
 const props = defineProps({
@@ -59,35 +60,43 @@ onMounted(() => {
   });
 
   if (plotRef.value) {
+    let originalOpt: FunctionPlotOptions | undefined;
     try {
-      const originalOpt = <FunctionPlotOptions | undefined>(
+      originalOpt = <FunctionPlotOptions | undefined>(
         yaml.load(decodeURIComponent(props.code!))
       );
-      if (typeof originalOpt !== "object")
-        throw `Illegal plot options: ${originalOpt}`;
-      if (originalOpt.disableZoom) {
-        disableZoom.value = true;
-      }
-      watchEffect(() => {
-        if (plotRef.value && props.graphWidth && props.graphHeight) {
-          try {
-            functionPlot(
-              generateOpt(
-                originalOpt,
-                [props.graphWidth, props.graphHeight],
-                plotRef.value
-              )
-            );
-          } catch (e) {
-            errorFlag.value = true;
-            errorDetails.value = e.toString();
-          }
-        }
-      });
     } catch (e) {
-      errorFlag.value = true;
-      errorDetails.value = e.toString();
+      try {
+        originalOpt = <FunctionPlotOptions | undefined>JSON5.parse(props.code!);
+      } catch (e) {
+        errorFlag.value = true;
+        errorDetails.value = e.toString();
+      }
     }
+    if (typeof originalOpt !== "object") {
+      errorFlag.value = true;
+      errorDetails.value = `Illegal plot options: ${originalOpt}`;
+      return;
+    }
+    if (originalOpt.disableZoom) {
+      disableZoom.value = true;
+    }
+    watchEffect(() => {
+      if (plotRef.value && props.graphWidth && props.graphHeight) {
+        try {
+          functionPlot(
+            generateOpt(
+              originalOpt,
+              [props.graphWidth, props.graphHeight],
+              plotRef.value
+            )
+          );
+        } catch (e) {
+          errorFlag.value = true;
+          errorDetails.value = e.toString();
+        }
+      }
+    });
   }
 });
 </script>
