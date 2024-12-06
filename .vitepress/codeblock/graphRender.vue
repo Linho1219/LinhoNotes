@@ -62,15 +62,17 @@ onMounted(() => {
   if (plotRef.value) {
     let originalOpt: FunctionPlotOptions | undefined;
     try {
-      originalOpt = <FunctionPlotOptions | undefined>(
-        yaml.load(decodeURIComponent(props.code!))
-      );
-    } catch (e) {
+      originalOpt = <FunctionPlotOptions | undefined>JSON5.parse(props.code!);
+    } catch (eJSON5) {
       try {
-        originalOpt = <FunctionPlotOptions | undefined>JSON5.parse(props.code!);
-      } catch (e) {
+        originalOpt = <FunctionPlotOptions | undefined>(
+          yaml.load(decodeURIComponent(props.code!))
+        );
+      } catch (eYAML) {
         errorFlag.value = true;
-        errorDetails.value = e.toString();
+        errorDetails.value =
+          eJSON5 + "\nFallback to YAML but:\n" + eYAML;
+        return;
       }
     }
     if (typeof originalOpt !== "object") {
