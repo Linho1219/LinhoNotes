@@ -1,5 +1,12 @@
 /*====== 修复问题 ======*/
 
+/* 补充代码字体列表 */
+:root {
+  --vp-font-family-mono: ui-monospace, "JetBrains Mono", "Sarasa Term SC",
+    "Iosevka", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New",
+    monospace;
+}
+
 /* 修复公式纵向滚动条；标点避头尾修复 */
 mjx-container {
   overflow-y: hidden;
