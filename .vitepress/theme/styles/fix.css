@@ -16,6 +16,11 @@ h6 {
   margin: 16px 0;
 }
 
+/* 调整行内代码块内边距 */
+.vp-doc :not(pre) > code {
+  padding: 2px 6px;
+}
+
 /* 修复公式纵向滚动条；标点避头尾修复 */
 mjx-container {
   overflow-y: hidden;
