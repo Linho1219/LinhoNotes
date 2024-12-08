@@ -41,6 +41,8 @@ onMounted(() => {
 
 <style>
 .viewer-trigger {
+  width: fit-content;
+  margin: 0 auto;
   cursor: zoom-in;
 }
 </style>
