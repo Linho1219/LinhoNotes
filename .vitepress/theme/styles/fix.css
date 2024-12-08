@@ -7,6 +7,15 @@
     monospace;
 }
 
+/* 修复标题边距 */
+h1 {
+  margin-bottom: 16px;
+}
+h5,
+h6 {
+  margin: 16px 0;
+}
+
 /* 修复公式纵向滚动条；标点避头尾修复 */
 mjx-container {
   overflow-y: hidden;
@@ -84,6 +93,10 @@ img.VPImage.logo {
   color: inherit !important;
   transform: scale(1.2);
   opacity: 0.8;
+}
+
+.vp-doc a {
+  font-weight: inherit;
 }
 
 /* 隐藏标题后面的脚注提示条 */
