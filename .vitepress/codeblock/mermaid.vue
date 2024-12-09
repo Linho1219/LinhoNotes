@@ -83,7 +83,4 @@ mermaid.render(props.id!, code).then(
 .dark .mermaid_container {
   filter: invert() hue-rotate(180deg) contrast(80%) brightness(120%);
 }
-.dark .mermaid_container text {
-  fill: #000 !important;
-}
 </style>
