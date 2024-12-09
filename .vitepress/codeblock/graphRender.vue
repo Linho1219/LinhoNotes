@@ -12,10 +12,10 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from "vue";
-import functionPlot from "./function-plot/src/index";
+import functionPlot from "function-plot";
 import yaml from "js-yaml";
 import JSON5 from "json5";
-import type { FunctionPlotOptions } from "./function-plot/src/types";
+import type { FunctionPlotOptions } from "function-plot";
 
 const props = defineProps({
   id: String,
@@ -47,13 +47,17 @@ onMounted(() => {
   ): FunctionPlotOptions => ({
     width,
     height,
-    x: {
-      domain: originalOpt.y?.domain
-        ? computeScale(height, width, originalOpt.y.domain)
+    xAxis: {
+      domain: originalOpt.yAxis?.domain
+        ? computeScale(height, width, originalOpt.yAxis.domain)
         : X_DOMAIN,
     },
-    y: {
-      domain: computeScale(width, height, originalOpt.x?.domain ?? X_DOMAIN),
+    yAxis: {
+      domain: computeScale(
+        width,
+        height,
+        originalOpt.xAxis?.domain ?? X_DOMAIN
+      ),
     },
     ...originalOpt,
     target,
@@ -70,8 +74,7 @@ onMounted(() => {
         );
       } catch (eYAML) {
         errorFlag.value = true;
-        errorDetails.value =
-          eJSON5 + "\nFallback to YAML but:\n" + eYAML;
+        errorDetails.value = eJSON5 + "\nFallback to YAML but:\n" + eYAML;
         return;
       }
     }
