@@ -1,5 +1,10 @@
 <template>
-  <div class="viewer-trigger" @click="viewerOpened = true" ref="triggerEle">
+  <div
+    class="viewer-trigger"
+    :class="{ inline: props.inline }"
+    @click="viewerOpened = true"
+    ref="triggerEle"
+  >
     <slot></slot>
   </div>
   <ImageViewer
@@ -16,6 +21,9 @@
 /// <reference path="../types.d.ts" />
 import { onMounted, ref } from "vue";
 import ImageViewer from "./imageViewer.vue";
+const props = defineProps({
+  inline: Boolean,
+});
 const slotSrc = ref("");
 const viewerOpened = ref(false);
 const triggerEle = ref<HTMLDivElement | null>(null);
@@ -42,5 +50,9 @@ onMounted(() => {
 <style>
 .viewer-trigger {
   cursor: zoom-in;
+}
+.viewer-trigger.inline {
+  display: inline-block;
+  vertical-align: middle;
 }
 </style>
