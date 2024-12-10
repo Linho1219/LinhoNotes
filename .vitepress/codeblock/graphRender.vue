@@ -13,7 +13,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watchEffect } from "vue";
 import functionPlot from "function-plot";
-import yaml from "js-yaml";
 import JSON5 from "json5";
 import type { FunctionPlotOptions } from "function-plot";
 
@@ -66,17 +65,11 @@ onMounted(() => {
   if (plotRef.value) {
     let originalOpt: FunctionPlotOptions | undefined;
     try {
-      originalOpt = <FunctionPlotOptions | undefined>JSON5.parse(props.code!);
+      originalOpt = <FunctionPlotOptions | undefined>JSON5.parse(decodeURIComponent(props.code!));
     } catch (eJSON5) {
-      try {
-        originalOpt = <FunctionPlotOptions | undefined>(
-          yaml.load(decodeURIComponent(props.code!))
-        );
-      } catch (eYAML) {
-        errorFlag.value = true;
-        errorDetails.value = eJSON5 + "\nFallback to YAML but:\n" + eYAML;
-        return;
-      }
+      errorFlag.value = true;
+      errorDetails.value = eJSON5;
+      return;
     }
     if (typeof originalOpt !== "object") {
       errorFlag.value = true;

@@ -83,6 +83,7 @@ export default {
   },
   markdown: {
     math: true,
+    languageAlias: { graph: "json5" },
     config: (md) => {
       md.use(mdFootnote);
       md.use(mdFootNotePlus);

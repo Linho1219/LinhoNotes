@@ -16,7 +16,6 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
     "function-plot": "^2.0.0-0",
-    "js-yaml": "^4.1.0",
     "json5": "^2.2.3",
     "markdown-it-autospace": "^1.0.2",
     "markdown-it-container": "^4.0.0",
