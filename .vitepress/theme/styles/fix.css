@@ -74,14 +74,16 @@ img.VPImage.logo {
 }
 
 /* 缩小表格空隙 */
-.vp-doc th,
-.vp-doc td {
-  padding: 4px 8px;
-}
 .vp-doc table {
   margin: 20px auto;
   width: max-content;
   max-width: 100%;
+}
+@media screen and (max-width: 688px) {
+  .vp-doc th,
+  .vp-doc td {
+    padding: 4px 8px;
+  }
 }
 
 /* 调整自定义框标题大小 */
