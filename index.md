@@ -37,9 +37,9 @@ features:
   - title: 算法相关
     details: 包含算法学习与做题笔记。基于 C++。
     link: 算法相关
-  - title: 图论
-    details: 图论选修课笔记。贴近数学而非算法，因此独立成项。
-    link: 图论
+  - title: 大学物理
+    details: 大学物理速通笔记，期末速成的产物。毕竟这种课谁想上啊。
+    link: 大学物理
   - title: 模拟电路
     details: 包含模拟电路相关知识，放大器、滤波器、振荡器等的原理与应用。
     link: 模拟电路
