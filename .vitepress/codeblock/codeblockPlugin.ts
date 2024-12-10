@@ -3,8 +3,8 @@ import prettier from "@prettier/sync";
 import { execSync } from "child_process";
 
 const prettierTable = {
-  ts: "ts",
-  typescript: "ts",
+  ts: "typescript",
+  typescript: "typescript",
   js: "babel",
   javascript: "babel",
   css: "css",
