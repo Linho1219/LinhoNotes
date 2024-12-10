@@ -107,21 +107,15 @@ export default {
     },
   },
   cleanUrls: true,
-  rewrites: {
-    "shortUrl.md": "s.md",
-  },
-  sitemap: {
-    hostname: baseUrl,
-  },
+  rewrites: { "shortUrl.md": "s.md" },
+  sitemap: { hostname: baseUrl },
   buildEnd: (siteConfig) => {
     genreateSitemap(siteConfig);
     mapShortUrl(siteConfig);
   },
   vue: {
     template: {
-      compilerOptions: {
-        isCustomElement: (tag) => tag.startsWith("punc-"),
-      },
+      compilerOptions: { isCustomElement: (tag) => tag.startsWith("punc-") },
     },
   },
 } as UserConfig<DefaultTheme.Config>;
