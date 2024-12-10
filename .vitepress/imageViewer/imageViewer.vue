@@ -236,7 +236,6 @@ const handleTouch = (event: TouchEvent) => {
   };
   const onTouchEnd = (event: TouchEvent) => {
     if (event.touches.length !== 0) return;
-    onTouching = false;
     document.removeEventListener("touchmove", onTouchMove);
     document.removeEventListener("touchend", onTouchEnd);
     if (
@@ -265,6 +264,7 @@ const handleTouch = (event: TouchEvent) => {
         clearTimeout(closeTimer);
       }
     }
+    setTimeout(() => (onTouching = false), 10);
   };
   document.addEventListener("touchmove", onTouchMove);
   document.addEventListener("touchend", onTouchEnd);
