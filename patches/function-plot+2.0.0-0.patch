@@ -1,0 +1,10 @@
+diff --git a/node_modules/function-plot/dist/samplers/interval_worker_pool.js b/node_modules/function-plot/dist/samplers/interval_worker_pool.js
+index 144edd0..784870a 100644
+--- a/node_modules/function-plot/dist/samplers/interval_worker_pool.js
++++ b/node_modules/function-plot/dist/samplers/interval_worker_pool.js
+@@ -1,4 +1,4 @@
+-import Worker from 'web-worker';
++// import Worker from 'web-worker';
+ export var BackpressureStrategy;
+ (function (BackpressureStrategy) {
+     BackpressureStrategy["None"] = "none";

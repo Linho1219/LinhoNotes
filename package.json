@@ -2,10 +2,9 @@
   "devDependencies": {
     "@babel/core": "^7.25.9",
     "@babel/preset-env": "^7.25.9",
+    "@octokit/rest": "^21.0.2",
     "@prettier/sync": "^0.5.2",
     "@types/blueimp-md5": "^2.18.2",
-    "@types/d3": "^7.4.0",
-    "@types/events": "^3.0.0",
     "@types/js-yaml": "^4.0.9",
     "@types/markdown-it-container": "^2.0.10",
     "@types/markdown-it-footnote": "^3.0.4",
@@ -13,21 +12,11 @@
     "@types/pangu": "^4.0.2",
     "axios": "^1.7.7",
     "blueimp-md5": "^2.19.0",
-    "built-in-math-eval": "^0.3.0",
     "clang-format": "^1.8.0",
     "cross-env": "^7.0.3",
-    "d3-axis": "^3.0.0",
-    "d3-color": "^3.1.0",
-    "d3-format": "^3.1.0",
-    "d3-interpolate": "^3.0.1",
-    "d3-scale": "^4.0.2",
-    "d3-selection": "^3.0.0",
-    "d3-shape": "^3.1.0",
-    "d3-zoom": "^3.0.0",
     "dotenv": "^16.4.5",
-    "events": "^3.3.0",
-    "interval-arithmetic-eval": "^0.5.1",
-    "js-yaml": "^4.1.0",
+    "function-plot": "^2.0.0-0",
+    "json5": "^2.2.3",
     "markdown-it-autospace": "^1.0.2",
     "markdown-it-container": "^4.0.0",
     "markdown-it-footnote": "^4.0.0",
@@ -37,11 +26,11 @@
     "mermaid": "^11.3.0",
     "mitt": "^3.0.1",
     "pangu": "^4.0.7",
+    "patch-package": "^8.0.0",
     "prettier": "^3.3.3",
     "qrcode.vue": "^3.5.1",
     "simple-git": "^3.27.0",
-    "vitepress": "^1.4.1",
-    "vitepress-plugin-image-viewer": "^1.1.5"
+    "vitepress": "^1.4.1"
   },
   "scripts": {
     "docs:dev": "vitepress dev",
@@ -49,9 +38,8 @@
     "docs:preview": "vitepress preview",
     "dev": "vitepress dev",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=4096' vitepress build",
-    "preview": "vitepress preview"
-  },
-  "dependencies": {
-    "@octokit/rest": "^21.0.2"
+    "preview": "vitepress preview",
+    "devexp": "vitepress dev --host",
+    "postinstall": "patch-package"
   }
 }

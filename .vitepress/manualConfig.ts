@@ -20,7 +20,14 @@ export const nav: Nav = [
 
 /** 侧边栏配置 */
 export const sidebarConfig: SidebarConfig = {
-  ignProjects: [".vitepress", ".github", ".git", "node_modules", "public"],
+  ignProjects: [
+    ".github",
+    ".git",
+    ".vitepress",
+    "node_modules",
+    "patches",
+    "public",
+  ],
   ignDirs: ["images"],
   ignFiles: ["index.md"],
   maxDepth: 2,

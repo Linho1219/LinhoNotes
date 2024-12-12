@@ -7,7 +7,9 @@ import mdAutoSpacing from "markdown-it-autospace";
 
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
+import mdImageViewer from "./imageViewer/imagePlugin";
 import mdMjxErrWarning from "./siteData/mjxErrWarning";
+import mdGitHubAlertsPlugin from "./siteData/githubAlert";
 import { createContainer } from "./siteData/customContainer";
 
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
@@ -26,7 +28,17 @@ export default {
   title,
   description,
   lang: "zh-CN",
-  head: [["link", { rel: "icon", href: "/favicon.ico" }]],
+  head: [
+    ["link", { rel: "icon", href: "/favicon.ico" }],
+    [
+      "meta",
+      {
+        name: "viewport",
+        content:
+          "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
+      },
+    ],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/title_logo.svg",
@@ -71,12 +83,14 @@ export default {
   },
   markdown: {
     math: true,
+    languageAlias: { graph: "json5" },
     config: (md) => {
       md.use(mdFootnote);
       md.use(mdFootNotePlus);
       md.use(mdCheckbox);
       md.use(mdMark);
       md.use(mdMjxErrWarning);
+      md.use(mdImageViewer);
       md.use(
         ...createContainer(
           "example",
@@ -85,6 +99,7 @@ export default {
           md
         )
       );
+      md.use(mdGitHubAlertsPlugin);
       md.use(mdPlot);
       md.use(mdAutoSpacing, {
         pangu: true,
@@ -93,21 +108,15 @@ export default {
     },
   },
   cleanUrls: true,
-  rewrites: {
-    "shortUrl.md": "s.md",
-  },
-  sitemap: {
-    hostname: baseUrl,
-  },
+  rewrites: { "shortUrl.md": "s.md" },
+  sitemap: { hostname: baseUrl },
   buildEnd: (siteConfig) => {
     genreateSitemap(siteConfig);
     mapShortUrl(siteConfig);
   },
   vue: {
     template: {
-      compilerOptions: {
-        isCustomElement: (tag) => tag.startsWith("punc-"),
-      },
+      compilerOptions: { isCustomElement: (tag) => tag.startsWith("punc-") },
     },
   },
 } as UserConfig<DefaultTheme.Config>;

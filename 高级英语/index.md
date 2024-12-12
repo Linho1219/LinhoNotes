@@ -1,7 +1,5 @@
 # Intro: Advanced English (Culture)
 
----
-
 <T t="必修" yellow /> 
 <T t="考查" purple /> 
 <T t="学分 2.0" gray />

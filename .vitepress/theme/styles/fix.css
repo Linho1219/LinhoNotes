@@ -1,5 +1,26 @@
 /*====== 修复问题 ======*/
 
+/* 补充代码字体列表 */
+:root {
+  --vp-font-family-mono: ui-monospace, "JetBrains Mono", "Sarasa Term SC",
+    "Iosevka", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New",
+    monospace;
+}
+
+/* 修复标题边距 */
+h1 {
+  margin-bottom: 16px;
+}
+h5,
+h6 {
+  margin: 16px 0;
+}
+
+/* 调整行内代码块内边距 */
+.vp-doc :not(pre) > code {
+  padding: 2px 6px;
+}
+
 /* 修复公式纵向滚动条；标点避头尾修复 */
 mjx-container {
   overflow-y: hidden;
@@ -30,8 +51,8 @@ mjx-container {
 
 /* 提示框嵌套边距修复 */
 .custom-block .custom-block {
-  padding: 12px 16px 4px;
-  margin: 12px 0;
+  padding: 16px 16px 6px;
+  margin: 18px 0;
 }
 
 /* 修复脚注返回按钮显示为 emoji */
@@ -53,14 +74,21 @@ img.VPImage.logo {
 }
 
 /* 缩小表格空隙 */
-.vp-doc th,
-.vp-doc td {
-  padding: 4px 8px;
-}
 .vp-doc table {
   margin: 20px auto;
   width: max-content;
   max-width: 100%;
+}
+@media screen and (max-width: 688px) {
+  .vp-doc th,
+  .vp-doc td {
+    padding: 4px 8px;
+  }
+}
+
+/* 调整自定义框标题大小 */
+.vp-doc .custom-block .custom-block-title {
+  font-size: 16px;
 }
 
 /* 修复溢出问题 */
@@ -77,6 +105,10 @@ img.VPImage.logo {
   color: inherit !important;
   transform: scale(1.2);
   opacity: 0.8;
+}
+
+.vp-doc a {
+  font-weight: inherit;
 }
 
 /* 隐藏标题后面的脚注提示条 */
@@ -114,50 +146,4 @@ h6 + .footnotes-sep {
 }
 .custom-block mjx-container {
   font-size: 16px;
-}
-
-/* 图片点击放大样式修复 */
-
-.vp-doc img {
-  cursor: zoom-in;
-}
-
-.viewer-move {
-  --gray: #eee;
-  --size: 15px;
-  background-color: white;
-  background-image: linear-gradient(
-      45deg,
-      var(--gray) 25%,
-      transparent 0,
-      transparent 75%,
-      var(--gray) 0
-    ),
-    linear-gradient(
-      45deg,
-      var(--gray) 25%,
-      transparent 0,
-      transparent 75%,
-      var(--gray) 0
-    );
-  background-position:
-    0 0,
-    var(--size) var(--size);
-  background-size: calc(var(--size) * 2) calc(var(--size) * 2);
-  background-attachment: fixed;
-  animation: fade 0.2s;
-}
-
-.viewer-backdrop {
-  background: #20212780 !important;
-}
-
-.viewer-footer {
-  width: fit-content;
-  position: fixed;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  animation: fade-in 0.2s;
 }

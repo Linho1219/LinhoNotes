@@ -3,10 +3,22 @@ import prettier from "@prettier/sync";
 import { execSync } from "child_process";
 
 const prettierTable = {
-  ts: "ts",
-  typescript: "ts",
+  ts: "typescript",
+  typescript: "typescript",
   js: "babel",
   javascript: "babel",
+  css: "css",
+  scss: "scss",
+  less: "less",
+  json: "json",
+  json5: "json5",
+  jsonc: "jsonc",
+  markdown: "markdown",
+  md: "markdown",
+  html: "html",
+  vue: "vue",
+  angular: "angular",
+  yaml: "yaml",
 } as const;
 const clangs = ["c", "c++", "cpp", "cxx"];
 
@@ -29,15 +41,17 @@ export default function mdPlot(md: MarkdownIt): void {
       try {
         token.content = prettier.format(token.content, {
           parser: prettierTable[language],
+          printWidth: 75,
         });
       } catch (err) {
-        // console.warn("\nFailed to format code:", err.message);
+        if (process.env.NODE_ENV !== "production")
+          console.warn("\nIllegal code:", err.message);
       }
     }
     if (clangs.includes(language.toLowerCase())) {
       try {
         const formatted = execSync(
-          `clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4}"`,
+          `clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 75}"`,
           {
             input: token.content,
             encoding: "utf-8",
@@ -45,7 +59,8 @@ export default function mdPlot(md: MarkdownIt): void {
         );
         token.content = formatted;
       } catch (err) {
-        // console.warn("\nFailed to format code", err.message);
+        if (process.env.NODE_ENV !== "production")
+          console.warn("\nIllegal code", err.message);
       }
     }
     return fence(tokens, idx, options, env, self);

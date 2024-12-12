@@ -24,7 +24,7 @@ if (!import.meta.env.SSR) {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #202127;
+  background-color: #1e1e22;
   z-index: 199;
   opacity: 0.4;
   transition: opacity 0.2s;
