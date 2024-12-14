@@ -37,31 +37,50 @@ $$
 则称$E$为Jordan零测集，$\{\stackrel{\epsilon}{J}_{\alpha}\}_{\alpha = 1}^{N_{\epsilon}}$为$\epsilon-$有限区间覆盖。
 
 ::: example
+
 $\{x_{n}\}\in\mathbb{R}$是Lebesgue零测集；
 
 $\{x_{n}\}\in\mathbb{R},\ x_{n}\rightarrow x_{\star}\in\mathbb{R}$为Jordan零测集。
+
 :::
 ***
 ## 开集与闭集
 * **定义1** 设有集合$A$，若对任意的收敛数列$ \{a_{n}\}\subset A$，都有$\{a_n\}\rightarrow a_{\star}\in A$，则称A为闭集。
 
-:::example 闭区间$[a,b]$是闭集。:::
+::: example 
+
+闭区间$[a,b]$是闭集。
+
+:::
 
 * **定义2** 设有集合$A$，若对$\forall a\in A$，都有$a$的邻域包含于$A$，则称A为开集。
 
-:::example $x_0$的邻域$B_{\epsilon}(x_0)$为开集。:::
+::: example 
+
+$x_0$的邻域$B_{\epsilon}(x_0)$为开集。
+
+:::
+
 ***
 * **定理3** （有界闭集的覆盖定理）
 
 设$F$为有界闭集，设有$\{U_{\alpha}\}_{\alpha\in\Lambda}$为开集簇（$\Lambda$为指标集），
 
 $$
-s.t.\ F\subset\bigcup_{\alpha\in\Lambda}U_{\alpha},$$则有$$F\subset\bigcup_{j=1}^{N}U_{\alpha_{j}}.
+s.t.\ F\subset\bigcup_{\alpha\in\Lambda}U_{\alpha},
 $$
+
+则有
+$$
+F\subset\bigcup_{j=1}^{N}U_{\alpha_{j}}.
+$$
+
 
 文字叙述：有界闭集必有有限覆盖。（题中的“有限”体现在$j$的取值范围）
 
-**证明**：用反证法。假设需要无限覆盖。
+::: info 证明
+
+用反证法。假设需要无限覆盖。
 
 由于F有界，可作闭区间$[a_0,b_0]\supset F$.
 
@@ -86,13 +105,17 @@ $$
 因此$F\subset\bigcup\limits_{j=1}^{N}U_{\alpha_{j}}.$
 
 证毕。
+
+:::
+
 ***
 根据定理3可以得到以下推论。
 
 * **推论4** 设$E$为Lebesgue零测集，$E$为有界闭集，则$E$为Jordan零测集。
 
-**证明**：由E为Lebesgue零测集，有
+::: info 证明
 
+由E为Lebesgue零测集，有
 $$
 \forall\epsilon>0,\exists\{\stackrel{\epsilon}{J}_{\alpha}\}_{\alpha=1}^{+\infty},s.t.
 $$
@@ -132,6 +155,9 @@ E\subset\bigcup_{j=1}^{N_{\epsilon}}\lambda\stackrel{\epsilon}{J}_{\alpha_{j}}.
 $$
 
 证毕。
+
+:::
+
 ***
 ## 集合的度量
 
@@ -163,7 +189,9 @@ $$
 |f(\tilde{x})-f(\hat{x})|<\lambda+\epsilon.
 $$
 
-**证明**：用反证法。
+::: info 证明
+
+用反证法。
 
 假设$\exists\epsilon>0,\ \forall \delta_{\epsilon}>0,\exists\tilde{x},\hat{x}\in K,|\tilde{x}-\hat{x}|<\delta_{\epsilon},s.t.$
 
@@ -184,7 +212,11 @@ $$
 则
 
 $$
-|\tilde{x}_{\star}-\hat{x}_{\star}|=|\tilde{x}_{\star}-\tilde{x}_{n_{k}}+\tilde{x}_{n_{k}}-\hat{x}_{n_{k}}+\hat{x}_{n_{k}}-\hat{x}_{\star}|<|\tilde{x}_{\star}-\tilde{x}_{n_{k}}|+|\tilde{x}_{n_{k}}-\hat{x}_{n_{k}}|+|\hat{x}_{n_{k}}-\hat{x}_{\star}|<3\epsilon.
+\begin{align}
+|\tilde{x}_{\star}-\hat{x}_{\star}|&=|\tilde{x}_{\star}-\tilde{x}_{n_{k}}+\tilde{x}_{n_{k}}-\hat{x}_{n_{k}}+\hat{x}_{n_{k}}-\hat{x}_{\star}|\\
+&<|\tilde{x}_{\star}-\tilde{x}_{n_{k}}|+|\tilde{x}_{n_{k}}-\hat{x}_{n_{k}}|+|\hat{x}_{n_{k}}-\hat{x}_{\star}|\\
+&<3\epsilon.
+\end{align}
 $$
 
 由$\epsilon$的任意性，可知$\tilde{x}_{\star}=\hat{x}_{\star}:=x_{\star}.$
@@ -197,6 +229,8 @@ $\omega(f;x_{\star})\ge\lambda$，与$\omega(f;x)<\lambda,\forall x\in K$矛盾�
 
 证毕。
 
+:::
+
 ***
 * **定理10** （Lebesgue定理）$f(x)\in\Re[a,b]\Leftrightarrow f(x)$几乎处处连续。
 
@@ -204,9 +238,9 @@ $\omega(f;x_{\star})\ge\lambda$，与$\omega(f;x)<\lambda,\forall x\in K$矛盾�
 
 设有集合$\Lambda=\{x\in D_{x}|\omega(f;x)>0\}$（即$f(x)$不连续点的全集），$f(x)$几乎处处连续$\Leftrightarrow \Lambda$是Lebesgue零测集。
 
-**证明** 
+::: info 必要性证明 
 
-**（1）必要性**：用反证法。假设$\Lambda$不是Lebesgue零测集。
+用反证法。假设$\Lambda$不是Lebesgue零测集。
 
 考虑将$\Lambda$进行分割，设有$\Lambda_{n}=\{x\in D_{x}|\omega(f;x)>\frac{1}{n}\}.$
 
@@ -253,13 +287,17 @@ $$
 
 所以$f(x)$是Lebesgue零测集。
 
+:::
+
 **Rm**: 上面我们提到，$|\Lambda|>0\Rightarrow \exists|\Lambda_{\star}|>0.$
 
 下面我们证明这个事实。
 
 **引理** 设有$e_i$是Lebesgue零测集$\Leftrightarrow e=\bigcup\limits_{i=1}^{+\infty}e_{i}$是Lebesgue零测集。
 
-Proof. 充分性易证。现只证明必要性。
+::: info 引理的证明
+
+充分性易证。现只证明必要性。
 
 $e_i$是Lebesgue零测集$\Leftrightarrow \exists\{\stackrel{\epsilon}{J}_{\alpha}\},s.t.$
 
@@ -287,7 +325,13 @@ $$
 
 由于引理成立，其逆否命题也成立，则$|\Lambda|>0\Rightarrow\exists|\Lambda_{\star}|>0.$该事实成立。
 
-**（2）充分性**：设有$\Lambda$为Lebesgue零测集，需证明$f(x)\in\Re[a,b]$，对应$\exists\lim\limits_{n\rightarrow+\infty}\omega(f;[x_{k-1},x_k])\Delta x_k.$
+:::
+
+下面我们对Lebesgue定理的充分性进行证明。
+
+::: info 充分性证明
+
+设有$\Lambda$为Lebesgue零测集，需证明$f(x)\in\Re[a,b]$，对应$\exists\lim\limits_{n\rightarrow+\infty}\omega(f;[x_{k-1},x_k])\Delta x_k.$
 
 作$\Lambda_\lambda=\{x\in[a,b]|\omega(f;x)\ge\lambda\}$，表示振幅大于$\lambda$的点的全集。此处$\lambda>0.$
 
@@ -336,3 +380,5 @@ $$
 由夹逼性，$\Omega(f;P)\rightarrow 0.$
 
 证毕。
+
+:::
