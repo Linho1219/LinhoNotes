@@ -116,13 +116,11 @@ watchEffect(() => {
       { value: props.initWidth!, limit: frame.width }
     );
     window.addEventListener("resize", getWindowResize);
-    document.body.style.overflow = "hidden";
     filterEnabled.value = Boolean(
       isDark.value && (props.svg || !props.alt?.includes("&keep-color"))
     );
     openedFlag = true;
   } else if (openedFlag) {
-    document.body.style.overflow = "";
     window.removeEventListener("resize", getWindowResize);
   }
 });
@@ -397,5 +395,8 @@ const handleTouch = (event: TouchEvent) => {
 }
 .viewer-fade-enter-to {
   opacity: 1;
+}
+body:has(.viewer-wrapper){
+  overflow: hidden;
 }
 </style>
