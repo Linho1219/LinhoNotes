@@ -1,6 +1,7 @@
 import type MarkdownIt from "markdown-it";
 import prettier from "@prettier/sync";
 import { execSync } from "child_process";
+import JSON5 from "json5";
 
 const prettierTable = {
   ts: "typescript",
@@ -31,10 +32,17 @@ export default function mdPlot(md: MarkdownIt): void {
       return `<ClientOnly><Mermaid id="mermaid-${idx}" code="${encodeURIComponent(
         token.content
       )}"></Mermaid></ClientOnly>`;
-    if (language.startsWith("graph"))
+    if (language.startsWith("graph")) {
+      try {
+        JSON5.parse(token.content);
+      } catch (e) {
+        if (process.env.NODE_ENV === "production") throw e;
+        else console.error("\nGraph parse error:\n  " + e.toString());
+      }
       return `<ClientOnly><Graph id="funcion-${idx}" code="${encodeURIComponent(
         token.content
       )}"></Graph></ClientOnly>`;
+    }
 
     // 代码格式化
     if (prettierTable[language]) {
