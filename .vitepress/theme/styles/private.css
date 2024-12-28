@@ -34,8 +34,11 @@
 punc-spacing {
   display: inline;
 }
+.punc-full {
+  margin-inline-end: -0.7em;
+}
 .punc-half {
-  margin-inline-end: -0.5em;
+  margin-inline-end: -0.45em;
 }
 .punc-quarter {
   margin-inline-end: -0.25em;
