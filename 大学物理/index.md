@@ -13,8 +13,8 @@ $$
 总分100 \left\{ \matrix{
   10\% :考勤 \hfill \\
   30\% :形成性评价\left\{ \matrix{
-  10\% :{\rm{课堂小测}} \hfill \\
-  20\% :{\rm{作业、小论文等}} \hfill \\}  \right. \hfill \\
+  10\% :{\rm{小论文}} \hfill \\
+  20\% :{\rm{作业、课堂小测等}} \hfill \\}  \right. \hfill \\
   60\% :期末考 \hfill \\}  \right.
 $$
 
