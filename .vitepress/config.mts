@@ -14,6 +14,7 @@ import { createContainer } from "./siteData/customContainer";
 
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
 import { globalConfig } from "./manualConfig";
+import iconHeader from "./siteData/iconHeader";
 const { title, description, baseUrl } = globalConfig;
 
 import nav from "./siteData/nav";
@@ -29,7 +30,6 @@ export default {
   description,
   lang: "zh-CN",
   head: [
-    ["link", { rel: "icon", href: "/favicon.ico" }],
     [
       "meta",
       {
@@ -38,6 +38,7 @@ export default {
           "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
       },
     ],
+    ...iconHeader,
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -109,6 +110,7 @@ export default {
   },
   cleanUrls: true,
   rewrites: { "shortUrl.md": "s.md" },
+  srcExclude: ["CODE_OF_CONDUCT.md", "CONTRIBUTING.md"],
   sitemap: { hostname: baseUrl },
   buildEnd: (siteConfig) => {
     genreateSitemap(siteConfig);

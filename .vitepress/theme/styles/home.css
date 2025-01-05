@@ -28,6 +28,20 @@
   }
 }
 
+.VPHome .text {
+  font-size: 26px;
+}
+@media (min-width: 640px) {
+  .VPHome .text {
+    font-size: 40px;
+  }
+}
+@media (min-width: 960px) {
+  .VPHome .text {
+    font-size: 48px;
+  }
+}
+
 @media (min-width: 1280px) {
   .VPHome .items .item.grid-6 {
     width: calc(100% / 4);

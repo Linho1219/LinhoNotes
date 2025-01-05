@@ -4,7 +4,7 @@
 
 ## 1 Verbal Communication
 
-The term “verbal” has been used since the 16th century to refer to spoken, as opposite to written, communication. But the word ''verbal" used here includes spoken communication as well as written. Therefore, verbal c_ommunication refers to the communication that is carried out either in oral or in written form with the use of words. (Xu, 1997) Verbal communication is the transferring of thoughts between individuals via spoken or written messages. (Du, 2004)
+The term “verbal” has been used since the 16th century to refer to spoken, as opposite to written, communication. But the word ''verbal" used here includes spoken communication as well as written. Therefore, verbal communication refers to the communication that is carried out either in oral or in written form with the use of words. (Xu, 1997) Verbal communication is the transferring of thoughts between individuals via spoken or written messages. (Du, 2004)
 
 Verbal communication is at the core of what most of us do-whether you are building a business, dealing with difficult situations, revitalizing a team, coping constructively with complaints or creating an exceptional customer service climate. The essential actions taken by managers and staff happen almost entirely through verbal communication. It sets the emotional tone and builds relationships that ultimately determine the performance culture of a workplace. If verbal communication is not effective, coordination will break down,. relationships will suffer, mistakes will multiply and productivity will fall.
 
