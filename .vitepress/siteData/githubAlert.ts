@@ -65,10 +65,13 @@ export default function mdGitHubAlertsPlugin(md: MarkdownIt) {
       }
     }
   });
-  md.renderer.rules.github_alert_open = function (tokens, idx) {
+  md.renderer.rules.github_alert_open = function (tokens, idx, _options, env) {
     const { title, type } = tokens[idx].meta;
     const attrs = "";
-    return `<div class="${type} custom-block github-alert"${attrs}><p class="custom-block-title">${title}</p>\n`;
+    return `<div class="${type} custom-block github-alert"${attrs}><p class="custom-block-title">${md.renderInline(
+      title,
+      { references: env.references }
+    )}</p>\n`;
   };
 }
 
