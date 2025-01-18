@@ -79,7 +79,7 @@ const position = reactive({
 });
 /** 缩放系数 */
 const scale = ref(1);
-const limitRange = (input: number, [min, max]: [number, number] = [0.5, 50]) =>
+const limitRange = (input: number, [min, max]: [number, number] = [0.1, 50]) =>
   input > max ? max : input < min ? min : input;
 
 /** CSS 属性 */
