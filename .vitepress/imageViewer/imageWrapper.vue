@@ -52,7 +52,6 @@ onMounted(() => {
   cursor: zoom-in;
 }
 .viewer-trigger.inline,
-p .viewer-trigger,
 td .viewer-trigger {
   display: inline-block;
   vertical-align: middle;

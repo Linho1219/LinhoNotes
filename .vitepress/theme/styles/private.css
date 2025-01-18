@@ -62,3 +62,8 @@ punc-spacing {
 .dark .custom-block.details {
   background-color: rgba(101, 117, 133, 0.08);
 }
+
+/* 隐藏全空的表格标题行 */
+.vp-doc thead:not(:has(th:not(:empty))) {
+  display: none;
+}
