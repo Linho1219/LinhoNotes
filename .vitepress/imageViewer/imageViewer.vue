@@ -396,7 +396,10 @@ const handleTouch = (event: TouchEvent) => {
 .viewer-fade-enter-to {
   opacity: 1;
 }
-body:has(.viewer-wrapper){
+body:has(.viewer-wrapper) {
   overflow: hidden;
+}
+.viewer-img-inner.image {
+  border-radius: 0;
 }
 </style>
