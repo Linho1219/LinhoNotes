@@ -43,9 +43,9 @@ features:
   - title: 模拟电路
     details: 包含模拟电路相关知识，放大器、滤波器、振荡器等的原理与应用。
     link: 模拟电路
-  - title: 思政相关
-    details: 你说得对，但是这是中国特色社会主义教育内容。
-    link: 思政相关
+  - title: 驾考理论
+    details: C1/C2 驾考科目一和科目三理论部分的笔记。
+    link: 驾考理论
   - title: 仓库贡献指南
     details: 包含本项目的写作规范、开发文档以及私有 Markdown 语法。
     link: 仓库贡献指南
