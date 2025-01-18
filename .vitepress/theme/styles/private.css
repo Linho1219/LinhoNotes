@@ -6,14 +6,17 @@
 }
 
 /* 图片大小标记 */
-.vp-doc img[alt*="&tiny"] {
-  max-height: 80px;
+.vp-doc img[alt*="&medium"] {
+  max-height: 300px;
 }
 .vp-doc img[alt*="&small"] {
   max-height: 200px;
 }
-.vp-doc img[alt*="&medium"] {
-  max-height: 300px;
+.vp-doc img[alt*="&smaller"] {
+  max-height: 120px;
+}
+.vp-doc img[alt*="&tiny"] {
+  max-height: 80px;
 }
 
 /* 高亮内容设置 */
