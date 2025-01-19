@@ -6,7 +6,7 @@
       :size="120"
       render-as="svg"
       level="L"
-      :background="background"
+      background="transparent"
       :foreground="foreground"
     />
     <button class="copylink" @click="copyLink()">
@@ -37,9 +37,7 @@ import { miscI18n } from "../i18n";
 const { page, isDark } = useData();
 const link = ref("");
 const expand = ref(false);
-const foreground = ref(""),
-  background = ref("");
-
+const foreground = ref("");
 let timer: NodeJS.Timeout | false = false;
 
 function copyLink() {
@@ -60,7 +58,6 @@ onMounted(() => {
     else link.value = `${globalConfig.baseUrl}/s?q=${md5(path).slice(0, 10)}`;
   });
   watchEffect(() => {
-    background.value = isDark.value ? "#1e1e22" : "#ffffff";
     foreground.value = isDark.value ? "#D3D3CC" : "#3C3C43";
   });
 });
