@@ -40,19 +40,23 @@ function generateSidebar(
       !ignFiles.includes(dirent.name)
   );
   return [
-    ...(files.map(({ name }) => ({
-      text: pangu.spacing(path.basename(name, ".md")),
-      link: `/${folderPath}/${path.basename(name, ".md")}`,
-    })) as DefaultTheme.SidebarItem[]),
-    ...(folders.map((folder) => ({
-      text: pangu.spacing(folder.name),
-      items: generateSidebar(`${folderPath}/${folder.name}`, depth + 1),
-      link: fs.existsSync(`${folderPath}/${folder.name}/index.md`)
-        ? `/${folderPath}/${folder.name}/`
-        : undefined,
-      collapsed: depth === 0 ? false : undefined,
-    })) as DefaultTheme.SidebarItem[]),
-  ].sort((a, b) => compareFileName(a.text!, b.text!));
+    ...(
+      folders.map((folder) => ({
+        text: pangu.spacing(folder.name),
+        items: generateSidebar(`${folderPath}/${folder.name}`, depth + 1),
+        link: fs.existsSync(`${folderPath}/${folder.name}/index.md`)
+          ? `/${folderPath}/${folder.name}/`
+          : undefined,
+        collapsed: depth === 0 ? false : undefined,
+      })) as DefaultTheme.SidebarItem[]
+    ).sort((a, b) => compareFileName(a.text!, b.text!)),
+    ...(
+      files.map(({ name }) => ({
+        text: pangu.spacing(path.basename(name, ".md")),
+        link: `/${folderPath}/${path.basename(name, ".md")}`,
+      })) as DefaultTheme.SidebarItem[]
+    ).sort((a, b) => compareFileName(a.text!, b.text!)),
+  ];
 }
 
 export default function sidebar() {
