@@ -16,10 +16,10 @@ export default function mdImageViewer(md: MarkdownIt) {
         if (value.includes("\\"))
           putErr(`Bad image URI: Please use "/" instead of "\\"\n  Src:${value}`);
       });
-    return `<ImageWrapper ${
+    return `<ClientOnly><ImageWrapper ${
       tokens[idx - 1]?.type === "text" || tokens[idx + 1]?.type === "text"
         ? "inline"
         : ""
-    }>${orig(tokens, idx, options, env, slf)}</ImageWrapper>`;
+    }>${orig(tokens, idx, options, env, slf)}</ImageWrapper></ClientOnly>`;
   };
 }
