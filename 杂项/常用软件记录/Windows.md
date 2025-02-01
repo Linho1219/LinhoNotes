@@ -11,7 +11,7 @@ _记录一下常用的「妙妙小工具」及其官网地址，减轻装机的�
 
 ## 图形图像
 
-### Greenfish Icon Editor <T red>付费</T>
+### AxGlyph <T red>付费</T>
 
 【**介绍**】优秀的高质量矢量插图绘制工具，且自带对 LaTeX 的完善支持。[官网](https://www.amyxun.com/)
 
@@ -24,6 +24,18 @@ _记录一下常用的「妙妙小工具」及其官网地址，减轻装机的�
 【**介绍**】简单的桌面图标制作工具，支持转换和编辑 `.ico`、`.icn`、`.cur`、`.ani`、`.icns` 等格式的图标文件，并且支持从可执行文件中提取图标。[官网](https://greenfishsoftware.org/gfie.php)
 
 【**下载**】[官网下载](https://greenfishsoftware.org/gfie.php#apage)
+
+### ImageGlass <T green>开源</T>
+
+【**介绍**】简洁轻快的图片查看器。支持 `.webp`、`.svg`、`.heic`、`.raw` 等相对冷门的格式，且有丰富的个性化选项。[官网](https://imageglass.org/)
+
+【**下载**】[官网下载](https://imageglass.org/releases)
+
+### Character Map UWP <T green>开源</T>
+
+【**介绍**】系统内置字符映射表应用的替代品。UI 更美观的同时功能更加强大。[项目主页](https://github.com/character-map-uwp/Character-Map-UWP)
+
+【**下载**】[Microsoft Store](https://www.microsoft.com/store/apps/9wzdncrdxf41)
 
 ## 网络与通讯
 
