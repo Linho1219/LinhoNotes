@@ -1,4 +1,4 @@
-# 常用软件记录：Windows
+# 妙妙小工具：Windows
 
 _记录一下常用的「妙妙小工具」及其官网地址，减轻装机的痛苦_
 
@@ -67,6 +67,12 @@ _记录一下常用的「妙妙小工具」及其官网地址，减轻装机的�
 
 【**下载**】[官网下载](https://www.voidtools.com/zh-cn/downloads/)
 
+### SpaceSniffer <T lime>免费</T>
+
+【**介绍**】快速分析磁盘上文件夹大小情况并可视化展示，便于整理文件。[官网](http://www.uderzo.it/main_products/space_sniffer/)
+
+【**下载**】[SourceForge](https://sourceforge.net/projects/spacesniffer/files/latest/download)
+
 ### QuickLook <T green>开源</T>
 
 【**介绍**】实现文件资源管理器中选中文件敲击空格键预览。[项目主页](https://github.com/QL-Win/QuickLook)
@@ -85,7 +91,6 @@ _记录一下常用的「妙妙小工具」及其官网地址，减轻装机的�
 
 【**下载**】[GitHub Release](https://github.com/namazso/OpenHashTab/releases/latest)
 
-
 ### FileMenuTools <T orange>内购</T>
 
 【**介绍**】文件资源管理器右键菜单增强，提供功能包括 解散文件夹、修改文件元数据、分割合成大文件、以参数运行软件等。[官网介绍](https://www.lopesoft.com/index.php/en/products/filemenutools)
@@ -93,3 +98,38 @@ _记录一下常用的「妙妙小工具」及其官网地址，减轻装机的�
 【**内购**】€10 / 设备，免费版最多同时选中 20 个文件执行。
 
 【**下载**】[官网下载](https://www.lopesoft.com/index.php/en/download/filemenu-tools)　[破解版 (果核剥壳)](https://www.ghxi.com/filemenutools.html)
+
+## Office 软件集成
+
+### iSlide <T orange>内购</T>
+
+【**介绍**】PowerPoint 插件。提供模板、图片素材、矢量图素材、图标等，并提供动画序列化、常用设计工具侧边栏等功能。[官网](https://www.islide.cc/)
+
+【**内购**】¥8.25 / 月，会员提供更多模板、设计素材，并提供 AI 功能。
+
+【**下载**】[官网下载](https://www.islide.cc/download)
+
+### OneKey Tools <T lime>免费</T>
+
+【**介绍**】PowerPoint 综合效率插件。功能太多太杂写不下。[官网 (已挂)](http://oktools.xyz/)　[微信公众号](https://mp.weixin.qq.com/s/2byJeGdE9Lm3gywLJ1smPQ)
+
+【**下载**】[OK10 GC](https://mp.weixin.qq.com/s/zBBbuO8fiC3DIyIQWu415A)　[OKPlus13](https://mp.weixin.qq.com/s/FqMNaIFvbTxC2rdmnd6fgg)
+
+### 小恐龙公文排版助手 <T lime>免费</T>
+
+【**介绍**】Word 公文排版插件。根据《党政机关公文格式国家标准》（GB/T 9704—2012）的格式要求，快速设置页面版式、快速设置常用文字格式、插入常用符号、版头、版记、公文页码、红线等。[官网](https://gw.xkonglong.com/)
+
+【**下载**】[官网](https://gw.xkonglong.com/)　[Github Release](https://github.com/xkonglong/gw/releases/latest)
+
+## 烂大街
+
+基本上 (?) 人尽皆知的软件，记录下载地址，不给出说明。
+
+- [Office Tool Plus](https://otp.landian.vip/zh-cn/)（Microsoft Office 部署工具）
+- [Adobe Creative Cloud](https://creativecloud.adobe.com/apps/download/creative-cloud)
+- [Bandizip 6.x](https://www.bandisoft.com/bandizip/old/6/)（不含广告的旧版本）
+- [Chrome](https://www.google.com/chrome/)
+- [Git](https://git-scm.com/downloads)
+- [Github Desktop](https://desktop.github.com/download/)
+- [Typora](https://typoraio.cn/)
+- [Xmind](https://xmind.cn/)
