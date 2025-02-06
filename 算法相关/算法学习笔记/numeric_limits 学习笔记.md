@@ -4,7 +4,7 @@
 
 一般来说，数值型别（Numeric types）的极值是一个和平台相关的特性，不同平台上运行的程序，其开辟的每种数据类型的大小也是不一样的。
 
-而在标准库中通过`numeric_limits<>`提供这些极值，来取代传统C语言所采用的预处理器常数（preprocessor constants）。当然在C++中也是可以使用后者的（整型常数定义于`<climits>`，浮点常数定义于            `<cfloat>`）。
+而在标准库中通过`numeric_limits<>`提供这些极值，来取代传统C语言所采用的预处理器常数（preprocessor constants）。当然在C++中也是可以使用后者的（整型常数定义于`<climits>`，浮点常数定义于 `<cfloat>`）。
 
 ## `numeric_limits<>`所提出的极值概念的优点
 
