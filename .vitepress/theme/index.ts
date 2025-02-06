@@ -15,6 +15,7 @@ import Tag from "./components/tag.vue";
 import Share from "../shortUrl/share.vue";
 import NavDivider from "./components/navDivider.vue";
 import Cadpa from "./components/cadpa.vue";
+import Pinyin from "./components/pinyin.vue";
 import Footnote from "../footnote/footnote.vue";
 import FootnoteRef from "../footnote/footnoteRef.vue";
 import ImageWrapper from "../imageViewer/imageWrapper.vue";
@@ -33,5 +34,7 @@ export default <Theme>{
     app.component("FootnoteRef", FootnoteRef);
     app.component("ImageWrapper", ImageWrapper);
     app.component("CADPA", Cadpa);
+    app.component("PY", Pinyin);
+    app.component("Pinyin", Pinyin);
   },
 };

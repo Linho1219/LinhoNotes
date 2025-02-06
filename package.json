@@ -10,6 +10,7 @@
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node": "^22.7.5",
     "@types/pangu": "^4.0.2",
+    "@types/pinyin": "^2.10.2",
     "axios": "^1.7.7",
     "blueimp-md5": "^2.19.0",
     "clang-format": "^1.8.0",
@@ -27,8 +28,10 @@
     "mitt": "^3.0.1",
     "pangu": "^4.0.7",
     "patch-package": "^8.0.0",
+    "pinyin": "^4.0.0-alpha.2",
     "prettier": "^3.3.3",
     "qrcode.vue": "^3.5.1",
+    "segmentit": "^2.0.3",
     "simple-git": "^3.27.0",
     "vitepress": "^1.4.1"
   },
