@@ -284,7 +284,7 @@ const handleTouch = (event: TouchEvent) => {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #1e1e22;
+  background-color: #000e;
   opacity: 0.4;
 }
 
@@ -337,9 +337,6 @@ const handleTouch = (event: TouchEvent) => {
 }
 .viewer-img-inner.pixel {
   image-rendering: pixelated;
-}
-.viewer-backdrop {
-  background: #1e1e2280;
 }
 
 .viewer-toolbar {
