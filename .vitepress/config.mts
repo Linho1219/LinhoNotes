@@ -9,6 +9,7 @@ import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
 import mdImageViewer from "./imageViewer/imagePlugin";
 import mdWrapper from "./configurablePlugins/customWrapper";
+import mdLinkClass from "./configurablePlugins/customLinkClassName";
 import mdMjxErrWarning from "./siteData/mjxErrWarning";
 import mdGitHubAlertsPlugin from "./siteData/githubAlert";
 import { createContainer } from "./configurablePlugins/customContainer";
@@ -92,6 +93,7 @@ export default {
       md.use(mdCheckbox);
       md.use(mdMark);
       md.use(mdWrapper, { marker: "%", tag: "Cloze" });
+      md.use(mdLinkClass, { className: "animated" });
       md.use(mdMjxErrWarning);
       md.use(mdImageViewer);
       md.use(

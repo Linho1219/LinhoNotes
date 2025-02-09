@@ -154,21 +154,4 @@ function loadContent(event: PointerEvent) {
 .footnote-card-fade-enter-to {
   opacity: 1;
 }
-
-.footnote-ref-card a {
-  color: var(--link-color);
-  vertical-align: baseline;
-  text-decoration: none;
-  position: relative;
-  border-radius: 2px;
-  transition: background 0.2s;
-}
-.footnote-ref-card a:hover {
-  color: var(--link-color) !important;
-  background: var(--link-soft);
-  opacity: 1 !important;
-}
-.footnote-ref-card a:active {
-  opacity: 0.6 !important;
-}
 </style>
