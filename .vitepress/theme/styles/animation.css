@@ -73,7 +73,7 @@
   }
 
   /* 链接样式优化 */
-  .animated-link {
+  .vp-doc .animated-link {
     color: var(--link-color);
     text-decoration: none;
     position: relative;
@@ -82,16 +82,16 @@
       background 0.2s,
       box-shadow 0.2s;
   }
-  .animated-link:hover {
+  .vp-doc .animated-link:hover {
     color: var(--link-color) !important;
     background: var(--link-soft);
     box-shadow: var(--link-soft) 0 0 0 3px;
     opacity: 1 !important;
   }
-  .animated-link:active {
+  .vp-doc .animated-link:active {
     opacity: 0.6 !important;
   }
-  .animated-link::before {
+  .vp-doc .animated-link::before {
     content: "";
     display: inline-block;
     position: absolute;
@@ -103,7 +103,7 @@
     transition: width 0.3s;
     opacity: 0.8;
   }
-  .animated-link:hover::before {
+  .vp-doc .animated-link:hover::before {
     width: 100%;
     left: 0;
     right: unset;
