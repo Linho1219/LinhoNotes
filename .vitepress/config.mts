@@ -10,7 +10,7 @@ import mdFootNotePlus from "./footnote/footnotePlugin";
 import mdImageViewer from "./imageViewer/imagePlugin";
 import mdMjxErrWarning from "./siteData/mjxErrWarning";
 import mdGitHubAlertsPlugin from "./siteData/githubAlert";
-import { createContainer } from "./siteData/customContainer";
+import { createContainer } from "./configurablePlugins/customContainer";
 
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
 import { globalConfig } from "./manualConfig";
