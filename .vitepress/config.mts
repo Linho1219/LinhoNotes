@@ -2,7 +2,6 @@
 
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
-import mdMark from "markdown-it-mark";
 import mdAutoSpacing from "markdown-it-autospace";
 
 import mdPlot from "./codeblock/codeblockPlugin";
@@ -91,8 +90,8 @@ export default {
       md.use(mdFootnote);
       md.use(mdFootNotePlus);
       md.use(mdCheckbox);
-      md.use(mdMark);
       md.use(mdWrapper, { marker: "%", tag: "Cloze" });
+      md.use(mdWrapper, { marker: "=", tag: "mark" });
       md.use(mdLinkClass, { className: "animated" });
       md.use(mdMjxErrWarning);
       md.use(mdImageViewer);

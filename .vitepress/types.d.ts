@@ -4,12 +4,6 @@ declare module "markdown-it-task-lists" {
   export default mdCheckbox;
 }
 
-declare module "markdown-it-mark" {
-  import type MarkdownIt from "markdown-it";
-  function mdMark(md: MarkdownIt): void;
-  export default mdMark;
-}
-
 interface ImportMetaEnv {
   /** 应用运行的模式 */
   MODE: string;
