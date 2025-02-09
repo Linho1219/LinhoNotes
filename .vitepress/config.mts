@@ -92,7 +92,7 @@ export default {
       md.use(mdCheckbox);
       md.use(mdWrapper, { marker: "%", tag: "Cloze" });
       md.use(mdWrapper, { marker: "=", tag: "mark" });
-      md.use(mdLinkClass, { className: "animated" });
+      md.use(mdLinkClass, { className: "animated-link" });
       md.use(mdMjxErrWarning);
       md.use(mdImageViewer);
       md.use(
