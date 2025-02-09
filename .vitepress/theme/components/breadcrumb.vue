@@ -22,13 +22,15 @@ type Breadcrumb = {
 
 const items = ref(<Breadcrumb[]>[]);
 watchEffect(() => {
-  items.value = page.value.filePath
-    .split("/")
-    .slice(0, -1)
-    .map((item, index) => ({
-      name: pangu.spacing(item),
-      first: !index,
-    }));
+  const pathSegs = page.value.filePath.split("/");
+  const shownSegs =
+    pathSegs.at(-1) === "index.md"
+      ? pathSegs.slice(0, -2)
+      : pathSegs.slice(0, -1);
+  items.value = shownSegs.map((item, index) => ({
+    name: pangu.spacing(item.replaceAll("-", " ")),
+    first: !index,
+  }));
 });
 </script>
 
