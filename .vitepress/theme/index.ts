@@ -16,6 +16,7 @@ import Share from "../shortUrl/share.vue";
 import NavDivider from "./components/navDivider.vue";
 import Cadpa from "./components/cadpa.vue";
 import Pinyin from "./components/pinyin.vue";
+import Cloze from "./components/cloze.vue";
 import Footnote from "../footnote/footnote.vue";
 import FootnoteRef from "../footnote/footnoteRef.vue";
 import ImageWrapper from "../imageViewer/imageWrapper.vue";
@@ -36,5 +37,6 @@ export default <Theme>{
     app.component("CADPA", Cadpa);
     app.component("PY", Pinyin);
     app.component("Pinyin", Pinyin);
+    app.component("Cloze", Cloze);
   },
 };
