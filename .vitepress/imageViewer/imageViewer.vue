@@ -22,7 +22,6 @@
           class="viewer-img-inner image"
           :src="props.src"
           :alt="props.alt"
-          :class="{ pixel: scale > 5 && !props.src?.endsWith('svg') }"
           draggable="false"
         />
         <div
@@ -53,6 +52,7 @@
 
 <script setup lang="ts">
 /// <reference path="../types.d.ts" />
+import type { StyleValue } from "vue";
 import { watchEffect, ref, computed, reactive, onUnmounted } from "vue";
 import { useData } from "vitepress";
 const { isDark } = useData();
@@ -79,16 +79,19 @@ const position = reactive({
 });
 /** 缩放系数 */
 const scale = ref(1);
-const limitRange = (input: number, [min, max]: [number, number] = [0.1, 50]) =>
-  input > max ? max : input < min ? min : input;
+const limitRange = (
+  input: number,
+  [min, max]: [number, number] = [0.1, 2.5]
+) => (input > max ? max : input < min ? min : input);
 
 /** CSS 属性 */
-const style = computed(() => ({
-  width: props.initWidth! * scale.value + "px",
-  height: props.initHeight! * scale.value + "px",
-  top: position.y - (props.initHeight! * scale.value) / 2 + "px",
-  left: position.x - (props.initWidth! * scale.value) / 2 + "px",
-}));
+const style = computed(
+  (): StyleValue => ({
+    width: props.initWidth! + "px",
+    height: props.initHeight! + "px",
+    transform: `translate(${position.x - props.initWidth! / 2}px,${position.y - props.initHeight! / 2}px) scale(${scale.value})`,
+  })
+);
 const transitionEnabled = ref(false);
 const filterEnabled = ref(false);
 
@@ -319,11 +322,7 @@ const handleTouch = (event: TouchEvent) => {
   cursor: grab;
 }
 .viewer-img.transition {
-  transition:
-    width 0.1s,
-    height 0.1s,
-    left 0.1s,
-    top 0.1s;
+  transition: transform 0.1s;
 }
 .viewer-img:active {
   cursor: grabbing;
@@ -334,9 +333,6 @@ const handleTouch = (event: TouchEvent) => {
   height: 100%;
   max-width: unset !important;
   max-height: unset !important;
-}
-.viewer-img-inner.pixel {
-  image-rendering: pixelated;
 }
 
 .viewer-toolbar {
