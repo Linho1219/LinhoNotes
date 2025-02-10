@@ -103,7 +103,7 @@ async function downloadImage(url: string, savePath: string) {
 }
 
 /** 在每个 .md 文件的 Frontmatter 中加上贡献者信息。若 Frontmatter 存在则跳过。 */
-const addContributors = (async (): Promise<Plugin> => {
+async function getContributorPlugin(): Promise<Plugin> {
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
   });
@@ -148,6 +148,6 @@ const addContributors = (async (): Promise<Plugin> => {
       );
     },
   };
-})();
+}
 
-export default addContributors;
+export default getContributorPlugin;
