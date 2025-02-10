@@ -31,7 +31,9 @@ function generateSidebar(
   const folders: DefaultTheme.SidebarItem[] = (depth < maxDepth ? content : [])
     .filter((dirent) => dirent.isDirectory() && !ignDirs.includes(dirent.name))
     .map((folder) => ({
-      text: pangu.spacing(folder.name.replaceAll("-", " ")),
+      text: pangu.spacing(
+        folder.name.replaceAll("-", " ").replaceAll(/,(?=[^\s])/g, ", ")
+      ),
       items: generateSidebar(`${folderPath}/${folder.name}`, depth + 1),
       link: fs.existsSync(`${folderPath}/${folder.name}/index.md`)
         ? `/${folderPath}/${folder.name}/`
@@ -47,14 +49,23 @@ function generateSidebar(
         !ignFiles.includes(dirent.name)
     )
     .map(({ name }) => ({
-      text: pangu.spacing(path.basename(name, ".md").replaceAll("-", " ")),
+      text: pangu.spacing(
+        path
+          .basename(name, ".md")
+          .replaceAll("-", " ")
+          .replaceAll(/,(?=[^\s])/g, ", ")
+      ),
       link: `/${folderPath}/${path.basename(name, ".md")}`,
     }));
 
   if (depth === 0) {
     return [
       {
-        text: "简介：" + pangu.spacing(folderPath.replaceAll("-", " ")),
+        text:
+          "简介：" +
+          pangu.spacing(
+            folderPath.replaceAll("-", " ").replaceAll(/,(?=[^\s])/g, ", ")
+          ),
         link: `/${folderPath}/`,
       },
       ...folders.sort((a, b) => compareFileName(a.text!, b.text!)),
