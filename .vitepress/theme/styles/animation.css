@@ -68,7 +68,8 @@
 
   /* 脚注平滑跳转 */
   html:has(.footnote-backref:hover),
-  html:has(.footnote-ref:hover) {
+  html:has(.footnote-ref:hover),
+  html:has(.animated-link[href^="#"]) {
     scroll-behavior: smooth;
   }
 
