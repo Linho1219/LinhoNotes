@@ -114,6 +114,7 @@ export default {
   cleanUrls: true,
   rewrites: { "shortUrl.md": "s.md" },
   srcExclude: ["CODE_OF_CONDUCT.md", "CONTRIBUTING.md"],
+  metaChunk: true,
   sitemap: { hostname: baseUrl },
   buildEnd: (siteConfig) => {
     genreateSitemap(siteConfig);
