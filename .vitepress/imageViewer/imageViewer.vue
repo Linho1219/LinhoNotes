@@ -89,9 +89,7 @@ const style = computed(
   (): StyleValue => ({
     width: props.initWidth! + "px",
     height: props.initHeight! + "px",
-    transform: `translate(${Math.round(position.x - props.initWidth! / 2)}px,
-      ${Math.round(position.y - props.initHeight! / 2)}px)
-      scale(${Math.round(scale.value * 100)}%)`,
+    transform: `translate(${position.x - props.initWidth! / 2}px,${position.y - props.initHeight! / 2}px) scale(${scale.value})`,
   })
 );
 const transitionEnabled = ref(false);
