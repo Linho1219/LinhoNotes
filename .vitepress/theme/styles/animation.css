@@ -79,7 +79,7 @@
     position: relative;
     border-radius: 2px;
     transition:
-      background 0.2s,
+      background-color 0.2s,
       box-shadow 0.2s;
   }
   .vp-doc .animated-link:hover {

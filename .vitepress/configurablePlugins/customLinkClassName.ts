@@ -11,7 +11,7 @@ export default function addLinkClass(
     };
 
   md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
-    tokens[idx].attrSet("class", className);
+    if (!tokens[idx].attrGet("class")) tokens[idx].attrSet("class", className);
     return defaultRender(tokens, idx, options, env, self);
   };
 }
