@@ -391,6 +391,7 @@ const handleTouch = (event: TouchEvent) => {
 }
 body:has(.viewer-wrapper) {
   overflow: hidden;
+  touch-action: none
 }
 .viewer-img-inner.image {
   border-radius: 0;
