@@ -4,6 +4,7 @@ import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
 import mdAutoSpacing from "markdown-it-autospace";
 
+import getContributorPlugin from "./contributors/addContributors";
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
 import mdImageViewer from "./imageViewer/imagePlugin";
@@ -124,5 +125,17 @@ export default {
     template: {
       compilerOptions: { isCustomElement: (tag) => tag.startsWith("punc-") },
     },
+  },
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 8192,
+    },
+    plugins: [
+      groupIconVitePlugin(),
+      ...(process.env.NODE_ENV === "production" &&
+      !process.env.DISABLE_CONTRIBUTORS
+        ? [await getContributorPlugin()]
+        : []),
+    ],
   },
 } as UserConfig<DefaultTheme.Config>;
