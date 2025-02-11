@@ -183,7 +183,7 @@ const handleTouch = (event: TouchEvent) => {
       };
   let begin: TouchData;
   let lastScale = scale.value;
-  const timeStamp = Number(new Date());
+  const timeStamp = Date.now();
   const originalPosition = { x: position.x, y: position.y };
   const getDistance = (dx: number, dy: number) => (dx ** 2 + dy ** 2) ** 0.5;
   const init = (type: "drag" | "zoom", event: TouchEvent): TouchData =>
@@ -241,7 +241,7 @@ const handleTouch = (event: TouchEvent) => {
     document.removeEventListener("touchend", onTouchEnd);
     if (
       begin.type === "drag" &&
-      Number(new Date()) - timeStamp < 100 &&
+      Date.now() - timeStamp < 100 &&
       getDistance(
         originalPosition.x - position.x,
         originalPosition.y - position.y
@@ -250,7 +250,7 @@ const handleTouch = (event: TouchEvent) => {
       // 单击关闭，双击放大/缩小
       if (!lastTap || timeStamp - lastTap > 300) {
         closeTimer = setTimeout(close, 300);
-        lastTap = Number(new Date());
+        lastTap = Date.now();
       } else {
         transitionEnabled.value = true;
         setTimeout(() => {
