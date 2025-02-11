@@ -47,6 +47,9 @@
   --ln-c-gray: var(--vp-c-text-2);
   --ln-c-gray-soft: var(--vp-c-gray-soft);
 }
+.dark {
+  --vp-c-gutter: #27272b;
+}
 a {
   --link-soft: var(--vp-c-brand-soft);
   --link-color: var(--vp-c-brand-1);
