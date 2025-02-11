@@ -129,6 +129,11 @@
   }
 }
 
+/* 代码组页签动画时长调整 */
+.vp-code-group .tabs label:after {
+  transition: background-color 0.15s;
+}
+
 /* Algolia 搜索框 */
 .DocSearch-Modal {
   animation: fade-in 0.15s;
