@@ -4,7 +4,12 @@ import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
 import mdAutoSpacing from "markdown-it-autospace";
 
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+} from "vitepress-plugin-group-icons";
 import getContributorPlugin from "./contributors/addContributors";
+
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
 import mdImageViewer from "./imageViewer/imagePlugin";
@@ -88,6 +93,7 @@ export default {
     math: true,
     languageAlias: { graph: "json5" },
     config: (md) => {
+      md.use(groupIconMdPlugin);
       md.use(mdFootnote);
       md.use(mdFootNotePlus);
       md.use(mdCheckbox);
