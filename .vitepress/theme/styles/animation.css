@@ -112,6 +112,14 @@
   .edit-link-button:active {
     opacity: 0.6;
   }
+  .escape-animate .animated-link,
+  .escape-animate.animated-link {
+    box-shadow: none !important;
+  }
+  .escape-animate .animated-link::before,
+  .escape-animate.animated-link::before {
+    display: none;
+  }
 }
 
 /* 1280px+ 有右侧大纲 */
