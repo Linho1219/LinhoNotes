@@ -55,10 +55,7 @@ watchEffect(() => {
     .map(([nickname, username]) => ({
       nickname,
       username,
-      avatar:
-        process.env.NODE_ENV === "production"
-          ? `/avatars/${username}.png`
-          : `https://github.com/${username}.png`,
+      avatar: `/avatars/${username}.png`,
     }));
 });
 watchEffect(() => {

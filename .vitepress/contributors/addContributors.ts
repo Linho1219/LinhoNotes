@@ -5,6 +5,7 @@
  * 贡献者的详细信息会被缓存以避免重复查询。
  * 详细信息会被添加到每个 .md 文件的 Frontmatter 中，格式为：<nickname>,<username>。
  * 头像会被下载到 public/avatars/<username>.png。
+ * 完整介绍见 <https://notes.linho.cc/s?q=f23023157b>。
  */
 
 import "dotenv/config";
@@ -33,24 +34,20 @@ type FullContributorData = {
 
 /** 获取仓库所有贡献者的 EmailWithSha1 */
 async function getRepoContributors(): Promise<EmailWithSha1[]> {
-  const log = (await git.log(["--format=%H %ae"])).latest?.hash
-    .split("\n")
-    .reverse();
-  const contributors = new Map();
-  if (!log) throw new Error("Unexpected log");
-  log.forEach((commit) => {
-    const [sha, email] = commit.split(" ");
-    if (!contributors.has(email)) {
-      contributors.set(email, sha);
-    }
+  const log = (await git.log(["--format=%ae %H"])).latest?.hash.split("\n");
+  if (!log) throw new Error("Unexpected falsy log");
+  const email2sha1 = new Map<string, string>();
+  log.reverse().forEach((commit) => {
+    const [email, sha1] = commit.split(" ");
+    if (!email2sha1.has(email)) email2sha1.set(email, sha1);
   });
-  return Array.from(contributors).map(([email, sha1]) => ({ email, sha1 }));
+  return Array.from(email2sha1).map(([email, sha1]) => ({ email, sha1 }));
 }
 
 /** 获取指定文件的所有贡献者的 email，排除自动生成的 Merge branch */
 async function getEmailList(filePath: string): Promise<string[]> {
   const log = (
-    await git.log(["--follow", "--format=%ae", "--no-merges", filePath])
+    await git.log(["--format=%ae", "--follow", "--no-merges", filePath])
   ).latest?.hash
     .split("\n")
     .reverse();
@@ -76,23 +73,20 @@ async function queryUsername(
 
 /**
  * 获取完整贡献者信息
- * @param emailWithUsername
+ * @param emailWithUsername[]
  * @param octokit GitHub Octokit 实例
  */
-function queryFullUsrData(
+function queryFullDataList(
   emailTuples: EmailWithUsername[],
   octokit: Octokit
 ): Promise<FullContributorData[]> {
-  const list: Array<{ username: string; emails: string[] }> = [];
-
+  const user2emails = new Map<string, string[]>(); // username -> emails
   emailTuples.forEach(({ email, username }) => {
-    const listMatch = list.find(({ username: u }) => u === username);
-    if (listMatch) listMatch.emails.push(email);
-    else list.push({ username, emails: [email] });
+    if (user2emails.has(username)) user2emails.get(username)!.push(email);
+    else user2emails.set(username, [email]);
   });
-
   return Promise.all(
-    list.map(({ username, emails }) =>
+    Array.from(user2emails).map(([username, emails]) =>
       octokit.rest.users.getByUsername({ username }).then(({ data }) => ({
         username,
         nickname: data.name ?? username,
@@ -126,20 +120,15 @@ async function getContributorPlugin(): Promise<Plugin> {
   const emailWithUsername = await Promise.all(
     rawContributorList.map((usr) => queryUsername(usr, octokit))
   );
-  const fullUsrData = await queryFullUsrData(emailWithUsername, octokit);
+  const fullUsrData = await queryFullDataList(emailWithUsername, octokit);
 
-  if (process.env.NODE_ENV === "production") {
-    fs.mkdirSync("./public/avatars", { recursive: true });
-    try {
-      await Promise.all(
-        fullUsrData.map(({ username, avatar }) =>
-          downloadImage(avatar, `./public/avatars/${username}.png`)
-        )
-      );
-    } catch (e) {
-      console.error("\nAvatar download failed\n");
-    }
-  }
+  fs.mkdirSync("./public/avatars", { recursive: true });
+  await Promise.all(
+    fullUsrData.map(({ username, avatar }) =>
+      downloadImage(avatar, `./public/avatars/${username}.png`)
+    )
+  );
+
   return {
     name: "add-contributors",
     enforce: "pre",
@@ -147,7 +136,7 @@ async function getContributorPlugin(): Promise<Plugin> {
       if (!path.endsWith(".md") || code.trim().match(/^---\r?\n/) !== null)
         return; // 若 Frontmatter 存在则跳过
       const nameTuples = (await getEmailList(path))
-        .map((em) => fullUsrData.find(({ emails }) => emails.includes(em))!)
+        .map((e) => fullUsrData.find(({ emails }) => emails.includes(e))!)
         .map(({ nickname, username }) => `${nickname},${username}`);
       const finalList = Array.from(new Set(nameTuples)).join(";");
       return `---\ncontributorList: ${finalList}\n---\n\n` + code;

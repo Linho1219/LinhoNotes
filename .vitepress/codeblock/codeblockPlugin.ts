@@ -49,7 +49,7 @@ export default function mdPlot(md: MarkdownIt): void {
       try {
         token.content = prettier.format(token.content, {
           parser: prettierTable[language],
-          printWidth: 75,
+          printWidth: 76,
         });
       } catch (err) {
         if (process.env.NODE_ENV !== "production")
