@@ -2,6 +2,8 @@
 
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
+import mdSup from "markdown-it-sup";
+import mdSub from "markdown-it-sub";
 import mdAutoSpacing from "markdown-it-autospace";
 
 import {
@@ -97,6 +99,8 @@ export default {
       md.use(mdFootnote);
       md.use(mdFootNotePlus);
       md.use(mdCheckbox);
+      md.use(mdSup);
+      md.use(mdSub);
       md.use(mdWrapper, { marker: "%", tag: "Cloze" });
       md.use(mdWrapper, { marker: "=", tag: "mark" });
       md.use(mdLinkClass, { className: "animated-link" });
