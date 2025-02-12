@@ -119,7 +119,7 @@ _记录一下常用的「妙妙小工具」及其官网地址，减轻装机的�
 
 【**简介**】Word 公文排版插件。根据《党政机关公文格式国家标准》（GB/T 9704—2012）的格式要求，快速设置页面版式、快速设置常用文字格式、插入常用符号、版头、版记、公文页码、红线等。[官网](https://gw.xkonglong.com/)
 
-【**下载**】[官网](https://gw.xkonglong.com/)　[Github Release](https://github.com/xkonglong/gw/releases/latest)
+【**下载**】[官网](https://gw.xkonglong.com/)　[GitHub Release](https://github.com/xkonglong/gw/releases/latest)
 
 ## 烂大街
 
@@ -130,6 +130,6 @@ _记录一下常用的「妙妙小工具」及其官网地址，减轻装机的�
 - [Bandizip 6.x](https://www.bandisoft.com/bandizip/old/6/)（不含广告的旧版本）
 - [Chrome](https://www.google.com/chrome/)
 - [Git](https://git-scm.com/downloads)
-- [Github Desktop](https://desktop.github.com/download/)
+- [GitHub Desktop](https://desktop.github.com/download/)
 - [Typora](https://typoraio.cn/)
 - [Xmind](https://xmind.cn/)

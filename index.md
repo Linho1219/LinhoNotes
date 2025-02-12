@@ -9,7 +9,7 @@ hero:
   image: /homepage_logo.png
   actions:
     - theme: brand
-      text: Github 仓库
+      text: GitHub 仓库
       link: https://github.com/Linho1219/LinhoNotes
     - theme: alt
       text: 项目简介

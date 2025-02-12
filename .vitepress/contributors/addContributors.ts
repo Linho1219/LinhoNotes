@@ -21,7 +21,7 @@ const git = simpleGit();
 
 /** 从 Git 处获取到的贡献者 email 及其一个 commit 的 sha1 */
 type EmailWithSha1 = { email: string; sha1: string };
-/** 贡献者 email 以及从 Github API 处通过 sha1 查询到的用户名 */
+/** 贡献者 email 以及从 GitHub API 处通过 sha1 查询到的用户名 */
 type EmailWithUsername = { email: string; username: string };
 /** 完整的贡献者信息 */
 type FullContributorData = {
@@ -59,9 +59,9 @@ async function getEmailList(filePath: string): Promise<string[]> {
 }
 
 /**
- * 通过 Github API 查询给定 EmailWithSha1 的用户名。
+ * 通过 GitHub API 查询给定 EmailWithSha1 的用户名。
  * @param emailWithSha1
- * @param octokit Github Octokit 实例
+ * @param octokit GitHub Octokit 实例
  */
 async function queryUsername(
   { email, sha1 }: EmailWithSha1,
@@ -77,7 +77,7 @@ async function queryUsername(
 /**
  * 获取完整贡献者信息
  * @param emailWithUsername
- * @param octokit Github Octokit 实例
+ * @param octokit GitHub Octokit 实例
  */
 function queryFullUsrData(
   emailTuples: EmailWithUsername[],
