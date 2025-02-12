@@ -154,6 +154,21 @@ mjx-container text {
   background-color: #0000003a;
 }
 
+/* 防止上下标影响行距 */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.6em;
+}
+sub {
+  bottom: -0.25em;
+}
+
 /* Algolia 搜索框 */
 :root {
   --docsearch-hit-active-color: var(--vp-c-text-1);
