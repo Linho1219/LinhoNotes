@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import pinyin from "pinyin";
 import { DefaultTheme } from "vitepress";
 import pangu from "pangu";
 import { sidebarConfig } from "../manualConfig";
@@ -10,8 +11,7 @@ function compareFileName(a: string, b: string) {
   const extractNum = /^((\d+)(\.(\d+))?)\s/;
   const matchA = a.match(extractNum),
     matchB = b.match(extractNum);
-  if (!matchA || !matchB)
-    return a.localeCompare(b, ["zh-Hans", "en-US"]);
+  if (!matchA || !matchB) return pinyin.compare(a, b);
   const NumberWithoutNaN = (str: string) =>
     isNaN(Number(str)) ? 0 : Number(str);
   const indexA = Number(matchA[2]) * 1000 + NumberWithoutNaN(matchA[4]),
