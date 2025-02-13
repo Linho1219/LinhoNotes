@@ -10,13 +10,21 @@ function compareFileName(a: string, b: string) {
   const extractNum = /^((\d+)(\.(\d+))?)\s/;
   const matchA = a.match(extractNum),
     matchB = b.match(extractNum);
-  if (matchA === null || matchB === null) return a.localeCompare(b);
+  if (!matchA || !matchB)
+    return a.localeCompare(b, ["zh-Hans", "en-US"]);
   const NumberWithoutNaN = (str: string) =>
     isNaN(Number(str)) ? 0 : Number(str);
   const indexA = Number(matchA[2]) * 1000 + NumberWithoutNaN(matchA[4]),
     indexB = Number(matchB[2]) * 1000 + NumberWithoutNaN(matchB[4]);
   return indexA - indexB;
 }
+const compareItem = (
+  { text: a }: DefaultTheme.SidebarItem,
+  { text: b }: DefaultTheme.SidebarItem
+) => compareFileName(a!, b!);
+
+const beautifyName = (name: string) =>
+  pangu.spacing(name.replaceAll("-", " ").replaceAll(/,(?=[^\s])/g, ", "));
 
 function generateSidebar(
   folderPath: string,
@@ -31,9 +39,7 @@ function generateSidebar(
   const folders: DefaultTheme.SidebarItem[] = (depth < maxDepth ? content : [])
     .filter((dirent) => dirent.isDirectory() && !ignDirs.includes(dirent.name))
     .map((folder) => ({
-      text: pangu.spacing(
-        folder.name.replaceAll("-", " ").replaceAll(/,(?=[^\s])/g, ", ")
-      ),
+      text: beautifyName(folder.name),
       items: generateSidebar(`${folderPath}/${folder.name}`, depth + 1),
       link: fs.existsSync(`${folderPath}/${folder.name}/index.md`)
         ? `/${folderPath}/${folder.name}/`
@@ -49,40 +55,23 @@ function generateSidebar(
         !ignFiles.includes(dirent.name)
     )
     .map(({ name }) => ({
-      text: pangu.spacing(
-        path
-          .basename(name, ".md")
-          .replaceAll("-", " ")
-          .replaceAll(/,(?=[^\s])/g, ", ")
-      ),
+      text: beautifyName(path.basename(name, ".md")),
       link: `/${folderPath}/${path.basename(name, ".md")}`,
     }));
 
   if (depth === 0) {
     return [
-      {
-        text:
-          "简介：" +
-          pangu.spacing(
-            folderPath.replaceAll("-", " ").replaceAll(/,(?=[^\s])/g, ", ")
-          ),
-        link: `/${folderPath}/`,
-      },
-      ...folders.sort((a, b) => compareFileName(a.text!, b.text!)),
-      ...files.sort((a, b) => compareFileName(a.text!, b.text!)),
+      { text: "简介：" + beautifyName(folderPath), link: `/${folderPath}/` },
+      ...folders.sort(compareItem),
+      ...files.sort(compareItem),
     ];
-  } else
-    return [...folders, ...files].sort((a, b) =>
-      compareFileName(a.text!, b.text!)
-    );
+  } else return [...folders, ...files].sort(compareItem);
 }
 
 export default function sidebar() {
   const sidebarObj = {};
   fs.readdirSync("./", { withFileTypes: true })
-    .filter(
-      (dirent) => dirent.isDirectory() && !ignProjects.includes(dirent.name)
-    )
+    .filter((dir) => dir.isDirectory() && !ignProjects.includes(dir.name))
     .forEach(({ name }) => (sidebarObj[name] = generateSidebar(name)));
   return sidebarObj;
 }
