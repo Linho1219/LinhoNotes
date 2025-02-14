@@ -95,31 +95,31 @@ export default {
     math: true,
     languageAlias: { graph: "json5" },
     config: (md) => {
-      md.use(groupIconMdPlugin);
-      md.use(mdFootnote);
-      md.use(mdFootNotePlus);
-      md.use(mdCheckbox);
-      md.use(mdSup);
-      md.use(mdSub);
-      md.use(mdWrapper, { marker: "%", tag: "Cloze" });
-      md.use(mdWrapper, { marker: "=", tag: "mark" });
-      md.use(mdLinkClass, { className: "animated-link" });
-      md.use(mdMjxErrWarning);
-      md.use(mdImageViewer);
-      md.use(
-        ...createContainer(
-          "example",
-          "例",
-          { numbered: true, themeAlias: ["note"] },
-          md
+      md.use(groupIconMdPlugin)
+        .use(mdFootnote)
+        .use(mdFootNotePlus)
+        .use(mdCheckbox)
+        .use(mdSup)
+        .use(mdSub)
+        .use(mdWrapper, { marker: "%", tag: "Cloze" })
+        .use(mdWrapper, { marker: "=", tag: "mark" })
+        .use(mdLinkClass, { className: "animated-link" })
+        .use(mdMjxErrWarning)
+        .use(mdImageViewer)
+        .use(
+          ...createContainer(
+            "example",
+            "例",
+            { numbered: true, themeAlias: ["note"] },
+            md
+          )
         )
-      );
-      md.use(mdGitHubAlertsPlugin);
-      md.use(mdPlot);
-      md.use(mdAutoSpacing, {
-        pangu: true,
-        mojikumi: true,
-      });
+        .use(mdGitHubAlertsPlugin)
+        .use(mdPlot)
+        .use(mdAutoSpacing, {
+          pangu: true,
+          mojikumi: true,
+        });
     },
   },
   cleanUrls: true,
