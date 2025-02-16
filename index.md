@@ -28,12 +28,12 @@ features:
   - title: 机甲大师
     details: RoboMaster 是大疆承办，面向全球大学生开展的机器人竞赛。
     link: 机甲大师/
-  - title: JavaScript 教程
-    details: 基于 Wangdoc 和 W3school JavaScript 教程。
-    link: JavaScript教程/
   - title: C/C++ 相关
     details: 包含 C/C++ 程序设计教程与 C++ Primer 笔记。
     link: C-C++相关/
+  - title: 前端相关
+    details: 大前端技术栈的相关内容，涉足网页开发、浏览器原理等等。
+    link: 前端相关/
   - title: 算法相关
     details: 包含算法学习与做题笔记。基于 C++。
     link: 算法相关/
