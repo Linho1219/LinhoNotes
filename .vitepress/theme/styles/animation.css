@@ -101,13 +101,16 @@
     width: 0;
     bottom: -3px;
     height: 4px;
-    transition: width 0.3s;
-    opacity: 0.8;
+    opacity: 0.5;
+    transition:
+      width 0.3s,
+      opacity 0.3s;
   }
   .vp-doc .animated-link:hover::before {
     width: 100%;
     left: 0;
     right: unset;
+    opacity: 0.8;
   }
   .edit-link-button:active {
     opacity: 0.6;
