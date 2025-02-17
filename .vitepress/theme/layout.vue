@@ -9,9 +9,6 @@
     <template #layout-bottom>
       <SearchOverlay />
     </template>
-    <template #not-found>
-      <NotFound />
-    </template>
   </Layout>
 </template>
 
@@ -22,7 +19,6 @@ import { useData } from "vitepress";
 import Breadcrumb from "./components/breadcrumb.vue";
 import SearchOverlay from "./components/searchOverlay.vue";
 import Contributors from "../contributors/contributors.vue";
-import NotFound from "../shortUrl/notFound.vue";
 const { Layout } = DefaultTheme;
 const { isDark } = useData();
 
