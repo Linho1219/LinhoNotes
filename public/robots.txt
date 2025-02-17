@@ -2,4 +2,3 @@ Sitemap: https://notes.linho.cc/sitemap.xml
 Sitemap: https://notes.linho.cc/sitemap.txt
 
 User-agent: *
-Disallow: /s?
