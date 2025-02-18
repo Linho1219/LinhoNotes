@@ -3,18 +3,20 @@
 </template>
 <style>
 .cloze {
-  color: transparent;
-  background: #8886;
-  box-shadow: 0 0 0 0 transparent;
-  border-radius: 3px;
+  --cloze-transition: 0.15s;
+  background: #888;
+  border-radius: 2px;
   transition:
-    color 0.2s,
-    background-color 0.2s,
-    box-shadow 0.2s;
+    filter var(--cloze-transition),
+    background-color var(--cloze-transition),
+    opacity var(--cloze-transition);
+  filter: contrast(0);
+  opacity: 0.4;
+  padding: 2px 0;
 }
 .cloze:hover {
-  color: inherit;
-  background: #8883;
-  box-shadow: 0 0 0 3px #8886;
+  filter: contrast(1);
+  opacity: 1;
+  background: #8882;
 }
 </style>
