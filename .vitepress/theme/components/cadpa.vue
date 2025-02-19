@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 const props = defineProps({
-  age: Number,
+  age: String,
 });
 </script>
 
