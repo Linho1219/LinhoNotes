@@ -26,7 +26,7 @@ Tarjan 发明了很多算法和数据结构。不少他发明的算法都以他�
 
 在介绍该算法之前，先来了解 **DFS 生成树**，我们以下面的有向图为例：
 
-<img src=".\images\dfs-tree.svg" alt="\dfs-tree" style="zoom:200%;" />
+<img src="./images/dfs-tree.svg" alt="/dfs-tree" style="zoom:200%;" />
 
 有向图的 DFS 生成树主要有 4 种边（不一定全部出现）：
 
