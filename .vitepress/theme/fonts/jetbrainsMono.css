@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: normal;
+  src: url(./JetBrainsMono-Regular.woff2);
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: bold;
+  src: url(./JetBrainsMono-Bold.woff2);
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: italic;
+  font-weight: normal;
+  src: url(./JetBrainsMono-Italic.woff2);
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: italic;
+  font-weight: bold;
+  src: url(./JetBrainsMono-BoldItalic.woff2);
+}

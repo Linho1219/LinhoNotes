@@ -1,12 +1,5 @@
 /*====== 修复问题 ======*/
 
-/* 补充代码字体列表 */
-:root {
-  --vp-font-family-mono: ui-monospace, "JetBrains Mono", "Sarasa Term SC",
-    "Iosevka", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New",
-    monospace;
-}
-
 /* 修复标题边距 */
 h1 {
   margin-bottom: 16px;
