@@ -6,12 +6,12 @@
 
 <script setup lang="ts">
 import { ref, useAttrs } from "vue";
-const props = defineProps({
-  color: String,
-  text: String,
-  c: String,
-  t: String,
-});
+const props = defineProps<{
+  color?: string;
+  c?: string;
+  text?: string;
+  t?: string;
+}>();
 const colorNames = [
   "red",
   "orange",

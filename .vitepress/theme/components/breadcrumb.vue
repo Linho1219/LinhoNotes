@@ -20,7 +20,7 @@ type Breadcrumb = {
   first: boolean;
 };
 
-const items = ref(<Breadcrumb[]>[]);
+const items = ref<Breadcrumb[]>([]);
 watchEffect(() => {
   const pathSegs = page.value.filePath.split("/");
   const shownSegs =

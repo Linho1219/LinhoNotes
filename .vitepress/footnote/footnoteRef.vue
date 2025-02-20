@@ -26,11 +26,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import emitter from "./mitt";
-const props = defineProps({
-  id: String,
-  refid: String,
-  caption: String,
-});
+const props = defineProps<{
+  id: string;
+  refid: string;
+  caption: string;
+}>();
 const isHover = ref(false),
   isLoaded = ref(false),
   content = ref("");
@@ -111,7 +111,8 @@ function loadContent(event: PointerEvent) {
   position: absolute;
   top: -8px;
   left: 5px;
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       -45deg,
       var(--vp-c-bg-elv) 45%,
       var(--vp-c-divider) 45%,
@@ -125,7 +126,9 @@ function loadContent(event: PointerEvent) {
       var(--vp-c-divider) 55%,
       transparent 55%
     );
-  background-position: top left, top right;
+  background-position:
+    top left,
+    top right;
   background-repeat: no-repeat;
   background-size: 50% 100%;
 }

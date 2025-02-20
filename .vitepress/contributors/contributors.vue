@@ -41,7 +41,7 @@ type Contributor = {
 
 const { page, frontmatter } = useData();
 const displayEnabled = ref(true);
-const contributorList = ref(<Contributor[]>[]);
+const contributorList = ref<Contributor[]>([]);
 const link = ref("");
 
 watchEffect(() => {

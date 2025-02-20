@@ -5,7 +5,7 @@
       :code="props.code"
       :graphWidth="width"
       :graphHeight="height"
-    ></GraphRender>
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -17,10 +17,10 @@ const MAX_HEIGHT = 350,
 
 const shellRef = ref<HTMLDivElement | null>(null);
 
-const props = defineProps({
-  id: String,
-  code: String,
-});
+const props = defineProps<{
+  id: string;
+  code: string;
+}>();
 const width = ref(0),
   height = ref(0);
 

@@ -24,10 +24,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  id: String,
-  code: String,
-});
+const props = defineProps<{
+  id: string;
+  code: string;
+}>();
 
 import { ref } from "vue";
 import mermaid from "mermaid";

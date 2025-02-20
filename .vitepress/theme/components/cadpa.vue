@@ -9,9 +9,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  age: String,
-});
+const props = defineProps<{ age: string }>();
 </script>
 
 <style>
@@ -24,7 +22,7 @@ const props = defineProps({
   background: white;
   border: #000c 2px solid;
   border-radius: 5px;
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .cadpa-inner {

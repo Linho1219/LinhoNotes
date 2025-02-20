@@ -7,9 +7,9 @@
 <script setup lang="ts">
 import emitter from "./mitt";
 import { onMounted, onUnmounted, ref } from "vue";
-const props = defineProps({
-  id: String,
-});
+const props = defineProps<{
+  id: string;
+}>();
 const liRef = ref<HTMLDivElement | null>(null);
 const handleEvent = (id: string) => {
   if (id === props.id && liRef.value !== null)
