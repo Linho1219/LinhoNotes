@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-style: normal;
+  font-weight: normal;
+  src: url(./HarmonyOSSans-Regular.woff2);
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-style: normal;
+  font-weight: bold;
+  src: url(./HarmonyOSSans-Bold.woff2);
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-style: italic;
+  font-weight: normal;
+  src: url(./HarmonyOSSans-Italic.woff2);
+}
+
+@font-face {
+  font-family: "HarmonyOS Sans";
+  font-style: italic;
+  font-weight: bold;
+  src: url(./HarmonyOSSans-BoldItalic.woff2);
+}

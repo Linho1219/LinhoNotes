@@ -9,7 +9,8 @@ import "./styles/animation.css";
 import "./styles/home.css";
 import "./styles/print.css";
 
-import "./fonts/jetbrainsMono.css";
+import "./fonts/JetBrainsMono/index.css";
+import "./fonts/HarmonyOSSans/index.css";
 
 import Layout from "./layout.vue";
 import Mermaid from "../codeblock/mermaid.vue";
