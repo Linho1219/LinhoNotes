@@ -21,6 +21,11 @@
     #41d1ff
   );
 }
+
+.VPHome h1.heading {
+  margin-bottom: 0;
+}
+
 @media (min-width: 960px) {
   .VPHome .image-container .image-src {
     max-width: 220px;
