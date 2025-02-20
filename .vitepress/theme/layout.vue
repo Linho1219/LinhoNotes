@@ -49,11 +49,9 @@ provide("toggle-appearance", async () => {
 const router = useRouter();
 router.onBeforeRouteChange = () => {
   document.body.parentElement?.classList.add("disable-scroll-transition");
-  console.log("disable");
 };
 router.onAfterRouteChange = () => {
   document.body.parentElement?.classList.remove("disable-scroll-transition");
-  console.log("enable");
 };
 </script>
 
