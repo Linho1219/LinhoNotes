@@ -8,6 +8,7 @@
     </template>
     <template #layout-bottom>
       <SearchOverlay />
+      <div id="imageViewers"></div>
     </template>
   </Layout>
 </template>

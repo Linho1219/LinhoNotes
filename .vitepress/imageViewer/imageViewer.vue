@@ -1,71 +1,88 @@
 <template>
-  <transition name="viewer-fade">
-    <div
-      v-if="props.display"
-      class="viewer-wrapper"
-      @wheel="handleScroll"
-      @touchstart="handleTouch"
-    >
-      <div class="viewer-overlay" @click="close()"></div>
+  <Teleport to="#imageViewers">
+    <transition name="viewer-fade">
       <div
-        class="viewer-img"
-        :class="{
-          filter: filterEnabled,
-          filteroff: !filterEnabled,
-          transition: transitionEnabled,
-        }"
-        :style="style"
-        @mousedown="handleDrag"
+        v-if="isShown"
+        class="viewer-wrapper"
+        @wheel="handleScroll"
+        @touchstart="handleTouch"
       >
-        <img
-          v-if="props.src"
-          class="viewer-img-inner image"
-          :src="props.src"
-          :alt="props.alt"
-          draggable="false"
-        />
+        <div class="viewer-overlay" @click="close()"></div>
         <div
-          v-if="props.svg"
-          class="viewer-img-inner svg"
-          v-html="props.svg"
-        ></div>
-      </div>
-      <div class="viewer-toolbar" @touchstart.stop="null">
-        {{ Math.round(scale * 100) }}%
-        <button
-          v-if="isDark"
-          class="viewer-filter"
-          :class="{ enabled: filterEnabled && isDark }"
-          @click="filterEnabled = !filterEnabled"
+          class="viewer-img"
+          :class="{
+            filter: filterEnabled,
+            filteroff: !filterEnabled,
+            transition: transitionEnabled,
+          }"
+          :style="style"
+          @mousedown="handleDrag"
         >
-          <svg height="22" viewBox="0 0 24 24">
-            <path
-              fill="currentColor"
-              d="m19 19l-7-8v8H5l7-8V5h7m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"
-            />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </transition>
+          <img
+            v-if="props.src"
+            class="viewer-img-inner image"
+            :src="props.src"
+            :alt="props.alt"
+            draggable="false"
+          />
+          <div
+            v-if="props.svg"
+            class="viewer-img-inner svg"
+            v-html="props.svg"
+          ></div>
+        </div>
+        <div class="viewer-toolbar" @touchstart.stop="null">
+          {{ Math.round(scale * 100) }}%
+          <button
+            v-if="isDark"
+            class="viewer-filter"
+            :class="{ enabled: filterEnabled && isDark }"
+            @click="filterEnabled = !filterEnabled"
+          >
+            <svg height="22" viewBox="0 0 24 24">
+              <path
+                fill="currentColor"
+                d="m19 19l-7-8v8H5l7-8V5h7m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"
+              />
+            </svg>
+          </button>
+        </div>
+      </div> </transition
+  ></Teleport>
 </template>
 
 <script setup lang="ts">
 /// <reference path="../types.d.ts" />
 import type { StyleValue } from "vue";
-import { watchEffect, ref, computed, reactive, onUnmounted } from "vue";
+import { watchEffect, ref, computed, reactive, onUnmounted, watch } from "vue";
 import { useData } from "vitepress";
 const { isDark } = useData();
-const emits = defineEmits(["close"]);
-const close = () => emits("close");
-const props = defineProps({
-  src: String,
-  svg: String,
-  alt: String,
-  initWidth: Number,
-  initHeight: Number,
-  display: Boolean,
+const close = () => {
+  isShown.value = false;
+};
+const props = defineProps<{
+  src?: string;
+  svg?: string;
+  alt: string;
+  initWidth: number;
+  initHeight: number;
+}>();
+const isShown = defineModel<boolean>({
+  required: true,
 });
+
+interface Range {
+  min: number;
+  max: number;
+}
+/** 缩放比例范围 */
+const RANGE: Range = { min: 0.2, max: 2.5 } as const;
+/** 双击缩放系数 */
+const DOUBLETAP_RATIO = 2.5;
+/** 双击时间阈值 */
+const DOUBLETAP_TIME = 100;
+/** 双击距离阈值 */
+const DOUBLETAP_DISTANCE = 5;
 
 /** 窗口宽高 */
 const frame = reactive({
@@ -79,58 +96,47 @@ const position = reactive({
 });
 /** 缩放系数 */
 const scale = ref(1);
-const limitRange = (
-  input: number,
-  [min, max]: [number, number] = [0.1, 2.5]
-) => (input > max ? max : input < min ? min : input);
+
+const limitRange = (input: number, { min, max } = RANGE) =>
+  input > max ? max : input < min ? min : input;
+const convertRatio = (delta: number) =>
+  delta > 0 ? 1 + delta : 1 / (1 - delta);
 
 /** CSS 属性 */
-const style = computed(
-  (): StyleValue => ({
-    width: props.initWidth! + "px",
-    height: props.initHeight! + "px",
-    transform: `translate(${position.x - props.initWidth! / 2}px,${position.y - props.initHeight! / 2}px) scale(${scale.value})`,
-  })
-);
+const style = computed<StyleValue>(() => ({
+  width: props.initWidth! + "px",
+  height: props.initHeight! + "px",
+  transform: `translate(${position.x - props.initWidth! / 2}px,${position.y - props.initHeight! / 2}px) scale(${scale.value})`,
+}));
 const transitionEnabled = ref(false);
 const filterEnabled = ref(false);
 
 // 维护窗口大小信息
 const getWindowResize = () =>
   ([frame.width, frame.height] = [window.innerWidth, window.innerHeight]);
-interface Limit {
-  value: number;
-  limit: number;
-}
-const limitRatio = (...limitValues: Limit[]) =>
-  Math.min(1, ...limitValues.map(({ value, limit }) => limit / value));
-
-/** 是否打开过 */
-let openedFlag = false;
+const getLimitRatio = (
+  ...limitValues: {
+    value: number;
+    limit: number;
+  }[]
+) => Math.min(1, ...limitValues.map(({ value, limit }) => limit / value));
 
 /** 监听开启关闭 */
-watchEffect(() => {
+watch(isShown, () => {
   if (import.meta.env.SSR) return;
-  if (props.display) {
-    getWindowResize();
-    [position.x, position.y] = [frame.width / 2, frame.height / 2];
-    scale.value = limitRatio(
-      { value: props.initHeight!, limit: frame.height },
-      { value: props.initWidth!, limit: frame.width }
-    );
-    window.addEventListener("resize", getWindowResize);
-    filterEnabled.value = Boolean(
-      isDark.value && (props.svg || !props.alt?.includes("&keep-color"))
-    );
-    openedFlag = true;
-  } else if (openedFlag) {
-    window.removeEventListener("resize", getWindowResize);
-  }
-});
-onUnmounted(() => window.removeEventListener("resize", getWindowResize));
+  if (!isShown.value) return;
 
-const convertRatio = (delta: number) =>
-  delta > 0 ? 1 + delta : 1 / (1 - delta);
+  getWindowResize();
+  [position.x, position.y] = [frame.width / 2, frame.height / 2];
+  scale.value = getLimitRatio(
+    { value: props.initHeight!, limit: frame.height },
+    { value: props.initWidth!, limit: frame.width }
+  );
+  filterEnabled.value = Boolean(
+    isDark.value && !props.alt?.includes("&keep-color")
+  );
+});
+
 /** 滚轮缩放 */
 const handleScroll = (event: WheelEvent) => {
   const newScale = limitRange(scale.value * convertRatio(-event.deltaY / 500));
@@ -161,91 +167,100 @@ const handleDrag = (event: MouseEvent | PointerEvent) => {
   document.addEventListener("mouseup", onMouseUp);
 };
 
+// 触屏处理
+type TouchDataDrag = {
+  type: "drag";
+  x: number;
+  y: number;
+};
+type TouchDataZoom = {
+  type: "zoom";
+  x: number;
+  y: number;
+  distance: number;
+};
+const getDistance = (dx: number, dy: number) => (dx ** 2 + dy ** 2) ** 0.5;
+const initTouchObj = (touches: TouchList): TouchData => {
+  const t0 = {
+    x: touches[0].clientX,
+    y: touches[0].clientY,
+  };
+  if (touches.length === 1)
+    return {
+      type: "drag",
+      x: t0.x - position.x,
+      y: t0.y - position.y,
+    };
+  else {
+    const t1 = {
+      x: touches[1].clientX,
+      y: touches[1].clientY,
+    };
+    return {
+      type: "zoom",
+      x: (t0.x + t1.x) / 2 - position.x,
+      y: (t0.y + t1.y) / 2 - position.y,
+      distance: getDistance(t1.x - t0.x, t1.y - t0.y),
+    };
+  }
+};
+type TouchData = TouchDataDrag | TouchDataZoom;
 let onTouching = false;
 let lastTap = 0,
   closeTimer: NodeJS.Timeout;
 /** 触屏 */
-const handleTouch = (event: TouchEvent) => {
+const handleTouch = ({ touches }: TouchEvent) => {
   if (onTouching) return;
   onTouching = true;
   transitionEnabled.value = false;
-  type TouchData =
-    | {
-        type: "drag";
-        x: number;
-        y: number;
-      }
-    | {
-        type: "zoom";
-        x: number;
-        y: number;
-        distance: number;
-      };
   let begin: TouchData;
   let lastScale = scale.value;
   const timeStamp = Date.now();
   const originalPosition = { x: position.x, y: position.y };
-  const getDistance = (dx: number, dy: number) => (dx ** 2 + dy ** 2) ** 0.5;
-  const init = (type: "drag" | "zoom", event: TouchEvent): TouchData =>
-    type === "drag"
-      ? {
-          type,
-          x: event.touches[0].clientX - position.x,
-          y: event.touches[0].clientY - position.y,
-        }
-      : {
-          type,
-          x:
-            (event.touches[0].clientX + event.touches[1].clientX) / 2 -
-            position.x,
-          y:
-            (event.touches[0].clientY + event.touches[1].clientY) / 2 -
-            position.y,
-          distance: getDistance(
-            event.touches[1].clientX - event.touches[0].clientX,
-            event.touches[1].clientY - event.touches[0].clientY
-          ),
-        };
-  if (event.touches.length === 1) {
-    begin = init("drag", event);
-  } else if (event.touches.length === 2) {
-    begin = init("zoom", event);
-    lastScale = scale.value;
-  }
-  const onTouchMove = (event: TouchEvent) => {
+
+  begin = initTouchObj(touches);
+  if (begin.type === "zoom") lastScale = scale.value;
+
+  const onTouchMove = ({ touches }: TouchEvent) => {
     if (!begin) return;
     transitionEnabled.value = false;
-    if (event.touches.length === 1) {
-      if (begin.type !== "drag") return (begin = init("drag", event));
-      position.x = event.touches[0].clientX - begin.x;
-      position.y = event.touches[0].clientY - begin.y;
-    } else if (event.touches.length === 2) {
-      if (begin.type !== "zoom") return (begin = init("zoom", event));
-      const dx = event.touches[1].clientX - event.touches[0].clientX;
-      const dy = event.touches[1].clientY - event.touches[0].clientY;
+    if (touches.length === 1) {
+      if (begin.type !== "drag") {
+        begin = initTouchObj(touches);
+        return;
+      }
+      position.x = touches[0].clientX - begin.x;
+      position.y = touches[0].clientY - begin.y;
+    } else if (touches.length === 2) {
+      if (begin.type !== "zoom") {
+        begin = initTouchObj(touches);
+        return;
+      }
+      const dx = touches[1].clientX - touches[0].clientX;
+      const dy = touches[1].clientY - touches[0].clientY;
       const newScale = limitRange(
         (lastScale * getDistance(dx, dy)) / begin.distance
       );
       const newPosition = {
-        x: (event.touches[0].clientX + event.touches[1].clientX) / 2,
-        y: (event.touches[0].clientY + event.touches[1].clientY) / 2,
+        x: (touches[0].clientX + touches[1].clientX) / 2,
+        y: (touches[0].clientY + touches[1].clientY) / 2,
       };
       position.x = newPosition.x - begin.x * (newScale / lastScale);
       position.y = newPosition.y - begin.y * (newScale / lastScale);
       scale.value = newScale;
     }
   };
-  const onTouchEnd = (event: TouchEvent) => {
-    if (event.touches.length !== 0) return;
+  const onTouchEnd = ({ touches }: TouchEvent) => {
+    if (touches.length !== 0) return;
     document.removeEventListener("touchmove", onTouchMove);
     document.removeEventListener("touchend", onTouchEnd);
     if (
       begin.type === "drag" &&
-      Date.now() - timeStamp < 100 &&
+      Date.now() - timeStamp < DOUBLETAP_RATIO &&
       getDistance(
         originalPosition.x - position.x,
         originalPosition.y - position.y
-      ) < 5
+      ) < DOUBLETAP_DISTANCE
     ) {
       // 单击关闭，双击放大/缩小
       if (!lastTap || timeStamp - lastTap > 300) {
@@ -254,10 +269,11 @@ const handleTouch = (event: TouchEvent) => {
       } else {
         transitionEnabled.value = true;
         setTimeout(() => {
-          const newScale =
-            scale.value * 3 > 10
-              ? scale.value / 3
-              : limitRange(scale.value * 3);
+          const newScale = limitRange(
+            scale.value * DOUBLETAP_RATIO > RANGE.max
+              ? scale.value / DOUBLETAP_RATIO
+              : scale.value * DOUBLETAP_RATIO
+          );
           position.x += begin.x - (begin.x / scale.value) * newScale;
           position.y += begin.y - (begin.y / scale.value) * newScale;
           scale.value = newScale;

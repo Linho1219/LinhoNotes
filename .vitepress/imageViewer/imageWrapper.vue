@@ -12,8 +12,7 @@
     :alt="slotAlt"
     :initWidth="initWidth"
     :initHeight="initHeight"
-    :display="viewerOpened"
-    @close="viewerOpened = false"
+    v-model="viewerOpened"
   />
 </template>
 
@@ -21,9 +20,9 @@
 /// <reference path="../types.d.ts" />
 import { onMounted, ref } from "vue";
 import ImageViewer from "./imageViewer.vue";
-const props = defineProps({
-  inline: Boolean,
-});
+const props = defineProps<{
+  inline?: Boolean;
+}>();
 const slotSrc = ref("");
 const viewerOpened = ref(false);
 const triggerEle = ref<HTMLDivElement | null>(null);
