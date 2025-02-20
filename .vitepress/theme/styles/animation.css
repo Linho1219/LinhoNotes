@@ -66,13 +66,6 @@
     animation: fade-in-left 0.2s;
   }
 
-  /* 脚注平滑跳转 */
-  html:has(.footnote-backref:hover),
-  html:has(.footnote-ref:hover),
-  html:has(.animated-link[href^="#"]) {
-    scroll-behavior: smooth;
-  }
-
   /* 链接样式优化 */
   .vp-doc .animated-link {
     color: var(--link-color);
@@ -122,21 +115,6 @@
   .escape-animate .animated-link::before,
   .escape-animate.animated-link::before {
     display: none;
-  }
-}
-
-/* 1280px+ 有右侧大纲 */
-@media only screen and (min-width: 1280px) {
-  /* 书签平滑跳转 */
-  html:has(.aside-container:hover) {
-    scroll-behavior: smooth;
-  }
-}
-
-@media only screen and (max-width: 1280px) and (min-width: 960px) {
-  /* 书签平滑跳转 */
-  html:has(.VPLocalNavOutlineDropdown:hover) {
-    scroll-behavior: smooth;
   }
 }
 

@@ -300,7 +300,8 @@ const handleTouch = (event: TouchEvent) => {
   --gray: #f3f3f3;
   --size: 15px;
   background-color: var(--white);
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       45deg,
       var(--gray) 25%,
       transparent 0,
@@ -391,7 +392,7 @@ const handleTouch = (event: TouchEvent) => {
 }
 body:has(.viewer-wrapper) {
   overflow: hidden;
-  touch-action: none
+  touch-action: none;
 }
 .viewer-img-inner.image {
   border-radius: 0;
