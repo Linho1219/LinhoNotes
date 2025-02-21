@@ -6,6 +6,9 @@
     <template #doc-footer-before>
       <Contributors />
     </template>
+    <template #layout-top>
+      <NolebaseHighlightTargetedHeading />
+    </template>
     <template #layout-bottom>
       <SearchOverlay />
       <div id="imageViewers"></div>
@@ -17,6 +20,7 @@
 import DefaultTheme from "vitepress/theme-without-fonts";
 import { nextTick, provide } from "vue";
 import { useData, useRouter } from "vitepress";
+import { NolebaseHighlightTargetedHeading } from "@nolebase/vitepress-plugin-highlight-targeted-heading/client";
 import Breadcrumb from "./components/breadcrumb.vue";
 import SearchOverlay from "./components/searchOverlay.vue";
 import Contributors from "../contributors/contributors.vue";
