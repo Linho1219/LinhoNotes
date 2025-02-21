@@ -88,12 +88,6 @@ mjx-container text {
   font-family: var(--vp-font-family-base);
 }
 
-/* 图片居中 & 圆角 */
-.vp-doc img {
-  margin: 0 auto;
-  border-radius: 5px;
-}
-
 /* 删除线文字颜色调整 */
 .vp-doc s {
   color: var(--vp-c-text-2);

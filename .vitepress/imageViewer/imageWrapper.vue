@@ -47,12 +47,18 @@ onMounted(() => {
 </script>
 
 <style>
+.viewer-trigger img {
+  margin: 0;
+}
 .viewer-trigger {
   cursor: zoom-in;
+  width: fit-content;
+  margin: 0 auto;
 }
 .viewer-trigger.inline,
 td .viewer-trigger {
   display: inline-block;
   vertical-align: middle;
+  margin: 0;
 }
 </style>
