@@ -1,13 +1,16 @@
 declare module "markdown-it-task-lists" {
   import type MarkdownIt from "markdown-it";
-  function mdCheckbox(md: MarkdownIt): void;
-  export default mdCheckbox;
+  export default function (md: MarkdownIt): void;
 }
 
-declare module "markdown-it-mark" {
+declare module "markdown-it-sup" {
   import type MarkdownIt from "markdown-it";
-  function mdMark(md: MarkdownIt): void;
-  export default mdMark;
+  export default function (md: MarkdownIt): void;
+}
+
+declare module "markdown-it-sub" {
+  import type MarkdownIt from "markdown-it";
+  export default function (md: MarkdownIt): void;
 }
 
 interface ImportMetaEnv {

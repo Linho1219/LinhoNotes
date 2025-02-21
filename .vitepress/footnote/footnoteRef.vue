@@ -26,11 +26,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import emitter from "./mitt";
-const props = defineProps({
-  id: String,
-  refid: String,
-  caption: String,
-});
+const props = defineProps<{
+  id: string;
+  refid: string;
+  caption: string;
+}>();
 const isHover = ref(false),
   isLoaded = ref(false),
   content = ref("");
@@ -111,7 +111,8 @@ function loadContent(event: PointerEvent) {
   position: absolute;
   top: -8px;
   left: 5px;
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       -45deg,
       var(--vp-c-bg-elv) 45%,
       var(--vp-c-divider) 45%,
@@ -125,7 +126,9 @@ function loadContent(event: PointerEvent) {
       var(--vp-c-divider) 55%,
       transparent 55%
     );
-  background-position: top left, top right;
+  background-position:
+    top left,
+    top right;
   background-repeat: no-repeat;
   background-size: 50% 100%;
 }
@@ -153,22 +156,5 @@ function loadContent(event: PointerEvent) {
 }
 .footnote-card-fade-enter-to {
   opacity: 1;
-}
-
-.footnote-ref-card a {
-  color: var(--link-color);
-  vertical-align: baseline;
-  text-decoration: none;
-  position: relative;
-  border-radius: 2px;
-  transition: background 0.2s;
-}
-.footnote-ref-card a:hover {
-  color: var(--link-color) !important;
-  background: var(--link-soft);
-  opacity: 1 !important;
-}
-.footnote-ref-card a:active {
-  opacity: 0.6 !important;
 }
 </style>

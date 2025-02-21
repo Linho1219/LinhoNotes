@@ -20,15 +20,20 @@ type Breadcrumb = {
   first: boolean;
 };
 
-const items = ref(<Breadcrumb[]>[]);
+const items = ref<Breadcrumb[]>([]);
 watchEffect(() => {
-  items.value = page.value.filePath
-    .split("/")
-    .slice(0, -1)
-    .map((item, index) => ({
-      name: pangu.spacing(item),
-      first: !index,
-    }));
+  const pathSegs = page.value.filePath.split("/");
+  const shownSegs =
+    pathSegs.at(-1) === "index.md"
+      ? pathSegs.slice(0, -2)
+      : pathSegs.slice(0, -1);
+  // 面包屑只显示到当前页面的上一级，不包含页面标题
+  // 如果是首页，则一并去除当前目录名
+
+  items.value = shownSegs.map((item, index) => ({
+    name: pangu.spacing(item.replaceAll("-", " ")),
+    first: !index,
+  }));
 });
 </script>
 

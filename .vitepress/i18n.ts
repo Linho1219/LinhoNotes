@@ -13,7 +13,7 @@ export const themeI18n: DefaultTheme.Config = {
   sidebarMenuLabel: "项目目录",
   notFound: {
     quote:
-      "仓库中找不到这个页面。但你可以点击右上角的 Github 图标加入我们，一起为仓库添砖加瓦！",
+      "仓库中找不到这个页面。但你可以点击右上角的 GitHub 图标加入我们，一起为仓库添砖加瓦！",
     linkText: "返回首页",
     linkLabel: "返回首页",
   },
@@ -21,7 +21,7 @@ export const themeI18n: DefaultTheme.Config = {
 
 /** 其他杂七杂八的文本翻译 */
 export const miscI18n: MiscI18n = {
-  editLink: "在 Github 上查看此页",
+  editLink: "在 GitHub 上查看此页",
   outline: "本页大纲",
   lastUpdated: "最后更新于",
   searchPlaceHolder: "输入关键词",

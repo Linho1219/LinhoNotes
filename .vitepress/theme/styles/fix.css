@@ -1,12 +1,5 @@
 /*====== 修复问题 ======*/
 
-/* 补充代码字体列表 */
-:root {
-  --vp-font-family-mono: ui-monospace, "JetBrains Mono", "Sarasa Term SC",
-    "Iosevka", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New",
-    monospace;
-}
-
 /* 修复标题边距 */
 h1 {
   margin-bottom: 16px;
@@ -111,7 +104,7 @@ img.VPImage.logo {
   font-weight: inherit;
 }
 
-/* 隐藏标题后面的脚注提示条 */
+/* 隐藏标题后面的脚注分割线 */
 h1 + .footnotes-sep,
 h2 + .footnotes-sep,
 h3 + .footnotes-sep,
@@ -122,21 +115,25 @@ h6 + .footnotes-sep {
 }
 
 /* 修复多级列表 marker 样式 */
-.vp-doc :is(ol, ul) ol {
+.vp-doc li ol {
   list-style: lower-roman;
 }
-.vp-doc :is(ol, ul) :is(ol, ul) ol {
+.vp-doc li li ol {
   list-style: lower-latin;
 }
-.vp-doc :is(ol, ul) :is(ol, ul) :is(ol, ul) ol {
+.vp-doc li li li ol {
   list-style: lower-greek;
 }
 
-.vp-doc :is(ol, ul) ul {
+.vp-doc li ul {
   list-style: circle;
 }
-.vp-doc :is(ol, ul) :is(ol, ul) ul {
+.vp-doc li li ul {
   list-style: square;
+}
+
+.vp-doc li::marker {
+  color: var(--vp-c-text-2);
 }
 
 /* 调整提示框字号 */

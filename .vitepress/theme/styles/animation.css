@@ -66,32 +66,26 @@
     animation: fade-in-left 0.2s;
   }
 
-  /* 脚注平滑跳转 */
-  html:has(.footnote-backref:hover),
-  html:has(.footnote-ref:hover) {
-    scroll-behavior: smooth;
-  }
-
   /* 链接样式优化 */
-  .vp-doc a:not(.escape-animate, .escape-animate a) {
+  .vp-doc .animated-link {
     color: var(--link-color);
     text-decoration: none;
     position: relative;
     border-radius: 2px;
     transition:
-      background 0.2s,
+      background-color 0.2s,
       box-shadow 0.2s;
   }
-  .vp-doc a:not(.escape-animate, .escape-animate a):hover {
+  .vp-doc .animated-link:hover {
     color: var(--link-color) !important;
     background: var(--link-soft);
     box-shadow: var(--link-soft) 0 0 0 3px;
     opacity: 1 !important;
   }
-  .vp-doc a:not(.escape-animate, .escape-animate a):active {
+  .vp-doc .animated-link:active {
     opacity: 0.6 !important;
   }
-  .vp-doc a:not(.escape-animate, .escape-animate a)::before {
+  .vp-doc .animated-link::before {
     content: "";
     display: inline-block;
     position: absolute;
@@ -100,32 +94,63 @@
     width: 0;
     bottom: -3px;
     height: 4px;
-    transition: width 0.3s;
-    opacity: 0.8;
+    opacity: 0.5;
+    transition:
+      width 0.3s,
+      opacity 0.3s;
   }
-  .vp-doc a:not(.escape-animate, .escape-animate a):hover::before {
+  .vp-doc .animated-link:hover::before {
     width: 100%;
     left: 0;
     right: unset;
+    opacity: 0.8;
   }
   .edit-link-button:active {
     opacity: 0.6;
   }
-}
-
-/* 1280px+ 有右侧大纲 */
-@media only screen and (min-width: 1280px) {
-  /* 书签平滑跳转 */
-  html:has(.aside-container:hover) {
-    scroll-behavior: smooth;
+  .escape-animate .animated-link,
+  .escape-animate.animated-link {
+    box-shadow: none !important;
+  }
+  .escape-animate .animated-link::before,
+  .escape-animate.animated-link::before {
+    display: none;
   }
 }
 
-@media only screen and (max-width: 1280px) and (min-width: 960px) {
-  /* 书签平滑跳转 */
-  html:has(.VPLocalNavOutlineDropdown:hover) {
-    scroll-behavior: smooth;
-  }
+/* 代码组页签动画时长调整 */
+.vp-code-group .tabs label:after {
+  transition: background-color 0.15s;
+}
+
+/* Details 折叠框 marker 调整 */
+
+summary {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+  list-style: none;
+  position: relative;
+  padding-left: 20px;
+}
+
+summary::before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+  mask: var(--icon) no-repeat;
+  mask-size: 120% 120%;
+  mask-position: center;
+  background-color: var(--vp-c-text-2);
+  color: inherit;
+  transition: transform 0.2s;
+  vertical-align: text-bottom;
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
 }
 
 /* Algolia 搜索框 */

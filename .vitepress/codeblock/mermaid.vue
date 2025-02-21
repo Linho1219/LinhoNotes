@@ -6,16 +6,13 @@
       v-html="svgRef"
       @click="viewerOpened = true"
     ></div>
-    <Teleport to="body">
-      <ImageViewer
-        :svg="svgRef"
-        alt=""
-        :initWidth="initWidth"
-        :initHeight="initHeight"
-        :display="viewerOpened"
-        @close="viewerOpened = false"
-      />
-    </Teleport>
+    <ImageViewer
+      :svg="svgRef"
+      alt=""
+      :initWidth="initWidth"
+      :initHeight="initHeight"
+      v-model="viewerOpened"
+    />
     <div
       v-if="errorFlag"
       class="mermaid-error caution custom-block github-alert"
@@ -27,10 +24,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  id: String,
-  code: String,
-});
+const props = defineProps<{
+  id: string;
+  code: string;
+}>();
 
 import { ref } from "vue";
 import mermaid from "mermaid";

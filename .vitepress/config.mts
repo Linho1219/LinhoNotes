@@ -2,15 +2,24 @@
 
 import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
-import mdMark from "markdown-it-mark";
+import mdSup from "markdown-it-sup";
+import mdSub from "markdown-it-sub";
 import mdAutoSpacing from "markdown-it-autospace";
+
+import {
+  groupIconMdPlugin,
+  groupIconVitePlugin,
+} from "vitepress-plugin-group-icons";
+import getContributorPlugin from "./contributors/addContributors";
 
 import mdPlot from "./codeblock/codeblockPlugin";
 import mdFootNotePlus from "./footnote/footnotePlugin";
 import mdImageViewer from "./imageViewer/imagePlugin";
+import mdWrapper from "./configurablePlugins/customWrapper";
+import mdLinkClass from "./configurablePlugins/customLinkClassName";
 import mdMjxErrWarning from "./siteData/mjxErrWarning";
 import mdGitHubAlertsPlugin from "./siteData/githubAlert";
-import { createContainer } from "./siteData/customContainer";
+import { createContainer } from "./configurablePlugins/customContainer";
 
 import { themeI18n, miscI18n, searchI18n } from "./i18n";
 import { globalConfig } from "./manualConfig";
@@ -86,31 +95,37 @@ export default {
     math: true,
     languageAlias: { graph: "json5" },
     config: (md) => {
-      md.use(mdFootnote);
-      md.use(mdFootNotePlus);
-      md.use(mdCheckbox);
-      md.use(mdMark);
-      md.use(mdMjxErrWarning);
-      md.use(mdImageViewer);
-      md.use(
-        ...createContainer(
-          "example",
-          "例",
-          { numbered: true, themeAlias: ["note"] },
-          md
+      md.use(groupIconMdPlugin)
+        .use(mdFootnote)
+        .use(mdFootNotePlus)
+        .use(mdCheckbox)
+        .use(mdSup)
+        .use(mdSub)
+        .use(mdWrapper, { marker: "%", tag: "Cloze" })
+        .use(mdWrapper, { marker: "=", tag: "mark" })
+        .use(mdLinkClass, { className: "animated-link" })
+        .use(mdMjxErrWarning)
+        .use(mdImageViewer)
+        .use(
+          ...createContainer(
+            "example",
+            "例",
+            { numbered: true, themeAlias: ["note"] },
+            md
+          )
         )
-      );
-      md.use(mdGitHubAlertsPlugin);
-      md.use(mdPlot);
-      md.use(mdAutoSpacing, {
-        pangu: true,
-        mojikumi: true,
-      });
+        .use(mdGitHubAlertsPlugin)
+        .use(mdPlot)
+        .use(mdAutoSpacing, {
+          pangu: true,
+          mojikumi: true,
+        });
     },
   },
   cleanUrls: true,
   rewrites: { "shortUrl.md": "s.md" },
   srcExclude: ["CODE_OF_CONDUCT.md", "CONTRIBUTING.md"],
+  metaChunk: true,
   sitemap: { hostname: baseUrl },
   buildEnd: (siteConfig) => {
     genreateSitemap(siteConfig);
@@ -120,5 +135,17 @@ export default {
     template: {
       compilerOptions: { isCustomElement: (tag) => tag.startsWith("punc-") },
     },
+  },
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 8192,
+    },
+    plugins: [
+      groupIconVitePlugin(),
+      ...(process.env.NODE_ENV === "production" &&
+      !process.env.DISABLE_CONTRIBUTORS
+        ? [await getContributorPlugin()]
+        : []),
+    ],
   },
 } as UserConfig<DefaultTheme.Config>;

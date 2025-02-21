@@ -1,5 +1,9 @@
 ---
 layout: false
+head:
+  - - meta
+    - name: robots
+      content: noindex
 ---
 
 <Loading />

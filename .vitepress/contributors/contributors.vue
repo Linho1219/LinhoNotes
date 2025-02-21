@@ -41,7 +41,7 @@ type Contributor = {
 
 const { page, frontmatter } = useData();
 const displayEnabled = ref(true);
-const contributorList = ref(<Contributor[]>[]);
+const contributorList = ref<Contributor[]>([]);
 const link = ref("");
 
 watchEffect(() => {
@@ -55,10 +55,7 @@ watchEffect(() => {
     .map(([nickname, username]) => ({
       nickname,
       username,
-      avatar:
-        process.env.NODE_ENV === "production"
-          ? `/avatars/${username}.png`
-          : `https://github.com/${username}.png`,
+      avatar: `/avatars/${username}.png`,
     }));
 });
 watchEffect(() => {

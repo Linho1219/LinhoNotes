@@ -12,8 +12,7 @@
     :alt="slotAlt"
     :initWidth="initWidth"
     :initHeight="initHeight"
-    :display="viewerOpened"
-    @close="viewerOpened = false"
+    v-model="viewerOpened"
   />
 </template>
 
@@ -48,11 +47,18 @@ onMounted(() => {
 </script>
 
 <style>
+.viewer-trigger img {
+  margin: 0;
+}
 .viewer-trigger {
   cursor: zoom-in;
+  width: fit-content;
+  margin: 0 auto;
 }
-.viewer-trigger.inline {
+.viewer-trigger.inline,
+td .viewer-trigger {
   display: inline-block;
   vertical-align: middle;
+  margin: 0;
 }
 </style>

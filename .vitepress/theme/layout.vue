@@ -8,6 +8,7 @@
     </template>
     <template #layout-bottom>
       <SearchOverlay />
+      <div id="imageViewers"></div>
     </template>
   </Layout>
 </template>
@@ -15,7 +16,7 @@
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme-without-fonts";
 import { nextTick, provide } from "vue";
-import { useData } from "vitepress";
+import { useData, useRouter } from "vitepress";
 import Breadcrumb from "./components/breadcrumb.vue";
 import SearchOverlay from "./components/searchOverlay.vue";
 import Contributors from "../contributors/contributors.vue";
@@ -44,9 +45,24 @@ provide("toggle-appearance", async () => {
     }
   );
 });
+
+const router = useRouter();
+router.onBeforeRouteChange = () => {
+  document.body.parentElement?.classList.add("disable-scroll-transition");
+};
+router.onAfterRouteChange = () => {
+  document.body.parentElement?.classList.remove("disable-scroll-transition");
+};
 </script>
 
 <style>
+html {
+  scroll-behavior: smooth;
+}
+html.disable-scroll-transition {
+  scroll-behavior: auto;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;

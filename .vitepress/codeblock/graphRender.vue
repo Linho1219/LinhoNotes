@@ -16,12 +16,12 @@ import functionPlot from "function-plot";
 import JSON5 from "json5";
 import type { FunctionPlotOptions } from "function-plot";
 
-const props = defineProps({
-  id: String,
-  code: String,
-  graphWidth: Number,
-  graphHeight: Number,
-});
+const props = defineProps<{
+  id: string;
+  code: string;
+  graphWidth: number;
+  graphHeight: number;
+}>();
 
 const plotRef = ref<HTMLDivElement | null>(null);
 const errorFlag = ref(false),
@@ -65,7 +65,9 @@ onMounted(() => {
   if (plotRef.value) {
     let originalOpt: FunctionPlotOptions | undefined;
     try {
-      originalOpt = <FunctionPlotOptions | undefined>JSON5.parse(decodeURIComponent(props.code!));
+      originalOpt = <FunctionPlotOptions | undefined>(
+        JSON5.parse(decodeURIComponent(props.code!))
+      );
     } catch (eJSON5) {
       errorFlag.value = true;
       errorDetails.value = eJSON5;
