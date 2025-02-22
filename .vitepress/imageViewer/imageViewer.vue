@@ -13,9 +13,9 @@
           :class="{
             filter: filterEnabled,
             filteroff: !filterEnabled,
+            transition: transitionEnabled,
           }"
           :style="style"
-          ref="viewerElement"
           @mousedown="handleDrag"
         >
           <img
@@ -47,15 +47,14 @@
             </svg>
           </button>
         </div>
-      </div>
-    </transition>
-  </Teleport>
+      </div> </transition
+  ></Teleport>
 </template>
 
 <script setup lang="ts">
 /// <reference path="../types.d.ts" />
 import type { StyleValue } from "vue";
-import { ref, computed, reactive, watch } from "vue";
+import { watchEffect, ref, computed, reactive, onUnmounted, watch } from "vue";
 import { useData } from "vitepress";
 const { isDark } = useData();
 const close = () => {
@@ -71,17 +70,6 @@ const props = defineProps<{
 const isShown = defineModel<boolean>({
   required: true,
 });
-
-// 这里使用原生 DOM 操作是因为 Vue 3 响应式不够快，无法在调整窗口大小时立即更新
-const viewerElement = ref<HTMLDivElement | null>(null);
-const enableTransition = () => {
-  if (viewerElement.value) viewerElement.value.classList.add("transition");
-};
-const disableTransition = () => {
-  if (viewerElement.value) viewerElement.value.classList.remove("transition");
-};
-const setTransition = (enabled: boolean) =>
-  enabled ? enableTransition() : disableTransition();
 
 interface Range {
   min: number;
@@ -120,6 +108,7 @@ const style = computed<StyleValue>(() => ({
   height: props.initHeight! + "px",
   transform: `translate(${position.x - props.initWidth! / 2}px,${position.y - props.initHeight! / 2}px) scale(${scale.value})`,
 }));
+const transitionEnabled = ref(false);
 const filterEnabled = ref(false);
 
 // 维护窗口大小信息
@@ -151,7 +140,7 @@ watch(isShown, () => {
 /** 滚轮缩放 */
 const handleScroll = (event: WheelEvent) => {
   const newScale = limitRange(scale.value * convertRatio(-event.deltaY / 500));
-  setTransition(Math.abs(event.deltaY) > 50);
+  transitionEnabled.value = Math.abs(event.deltaY) > 50;
   position.x = event.x - ((event.x - position.x) / scale.value) * newScale;
   position.y = event.y - ((event.y - position.y) / scale.value) * newScale;
   scale.value = newScale;
@@ -169,11 +158,11 @@ const handleDrag = (event: MouseEvent | PointerEvent) => {
     position.y = event.clientY - begin.y;
   };
   const onMouseUp = () => {
-    enableTransition();
+    transitionEnabled.value = true;
     document.removeEventListener("mousemove", onMouseMove);
     document.removeEventListener("mouseup", onMouseUp);
   };
-  disableTransition();
+  transitionEnabled.value = false;
   document.addEventListener("mousemove", onMouseMove);
   document.addEventListener("mouseup", onMouseUp);
 };
@@ -223,7 +212,7 @@ let lastTap = 0,
 const handleTouch = ({ touches }: TouchEvent) => {
   if (onTouching) return;
   onTouching = true;
-  disableTransition();
+  transitionEnabled.value = false;
   let begin: TouchData;
   let lastScale = scale.value;
   const timeStamp = Date.now();
@@ -234,7 +223,7 @@ const handleTouch = ({ touches }: TouchEvent) => {
 
   const onTouchMove = ({ touches }: TouchEvent) => {
     if (!begin) return;
-    disableTransition();
+    transitionEnabled.value = false;
     if (touches.length === 1) {
       if (begin.type !== "drag") {
         begin = initTouchObj(touches);
@@ -278,7 +267,7 @@ const handleTouch = ({ touches }: TouchEvent) => {
         closeTimer = setTimeout(close, DOUBLETAP_TIME);
         lastTap = Date.now();
       } else {
-        enableTransition();
+        transitionEnabled.value = true;
         clearTimeout(closeTimer);
         const newScale = limitRange(
           scale.value * DOUBLETAP_RATIO > RANGE.max
