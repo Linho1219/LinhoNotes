@@ -147,5 +147,10 @@ export default {
         ? [await getContributorPlugin()]
         : []),
     ],
+    ssr: {
+      noExternal: [
+        "@nolebase/vitepress-plugin-highlight-targeted-heading",
+      ],
+    },
   },
 } as UserConfig<DefaultTheme.Config>;

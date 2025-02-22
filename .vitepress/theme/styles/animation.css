@@ -153,6 +153,33 @@ details[open] summary::before {
   transform: rotate(90deg);
 }
 
+/* 标题高亮 */
+@keyframes highlightTargetAnimation {
+  0% {
+    background-color: transparent;
+    box-shadow: 0px 0px 0px 8px transparent;
+  }
+  10%, 75% {
+    border-color: transparent;
+    border-radius: 4px;
+    background-color: var(--vp-c-brand-soft);
+    box-shadow: 0px 0px 0px 8px var(--vp-c-brand-soft);
+  }
+  99% {
+    background-color: transparent;
+    border-radius: 4px;
+    box-shadow: 0px 0px 0px 8px transparent;
+  }
+  100% {
+    border-radius: 0px;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+.VPNolebaseHighlightTargetedHeadingAnimated {
+  animation: highlightTargetAnimation 2s ease-in-out !important;
+}
+
 /* Algolia 搜索框 */
 .DocSearch-Modal {
   animation: fade-in 0.15s;

@@ -2,6 +2,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.9",
     "@babel/preset-env": "^7.25.9",
+    "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.14.0",
     "@octokit/rest": "^21.0.2",
     "@prettier/sync": "^0.5.2",
     "@types/blueimp-md5": "^2.18.2",
