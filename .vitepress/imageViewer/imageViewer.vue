@@ -80,9 +80,9 @@ const RANGE: Range = { min: 0.2, max: 2.5 } as const;
 /** 双击缩放系数 */
 const DOUBLETAP_RATIO = 2.5;
 /** 双击时间阈值 */
-const DOUBLETAP_TIME = 100;
+const DOUBLETAP_TIME = 300;
 /** 双击距离阈值 */
-const DOUBLETAP_DISTANCE = 5;
+const DOUBLETAP_DISTANCE = 50;
 
 /** 窗口宽高 */
 const frame = reactive({
@@ -256,29 +256,27 @@ const handleTouch = ({ touches }: TouchEvent) => {
     document.removeEventListener("touchend", onTouchEnd);
     if (
       begin.type === "drag" &&
-      Date.now() - timeStamp < DOUBLETAP_RATIO &&
+      Date.now() - timeStamp < DOUBLETAP_TIME &&
       getDistance(
         originalPosition.x - position.x,
         originalPosition.y - position.y
       ) < DOUBLETAP_DISTANCE
     ) {
       // 单击关闭，双击放大/缩小
-      if (!lastTap || timeStamp - lastTap > 300) {
-        closeTimer = setTimeout(close, 300);
+      if (!lastTap || timeStamp - lastTap > DOUBLETAP_TIME) {
+        closeTimer = setTimeout(close, DOUBLETAP_TIME);
         lastTap = Date.now();
       } else {
         transitionEnabled.value = true;
-        setTimeout(() => {
-          const newScale = limitRange(
-            scale.value * DOUBLETAP_RATIO > RANGE.max
-              ? scale.value / DOUBLETAP_RATIO
-              : scale.value * DOUBLETAP_RATIO
-          );
-          position.x += begin.x - (begin.x / scale.value) * newScale;
-          position.y += begin.y - (begin.y / scale.value) * newScale;
-          scale.value = newScale;
-        }, 50);
         clearTimeout(closeTimer);
+        const newScale = limitRange(
+          scale.value * DOUBLETAP_RATIO > RANGE.max
+            ? scale.value / DOUBLETAP_RATIO
+            : scale.value * DOUBLETAP_RATIO
+        );
+        position.x += begin.x - (begin.x / scale.value) * newScale;
+        position.y += begin.y - (begin.y / scale.value) * newScale;
+        scale.value = newScale;
       }
     }
     setTimeout(() => (onTouching = false), 10);
