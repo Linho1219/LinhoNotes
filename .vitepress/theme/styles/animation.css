@@ -68,42 +68,33 @@
 
   /* 链接样式优化 */
   .vp-doc .animated-link {
+    padding-bottom: 0.12em;
     color: var(--link-color);
     text-decoration: none;
     position: relative;
-    border-radius: 2px;
+    border-radius: 1px;
+    background-image: linear-gradient(
+      transparent calc(100% - 0.1em),
+      var(--link-color) 0.1em
+    );
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 0% 100%;
     transition:
       background-color 0.2s,
-      box-shadow 0.2s;
+      box-shadow 0.2s,
+      background-size 0.3s;
   }
   .vp-doc .animated-link:hover {
     color: var(--link-color) !important;
-    background: var(--link-soft);
+    background-color: var(--link-soft);
     box-shadow: var(--link-soft) 0 0 0 3px;
     opacity: 1 !important;
+    background-position: left;
+    background-size: 100% 100%;
   }
   .vp-doc .animated-link:active {
     opacity: 0.6 !important;
-  }
-  .vp-doc .animated-link::before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    border-bottom: var(--link-color) 2px solid;
-    right: 0;
-    width: 0;
-    bottom: -3px;
-    height: 4px;
-    opacity: 0.5;
-    transition:
-      width 0.3s,
-      opacity 0.3s;
-  }
-  .vp-doc .animated-link:hover::before {
-    width: 100%;
-    left: 0;
-    right: unset;
-    opacity: 0.8;
   }
   .edit-link-button:active {
     opacity: 0.6;
@@ -111,10 +102,6 @@
   .escape-animate .animated-link,
   .escape-animate.animated-link {
     box-shadow: none !important;
-  }
-  .escape-animate .animated-link::before,
-  .escape-animate.animated-link::before {
-    display: none;
   }
 }
 
