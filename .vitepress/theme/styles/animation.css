@@ -166,8 +166,8 @@ details[open] summary::before {
   75% {
     border-color: transparent;
     border-radius: 4px;
-    background-color: var(--vp-c-brand-soft);
-    box-shadow: 0px 0px 0px 8px var(--vp-c-brand-soft);
+    background-color: var(--vp-c-yellow-soft);
+    box-shadow: 0px 0px 0px 8px var(--vp-c-yellow-soft);
   }
   99% {
     background-color: transparent;
