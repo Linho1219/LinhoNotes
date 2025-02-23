@@ -70,7 +70,7 @@ onMounted(() => {
       );
     } catch (eJSON5) {
       errorFlag.value = true;
-      errorDetails.value = eJSON5;
+      errorDetails.value = String(eJSON5);
       return;
     }
     if (typeof originalOpt !== "object") {
@@ -93,7 +93,7 @@ onMounted(() => {
           );
         } catch (e) {
           errorFlag.value = true;
-          errorDetails.value = e.toString();
+          errorDetails.value = String(e);
         }
       }
     });

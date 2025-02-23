@@ -11,8 +11,8 @@ import { miscI18n } from "../i18n";
 </script>
 
 <style>
-noscript{
-  font-size:30px;
+noscript {
+  font-size: 30px;
   margin-top: 30px;
 }
 
