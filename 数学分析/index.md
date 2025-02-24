@@ -42,7 +42,7 @@ $x^i$：看语境。如果是一元微积分，往往表示$x$的$i$次方；如
 
 本笔记常常用下标表示因果关系，如：
 
-$\delta_{\epsilon}$：由$\epsilon$而产生的$\delta$. 比如在函数极限中，我们通过对因变量做一个限制$\epsilon$，则对应自变量有一个控制$\delta_{\epsilon}$.
+$\delta_{\epsilon}$：由$\epsilon$而产生的$\delta$. 比如在函数极限中，我们对因变量做了一个控制$\epsilon$，则对应自变量有一个限制$\delta_{\epsilon}$.
 
 $y_x$：变量$y$是变量$x$的函数。
 
