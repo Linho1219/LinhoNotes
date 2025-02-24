@@ -94,6 +94,11 @@ mjx-container text {
   text-decoration-color: var(--vp-c-text-1);
 }
 
+/* 引用框内链接减淡 */
+.vp-doc blockquote a {
+  opacity: 0.8;
+}
+
 /* 大屏下顶栏毛玻璃效果 */
 @media only screen and (min-width: 1280px) {
   :root {

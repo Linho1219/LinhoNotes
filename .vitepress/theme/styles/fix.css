@@ -21,6 +21,11 @@ mjx-container {
   outline: none;
 }
 
+/* 避免横向滚动条 */
+.VPDoc {
+  overflow-x: hidden;
+}
+
 /* blockquote 与 li 内段间距修复 */
 .vp-doc blockquote p {
   margin: 8px 0;

@@ -4,8 +4,8 @@
       <div
         v-if="isShown"
         class="viewer-wrapper"
-        @wheel="handleScroll"
-        @touchstart="handleTouch"
+        @wheel.passive="handleScroll"
+        @touchstart.passive="handleTouch"
       >
         <div class="viewer-overlay" @click="close()"></div>
         <div
@@ -31,7 +31,7 @@
             v-html="props.svg"
           ></div>
         </div>
-        <div class="viewer-toolbar" @touchstart.stop="null">
+        <div class="viewer-toolbar" @touchstart.stop.passive="null">
           {{ Math.round(scale * 100) }}%
           <button
             v-if="isDark"
@@ -54,7 +54,7 @@
 <script setup lang="ts">
 /// <reference path="../types.d.ts" />
 import type { StyleValue } from "vue";
-import { watchEffect, ref, computed, reactive, onUnmounted, watch } from "vue";
+import { ref, computed, reactive, watch } from "vue";
 import { useData } from "vitepress";
 const { isDark } = useData();
 const close = () => {
@@ -79,10 +79,12 @@ interface Range {
 const RANGE: Range = { min: 0.2, max: 2.5 } as const;
 /** 双击缩放系数 */
 const DOUBLETAP_RATIO = 2.5;
-/** 双击时间阈值 */
-const DOUBLETAP_TIME = 100;
+/** 双击时间间隔阈值 */
+const DOUBLETAP_TIME = 200;
+/** 触摸判断为点击时间长度阈值 */
+const TAP_DURATION = 100;
 /** 双击距离阈值 */
-const DOUBLETAP_DISTANCE = 5;
+const DOUBLETAP_DISTANCE = 50;
 
 /** 窗口宽高 */
 const frame = reactive({
@@ -163,8 +165,8 @@ const handleDrag = (event: MouseEvent | PointerEvent) => {
     document.removeEventListener("mouseup", onMouseUp);
   };
   transitionEnabled.value = false;
-  document.addEventListener("mousemove", onMouseMove);
-  document.addEventListener("mouseup", onMouseUp);
+  document.addEventListener("mousemove", onMouseMove, { passive: true });
+  document.addEventListener("mouseup", onMouseUp, { passive: true });
 };
 
 // 触屏处理
@@ -205,25 +207,41 @@ const initTouchObj = (touches: TouchList): TouchData => {
   }
 };
 type TouchData = TouchDataDrag | TouchDataZoom;
-let onTouching = false;
-let lastTap = 0,
+let onTouching: null | symbol = null;
+let lastTap = {
+    timeStamp: 0,
+    position: { x: 0, y: 0 },
+  },
   closeTimer: NodeJS.Timeout;
 /** 触屏 */
 const handleTouch = ({ touches }: TouchEvent) => {
   if (onTouching) return;
-  onTouching = true;
-  transitionEnabled.value = false;
-  let begin: TouchData;
+  const currentTouch = Symbol();
   let lastScale = scale.value;
   const timeStamp = Date.now();
   const originalPosition = { x: position.x, y: position.y };
-
-  begin = initTouchObj(touches);
+  let begin = initTouchObj(touches);
   if (begin.type === "zoom") lastScale = scale.value;
 
+  if (begin.type === "drag" && timeStamp - lastTap.timeStamp < DOUBLETAP_TIME) {
+    // 判定为双击
+    transitionEnabled.value = true;
+    clearTimeout(closeTimer);
+    const newScale = limitRange(
+      scale.value * DOUBLETAP_RATIO > RANGE.max
+        ? scale.value / DOUBLETAP_RATIO
+        : scale.value * DOUBLETAP_RATIO
+    );
+    position.x += begin.x - (begin.x / scale.value) * newScale;
+    position.y += begin.y - (begin.y / scale.value) * newScale;
+    scale.value = newScale;
+    return;
+  }
+
+  transitionEnabled.value = false;
+  onTouching = currentTouch;
   const onTouchMove = ({ touches }: TouchEvent) => {
-    if (!begin) return;
-    transitionEnabled.value = false;
+    if (!begin || onTouching !== currentTouch) return;
     if (touches.length === 1) {
       if (begin.type !== "drag") {
         begin = initTouchObj(touches);
@@ -251,40 +269,33 @@ const handleTouch = ({ touches }: TouchEvent) => {
     }
   };
   const onTouchEnd = ({ touches }: TouchEvent) => {
-    if (touches.length !== 0) return;
+    if (touches.length !== 0 || onTouching !== currentTouch) return;
+    onTouching = null;
     document.removeEventListener("touchmove", onTouchMove);
     document.removeEventListener("touchend", onTouchEnd);
     if (
       begin.type === "drag" &&
-      Date.now() - timeStamp < DOUBLETAP_RATIO &&
+      Date.now() - timeStamp < TAP_DURATION &&
       getDistance(
         originalPosition.x - position.x,
         originalPosition.y - position.y
       ) < DOUBLETAP_DISTANCE
     ) {
-      // 单击关闭，双击放大/缩小
-      if (!lastTap || timeStamp - lastTap > 300) {
-        closeTimer = setTimeout(close, 300);
-        lastTap = Date.now();
-      } else {
-        transitionEnabled.value = true;
-        setTimeout(() => {
-          const newScale = limitRange(
-            scale.value * DOUBLETAP_RATIO > RANGE.max
-              ? scale.value / DOUBLETAP_RATIO
-              : scale.value * DOUBLETAP_RATIO
-          );
-          position.x += begin.x - (begin.x / scale.value) * newScale;
-          position.y += begin.y - (begin.y / scale.value) * newScale;
-          scale.value = newScale;
-        }, 50);
-        clearTimeout(closeTimer);
+      // 判定为点击而非拖动
+      if (!lastTap || timeStamp - lastTap.timeStamp > DOUBLETAP_TIME) {
+        // 判断为单击
+        closeTimer = setTimeout(() => {
+          close();
+        }, DOUBLETAP_TIME + TAP_DURATION);
+        lastTap = {
+          timeStamp: Date.now(),
+          position: { x: position.x, y: position.y },
+        };
       }
     }
-    setTimeout(() => (onTouching = false), 10);
   };
-  document.addEventListener("touchmove", onTouchMove);
-  document.addEventListener("touchend", onTouchEnd);
+  document.addEventListener("touchmove", onTouchMove, { passive: true });
+  document.addEventListener("touchend", onTouchEnd, { passive: true });
 };
 </script>
 <style>
@@ -339,7 +350,7 @@ const handleTouch = ({ touches }: TouchEvent) => {
   cursor: grab;
 }
 .viewer-img.transition {
-  transition: transform 0.1s;
+  transition: transform 0.15s;
 }
 .viewer-img:active {
   cursor: grabbing;

@@ -35,26 +35,26 @@ const rewriteName = (name: string, rewrites: Record<string, string>) => {
 };
 
 function compareFileName(a: string, b: string) {
-  const extractNum = /^((\d+)(\.(\d+))?)\s/;
-  const matchA = a.match(extractNum),
-    matchB = b.match(extractNum);
+  const numExp = /^(\d+)(\.(\d+))?-/;
+  const [matchA, matchB] = [a, b].map((name) => name.match(numExp));
   if (!matchA || !matchB) return pinyin.compare(a, b);
-  const NumberOr0 = (str: string) => (isNaN(Number(str)) ? 0 : Number(str));
-  const indexA = Number(matchA[2]) * 1000 + NumberOr0(matchA[4]),
-    indexB = Number(matchB[2]) * 1000 + NumberOr0(matchB[4]);
-  return indexA - indexB;
+  const [indexA, indexB] = [matchA, matchB].map((match) => ({
+    big: Number(match[1]),
+    small: Number(match[3] ?? 0),
+  }));
+  return (
+    indexA.big - indexB.big ||
+    indexA.small - indexB.small ||
+    pinyin.compare(a, b)
+  );
 }
 
 const sortDirent = (config: DirConfig) => (da: fs.Dirent, db: fs.Dirent) => {
   const { pinned = [], bottomed = [] } = config;
   const isPinned = (name: string) => Number(pinned.some(test(name)));
   const isBottomed = (name: string) => Number(bottomed.some(test(name)));
-  const [a, b] = [da, db].map(({ name }) => ({
-    name,
-    priority: isPinned(name) - isBottomed(name),
-  }));
-  if (a.priority !== b.priority) return b.priority - a.priority;
-  return compareFileName(a.name, b.name);
+  const [a, b] = [da, db].map(({ name }) => isPinned(name) - isBottomed(name));
+  return b - a || compareFileName(da.name, db.name);
 };
 
 function parseConfig(folderPath: string): DirConfig {
@@ -136,7 +136,7 @@ function generateSidebar(
 }
 
 export default function sidebar() {
-  const sidebarObj = {};
+  const sidebarObj: Record<string, DefaultTheme.SidebarItem[]> = {};
   fs.readdirSync("./", { withFileTypes: true })
     .filter((dir) => folderFilter({})(dir) && !ignProjects.includes(dir.name))
     .forEach(({ name }) => (sidebarObj[name] = generateSidebar(name)));

@@ -3,7 +3,7 @@ import prettier from "@prettier/sync";
 import { execSync } from "child_process";
 import JSON5 from "json5";
 
-const prettierTable = {
+const prettierTable: Record<string, string> = {
   ts: "typescript",
   typescript: "typescript",
   js: "babel",
@@ -20,11 +20,11 @@ const prettierTable = {
   vue: "vue",
   angular: "angular",
   yaml: "yaml",
-} as const;
+};
 const clangs = ["c", "c++", "cpp", "cxx"];
 
 export default function mdPlot(md: MarkdownIt): void {
-  const fence = md.renderer.rules.fence?.bind(md.renderer.rules);
+  const fence = md.renderer.rules.fence!.bind(md.renderer.rules)!;
   md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     const token = tokens[idx];
     const language = token.info.trim();
@@ -37,7 +37,7 @@ export default function mdPlot(md: MarkdownIt): void {
         JSON5.parse(token.content);
       } catch (e) {
         if (process.env.NODE_ENV === "production") throw e;
-        else console.error("\nGraph parse error:\n  " + e.toString());
+        else console.error("\nGraph parse error:\n  " + String(e));
       }
       return `<ClientOnly><Graph id="funcion-${idx}" code="${encodeURIComponent(
         token.content
@@ -45,6 +45,10 @@ export default function mdPlot(md: MarkdownIt): void {
     }
 
     // 代码格式化
+    if (token.content.trimStart().startsWith("// [!code escape-format]\n")) {
+      token.content = token.content.replace("// [!code escape-format]\n", "");
+      return fence(tokens, idx, options, env, self);
+    }
     if (prettierTable[language]) {
       try {
         token.content = prettier.format(token.content, {
@@ -53,22 +57,18 @@ export default function mdPlot(md: MarkdownIt): void {
         });
       } catch (err) {
         if (process.env.NODE_ENV !== "production")
-          console.warn("\nIllegal code:", err.message);
+          console.warn("\nIllegal code:" + String(err));
       }
-    }
-    if (clangs.includes(language.toLowerCase())) {
+    } else if (clangs.includes(language.toLowerCase())) {
       try {
         const formatted = execSync(
           `clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 75}"`,
-          {
-            input: token.content,
-            encoding: "utf-8",
-          }
+          { input: token.content, encoding: "utf-8" }
         );
         token.content = formatted;
       } catch (err) {
         if (process.env.NODE_ENV !== "production")
-          console.warn("\nIllegal code", err.message);
+          console.warn("\nIllegal code" + String(err));
       }
     }
     return fence(tokens, idx, options, env, self);

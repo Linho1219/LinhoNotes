@@ -74,6 +74,9 @@ mermaid.render(props.id!, code).then(
   line-height: 1.5em !important;
   user-select: none;
 }
+.mermaid_container.viewer-trigger {
+  width: auto;
+}
 .mermaid-error pre {
   white-space: pre-wrap;
 }
