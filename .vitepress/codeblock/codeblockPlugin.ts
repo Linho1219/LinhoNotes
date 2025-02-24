@@ -45,6 +45,10 @@ export default function mdPlot(md: MarkdownIt): void {
     }
 
     // 代码格式化
+    if (token.content.trimStart().startsWith("// [!code escape-format]\n")) {
+      token.content = token.content.replace("// [!code escape-format]\n", "");
+      return fence(tokens, idx, options, env, self);
+    }
     if (prettierTable[language]) {
       try {
         token.content = prettier.format(token.content, {
@@ -55,8 +59,7 @@ export default function mdPlot(md: MarkdownIt): void {
         if (process.env.NODE_ENV !== "production")
           console.warn("\nIllegal code:" + String(err));
       }
-    }
-    if (clangs.includes(language.toLowerCase())) {
+    } else if (clangs.includes(language.toLowerCase())) {
       try {
         const formatted = execSync(
           `clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 75}"`,
