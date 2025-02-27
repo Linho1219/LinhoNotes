@@ -350,7 +350,7 @@ const handleTouch = ({ touches }: TouchEvent) => {
   cursor: grab;
 }
 .viewer-img.transition {
-  transition: transform 0.15s;
+  transition: transform 0.1s;
 }
 .viewer-img:active {
   cursor: grabbing;
