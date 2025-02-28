@@ -7,3 +7,4 @@ test.ts
 .env
 desktop.ini
 .obsidian/
+.VSCodeCounter/
