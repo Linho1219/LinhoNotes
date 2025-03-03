@@ -37,7 +37,7 @@
   box-shadow: var(--vp-c-mark-underline) 0 -0.1em 0 inset;
 }
 .dark .vp-doc mark {
-  --vp-c-mark: #ffcc0050;
+  --vp-c-mark: #ffcc0035;
   --vp-c-mark-underline: #ae8b00;
   color: white;
 }
