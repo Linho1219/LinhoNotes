@@ -96,30 +96,49 @@ void solve(){
 
 ## 题解
 
-与第一题相似，但我们只考虑 $n$ 为奇数的情况（如果是偶数就将其补为奇数）
+为了升级解决方案，我们定义了一个递归函数：
 
-同时假设 $m\equiv 1 \mod 4$ （若不是则同样补足），$p=a_1\oplus a_2 \oplus a_3 \dots \oplus a_n$，于是可以推得
+$ \text{sum}(m) = \left( \displaystyle\sum_{\substack{i \leq m \\ i \text{ even}}} a_i,\; \displaystyle\sum_{\substack{i \leq m \\ i \text{ odd}}} a_i \right).$
 
-$ a_{2n} = a_{2n + 1} = p $
+我们预先计算 $m \le 2n$ 的偶数和奇数前缀和。对于 $m \gt 2n$ 来说，接下来就是 $a_m$ 项：
 
-$ a_{2n + 2} = a_{2n + 3} = p \oplus a_{n + 1} $
+$ a_m = \begin{cases} p & \text{if } \lfloor \frac{m}{2} \rfloor \text{ is odd}, \\ p \oplus a_{\lfloor \frac{m}{2} \rfloor} & \text{if } \lfloor \frac{m}{2} \rfloor \text{ is even}. \end{cases}$
 
-$ a_{2n + 4} = a_{2n + 5} = p $
+为简单起见，假设 $m \equiv 1 \pmod{4}$ （如果不是，则继续递增 $m$ 并分别调整其贡献）。
 
-$ a_{2n + 6} = a_{2n + 7} = p \oplus a_{n + 3} $
+定义 $e = \displaystyle\sum_{\substack{n &lt; i \leq m \ i \text{ even}}} a_i = a_{n + 1} + a_{n + 3} + \ldots + a_{\lfloor \frac{m}{2} \rfloor}$ 。这个和可以表示为
 
-$ \vdots $
+$e = \text{sum}(\lfloor \frac{m}{2} \rfloor)_{\text{even}} - prefix_{\text{even}}(n).$
 
-$ a_{m - 3} = a_{m - 2} = p $
+我们有兴趣计算的数对是（请注意 $n$ 是奇数）：
 
-$ a_{m - 1} = a_{m} = p \oplus a_{\lfloor \frac{m}{2} \rfloor} $
+$ a_{2n} = a_{2n + 1} = p$
 
-发现每两项是相同的，并且其中一半是定值 $p$ 
+$ a_{2n + 2} = a_{2n + 3} = p \oplus a_{n + 1}$
 
-所以我们可以将前缀和分为奇偶项来处理，再按照 $p$ 的值分类：
+$ a_{2n + 4} = a_{2n + 5} = p$
 
-- $p$ 为 $0$ 时，就是全部 $a_{n+1}+a_{n+3}+\cdot +a_{\frac{m+1}2}$
-- 否则，就是求出项数，再减去 $a_{n+1}+a_{n+3}+\cdot +a_{\frac{m+1}2}$
+$ a_{2n + 6} = a_{2n + 7} = p \oplus a_{n + 3}$
+
+$ \vdots$
+
+$ a_{m - 3} = a_{m - 2} = p$
+
+$ a_{m - 1} = a_{m} = p \oplus a_{\lfloor \frac{m}{2} \rfloor}$
+
+请注意，上述偶数和奇数指数之和相等，并且取决于 $p$ ：
+
+$ both = \begin{cases} e & \text{if } p = 0, \\ (\lfloor \frac{m}{2} \rfloor - n + 1) - e & \text{if } p = 1. \end{cases}$
+
+因此，最终的和为
+
+$ \text{sum}(m)_{\text{even}} = prefix_{\text{even}}(2n - 1) + both$
+
+$ \text{sum}(m)_{\text{odd}} = prefix_{\text{odd}}(2n - 1) + both$
+
+因此，我们可以通过将 $m$ 减半直到 $m \le 2n$ 来递归计算 $\text{sum}(m)$ ，每一步都可以利用预先计算出的偶数和奇数前缀和。
+
+总体时间复杂度为： $O(n+\log(m))$ 。
 
 ## AC代码
 
