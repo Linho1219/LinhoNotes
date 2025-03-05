@@ -103,6 +103,9 @@
   .escape-animate.animated-link {
     box-shadow: none !important;
   }
+  .vp-doc .animated-link:hover > code {
+    color: inherit;
+  }
 }
 
 /* 代码组页签动画时长调整 */
