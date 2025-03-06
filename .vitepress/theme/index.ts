@@ -11,6 +11,7 @@ import "./styles/print.css";
 
 import "./fonts/JetBrainsMono/index.css";
 import "./fonts/HarmonyOSSans/index.css";
+import "./fonts/Punctuation/index.css";
 
 import Layout from "./layout.vue";
 import Mermaid from "../codeblock/mermaid.vue";

@@ -74,7 +74,7 @@ a {
 /* 字体定义 */
 :root {
   --vp-font-family-base:
-    "HarmonyOS Sans", ui-sans-serif, system-ui, "PingFang SC",
+    "Punctuation SC", "HarmonyOS Sans", ui-sans-serif, system-ui, "PingFang SC",
     "HarmonyOS Sans SC", "MiSans", "Noto Sans CJK SC", "Noto Sans SC",
     "Heiti SC", "Microsoft YaHei UI", "DengXian", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
