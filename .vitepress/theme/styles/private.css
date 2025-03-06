@@ -21,10 +21,25 @@
 
 /* 高亮内容设置 */
 .vp-doc mark {
-  color: var(--vp-c-yellow-1);
-  background-color: var(--vp-c-yellow-soft);
-  box-shadow: var(--vp-c-yellow-soft) 0 0 0 2px;
-  border-radius: 1px;
+  --vp-c-mark: #ffce0050;
+  --vp-c-mark-underline: #e9ca0080;
+  background-color: transparent;
+  background-image: linear-gradient(
+    to right,
+    var(--vp-c-mark) 50%,
+    transparent 50%
+  );
+  background-position: 0 0.4lh;
+  background-repeat: no-repeat;
+  background-size: 200%;
+  padding-bottom: 0.15em;
+  color: black;
+  box-shadow: var(--vp-c-mark-underline) 0 -0.1em 0 inset;
+}
+.dark .vp-doc mark {
+  --vp-c-mark: #ffcc0050;
+  --vp-c-mark-underline: #ae8b0080;
+  color: white;
 }
 
 /* 把 tip 框改成绿色 */

@@ -1,30 +1,33 @@
 <template>
   <sup
     class="footnote-ref"
-    @mouseover.once="loadContent"
-    @mouseover="isHover || (isHover = true)"
-    @mouseout="isHover && (isHover = false)"
+    @mouseenter.once="loadContent"
+    @mouseenter="isHover = true"
+    @mouseleave="isHover = false"
   >
     <a
       :href="`#fn${props.id}`"
       :id="`fnref${props.refid}`"
       class="footnote-link escape-animate"
+      ref="linkEle"
     >
       {{ props.caption }}
     </a>
     <transition name="footnote-card-fade">
       <div
+        class="footnote-ref-wrapper"
+        :class="alignRight ? 'right' : 'left'"
         v-if="isLoaded"
-        v-show="isHover"
-        class="footnote-ref-card escape-animate"
-        v-html="content"
-      ></div>
+        v-show="isHover && !isTouch"
+      >
+        <div class="footnote-ref-card escape-animate" v-html="content"></div>
+      </div>
     </transition>
   </sup>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import emitter from "./mitt";
 const props = defineProps<{
   id: string;
@@ -33,9 +36,15 @@ const props = defineProps<{
 }>();
 const isHover = ref(false),
   isLoaded = ref(false),
-  content = ref("");
+  content = ref(""),
+  linkEle = ref<HTMLElement | null>(null),
+  alignRight = ref(false),
+  isTouch = ref(false);
 function loadContent(event: PointerEvent) {
-  if (event.pointerType === "touch") return;
+  if (event.pointerType === "touch") {
+    isTouch.value = true;
+    return;
+  }
   const handleEvent = (footContent: string) => {
     content.value = footContent.replace(/(^<p>)|(<\/p>$)/g, "");
     isLoaded.value = true;
@@ -44,6 +53,14 @@ function loadContent(event: PointerEvent) {
   emitter.on("on-return-footnote", handleEvent);
   emitter.emit("on-query-footnote", props.id!);
 }
+watch(isHover, (hover) => {
+  if (!hover || !linkEle.value) return;
+  const rect = linkEle.value.getBoundingClientRect();
+  const rightDistance = window.innerWidth - rect.right;
+  if (rightDistance < 410) alignRight.value = true;
+  else alignRight.value = false;
+  console.log(rightDistance);
+});
 </script>
 
 <style>
@@ -83,48 +100,43 @@ function loadContent(event: PointerEvent) {
   transition: none;
 }
 
-.footnote-ref-card {
+.footnote-ref-wrapper {
   position: absolute;
-  display: block;
-  left: calc(50% - 13px);
   top: calc(100% + 8px);
-  padding: 8px 12px;
-  max-width: calc(18rem + 26px);
-  width: max-content;
-  background: var(--vp-c-bg-elv);
-  border: var(--vp-c-divider) 1px solid;
-  box-shadow: var(--vp-shadow-3);
-  border-radius: 5px;
-  z-index: 700;
-  font-weight: normal;
-  text-decoration: none;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 1.5em;
+  z-index: 198;
 }
 
-.footnote-ref-card::before {
+.footnote-ref-wrapper.left {
+  left: calc(50% - 13px);
+}
+
+.footnote-ref-wrapper.right {
+  right: calc(50% - 13px);
+}
+
+.footnote-ref-wrapper::after {
   content: "";
   width: 16px;
-  height: 8px;
+  height: 10px;
   display: block;
   position: absolute;
   top: -8px;
-  left: 5px;
+  border-bottom: var(--vp-c-bg-elv) 2px solid;
+
   background-image:
     linear-gradient(
       -45deg,
-      var(--vp-c-bg-elv) 45%,
-      var(--vp-c-divider) 45%,
-      var(--vp-c-divider) 55%,
-      transparent 55%
+      var(--vp-c-bg-elv) calc(50% - 1px),
+      var(--vp-c-divider) calc(50% - 1px),
+      var(--vp-c-divider) calc(50%),
+      transparent calc(50%)
     ),
     linear-gradient(
       45deg,
-      var(--vp-c-bg-elv) 45%,
-      var(--vp-c-divider) 45%,
-      var(--vp-c-divider) 55%,
-      transparent 55%
+      var(--vp-c-bg-elv) calc(50% - 1px),
+      var(--vp-c-divider) calc(50% - 1px),
+      var(--vp-c-divider) calc(50%),
+      transparent calc(50%)
     );
   background-position:
     top left,
@@ -133,7 +145,15 @@ function loadContent(event: PointerEvent) {
   background-size: 50% 100%;
 }
 
-.footnote-ref-card::after {
+.footnote-ref-wrapper.left::after {
+  left: 5px;
+}
+
+.footnote-ref-wrapper.right::after {
+  right: 5px;
+}
+
+.footnote-ref-wrapper::before {
   content: "";
   width: 100%;
   height: 10px;
@@ -142,7 +162,25 @@ function loadContent(event: PointerEvent) {
   top: -8px;
   left: 0;
   background: transparent;
+  z-index: -1;
 }
+
+.footnote-ref-card {
+  padding: 8px 12px;
+  max-width: 400px;
+  width: max-content;
+  background: var(--vp-c-bg-elv);
+  border: var(--vp-c-divider) 1px solid;
+  box-shadow: var(--vp-shadow-3);
+  border-radius: 5px;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.5em;
+  transition: transform 0.2s;
+}
+
 .footnote-ref-card .footnote-backref {
   display: none;
 }

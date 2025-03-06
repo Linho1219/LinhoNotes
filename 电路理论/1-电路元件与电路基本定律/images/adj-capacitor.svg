@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26.1111126" height="47.7777786">
+	<defs>
+		<marker id="CustomMarker-01" markerUnits="strokeWidth" markerWidth="9" markerHeight="9" viewBox="-9 -4.5 9 9" orient="auto-start-reverse">
+			<path d="M 0 -0 L -6 -3, -4.8 -0.5, -4.8 0.5, -6 3 Z" fill="#000000" stroke="#000000" stroke-linejoin="round" />
+		</marker>
+	</defs>
+	<path d="M -157.07 0 L -21.8628 0" fill="none" stroke="#000000" stroke-width="11.5199995" stroke-linecap="round" stroke-linejoin="round" transform="matrix(-6.45712e-008 -0.138889 -0.138889 6.45712e-008 13.1575 23.6029)" />
+	<path d="M 21.8628 0 L 157.07 0" fill="none" stroke="#000000" stroke-width="11.5199995" stroke-linecap="round" stroke-linejoin="round" transform="matrix(-6.45712e-008 -0.138889 -0.138889 6.45712e-008 13.1575 23.6029)" />
+	<path d="M 21.8628 -78.7062 L 21.8628 78.7062" fill="none" stroke="#000000" stroke-width="11.5199995" stroke-linecap="round" stroke-linejoin="round" transform="matrix(-6.45712e-008 -0.138889 -0.138889 6.45712e-008 13.1575 23.6029)" />
+	<path d="M -21.8628 -78.7062 L -21.8628 78.7062" fill="none" stroke="#000000" stroke-width="11.5199995" stroke-linecap="round" stroke-linejoin="round" transform="matrix(-6.45712e-008 -0.138889 -0.138889 6.45712e-008 13.1575 23.6029)" />
+	<path d="M -131.177 87.4513 L 131.177 -87.4513" fill="none" stroke="#000000" stroke-width="11.5199995" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#CustomMarker-01)" transform="matrix(-6.45712e-008 -0.138889 -0.138889 6.45712e-008 13.1575 23.6029)" />
+</svg>
