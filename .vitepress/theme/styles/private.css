@@ -53,11 +53,10 @@
 
 /* 标点挤压 */
 :root {
-  text-spacing-trim: trim-start;
+  text-spacing-trim: space-all;
 }
 punc-spacing {
   display: inline;
-  text-spacing-trim: space-all;
 }
 .punc-full {
   margin-inline-end: -0.5em;
@@ -73,6 +72,10 @@ punc-spacing {
 }
 .punc-before-more {
   margin-inline-start: -0.6em;
+}
+table punc-spacing {
+  margin-inline-start: 0;
+  margin-inline-end: 0;
 }
 
 /* 例题、详情框背景色 */
