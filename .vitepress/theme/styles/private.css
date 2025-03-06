@@ -52,8 +52,12 @@
 }
 
 /* 标点挤压 */
+:root {
+  text-spacing-trim: trim-start;
+}
 punc-spacing {
   display: inline;
+  text-spacing-trim: space-all;
 }
 .punc-full {
   margin-inline-end: -0.5em;
