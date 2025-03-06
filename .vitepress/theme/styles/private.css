@@ -51,33 +51,6 @@
   --vp-badge-tip-bg: var(--vp-c-brand-soft);
 }
 
-/* 标点挤压 */
-:root {
-  text-spacing-trim: space-all;
-}
-punc-spacing {
-  display: inline;
-}
-.punc-full {
-  margin-inline-end: -0.5em;
-}
-.punc-half {
-  margin-inline-end: -0.5em;
-}
-.punc-quarter {
-  margin-inline-end: -0.25em;
-}
-.punc-before-less {
-  margin-inline-start: -0.4em;
-}
-.punc-before-more {
-  margin-inline-start: -0.6em;
-}
-table punc-spacing {
-  margin-inline-start: 0;
-  margin-inline-end: 0;
-}
-
 /* 例题、详情框背景色 */
 .custom-block.example,
 .custom-block.details {

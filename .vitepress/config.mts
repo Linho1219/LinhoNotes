@@ -4,7 +4,7 @@ import mdFootnote from "markdown-it-footnote";
 import mdCheckbox from "markdown-it-task-lists";
 import mdSup from "markdown-it-sup";
 import mdSub from "markdown-it-sub";
-import mdAutoSpacing from "markdown-it-autospace";
+import mdAutoSpacing from "./spacing/spacing";
 
 import {
   groupIconMdPlugin,
@@ -116,10 +116,7 @@ export default {
         )
         .use(mdGitHubAlertsPlugin)
         .use(mdPlot)
-        .use(mdAutoSpacing, {
-          pangu: true,
-          mojikumi: true,
-        });
+        .use(mdAutoSpacing);
     },
   },
   cleanUrls: true,
@@ -148,9 +145,7 @@ export default {
         : []),
     ],
     ssr: {
-      noExternal: [
-        "@nolebase/vitepress-plugin-highlight-targeted-heading",
-      ],
+      noExternal: ["@nolebase/vitepress-plugin-highlight-targeted-heading"],
     },
   },
 } as UserConfig<DefaultTheme.Config>;

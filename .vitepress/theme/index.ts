@@ -13,6 +13,8 @@ import "./fonts/JetBrainsMono/index.css";
 import "./fonts/HarmonyOSSans/index.css";
 import "./fonts/Punctuation/index.css";
 
+import "../spacing/mojikumi.css";
+
 import Layout from "./layout.vue";
 import Mermaid from "../codeblock/mermaid.vue";
 import Graph from "../codeblock/graph.vue";
