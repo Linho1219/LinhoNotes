@@ -15,7 +15,7 @@ $$
 
 我们要求的是 $k$ 段的最值，所以把两边坐标头尾组合，分别存入两个存“底边长度”的数组里降序排列
 
-然后逐步增加 $k $ 的时候就记录两边各取到第几段，贪心取较大的一边
+然后逐步增加 $k$ 的时候就记录两边各取到第几段，贪心取较大的一边
 
 如果不满足限制就调整，减少某一边选取的底边数量，换选另一边的
 
@@ -47,23 +47,23 @@ ll tt=1;
 void solve(){
 	ll n,m;
 	cin>>n>>m;
-	
+
 	vector<ll> a(n+1),b(m+1);
 	for(ll i=1;i<=n;i++) cin>>a[i];
 	for(ll i=1;i<=m;i++) cin>>b[i];
-	
+
 	sort(a.begin()+1,a.end());	//排序
 	sort(b.begin()+1,b.end());
-	
+
 	ll mk=min((n+m)/3,min(n,m));	//最多的三角形个数
-	
+
 	vector<ll> A(n+1),B(m+1);	//底边长度序列
-	
+
 	for(ll i=1;i<=n/2;i++)
 		A[i]=(a[n-i+1]-a[i]);
 	for(ll i=1;i<=m/2;i++)
 		B[i]=(b[m-i+1]-b[i]);
-	
+
 	ll s=0,t=0,ans=0;
 	cout<<mk<<endl;
 	if(mk)
@@ -73,7 +73,7 @@ void solve(){
 				ans+=A[++s];
 			else
 				ans+=B[++t];
-				
+
 			while(s>sx){	//调整，如果超出限制就减少所选的元素数量
 				ans-=A[s--];
 				ans+=B[++t];
@@ -91,13 +91,13 @@ int main() {
 	ios::sync_with_stdio( 0 );
 	cin.tie( 0 );
 	cout.tie( 0 );
-	
+
 	cin >> tt;	//非多组测试数据时注释掉即可
-	
+
 	while ( tt-- ) {
 		solve();
 	}
-	
+
 	cout.flush();
 	return 0;
 }
