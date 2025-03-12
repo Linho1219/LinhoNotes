@@ -50,6 +50,10 @@ mjx-container {
   margin: 16px 0;
   font-size: 16px;
 }
+.vp-doc .custom-block ul,
+.vp-doc .custom-block ol {
+  margin: 8px 0;
+}
 
 /* 提示块分割线颜色修复 */
 .custom-block {
