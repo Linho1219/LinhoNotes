@@ -1,0 +1,37 @@
+/* 标点挤压 */
+
+punc-spacing,
+punc-wrapper {
+  display: inline;
+}
+
+:root {
+  text-spacing-trim: trim-start;
+}
+
+@supports not (text-spacing-trim: trim-start) {
+  :root {
+    text-spacing-trim: space-all;
+  }
+
+  .punc-spaceright + .punc-spaceright,
+  .punc-spaceleft + .punc-spaceleft,
+  .punc-spaceright + .punc-spaceleft {
+    margin-inline-start: -0.5em;
+  }
+
+  .punc-stop + .punc-quoteopen,
+  .punc-quoteopen + .punc-open,
+  .punc-sep + .punc-open,
+  .punc-close + .punc-sep {
+    margin-inline-start: -0.25em;
+  }
+
+  .paragraph-punc-start {
+    text-indent: -0.5em;
+  }
+
+  .paragraph-punc-start[char="《"] {
+    text-indent: -0.4em;
+  }
+}

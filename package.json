@@ -19,7 +19,6 @@
     "dotenv": "^16.4.5",
     "function-plot": "^2.0.0-0",
     "json5": "^2.2.3",
-    "markdown-it-autospace": "^1.1.4",
     "markdown-it-container": "^4.0.0",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-mathjax3": "^4.3.2",

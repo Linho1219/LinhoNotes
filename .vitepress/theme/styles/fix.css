@@ -14,6 +14,18 @@ h6 {
   padding: 2px 6px;
 }
 
+/* 修复 shiki 语法高亮未显示斜体加粗等 */
+.vp-code span {
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+}
+.dark .vp-code span {
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}
+
 /* 修复公式纵向滚动条；标点避头尾修复 */
 mjx-container {
   overflow-y: hidden;
@@ -37,6 +49,10 @@ mjx-container {
 .vp-doc .custom-block div[class*="language-"] {
   margin: 16px 0;
   font-size: 16px;
+}
+.vp-doc .custom-block ul,
+.vp-doc .custom-block ol {
+  margin: 8px 0;
 }
 
 /* 提示块分割线颜色修复 */

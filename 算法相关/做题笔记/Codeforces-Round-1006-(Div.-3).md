@@ -6,11 +6,11 @@
 
 ## 游记&题解
 
-最开始的时候以为是阶乘组合数，然后发现不太对，是$ \sum\limits_1^{n-1}{i} $ 的数量
+最开始的时候以为是阶乘组合数，然后发现不太对，是 $\sum\limits_1^{n-1}{i}$ 的数量
 
 换句话说就是，我们可以用 $n$ 个结点产生 $\frac {n\times (n-1)}{2}$ 组方案
 
-那我们每次就找使得 $\frac {n\times (n-1)}{2}$ 最大并且不超过 $k$ 的 $n$  
+那我们每次就找使得 $\frac {n\times (n-1)}{2}$ 最大并且不超过 $k$ 的 $n$
 
 每次构造方案之后，剩余需要被构造的点对数量会减少至 $2\sqrt n$ 以下
 
@@ -24,12 +24,12 @@
 void solve(){
 	ll k;
 	cin>>k;
-	
+
 	if(k==0){
 		cout<<0<<endl;
 		return;
 	}
-	
+
 	vector<pair<ll,ll>> ans;
 	ll q=0;
 	while(k){
@@ -40,12 +40,12 @@ void solve(){
 			ans.emplace_back(-(1e7)*q,(-1e7)*q+i);
 		k-=p*(p+1)/2;
 	}
-	
+
 	cout<<ans.size()<<endl;
 	for(auto [x,y]:ans){
 		cout<<x<<' '<<y<<endl;
 	}
-	
+
 }
 ```
 
@@ -156,12 +156,12 @@ void solve(){
 	ll q=min(k,(ll)sqrt(n));
 	for(ll i=2;i<=q;i++)
 		ans=(ans+sol1(n,i))%Mod;
-	
+
 	if(k>n)
 		ans=(ans+n*((k-n)%Mod))%Mod;
-	
+
 	ll yy=min(k,n);
-		
+
 	auto qq=[&](ll a1,ll a2,ll b1,ll b2){
 		if(a2==a1) return b1*a1;
 		ll d=(b2-b1)/(a2-a1),ct=a2-a1+1;
@@ -169,7 +169,7 @@ void solve(){
 		res=(((ct*a1%Mod*b1)%Mod   +(a1*d+b1)%Mod*(ct*(ct-1)/2%Mod)%Mod   +d*(ct*(ct-1)*(2*ct-1)/6%Mod))%Mod+Mod)%Mod;
 		return res;
 	};
-	
+
 	ll l=q+1,r=0;
 	while(l<=yy){
 		ll p=n/l;
@@ -188,18 +188,18 @@ int main() {
 	ios::sync_with_stdio( 0 );
 	cin.tie( 0 );
 	cout.tie( 0 );
-	
+
 	for(ll i=1;i<=600;i++) pw[i][0]=1;
 	for(ll i=1;i<=600;i++)
 		for(ll j=1;j<=20;j++)
 			pw[i][j]=pw[i][j-1]*i%Mod;
-	
+
 	cin >> tt;	//非多组测试数据时注释掉即可
-	
+
 	while ( tt-- ) {
 		solve();
 	}
-	
+
 	cout.flush();
 	return 0;
 }
