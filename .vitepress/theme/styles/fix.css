@@ -100,6 +100,14 @@ img.VPImage.logo {
   }
 }
 
+/* 缩小移动端边距 */
+@media screen and (max-width: 688px){
+  .VPDoc{
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
 /* 调整自定义框标题大小 */
 .vp-doc .custom-block .custom-block-title {
   font-size: 16px;
