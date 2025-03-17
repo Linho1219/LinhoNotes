@@ -242,6 +242,7 @@ onMounted(() => {
   line-height: 0;
   text-transform: uppercase;
   margin-left: 0.6em;
+  white-space: nowrap;
 }
 
 .baselineCard .browsers {
@@ -318,6 +319,7 @@ onMounted(() => {
 .baselineCard a {
   --link-color: var(--baseline-color);
   --link-soft: var(--baseline-soft);
+  color: var(--baseline-color);
 }
 </style>
 
