@@ -72,7 +72,6 @@ export default function mdAutoSpacing(md: MarkdownIt) {
     const [tokens, idx, optn, , slf] = args;
     const firstChar = tokens[idx + 1].content.trimStart().slice(0, 1);
     if (puncArrs.spaceleft.includes(firstChar)) {
-      console.log(tokens[idx + 1].content.trimStart().slice(0, 3));
       tokens[idx].attrSet("class", "paragraph-punc-start");
       tokens[idx].attrSet("char", firstChar);
     }

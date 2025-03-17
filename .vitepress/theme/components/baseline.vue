@@ -127,7 +127,6 @@ onMounted(() => {
     .get(API_URL + props.feature)
     .then((response) => {
       const data: APIreturn = response.data;
-      console.log(data);
       status.value = data.baseline.status;
       featureNameStr.value = data.name;
       [
@@ -166,7 +165,7 @@ onMounted(() => {
       }
     })
     .catch((err) => {
-      console.log("not found: ", props.feature);
+      console.error("Baseline info not found: ", props.feature);
     });
 });
 </script>
