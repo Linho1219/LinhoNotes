@@ -59,7 +59,6 @@ watch(isHover, (hover) => {
   const rightDistance = window.innerWidth - rect.right;
   if (rightDistance < 410) alignRight.value = true;
   else alignRight.value = false;
-  console.log(rightDistance);
 });
 </script>
 
