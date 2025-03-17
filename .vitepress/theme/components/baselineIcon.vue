@@ -56,13 +56,6 @@ const props = defineProps<{
 
 <style>
 .baselineIcon {
-  --limited-f: light-dark(#f09409, #f09409);
-  --limited-b: light-dark(#c6c6c6, #565656);
-  --widely-f: light-dark(#1ea446, #1ea446);
-  --widely-b: light-dark(#c4eed0, #125225);
-  --newly-f: light-dark(#1b6ef3, #4185ff);
-  --newly-b: light-dark(#a8c7fa, #2d509e);
-  --unknown: light-dark(#909090, #666666);
   width: 36px;
   height: 20px;
 }
