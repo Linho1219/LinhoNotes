@@ -44,12 +44,19 @@
           This feature might not work in older devices or browsers.
         </p>
         <p v-if="status === 'limited'">
-          This feature is not Baseline because it does not work in some of the
-          most widely-used browsers.
+          This feature is not Baseline untill {{ lowDateStr }} because it does
+          not work in some of the most widely-used browsers.
         </p>
         <p v-if="status === 'unknown'">
-          Could not fetch information about this feature. Try searcing on <a class="animated-link" href="https://caniuse.com/" target="_blank">Can I Use</a> or
-          <a class="animated-link" href="https://caniuse.com/" target="_blank">MDN Web Docs</a> for more information.
+          Could not fetch information about this feature. Try searcing on
+          <a class="animated-link" href="https://caniuse.com/" target="_blank"
+            >Can I Use</a
+          >
+          or
+          <a class="animated-link" href="https://caniuse.com/" target="_blank"
+            >MDN Web Docs</a
+          >
+          for more information.
         </p>
         <p class="links">
           <a
@@ -77,7 +84,7 @@ import axios from "axios";
 const props = defineProps<{ feature: string }>();
 const status = ref<"widely" | "newly" | "limited" | "unknown">("unknown");
 const featureNameStr = ref(props.feature);
-const baselineInfoStr = ref("Unknown availability");
+const baselineInfoStr = ref("Fetching baseline info...");
 const lowDateStr = ref("");
 const toCheckCross = (status: any) => (status ? "checked" : "cross");
 const brwsrCompat = reactive<{
@@ -159,13 +166,19 @@ onMounted(() => {
           });
           break;
         }
-        case "limited":
+        case "limited": {
           baselineInfoStr.value = "Limited availability";
+          lowDateStr.value = new Date().toLocaleString("en-US", {
+            month: "long",
+            year: "numeric",
+          });
           break;
+        }
       }
     })
     .catch((err) => {
       console.error("Baseline info not found: ", props.feature);
+      baselineInfoStr.value = "Availability not found";
     });
 });
 </script>
