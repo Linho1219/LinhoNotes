@@ -48,7 +48,7 @@
           not work in some of the most widely-used browsers.
         </p>
         <p v-if="status === 'unknown'">
-          Could not fetch information about this feature. Try searcing on
+          Could not fetch information about this feature. Try searching on
           <a class="animated-link" href="https://caniuse.com/" target="_blank"
             >Can I Use</a
           >
