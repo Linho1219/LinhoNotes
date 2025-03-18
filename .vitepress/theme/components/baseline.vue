@@ -150,7 +150,7 @@ onMounted(() => {
       switch (data.baseline.status) {
         case "widely": {
           const lowDate = new Date(data.baseline.low_date!);
-          baselineInfoStr.value = "widely available";
+          baselineInfoStr.value = "Widely available";
           lowDateStr.value = lowDate.toLocaleString("en-US", {
             month: "long",
             year: "numeric",
