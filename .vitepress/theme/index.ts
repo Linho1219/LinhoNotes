@@ -11,7 +11,7 @@ import "./styles/print.css";
 
 import "./fonts/JetBrainsMono/index.css";
 import "./fonts/HarmonyOSSans/index.css";
-import "./fonts/Punctuation/index.css";
+import "./fonts/PunctuationSC/index.css";
 
 import "../spacing/mojikumi.css";
 
