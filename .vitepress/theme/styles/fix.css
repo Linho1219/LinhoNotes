@@ -90,8 +90,7 @@ img.VPImage.logo {
 /* 缩小表格空隙 */
 .vp-doc table {
   margin: 20px auto;
-  width: max-content;
-  max-width: 100%;
+  display: table;
 }
 @media screen and (max-width: 688px) {
   .vp-doc th,
@@ -101,8 +100,8 @@ img.VPImage.logo {
 }
 
 /* 缩小移动端边距 */
-@media screen and (max-width: 688px){
-  .VPDoc{
+@media screen and (max-width: 688px) {
+  .VPDoc {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
