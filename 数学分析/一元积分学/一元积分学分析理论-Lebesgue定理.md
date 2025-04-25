@@ -45,9 +45,9 @@ $\{x_{n}\}\in\mathbb{R},\ x_{n}\rightarrow x_{\star}\in\mathbb{R}$为Jordan零�
 :::
 ***
 ## 开集与闭集
-* **定义1** 设有集合$A$，若对任意的收敛数列$ \{a_{n}\}\subset A$，都有$\{a_n\}\rightarrow a_{\star}\in A$，则称A为闭集。
+* **定义1** 设有集合$A$，若对任意的收敛数列 $\{a_{n}\}\subset A$，都有$\{a_n\}\rightarrow a_{\star}\in A$，则称A为闭集。
 
-::: example 
+::: example
 
 闭区间$[a,b]$是闭集。
 
@@ -55,7 +55,7 @@ $\{x_{n}\}\in\mathbb{R},\ x_{n}\rightarrow x_{\star}\in\mathbb{R}$为Jordan零�
 
 * **定义2** 设有集合$A$，若对$\forall a\in A$，都有$a$的邻域包含于$A$，则称A为开集。
 
-::: example 
+::: example
 
 $x_0$的邻域$B_{\epsilon}(x_0)$为开集。
 
@@ -238,7 +238,7 @@ $\omega(f;x_{\star})\ge\lambda$，与$\omega(f;x)<\lambda,\forall x\in K$矛盾�
 
 设有集合$\Lambda=\{x\in D_{x}|\omega(f;x)>0\}$（即$f(x)$不连续点的全集），$f(x)$几乎处处连续$\Leftrightarrow \Lambda$是Lebesgue零测集。
 
-::: info 必要性证明 
+::: info 必要性证明
 
 用反证法。假设$\Lambda$不是Lebesgue零测集。
 
