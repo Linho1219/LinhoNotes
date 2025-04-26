@@ -31,8 +31,8 @@ import QRCodeVue from "qrcode.vue";
 import md5 from "blueimp-md5";
 import { ref, watchEffect, onMounted } from "vue";
 import { useData } from "vitepress";
-import { globalConfig } from "../manualConfig";
-import { miscI18n } from "../i18n";
+import { globalConfig } from "@/manualConfig";
+import { miscI18n } from "@/i18n";
 
 const { page, isDark } = useData();
 const link = ref("");

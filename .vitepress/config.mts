@@ -32,6 +32,7 @@ import genreateSitemap from "./sitemap";
 import mapShortUrl from "./shortUrl/mapShortUrl";
 
 import type { UserConfig, DefaultTheme } from "vitepress";
+import { resolve } from "node:path";
 
 // https://vitepress.dev/reference/site-config
 export default {
@@ -146,6 +147,14 @@ export default {
     ],
     ssr: {
       noExternal: ["@nolebase/vitepress-plugin-highlight-targeted-heading"],
+    },
+    resolve: {
+      alias: [
+        {
+          find: "@",
+          replacement: resolve(__dirname, "./"),
+        },
+      ],
     },
   },
 } as UserConfig<DefaultTheme.Config>;

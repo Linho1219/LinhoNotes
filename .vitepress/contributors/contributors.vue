@@ -31,7 +31,7 @@
 import { watchEffect, ref } from "vue";
 import { useData } from "vitepress";
 import md5 from "blueimp-md5";
-import { globalConfig } from "../manualConfig";
+import { globalConfig } from "@/manualConfig";
 
 type Contributor = {
   username: string;

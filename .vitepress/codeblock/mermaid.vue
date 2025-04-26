@@ -31,7 +31,7 @@ const props = defineProps<{
 
 import { ref } from "vue";
 import mermaid from "mermaid";
-import ImageViewer from "../imageViewer/imageViewer.vue";
+import ImageViewer from "@/imageViewer/imageViewer.vue";
 
 const svgRef = ref(""),
   errorFlag = ref(false),
