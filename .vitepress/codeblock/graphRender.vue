@@ -66,7 +66,7 @@ onMounted(() => {
     let originalOpt: FunctionPlotOptions | undefined;
     try {
       originalOpt = <FunctionPlotOptions | undefined>(
-        JSON5.parse(decodeURIComponent(props.code!))
+        JSON5.parse((props.code!))
       );
     } catch (eJSON5) {
       errorFlag.value = true;

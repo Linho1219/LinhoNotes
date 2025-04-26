@@ -5,6 +5,7 @@
     "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.14.0",
     "@octokit/rest": "^21.0.2",
     "@prettier/sync": "^0.5.2",
+    "@types/base-64": "^1.0.2",
     "@types/blueimp-md5": "^2.18.2",
     "@types/js-yaml": "^4.0.9",
     "@types/markdown-it-container": "^2.0.10",
@@ -12,6 +13,7 @@
     "@types/node": "^22.7.5",
     "@types/pangu": "^4.0.2",
     "@types/pinyin": "^2.10.2",
+    "@types/utf8": "^3.0.3",
     "axios": "^1.7.7",
     "blueimp-md5": "^2.19.0",
     "clang-format": "^1.8.0",
@@ -43,5 +45,9 @@
     "preview": "vitepress preview",
     "devexp": "vitepress dev --host",
     "postinstall": "patch-package"
+  },
+  "dependencies": {
+    "base-64": "^1.0.0",
+    "utf8": "^3.0.0"
   }
 }
