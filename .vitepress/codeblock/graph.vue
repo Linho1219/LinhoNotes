@@ -47,7 +47,7 @@ import { globalConfig } from "@/manualConfig";
 function openInExternal() {
   const miniCode = JSON5.stringify(JSON5.parse(decodeURIComponent(props.code)));
   const query = base64.encode(utf8.encode(miniCode)).replace(/=+$/g, "");
-  window.open(globalConfig.externalGraphPrefix + query, "_blank", "popup");
+  window.open(globalConfig.externalGraphPrefix + query, "_blank");
 }
 </script>
 
