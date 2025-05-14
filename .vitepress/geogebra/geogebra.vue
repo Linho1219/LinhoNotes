@@ -17,10 +17,10 @@ const appID = "_ggb_" + Math.random().toString(36).substring(2, 15);
 const domID = "dom" + appID;
 
 const init = () => {
-  if (typeof GGBApplet === "undefined") return;
+  if (typeof GGBApplet === "undefined") return setTimeout(init, 500);
   const applet = new GGBApplet({
     id: appID,
-    appName: props.mode,
+    appName: props.mode || "graphing",
     height: 450,
     // showMenuBar: false,
     // showToolBar: false,
@@ -47,6 +47,7 @@ onMounted(() => {
 <style>
 .ggb-shell {
   color: black;
+  margin: 16px 0;
 }
 .dark .ggb-shell {
   filter: hue-rotate(180deg) brightness(90%) invert(100%);
