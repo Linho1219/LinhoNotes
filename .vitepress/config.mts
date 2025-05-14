@@ -48,6 +48,7 @@ export default {
           "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
       },
     ],
+    ["script", { src: "https://www.geogebra.org/apps/deployggb.js" }],
     ...iconHeader,
   ],
   themeConfig: {
@@ -97,7 +98,7 @@ export default {
       tex: {
         macros: {
           oiint: `{\\subset\\!\\supset} \\mathllap{\\iint}`,
-          oiiint:`{\\Large{\\subset\\!\\supset}} \\mathllap{\\iiint}`
+          oiiint: `{\\Large{\\subset\\!\\supset}} \\mathllap{\\iiint}`,
         },
       },
     },
