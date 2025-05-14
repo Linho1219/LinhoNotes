@@ -2,6 +2,8 @@ import type MarkdownIt from "markdown-it";
 import prettier from "@prettier/sync";
 import { execSync } from "child_process";
 import JSON5 from "json5";
+import base64 from "base-64";
+import fs from "fs";
 
 const prettierTable: Record<string, string> = {
   ts: "typescript",
@@ -42,6 +44,20 @@ export default function mdPlot(md: MarkdownIt): void {
       return `<ClientOnly><Graph id="funcion-${idx}" code="${encodeURIComponent(
         token.content
       )}"></Graph></ClientOnly>`;
+    }
+    if (language.startsWith("ggb")) {
+      // console.log(token);
+      const [src, mode] = (<any>token).src as string[];
+      try {
+        const content = fs.readFileSync(src);
+        return `<ClientOnly><GeoGebra data="${content.toString("base64")}" mode="${mode}"/></ClientOnly>`;
+      } catch(err) {
+        console.error(`\nGeoGebra parse error:\n  ${src}\n  ${String(err)}`);
+        return `<div class="mermaid-error caution custom-block github-alert">
+          <p class="custom-block-title">GeoGebra 导入错误</p>
+          <pre>${String(err)}</pre>
+        </div>`;
+      }
     }
 
     // 代码格式化

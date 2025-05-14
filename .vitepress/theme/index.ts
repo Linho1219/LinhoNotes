@@ -28,6 +28,7 @@ import Baseline from "./components/baseline.vue";
 import Footnote from "@/footnote/footnote.vue";
 import FootnoteRef from "@/footnote/footnoteRef.vue";
 import ImageWrapper from "@/imageViewer/imageWrapper.vue";
+import GeoGebra from "@/geogebra/geogebra.vue";
 
 export default <Theme>{
   extends: DefaultTheme,
@@ -47,5 +48,7 @@ export default <Theme>{
     app.component("Pinyin", Pinyin);
     app.component("Cloze", Cloze);
     app.component("Baseline", Baseline);
+    app.component("GeoGebra", GeoGebra);
+    app.component("GGB", GeoGebra);
   },
 };
