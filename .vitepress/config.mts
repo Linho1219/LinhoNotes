@@ -93,7 +93,14 @@ export default {
     ...themeI18n,
   },
   markdown: {
-    math: true,
+    math: {
+      tex: {
+        macros: {
+          oiint: `{\\subset\\!\\supset} \\mathllap{\\iint}`,
+          oiiint:`{\\Large{\\subset\\!\\supset}} \\mathllap{\\iiint}`
+        },
+      },
+    },
     languageAlias: { graph: "json5" },
     config: (md) => {
       md.use(groupIconMdPlugin)
