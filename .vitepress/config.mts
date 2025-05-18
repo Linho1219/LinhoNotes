@@ -32,6 +32,7 @@ import genreateSitemap from "./sitemap";
 import mapShortUrl from "./shortUrl/mapShortUrl";
 
 import type { UserConfig, DefaultTheme } from "vitepress";
+import { resolve } from "node:path";
 
 // https://vitepress.dev/reference/site-config
 export default {
@@ -47,6 +48,7 @@ export default {
           "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0",
       },
     ],
+    ["script", { src: "https://www.geogebra.org/apps/deployggb.js" }],
     ...iconHeader,
   ],
   themeConfig: {
@@ -92,7 +94,14 @@ export default {
     ...themeI18n,
   },
   markdown: {
-    math: true,
+    math: {
+      tex: {
+        macros: {
+          oiint: `{\\subset\\!\\supset} \\mathllap{\\iint}`,
+          oiiint: `{\\Large{\\subset\\!\\supset}} \\mathllap{\\iiint}`,
+        },
+      },
+    },
     languageAlias: { graph: "json5" },
     config: (md) => {
       md.use(groupIconMdPlugin)
@@ -146,6 +155,14 @@ export default {
     ],
     ssr: {
       noExternal: ["@nolebase/vitepress-plugin-highlight-targeted-heading"],
+    },
+    resolve: {
+      alias: [
+        {
+          find: "@",
+          replacement: resolve(__dirname, "./"),
+        },
+      ],
     },
   },
 } as UserConfig<DefaultTheme.Config>;

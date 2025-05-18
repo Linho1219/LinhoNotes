@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { miscI18n } from "../i18n";
+import { miscI18n } from "@/i18n";
 </script>
 
 <style>
