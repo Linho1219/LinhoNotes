@@ -6,35 +6,35 @@
 
 * Lebesgue零测集
 
-设有$E\subset\mathbb{R},\forall\epsilon\in\mathbb{R}^+,\exists\{\stackrel{\epsilon}{J}_{\alpha}\}_{\alpha = 1}^{+\infty}$（一个闭区间列）。
+设有$E\subset\mathbb{R},\forall\varepsilon\in\mathbb{R}^+,\exists\{\stackrel{\varepsilon}{J}_{\alpha}\}_{\alpha = 1}^{+\infty}$（一个闭区间列）。
 
 $$
-s.t.\ E\subset \bigcup_{\alpha = 1}^{+\infty}\stackrel{\epsilon}{J}_{\alpha = 1}
+s.t.\ E\subset \bigcup_{\alpha = 1}^{+\infty}\stackrel{\varepsilon}{J}_{\alpha = 1}
 $$
 
 且
 
 $$
-\sum\limits_{\alpha = 1}^{+\infty}|\stackrel{\epsilon}{J}_{\alpha}|<\epsilon
+\sum\limits_{\alpha = 1}^{+\infty}|\stackrel{\varepsilon}{J}_{\alpha}|<\varepsilon
 $$
 
-则称$E$为Lebesgue零测集，$\{\stackrel{\epsilon}{J}_{\alpha}\}_{\alpha = 1}^{+\infty}$为$\epsilon-$可列区间覆盖。
+则称$E$为Lebesgue零测集，$\{\stackrel{\varepsilon}{J}_{\alpha}\}_{\alpha = 1}^{+\infty}$为$\varepsilon-$可列区间覆盖。
 ***
 * Jordan零测集（包含于Lebesgue零测集）
 
-设有$E\subset\mathbb{R},\forall\epsilon\in\mathbb{R}^+,\exists\{\stackrel{\epsilon}{J}_{\alpha}\}_{\alpha = 1}^{N_{\epsilon}}$
+设有$E\subset\mathbb{R},\forall\varepsilon\in\mathbb{R}^+,\exists\{\stackrel{\varepsilon}{J}_{\alpha}\}_{\alpha = 1}^{N_{\varepsilon}}$
 
 $$
-s.t.\ E\subset\bigcup_{\alpha = 1}^{N_{\epsilon}}\stackrel{\epsilon}{J}_{\alpha}
+s.t.\ E\subset\bigcup_{\alpha = 1}^{N_{\varepsilon}}\stackrel{\varepsilon}{J}_{\alpha}
 $$
 
 且
 
 $$
-\sum\limits_{\alpha = 1}^{N_{\epsilon}}|\stackrel{\epsilon}{J}_{\alpha}|<\epsilon
+\sum\limits_{\alpha = 1}^{N_{\varepsilon}}|\stackrel{\varepsilon}{J}_{\alpha}|<\varepsilon
 $$
 
-则称$E$为Jordan零测集，$\{\stackrel{\epsilon}{J}_{\alpha}\}_{\alpha = 1}^{N_{\epsilon}}$为$\epsilon-$有限区间覆盖。
+则称$E$为Jordan零测集，$\{\stackrel{\varepsilon}{J}_{\alpha}\}_{\alpha = 1}^{N_{\varepsilon}}$为$\varepsilon-$有限区间覆盖。
 
 ::: example
 
@@ -45,9 +45,9 @@ $\{x_{n}\}\in\mathbb{R},\ x_{n}\rightarrow x_{\star}\in\mathbb{R}$为Jordan零�
 :::
 ***
 ## 开集与闭集
-* **定义1** 设有集合$A$，若对任意的收敛数列 $\{a_{n}\}\subset A$，都有$\{a_n\}\rightarrow a_{\star}\in A$，则称A为闭集。
+* **定义1** 设有集合$A$，若对任意的收敛数列$ \{a_{n}\}\subset A$，都有$\{a_n\}\rightarrow a_{\star}\in A$，则称A为闭集。
 
-::: example
+::: example 
 
 闭区间$[a,b]$是闭集。
 
@@ -55,9 +55,9 @@ $\{x_{n}\}\in\mathbb{R},\ x_{n}\rightarrow x_{\star}\in\mathbb{R}$为Jordan零�
 
 * **定义2** 设有集合$A$，若对$\forall a\in A$，都有$a$的邻域包含于$A$，则称A为开集。
 
-::: example
+::: example 
 
-$x_0$的邻域$B_{\epsilon}(x_0)$为开集。
+$x_0$的邻域$B_{\varepsilon}(x_0)$为开集。
 
 :::
 
@@ -94,13 +94,13 @@ $$
 
 且区间$a_n,b_n$都需要无限覆盖。
 
-设有$\xi\in U_{\alpha_{\star}}$，$U_{\alpha_{\star}}$为开集，根据开集的性质，$\forall\epsilon>0$，$\xi$的邻域$B_{\epsilon}(\xi)\subset U_{\alpha_{\star}}$。
+设有$\xi\in U_{\alpha_{\star}}$，$U_{\alpha_{\star}}$为开集，根据开集的性质，$\forall\varepsilon>0$，$\xi$的邻域$B_{\varepsilon}(\xi)\subset U_{\alpha_{\star}}$。
 
-然而，$\forall\epsilon>0,\ \exists N_{\epsilon a}\in\mathbb{N}^+,\forall n>N_{\epsilon a},\ a_n\in B_{\epsilon}(\xi)$，
+然而，$\forall\varepsilon>0,\ \exists N_{\varepsilon a}\in\mathbb{N}^+,\forall n>N_{\varepsilon a},\ a_n\in B_{\varepsilon}(\xi)$，
 
-且有$\forall\epsilon>0,\ \exists N_{\epsilon b}\in\mathbb{N}^+,\forall n>N_{\epsilon b},\ b_n\in B_{\epsilon}(\xi)$.
+且有$\forall\varepsilon>0,\ \exists N_{\varepsilon b}\in\mathbb{N}^+,\forall n>N_{\varepsilon b},\ b_n\in B_{\varepsilon}(\xi)$.
 
-故当$n>\max\{N_{\epsilon a},N_{\epsilon b}\}$时，闭区间$[a_n,b_n]$只需要一个开集$U_{\alpha_{\star}}$即可覆盖，与假设矛盾！
+故当$n>\max\{N_{\varepsilon a},N_{\varepsilon b}\}$时，闭区间$[a_n,b_n]$只需要一个开集$U_{\alpha_{\star}}$即可覆盖，与假设矛盾！
 
 因此$F\subset\bigcup\limits_{j=1}^{N}U_{\alpha_{j}}.$
 
@@ -117,41 +117,41 @@ $$
 
 由E为Lebesgue零测集，有
 $$
-\forall\epsilon>0,\exists\{\stackrel{\epsilon}{J}_{\alpha}\}_{\alpha=1}^{+\infty},s.t.
+\forall\varepsilon>0,\exists\{\stackrel{\varepsilon}{J}_{\alpha}\}_{\alpha=1}^{+\infty},s.t.
 $$
 
 $$
-E\subset\bigcup_{\alpha=1}^{+\infty}\stackrel{\epsilon}{J}_{\alpha}
+E\subset\bigcup_{\alpha=1}^{+\infty}\stackrel{\varepsilon}{J}_{\alpha}
 $$
 
 且
 
 $$
-\sum_{\alpha=1}^{+\infty}|\stackrel{\epsilon}{J}_{\alpha}|<\epsilon.
+\sum_{\alpha=1}^{+\infty}|\stackrel{\varepsilon}{J}_{\alpha}|<\varepsilon.
 $$
 
 为了运用定理3，我们需要把闭区间变为开集，且保持包含关系不变。
 
 Step 1:将闭区间放大$\lambda(\lambda>1)$倍。
 
-易得$E\subset\bigcup\limits_{\alpha=1}^{+\infty}\stackrel{\epsilon}{J}_{\alpha}\subset\bigcup\limits_{\alpha=1}^{+\infty}\lambda\stackrel{\epsilon}{J}_{\alpha}$
+易得$E\subset\bigcup\limits_{\alpha=1}^{+\infty}\stackrel{\varepsilon}{J}_{\alpha}\subset\bigcup\limits_{\alpha=1}^{+\infty}\lambda\stackrel{\varepsilon}{J}_{\alpha}$
 
 Step 2:将闭区间的端点去掉，变成开集。
 
 $$
-E\subset\bigcup_{\alpha=1}^{+\infty}\stackrel{————}{\lambda\stackrel{\epsilon}{J}_{\alpha}}.
+E\subset\bigcup_{\alpha=1}^{+\infty}\stackrel{————}{\lambda\stackrel{\varepsilon}{J}_{\alpha}}.
 $$
 
 根据定理3，有界闭集必有有限覆盖，则有
 
 $$
-E\subset\bigcup_{j=1}^{N_{\epsilon}}\stackrel{————}{\lambda\stackrel{\epsilon}{J}_{\alpha_{j}}}.
+E\subset\bigcup_{j=1}^{N_{\varepsilon}}\stackrel{————}{\lambda\stackrel{\varepsilon}{J}_{\alpha_{j}}}.
 $$
 
 Step 3:补上端点，使其重新成为闭区间，符合Jordan零测集的定义。
 
 $$
-E\subset\bigcup_{j=1}^{N_{\epsilon}}\lambda\stackrel{\epsilon}{J}_{\alpha_{j}}.
+E\subset\bigcup_{j=1}^{N_{\varepsilon}}\lambda\stackrel{\varepsilon}{J}_{\alpha_{j}}.
 $$
 
 证毕。
@@ -182,27 +182,27 @@ $$
 则有
 
 $$
-\forall\epsilon>0,\exists\delta_{\epsilon}>0,\forall\tilde{x},\hat{x}\in K,|\tilde{x}-\hat{x}|<\delta_{\epsilon},
+\forall\varepsilon>0,\exists\delta_{\varepsilon}>0,\forall\tilde{x},\hat{x}\in K,|\tilde{x}-\hat{x}|<\delta_{\varepsilon},
 $$
 
 $$
-|f(\tilde{x})-f(\hat{x})|<\lambda+\epsilon.
+|f(\tilde{x})-f(\hat{x})|<\lambda+\varepsilon.
 $$
 
 ::: info 证明
 
 用反证法。
 
-假设$\exists\epsilon>0,\ \forall \delta_{\epsilon}>0,\exists\tilde{x},\hat{x}\in K,|\tilde{x}-\hat{x}|<\delta_{\epsilon},s.t.$
+假设$\exists\varepsilon>0,\ \forall \delta_{\varepsilon}>0,\exists\tilde{x},\hat{x}\in K,|\tilde{x}-\hat{x}|<\delta_{\varepsilon},s.t.$
 
 $$
-|f(\tilde{x})-f(\hat{x})|\ge\lambda+\epsilon
+|f(\tilde{x})-f(\hat{x})|\ge\lambda+\varepsilon
 $$
 
-取$\delta_{\epsilon}=\frac{1}{n}$,则有$\exists\tilde{x},\hat{x}\in K,|\tilde{x}-\hat{x}|<\frac{1}{n},s.t.$
+取$\delta_{\varepsilon}=\frac{1}{n}$,则有$\exists\tilde{x},\hat{x}\in K,|\tilde{x}-\hat{x}|<\frac{1}{n},s.t.$
 
 $$
-|f(\tilde{x})-f(\hat{x})|\ge\lambda+\epsilon.
+|f(\tilde{x})-f(\hat{x})|\ge\lambda+\varepsilon.
 $$
 
 由于$K$为有界闭集，根据Bolzano-Weierstrass定理，$\{\tilde{x}\},\{\hat{x}\}$必有收敛子列。
@@ -215,15 +215,15 @@ $$
 \begin{align}
 |\tilde{x}_{\star}-\hat{x}_{\star}|&=|\tilde{x}_{\star}-\tilde{x}_{n_{k}}+\tilde{x}_{n_{k}}-\hat{x}_{n_{k}}+\hat{x}_{n_{k}}-\hat{x}_{\star}|\\
 &<|\tilde{x}_{\star}-\tilde{x}_{n_{k}}|+|\tilde{x}_{n_{k}}-\hat{x}_{n_{k}}|+|\hat{x}_{n_{k}}-\hat{x}_{\star}|\\
-&<3\epsilon.
+&<3\varepsilon.
 \end{align}
 $$
 
-由$\epsilon$的任意性，可知$\tilde{x}_{\star}=\hat{x}_{\star}:=x_{\star}.$
+由$\varepsilon$的任意性，可知$\tilde{x}_{\star}=\hat{x}_{\star}:=x_{\star}.$
 
-$\omega(f;[x_{\star}-\epsilon,x_{\star}+\epsilon])\ge |f(\tilde{x}_{n_{k}})-f(\hat{x}_{n_{k}})|\ge\lambda+\epsilon.$
+$\omega(f;[x_{\star}-\varepsilon,x_{\star}+\varepsilon])\ge |f(\tilde{x}_{n_{k}})-f(\hat{x}_{n_{k}})|\ge\lambda+\varepsilon.$
 
-令$\epsilon\rightarrow 0$，根据极限的保号性，则有
+令$\varepsilon\rightarrow 0$，根据极限的保号性，则有
 
 $\omega(f;x_{\star})\ge\lambda$，与$\omega(f;x)<\lambda,\forall x\in K$矛盾！
 
@@ -238,7 +238,7 @@ $\omega(f;x_{\star})\ge\lambda$，与$\omega(f;x)<\lambda,\forall x\in K$矛盾�
 
 设有集合$\Lambda=\{x\in D_{x}|\omega(f;x)>0\}$（即$f(x)$不连续点的全集），$f(x)$几乎处处连续$\Leftrightarrow \Lambda$是Lebesgue零测集。
 
-::: info 必要性证明
+::: info 必要性证明 
 
 用反证法。假设$\Lambda$不是Lebesgue零测集。
 
@@ -299,24 +299,24 @@ $$
 
 充分性易证。现只证明必要性。
 
-$e_i$是Lebesgue零测集$\Leftrightarrow \exists\{\stackrel{\epsilon}{J}_{\alpha}\},s.t.$
+$e_i$是Lebesgue零测集$\Leftrightarrow \exists\{\stackrel{\varepsilon}{J}_{\alpha}\},s.t.$
 
 $$
-e_i\subset\bigcup_{\alpha=1}^{+\infty}\stackrel{\epsilon}{J}_{\alpha_i}
+e_i\subset\bigcup_{\alpha=1}^{+\infty}\stackrel{\varepsilon}{J}_{\alpha_i}
 $$
 
 $$
-\sum_{\alpha=1}^{+\infty}|\stackrel{\epsilon}{J}_{\alpha_i}|<\frac{\epsilon}{2^i}.
+\sum_{\alpha=1}^{+\infty}|\stackrel{\varepsilon}{J}_{\alpha_i}|<\frac{\varepsilon}{2^i}.
 $$
 
 故有
 
 $$
-e\subset\bigcup_{i=1}^{+\infty}\bigcup_{\alpha=1}^{+\infty}\stackrel{\epsilon}{J}_{\alpha_i}.
+e\subset\bigcup_{i=1}^{+\infty}\bigcup_{\alpha=1}^{+\infty}\stackrel{\varepsilon}{J}_{\alpha_i}.
 $$
 
 $$
-\sum_{i=1}^{+\infty}\sum_{\alpha=1}^{+\infty}\stackrel{\epsilon}{J}_{\alpha_i}=\sum_{i=1}^{+\infty}\frac{\epsilon}{2^i}<\epsilon.
+\sum_{i=1}^{+\infty}\sum_{\alpha=1}^{+\infty}\stackrel{\varepsilon}{J}_{\alpha_i}=\sum_{i=1}^{+\infty}\frac{\varepsilon}{2^i}<\varepsilon.
 $$
 
 故有$e$也为Lebesgue零测集。#
@@ -345,37 +345,37 @@ $$
 
 根据推论4，有$\Lambda_\lambda$为Jordan零测集。
 
-设有$\forall\epsilon>0,\exists\{\stackrel{\epsilon}{J}_{\alpha}\}_{\alpha=1}^{N_{\epsilon}},s.t.$
+设有$\forall\varepsilon>0,\exists\{\stackrel{\varepsilon}{J}_{\alpha}\}_{\alpha=1}^{N_{\varepsilon}},s.t.$
 
 $$
-\Lambda_\lambda\subset\bigcup_{\alpha=1}^{N_{\epsilon}}\stackrel{\epsilon}{J}_{\alpha}
+\Lambda_\lambda\subset\bigcup_{\alpha=1}^{N_{\varepsilon}}\stackrel{\varepsilon}{J}_{\alpha}
 $$
 
 $$
-\sum_{\alpha=1}^{N_{\epsilon}}|\stackrel{\epsilon}{J}_{\alpha}|<\epsilon.
+\sum_{\alpha=1}^{N_{\varepsilon}}|\stackrel{\varepsilon}{J}_{\alpha}|<\varepsilon.
 $$
 
-将闭区间列放大为$\bigcup\limits_{\alpha=1}^{N_{\epsilon}}C\stackrel{\epsilon}{J}_{\alpha}(C>1)$，并去除端点，设为
+将闭区间列放大为$\bigcup\limits_{\alpha=1}^{N_{\varepsilon}}C\stackrel{\varepsilon}{J}_{\alpha}(C>1)$，并去除端点，设为
 
 $$
-\bigcup_{\alpha=1}^{N_{\epsilon}}\stackrel{————}{C\stackrel{\epsilon}{J}_{\alpha}}(*)
+\bigcup_{\alpha=1}^{N_{\varepsilon}}\stackrel{————}{C\stackrel{\varepsilon}{J}_{\alpha}}(*)
 $$
 
 显然，$(*)$为开集。
 
 作$K=[a,b]-(*)$，$[a,b]$为闭集，$(*)$为开集，则$K$为闭集，且有$\forall x\in K,\omega(f;x)<\lambda.$
 
-根据定理9，有$\forall\epsilon>0,\exists\delta_{\epsilon}>0,\forall\tilde{x},\hat{x}\in K,|\tilde{x}-\hat{x}|<\delta_{\epsilon},s.t.\ |f(\tilde{x})-f(\hat{x})|<\lambda+\epsilon<2\lambda\epsilon.$
+根据定理9，有$\forall\varepsilon>0,\exists\delta_{\varepsilon}>0,\forall\tilde{x},\hat{x}\in K,|\tilde{x}-\hat{x}|<\delta_{\varepsilon},s.t.\ |f(\tilde{x})-f(\hat{x})|<\lambda+\varepsilon<2\lambda\varepsilon.$
 
-则$\sum\limits_{k=1,x\in K}^{N}\omega(f;[x_{k-1},x_k])\Delta x_k<2|P|\lambda\epsilon.$
+则$\sum\limits_{k=1,x\in K}^{N}\omega(f;[x_{k-1},x_k])\Delta x_k<2|P|\lambda\varepsilon.$
 
-而对集合$(*)$,控制每一个小区间宽度$\Delta x_k<\frac{\epsilon}{|K|/|P|}.$
+而对集合$(*)$,控制每一个小区间宽度$\Delta x_k<\frac{\varepsilon}{|K|/|P|}.$
 
 $$
-\sum_{k = 1,x\in K}^{N'}\omega(f;[x_{k-1},x_{k}])\Delta x_k<N'C_{\star}\frac{\epsilon}{|K|/|P|}=C_{\star}\epsilon.
+\sum_{k = 1,x\in K}^{N'}\omega(f;[x_{k-1},x_{k}])\Delta x_k<N'C_{\star}\frac{\varepsilon}{|K|/|P|}=C_{\star}\varepsilon.
 $$
 
-所以有$0<\Omega(f;P)<(2\lambda+C_{\star})\epsilon.$
+所以有$0<\Omega(f;P)<(2\lambda+C_{\star})\varepsilon.$
 
 由夹逼性，$\Omega(f;P)\rightarrow 0.$
 
