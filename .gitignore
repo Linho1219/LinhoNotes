@@ -8,3 +8,4 @@ test.ts
 desktop.ini
 .obsidian/
 .VSCodeCounter/
+config.mts.timestamp-*.mjs
