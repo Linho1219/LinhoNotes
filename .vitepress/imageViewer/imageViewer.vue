@@ -305,7 +305,7 @@ const handleTouch = ({ touches }: TouchEvent) => {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 175;
+  z-index: 1750;
   user-select: none;
 }
 .viewer-overlay {
