@@ -179,7 +179,9 @@ watch(isHover, (hover) => {
   line-height: 1.5em;
   transition: transform 0.2s;
 }
-
+.footnote-ref-card p {
+  margin: 0;
+}
 .footnote-ref-card .footnote-backref {
   display: none;
 }
