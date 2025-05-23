@@ -179,6 +179,7 @@ sub {
 .DocSearch-Container {
   /* 遮罩已自行通过组件实现 */
   background: transparent;
+  z-index: 2000;
 }
 .DocSearch-Modal {
   box-shadow: #0005 0 15px 30px;
