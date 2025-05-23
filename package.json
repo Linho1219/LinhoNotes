@@ -8,6 +8,7 @@
     "@types/base-64": "^1.0.2",
     "@types/blueimp-md5": "^2.18.2",
     "@types/js-yaml": "^4.0.9",
+    "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.10",
     "@types/markdown-it-footnote": "^3.0.4",
     "@types/node": "^22.15.19",
@@ -49,7 +50,6 @@
   },
   "dependencies": {
     "base-64": "^1.0.0",
-    "sober": "^1.1.5",
     "utf8": "^3.0.0"
   }
 }

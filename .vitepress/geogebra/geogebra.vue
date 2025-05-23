@@ -3,7 +3,7 @@
     <div class="ggb-shell">
       <div :id="domID"></div>
     </div>
-    <s-circular-progress indeterminate v-if="loading"></s-circular-progress>
+    <CircleLoading v-if="loading"/>
   </div>
 </template>
 
@@ -11,7 +11,7 @@
 /// <reference path="./ggbApplet.d.ts" />
 
 import { onMounted, ref } from "vue";
-import "sober/circular-progress";
+import CircleLoading from "./loading.vue";
 
 const props = defineProps<{
   data?: string;
@@ -71,7 +71,7 @@ onMounted(() => {
 .ggb_preview {
   border-radius: 8px;
 }
-s-circular-progress {
+.circle-loading {
   color: var(--vp-c-brand);
   position: absolute;
   top: 0;
@@ -79,6 +79,5 @@ s-circular-progress {
   bottom: 0;
   left: 0;
   margin: auto;
-  z-index: 800;
 }
 </style>
