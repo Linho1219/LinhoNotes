@@ -1,13 +1,17 @@
 <template>
-  <div class="ggb-shell">
-    <div :id="domID"></div>
+  <div class="ggb-component">
+    <div class="ggb-shell">
+      <div :id="domID"></div>
+    </div>
+    <s-circular-progress indeterminate v-if="loading"></s-circular-progress>
   </div>
 </template>
 
 <script setup lang="ts">
 /// <reference path="./ggbApplet.d.ts" />
 
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
+import "sober/circular-progress";
 
 const props = defineProps<{
   data?: string;
@@ -15,6 +19,7 @@ const props = defineProps<{
 }>();
 const appID = "_ggb_" + Math.random().toString(36).substring(2, 15);
 const domID = "dom" + appID;
+const loading = ref(true);
 
 const init = () => {
   if (typeof GGBApplet === "undefined") return setTimeout(init, 500);
@@ -22,8 +27,6 @@ const init = () => {
     id: appID,
     appName: props.mode || "graphing",
     height: 450,
-    // showMenuBar: false,
-    // showToolBar: false,
     ggbBase64: props.data,
     showAlgebraInput: false,
     showLogging: false,
@@ -32,10 +35,11 @@ const init = () => {
     borderRadius: 8,
     showZoomButtons: true,
     algebraInputPosition: "top",
+    appletOnLoad() {
+      loading.value = false;
+    },
   });
   applet.inject(domID);
-  // console.log(applet);
-  // console.log(appID);
 };
 
 onMounted(() => {
@@ -45,6 +49,10 @@ onMounted(() => {
 </script>
 
 <style>
+.ggb-component {
+  position: relative;
+  min-height: 450px;
+}
 .ggb-shell {
   color: black;
   margin: 16px 0;
@@ -56,6 +64,21 @@ onMounted(() => {
   filter: none !important;
 }
 .GeoGebraFrame {
-  border-color: transparent !important;
+  background: white !important;
+  border-color: #d3d3d3 !important;
+  outline: none !important;
+}
+.ggb_preview {
+  border-radius: 8px;
+}
+s-circular-progress {
+  color: var(--vp-c-brand);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  z-index: 800;
 }
 </style>

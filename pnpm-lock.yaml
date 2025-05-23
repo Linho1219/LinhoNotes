@@ -11,6 +11,9 @@ importers:
       base-64:
         specifier: ^1.0.0
         version: 1.0.0
+      sober:
+        specifier: ^1.1.5
+        version: 1.1.5
       utf8:
         specifier: ^3.0.0
         version: 3.0.0
@@ -2571,6 +2574,9 @@ packages:
 
   slick@1.12.2:
     resolution: {integrity: sha512-4qdtOGcBjral6YIBCWJ0ljFSKNLz9KkhbWtuGvUyRowl1kxfuE1x/Z/aJcaiilpb3do9bl5K7/1h9XC5wWpY/A==}
+
+  sober@1.1.5:
+    resolution: {integrity: sha512-n9Sp7u2R8eYLdc9bq0lnhkjh5q0UFTkmecc2oXg2xeFmw41Er4L1VKrPrWdB/6zry4T5nzG3lWVmoWA4v8v52w==}
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -5535,6 +5541,8 @@ snapshots:
   slash@2.0.0: {}
 
   slick@1.12.2: {}
+
+  sober@1.1.5: {}
 
   source-map-js@1.2.1: {}
 
