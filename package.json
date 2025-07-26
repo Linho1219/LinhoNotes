@@ -51,5 +51,9 @@
   "dependencies": {
     "base-64": "^1.0.0",
     "utf8": "^3.0.0"
+  "pnpm": {
+    "patchedDependencies": {
+      "function-plot": "patches/function-plot.patch"
+    }
   }
 }

@@ -1,0 +1,10 @@
+diff --git a/dist/samplers/interval_worker_pool.js b/dist/samplers/interval_worker_pool.js
+index 144edd05b81f40b1005f89c1d10ede198e3f05e2..784870a7bddb9acae548705df397a818c1dcd32e 100644
+--- a/dist/samplers/interval_worker_pool.js
++++ b/dist/samplers/interval_worker_pool.js
+@@ -1,4 +1,4 @@
+-import Worker from 'web-worker';
++// import Worker from 'web-worker';
+ export var BackpressureStrategy;
+ (function (BackpressureStrategy) {
+     BackpressureStrategy["None"] = "none";
