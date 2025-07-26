@@ -1,26 +1,34 @@
 {
+  "dependencies": {
+    "axios": "^1.11.0",
+    "base-64": "^1.0.0",
+    "function-plot": "2.0.0-0",
+    "mermaid": "^11.9.0",
+    "mitt": "^3.0.1",
+    "qrcode.vue": "^3.6.0",
+    "utf8": "^3.0.0",
+    "vitepress": "^1.6.3"
+  },
   "devDependencies": {
-    "@babel/core": "^7.27.1",
-    "@babel/preset-env": "^7.27.2",
-    "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.17.0",
-    "@octokit/rest": "^21.1.1",
-    "@prettier/sync": "^0.5.5",
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@nolebase/vitepress-plugin-highlight-targeted-heading": "^2.18.1",
+    "@octokit/rest": "^22.0.0",
+    "@prettier/sync": "^0.6.1",
     "@types/base-64": "^1.0.2",
     "@types/blueimp-md5": "^2.18.2",
     "@types/js-yaml": "^4.0.9",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.10",
     "@types/markdown-it-footnote": "^3.0.4",
-    "@types/node": "^22.15.19",
+    "@types/node": "^24.1.0",
     "@types/pangu": "^4.0.2",
     "@types/pinyin": "^2.10.2",
     "@types/utf8": "^3.0.3",
-    "axios": "^1.9.0",
     "blueimp-md5": "^2.19.0",
     "clang-format": "^1.8.0",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.5.0",
-    "function-plot": "2.0.0-0",
+    "cross-env": "^10.0.0",
+    "dotenv": "^17.2.1",
     "json5": "^2.2.3",
     "markdown-it-container": "^4.0.0",
     "markdown-it-footnote": "^4.0.0",
@@ -28,29 +36,19 @@
     "markdown-it-sub": "^2.0.0",
     "markdown-it-sup": "^2.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "mermaid": "^11.6.0",
-    "mitt": "^3.0.1",
-    "pangu": "^4.0.7",
-    "patch-package": "^8.0.0",
-    "pinyin": "4.0.0-alpha.3",
-    "prettier": "^3.5.3",
-    "qrcode.vue": "^3.6.0",
+    "pangu": "^7.2.0",
+    "pinyin": "4.0.0",
+    "prettier": "^3.6.2",
     "segmentit": "^2.0.3",
-    "simple-git": "^3.27.0",
-    "vitepress": "^1.6.3",
-    "vitepress-plugin-group-icons": "^1.5.5",
-    "vue": "^3.5.14"
+    "simple-git": "^3.28.0",
+    "vitepress-plugin-group-icons": "^1.6.1"
   },
   "scripts": {
     "dev": "vitepress dev",
     "build": "cross-env NODE_OPTIONS='--max-old-space-size=8192' vitepress build",
     "preview": "vitepress preview",
-    "devexp": "vitepress dev --host",
-    "postinstall": "patch-package"
+    "devexp": "vitepress dev --host"
   },
-  "dependencies": {
-    "base-64": "^1.0.0",
-    "utf8": "^3.0.0"
   "pnpm": {
     "patchedDependencies": {
       "function-plot": "patches/function-plot.patch"
