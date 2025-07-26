@@ -1,5 +1,6 @@
 import type MarkdownIt from "markdown-it";
 import type { Token } from "markdown-it/index.js";
+import { RenderRule } from "markdown-it/lib/renderer.mjs";
 import pangulib from "pangu";
 
 function getPrevChar(tokens: Token[], index: number) {
@@ -61,14 +62,14 @@ export default function mdAutoSpacing(md: MarkdownIt) {
     result = punctuationAdjust(
       escapeHtml(
         pangulib
-          .spacing(prevChar + tokens[index].content)
+          .spacingText(prevChar + tokens[index].content)
           .slice(prevChar.length)
       )
     );
     return result;
   };
 
-  const trimStart: MarkdownIt.Renderer.RenderRule = (...args) => {
+  const trimStart: RenderRule = (...args) => {
     const [tokens, idx, optn, , slf] = args;
     const firstChar = tokens[idx + 1].content.trimStart().slice(0, 1);
     if (puncArrs.spaceleft.includes(firstChar)) {
@@ -90,7 +91,7 @@ export default function mdAutoSpacing(md: MarkdownIt) {
       const content = tokens[index].content ?? "";
       const prevChar = getPrevChar(tokens, index);
       const prefix = pangulib
-        .spacing(prevChar + (content.at(0) ?? ""))
+        .spacingText(prevChar + (content.at(0) ?? ""))
         .slice(prevChar.length, -1);
       return prefix + orig(tokens, index, options, env, self);
     };

@@ -31,7 +31,7 @@ watchEffect(() => {
   // 如果是首页，则一并去除当前目录名
 
   items.value = shownSegs.map((item, index) => ({
-    name: pangu.spacing(item.replaceAll("-", " ")),
+    name: pangu.spacingText(item.replaceAll("-", " ")),
     first: !index,
   }));
 });
