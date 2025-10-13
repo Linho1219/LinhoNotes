@@ -5,7 +5,7 @@ export const globalConfig: GlobalConfig = {
   baseUrl: "https://notes.linho.cc",
   owner: "Linho1219",
   repo: "LinhoNotes",
-  externalGraphPrefix: "https://plot.linho.cc/?code=",
+  externalGraphPrefix: "https://plot.linho.cc/#code=",
 } as const;
 
 /** 顶部导航栏配置 */
