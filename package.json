@@ -3,12 +3,12 @@
     "axios": "^1.13.2",
     "base-64": "^1.0.0",
     "function-plot": "2.0.0-0",
-    "mermaid": "^11.12.1",
+    "mermaid": "^11.12.2",
     "mitt": "^3.0.1",
     "qrcode.vue": "^3.6.0",
     "utf8": "^3.0.0",
     "vitepress": "^1.6.4",
-    "vue": "^3.5.24"
+    "vue": "^3.5.25"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
@@ -22,7 +22,7 @@
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.10",
     "@types/markdown-it-footnote": "^3.0.4",
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.10.2",
     "@types/pangu": "^4.0.2",
     "@types/pinyin": "^2.10.2",
     "@types/utf8": "^3.0.3",
@@ -39,10 +39,10 @@
     "markdown-it-task-lists": "^2.1.1",
     "pangu": "^7.2.0",
     "pinyin": "4.0.0",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "segmentit": "^2.0.3",
     "simple-git": "^3.30.0",
-    "vite": "^7.2.2",
+    "vite": "^7.2.7",
     "vitepress-plugin-group-icons": "^1.6.5"
   },
   "scripts": {
