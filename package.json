@@ -22,7 +22,7 @@
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.10",
     "@types/markdown-it-footnote": "^3.0.4",
-    "@types/node": "^24.10.2",
+    "@types/node": "^25.0.0",
     "@types/pangu": "^4.0.2",
     "@types/pinyin": "^2.10.2",
     "@types/utf8": "^3.0.3",
