@@ -57,7 +57,7 @@ onMounted(() => {
   color: black;
   margin: 16px 0;
 }
-.dark .ggb-shell {
+.dark .ggb-shell .appletParameters {
   filter: hue-rotate(180deg) brightness(90%) invert(100%);
 }
 .ggb-shell img {
