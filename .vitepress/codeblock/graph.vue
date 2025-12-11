@@ -1,5 +1,5 @@
 <template>
-  <div class="graph" ref="shellRef">
+  <div class="graph" :class="{ noInteract: !interactActivated }" ref="shellRef" @click.once="interactActivated = true">
     <GraphRender
       :id="props.id"
       :code="decodeURIComponent(props.code)"
@@ -30,6 +30,7 @@ const props = defineProps<{
 }>();
 const width = ref(0),
   height = ref(0);
+const interactActivated = ref(false);
 
 const handleResize = () => {
   if (shellRef.value && width.value !== shellRef.value.clientWidth) {
@@ -55,6 +56,9 @@ function openInExternal() {
 .graph {
   width: 100%;
   position: relative;
+}
+.graph.noInteract .zoom-and-drag {
+  display: none;
 }
 .graphExternal {
   color: var(--vp-c-brand);
