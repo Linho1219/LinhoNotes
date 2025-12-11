@@ -11,19 +11,19 @@
 
 一口气买了三个米家温湿度计 2，蓝牙入网，一个放室内、一个放阳台、一个放衣柜。
 
-![&keep-color 温湿度计](./images/meter.jpg)
+![&keep-color&large 温湿度计](./images/meter.jpg)
 
 2 代的价格现在大概是十几块吧，3 代屏幕更大，贵十块钱左右，可以自行选择。
 
 除了看温湿度和记录历史数据之外，还可以通过设置自动化来和空调联动，例如温度太低就将空调开高一些：
 
-![&keep-color 温湿度计空调自动化](./images/ac-automation.jpg)
+![&keep-color&huge 温湿度计空调自动化](./images/ac-automation.jpg)
 
 此外，有温湿度计之后就可以将数据绑定到家庭信息顶部，直接显示在首页：
 
-![&keep-color 家庭状态信息](./images/env-info.jpg)
+![&keep-color&huge 家庭状态信息](./images/env-info.jpg)
 
-![&keep-color 家庭状态信息展示](./images/env-show.jpg)
+![&keep-color&small 家庭状态信息展示](./images/env-show.jpg)
 
 ## 无线开关
 
@@ -31,7 +31,7 @@
 
 我在桌边和床头各粘了一个，并绑定控制逻辑：
 
-![&keep-color 开关逻辑绑定](./images/switch-bind.jpg)
+![&keep-color&large 开关逻辑绑定](./images/switch-bind.jpg)
 
 这样开关个人灯具就不需要分别去按两个了。
 
@@ -89,14 +89,10 @@
 
 智能开关板是走蓝牙 Mesh 协议的（因为也需要低功耗），在米家 App 中绑定之后接入网关。可以在 App 中自定义每个键对应的设备名称和图标，显示在首页：
 
-![&keep-color 主灯](./images/main-switch-app.jpg)
-
-![&keep-color 入户](./images/atdorr-switch-app.jpg)
-
-![&keep-color 首页](./images/app-main.jpg)
+![&keep-color&huge 主灯](./images/main-switch-app.jpg) ![&keep-color&huge 入户](./images/atdorr-switch-app.jpg) ![&keep-color&huge 首页](./images/app-main.jpg)
 
 还可以设置一些定时任务：
 
-![&keep-color 灯具自动化](./images/light-automate.jpg)
+![&keep-color&medium 灯具自动化](./images/light-automate.jpg)
 
 那么至此宿舍的智能化改造已经基本完成了，公共部分所有用电的东西都已联网，我自己桌上的灯也都已联网。暂时没有想到什么新东西，后续如果有的话会接着更。

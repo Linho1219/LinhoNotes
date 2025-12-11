@@ -6,6 +6,12 @@
 }
 
 /* 图片大小标记 */
+.vp-doc img[alt*="&huge"] {
+  max-height: 500px;
+}
+.vp-doc img[alt*="&large"] {
+  max-height: 500px;
+}
 .vp-doc img[alt*="&medium"] {
   max-height: 300px;
 }
