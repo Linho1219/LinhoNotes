@@ -1,21 +1,3 @@
-# 大学物理
+# 大学物理速通笔记
 
-<T t="速通笔记" green /> 
-<T t="必修" yellow /> 
-<T t="考试" red /> 
-<T t="学分 3.0" gray />
-
-授课教师：邱型泽，邮箱：<xingze@tongji.edu.cn>
-
-考核方式：
-
-$$
-总分100 \left\{ \matrix{
-  10\% :考勤 \hfill \\
-  30\% :形成性评价\left\{ \matrix{
-  10\% :{\rm{小论文}} \hfill \\
-  20\% :{\rm{作业、课堂小测等}} \hfill \\}  \right. \hfill \\
-  60\% :期末考 \hfill \\}  \right.
-$$
-
-本笔记为速通笔记，仅用于应付考试。
+力、热部分基于 [B 站张云翼《大学物理》速成课](https://www.bilibili.com/video/BV1VS411A75c)；电学部分基于 [B 站蜂考大学物理电磁学突击课](https://www.bilibili.com/video/BV1XJCzYyEcp)。可以配合食用。
