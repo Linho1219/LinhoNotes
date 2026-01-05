@@ -146,6 +146,18 @@ $$
 \bar X\xrightarrow L N\left(\mu,\frac{\sigma^2}n \right)
 $$
 
+## 统计量
+
+$$
+\sum_{i=1}^n(X_i-\bar X)^2=\sum_{i=1}^n(X_i-c)^2-n(\bar X-c)^2
+$$
+
+通常 $c$ 取 $0$：
+
+$$
+\sum_{i=1}^n(X_i-\bar X)^2=\sum_{i=1}^nX_i^2-n\bar X^2
+$$
+
 ## 正态分布抽样定理
 
 设 $(X_1,\cdots,X_n)$ 是取自正态总体 $N(\mu,\sigma^2)$ 的一个样本，有
@@ -153,4 +165,3 @@ $$
 - $\bar X\sim N\left(\mu,\dfrac{\sigma^2}n\right)$，即 $\dfrac{\bar X-\mu}{\sigma/\sqrt n}\sim N(0,1)$
 - $\dfrac{\bar X-\mu}{S/\sqrt n}\sim t(n-1)$
 - $\dfrac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)$
-
