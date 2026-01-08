@@ -109,7 +109,21 @@ $$
 
 **定义** 设随机变量 $U\sim\chi^2(m),V\sim\chi^2(n)$ 且 $U,V$ 相互独立，则称随机变量 $F=\dfrac{U/m}{V/n}$ 服从自由度为 $(m,n)$ 的 F 分布，记为 $F\sim F(m,n)$。
 
-## 大数定律
+## 协方差
+
+$$
+\begin{gathered}
+\operatorname {Cov}(X,Y)=E\{[X-E(X)][Y-E(Y)]\} \\
+\operatorname {Cov}(X,Y)=E(XY)-E(X)E(Y) \\
+\operatorname {Cov}(X,X)=\operatorname {Var}(X)\\
+\operatorname {Cov}(kX,lY)=kl\operatorname {Cov}(X,Y)\\
+\operatorname {Var}(X\pm Y)=\operatorname {Var}(X)+\operatorname {Var}(Y)\pm 2\operatorname {Cov}(X,Y) \\
+\operatorname {Cov}\left(\sum_{i=1}^m X_i,\sum_{j=1}^n Y_j \right)=\sum_{i=1}^m \sum_{j=1}^n\operatorname {Cov}(X_i,Y_j)\\
+\operatorname {Cov}(X,Y)=\operatorname {Cov}(Y,X)
+\end{gathered}
+$$
+
+## 大数定律与中心极限定理
 
 **马尔可夫不等式**：对于**非负**随机变量 $X$，$\forall p,e>0$ 有
 
@@ -128,8 +142,6 @@ $$
 **马尔可夫大数定律**：如果随机变量序列满足 $\lim\limits_{n\to\infty}\dfrac1{n^2}\operatorname {Var}\left(\sum\limits_{i=1}^nX_i\right)=0$，则服从大数定律。
 
 **辛钦大数定律**：独立同分布的随机变量序列，只要期望存在，就服从大数定律。
-
-## 中心极限定理
 
 对于**独立同分布**随机变量 $X_1,\cdots,X_n,\cdots$，有
 
@@ -156,6 +168,26 @@ $$
 
 $$
 \sum_{i=1}^n(X_i-\bar X)^2=\sum_{i=1}^nX_i^2-n\bar X^2
+$$
+
+### 最大次序统计量
+
+$$
+\begin{align}
+X_{(n)}&=\max_{1\le i\le n}X_i \\
+\Rightarrow F_{X_{(n)}}(x)&=[F(x)]^n \\
+\Rightarrow f_{X_{(n)}}(x)&=\frac{\mathrm d}{\mathrm dx}F_{X_{(n)}}(x)=n[F(x)]^{n-1}f(x)\\
+\end{align}
+$$
+
+### 最小次序统计量
+
+$$
+\begin{align}
+X_{(1)}&=\min_{1\le i\le n}X_i \\
+\Rightarrow F_{X_{(1)}}(x)&=1-[1-F(x)]^n \\
+\Rightarrow f_{X_{(1)}}(x)&=\frac{\mathrm d}{\mathrm dx}F_{X_{(1)}}(x)=n[1-F(x)]^{n-1}f(x)\\
+\end{align}
 $$
 
 ## 正态分布抽样定理
