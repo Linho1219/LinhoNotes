@@ -1,5 +1,7 @@
 # LinhoNotes
 
+[![Deploy VitePress site to Pages](https://github.com/Linho1219/LinhoNotes/actions/workflows/deploy.yml/badge.svg)](https://github.com/Linho1219/LinhoNotes/actions/workflows/deploy.yml)
+
 网站：https://notes.linho.cc/
 
 一些本科课程笔记。仓库由 Linho 牵头。Horrible，Skincrab 和 Acha 已加入。
