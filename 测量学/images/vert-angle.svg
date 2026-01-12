@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="586.612427" height="262.23053">
 	<defs>
-		<pattern id="Fill_HP-01" patternTransform="rotate(135)" patternUnits="userSpaceOnUse" width="25" height="25">
-			<rect width="25" height="25" fill="#FFFFFF" fill-opacity="0" />
-			<path d="M 0 12.5 L 25 12.5" fill="none" stoke-width="5" stroke="#777777" />
-		</pattern>
 		<marker id="CustomMarker-01" markerUnits="strokeWidth" markerWidth="9" markerHeight="9" viewBox="-9 -4.5 9 9" orient="auto-start-reverse">
 			<path d="M 0 -0 L -6 -3, -4.8 -0.5, -4.8 0.5, -6 3 Z" fill="#0080FF" stroke="#0080FF" stroke-linejoin="round" />
 		</marker>
@@ -23,9 +19,11 @@
 		<marker id="CustomMarker-06" markerUnits="strokeWidth" markerWidth="9" markerHeight="9" viewBox="-9 -4.5 9 9" orient="auto-start-reverse">
 			<path d="M 0 -0 L -6 -3, -4.8 -0.5, -4.8 0.5, -6 3 Z" fill="#E60000" stroke="#E60000" stroke-linejoin="round" />
 		</marker>
+		<pattern id="Fill_HP-01" patternTransform="rotate(135)" patternUnits="userSpaceOnUse" width="15" height="15">
+			<rect width="15" height="15" fill="#FFFFFF" fill-opacity="0" />
+			<path d="M 0 7.5 L 15 7.5" fill="none" stoke-width="3" stroke="#777777" />
+		</pattern>
 	</defs>
-	<rect x="-626.573608" y="0" width="1253.14722" height="16.7007446" stroke="none" fill="url(#Fill_HP-01)" transform="matrix(0.454545 0 -0 0.454545 293.306 246.139)" />
-	<path d="M -626.574 0 L 626.574 0" fill="none" stroke="#000000" stroke-width="2.9333334" stroke-linecap="round" stroke-linejoin="round" transform="matrix(0.454545 0 -0 0.454545 293.306 246.139)" />
 	<path d="M 16.7017 -127.846 L -16.7019 127.845" fill="none" stroke="#8B8B8B" stroke-width="5.86666679" stroke-linecap="round" stroke-linejoin="round" transform="matrix(0.454545 0 0 0.454545 367.777 188.028)" />
 	<path d="M -35.0437 -127.846 L 35.0442 127.845" fill="none" stroke="#8B8B8B" stroke-width="5.86666679" stroke-linecap="round" stroke-linejoin="round" transform="matrix(0.454545 0 0 0.454545 391.298 188.028)" />
 	<path d="M 33.4036 -127.846 L -33.4043 127.845" fill="none" stroke="#8B8B8B" stroke-width="5.86666679" stroke-linecap="round" stroke-linejoin="round" transform="matrix(0.454545 0 0 0.454545 360.186 188.028)" />
@@ -129,4 +127,6 @@
 			<rect />
 		</svg>
 	</g>
+	<rect x="-626.573608" y="0" width="1253.14722" height="16.7007446" stroke="none" fill="url(#Fill_HP-01)" transform="matrix(0.454545 0 -0 0.454545 293.306 246.139)" />
+	<path d="M -626.574 0 L 626.574 0" fill="none" stroke="#000000" stroke-width="2.9333334" stroke-linecap="round" stroke-linejoin="round" transform="matrix(0.454545 0 -0 0.454545 293.306 246.139)" />
 </svg>
