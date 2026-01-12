@@ -21,8 +21,8 @@
   </div>
   <div class="doc-source">
     <p class="VPDocSource">
-      本文来源: <a :href="link" class="VPDocSourceLink">{{ link }}</a
-      >，转载请标明出处。
+      文章源网址：<a :href="link" class="VPDocSourceLink">{{ link }}</a
+      >，采用 知识共享署名 4.0 许可协议 进行许可，若转载请标明出处。
     </p>
   </div>
 </template>
