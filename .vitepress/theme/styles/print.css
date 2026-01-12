@@ -2,8 +2,23 @@
   .VPNav,
   .VPLocalNav,
   .prev-next,
-  .edit-link-button {
+  .edit-link-button,
+  a.header-anchor,
+  :is(
+      .vp-external-link-icon,
+      .vp-doc a[href*="://"],
+      .vp-doc a[target="_blank"]
+    ):not(:is(.no-icon, svg a, :has(img, svg)))::after,
+  #imageViewers {
     display: none !important;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
   }
   .doc-source {
     display: block !important;
@@ -17,5 +32,16 @@
   }
   mjx-container svg * {
     stroke: none;
+  }
+  :root {
+    --vp-layout-max-width: unset;
+  }
+  .container,
+  .content-container {
+    max-width: unset !important;
+  }
+  .vp-doc p {
+    line-height: 26px;
+    margin: 12px 0;
   }
 }
