@@ -1,8 +1,9 @@
 import container from "markdown-it-container";
 import type MarkdownIt from "markdown-it";
 import { RenderRule } from "markdown-it/lib/renderer.mjs";
+import { PluginWithParams } from "markdown-it";
 
-type ContainerArgs = [typeof container, string, { render: RenderRule }];
+type ContainerArgs = [PluginWithParams, string, { render: RenderRule }];
 
 type CustomContainerConfig = {
   numbered?: boolean;
@@ -16,9 +17,9 @@ export const createContainer = (
   klass: string,
   defaultTitle: string,
   config: CustomContainerConfig,
-  md: MarkdownIt
+  md: MarkdownIt,
 ): ContainerArgs => [
-  container,
+  container as unknown as PluginWithParams,
   klass,
   {
     render(tokens, idx, _options, env: { references?: any }) {
@@ -34,14 +35,14 @@ export const createContainer = (
                 tokens.filter(
                   (item) =>
                     item.info.trim().startsWith(klass) &&
-                    item.info.trim().slice(klass.length).trim() === info
+                    item.info.trim().slice(klass.length).trim() === info,
                 ),
-                token
+                token,
               )
             : defaultTitle +
               giveNumber(
                 tokens.filter((item) => item.info.trim() === klass),
-                token
+                token,
               );
         } else rawTitle = info || defaultTitle;
         const title = md.renderInline(rawTitle, {

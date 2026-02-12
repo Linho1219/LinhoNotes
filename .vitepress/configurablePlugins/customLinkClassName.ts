@@ -6,7 +6,7 @@ export default function addLinkClass(
 ) {
   const defaultRender =
     md.renderer.rules.link_open ||
-    function (tokens, idx, options, env, self) {
+    function (tokens, idx, options, _env, self) {
       return self.renderToken(tokens, idx, options);
     };
 
