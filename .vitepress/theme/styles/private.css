@@ -48,6 +48,80 @@
   color: white;
 }
 
+/* 文中 span 颜色 */
+.vp-doc span[color="red"] {
+  color: var(--ln-c-red);
+}
+.vp-doc span[color="orange"] {
+  color: var(--ln-c-orange);
+}
+.vp-doc span[color="yellow"] {
+  color: var(--ln-c-yellow);
+}
+.vp-doc span[color="green"] {
+  color: var(--ln-c-green);
+}
+.vp-doc span[color="blue"] {
+  color: var(--ln-c-blue);
+}
+.vp-doc span[color="indigo"] {
+  color: var(--ln-c-indigo);
+}
+.vp-doc span[color="purple"] {
+  color: var(--ln-c-purple);
+}
+.vp-doc span[color="pink"] {
+  color: var(--ln-c-pink);
+}
+.vp-doc span[color="magenta"] {
+  color: var(--ln-c-magenta);
+}
+.vp-doc span[color="lime"] {
+  color: var(--ln-c-lime);
+}
+.vp-doc span[color="olive"] {
+  color: var(--ln-c-olive);
+}
+.vp-doc span[color="cyan"] {
+  color: var(--ln-c-cyan);
+}
+.vp-doc span[color="teal"] {
+  color: var(--ln-c-teal);
+}
+.vp-doc span[color="gray"] {
+  color: var(--ln-c-gray);
+}
+.vp-doc span[color="orange"] {
+  color: var(--ln-c-orange);
+}
+.vp-doc span[color="yellow"] {
+  color: var(--ln-c-yellow);
+}
+.vp-doc span[color="green"] {
+  color: var(--ln-c-green);
+}
+.vp-doc span[color="blue"] {
+  color: var(--ln-c-blue);
+}
+.vp-doc span[color="pink"] {
+  color: var(--ln-c-pink);
+}
+.vp-doc span[color="lime"] {
+  color: var(--ln-c-lime);
+}
+.vp-doc span[color="olive"] {
+  color: var(--ln-c-olive);
+}
+.vp-doc span[color="cyan"] {
+  color: var(--ln-c-cyan);
+}
+.vp-doc span[color="teal"] {
+  color: var(--ln-c-teal);
+}
+.vp-doc span[color="gray"] {
+  color: var(--ln-c-gray);
+}
+
 /* 把 tip 框改成绿色 */
 :root {
   --vp-c-tip-1: var(--vp-c-green-1);
