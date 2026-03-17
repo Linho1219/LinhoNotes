@@ -55,9 +55,9 @@ features:
   - title: 思政相关
     details: 中国特色课程（摊手），不保证质量。
     link: 思政相关/
-  - title: 测量学
-    details: 同济大学测绘工程专业测量学笔记。但是全站仪真的好重。
-    link: 测量学/
+  - title: 测绘工程
+    details: 同济大学测绘工程专业一部分课程的笔记。
+    link: 测绘工程/
   - title: 仓库贡献指南
     details: 包含本项目的写作规范、开发文档以及私有 Markdown 语法。
     link: 仓库贡献指南/
