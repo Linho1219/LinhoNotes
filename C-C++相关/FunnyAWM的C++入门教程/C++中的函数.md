@@ -1,0 +1,470 @@
+﻿###### By FunnyAWM
+
+在[第一章](https://blog.csdn.net/FunnyAWM/article/details/158885184)中，我们简单讲解了函数的基本概念——函数的参数、返回值、main函数、函数体等。接下来我们继续来详细讲解函数的特性。
+
+# 1. 函数的形参与实参
+
+在大部分程序设计语言中，函数的参数根据指定时机不同，会分为形参与参两类：
+
+- 形参全称形式参数，在函数声明中定义，描述了函数需要的假设值；
+- 实参全称实际参数，在函数调用时传入，描述了函数实际需要使用的值。
+
+我们以第一章的add函数为例，函数定义与调用如下：
+
+```cpp
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+int add(int a, int b) { // 这里定义的是形参
+	return a + b;
+}
+
+int main() {
+	int x = 3;
+	int y = 4;
+	cout << add(x, y) << endl; // 这里传入的是实参
+}
+```
+
+在上面的程序中，我们就可以理解形参与实参的区别——形参 假设在函数中存在这样的变量，函数体中描述了对这样的变量的操作；实参则具体化了函数形参的值，令函数将传入的值替换掉形参执行对应的操作。换言之，在函数被调用时，实参会直接“夺舍”形参完成相关操作。~~G18卸腿！头！甲！枪！胸挂！背包！花来！当思念飞过越空～缠绕指尖停留～~~
+
+# 2. main函数的参数
+
+main函数也能够接收参数。这时可能有人要问：main函数不是标准C++程序的起点吗？main函数的参数又有什么意义呢？答案也十分简单——运行时参数。
+
+如果使用过Linux，我们就知道Linux的一些程序在运行时可以传入一些参数。例如ls只能够列出非隐藏文件，且不能看到文件详细信息。如果使用ls -la，我们就能过看到目录中的隐藏文件，以及它们的属性。
+
+在C++中，要使main函数接收运行时参数，main函数的参数格式就应当是固定的。能够接收运行时参数的main函数定义如下：
+
+```cpp
+int main(int argc, char* argv[]) { // 有时也写作char** argv
+	// 函数体
+}
+```
+
+在这样的函数中，argc代表了参数数量，argv则代表了各个参数位置的参数值。其中第一个参数始终是程序可执行文件的路径，所以argc永远会大于等于1，且argv的值永远会是程序的执行命令。如果我们希望添加参数，则应该判断argc是否大于1，且应该从argv[1]的位置开始读取参数值。
+
+我们用以下的代码加以说明：
+
+```cpp
+#include "game.hpp"
+#include <cstring>
+#include <fstream>
+#include <conio.h>
+
+#pragma comment(lib, "winmm")
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+//这个代码可能有亿点点bug
+//不过相信我，没逝的
+int main(int argc, char *argv[]) {
+    if (argc == 2 && strcmp(argv[1], "-clear") == 0) {
+        cout << "This will clean the highest score record.\nWould you continue?[y/N]";
+        switch (_getch()) {
+            case 'y':
+            case 'Y':
+                std::ofstream fout;
+                fout.open("highest.bin", std::ios_base::trunc | std::ios_base::binary);
+                if (!fout.is_open()) {
+                    std::cerr << "Can't open the file.\n";
+                    exit(EXIT_FAILURE);
+                }
+                cout << "\nhighest.bin cleaned.\n";
+                cout << "Enter to close the program.\n";
+                getchar();
+                getchar();
+                fout.close();
+                return 0;
+        }
+    }
+    gameInit();
+    gameClose();
+    return 0;
+}
+```
+
+[在这里](https://github.com/FunnyAWM/tetris)获取程序的完整源代码。
+
+在这个程序中，我们指定了-clear参数，它会清除游戏的持久化数据（例如最高分数等）。如果我们希望程序清理最高分数数据，只需要运行：
+
+```bash
+./tetris -clear
+```
+
+这样就能够执行-clear参数对应的代码了。
+
+部分程序在运行时需要指定参数。如果没有指定参数，则会给出用法文档，说明参数列表和参数作用，这样的功能也是使用上面的方法实现的。我们可以在argc等于1时给出错误信息与参数文档，就实现了上面的功能。
+
+# 3. 函数变量的作用域
+
+函数变量的作用域是函数本身。在程序调用函数时，函数为了防止对原数据做出修改，会选择在实参传入时创建一个原变量的副本，这个副本的修改不会反映到实参本身。我们可以用下面的程序证明我们的说法：
+
+```cpp
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+void swap(int a, int b) { // 交换两变量值
+	if (a == b) {
+		return; // 如果两变量相等则跳过
+	}
+	cout << "在swap()中\n";
+	cout << "a的地址：" << &a << endl;
+	cout << "b的地址：" << &b << endl; // 补充调试信息
+	a ^= b;
+	b ^= a;
+	a ^= b; // 使用异或交换法避开中间变量的创建
+}
+
+int main() {
+	int a = 1;
+	int b = 2;
+	cout << "a=" << a << ", b=" << b << endl;
+	cout << "在main()中\n";
+	cout << "a的地址：" << &a << endl;
+	cout << "b的地址：" << &b << endl; // 补充调试信息
+	swap(a, b);
+	cout << "swap()后a=" << a << ", b=" << b << endl;
+}
+```
+
+上面的变量交换法称作异或交换法。异或运算有如下特性：
+
+- 交换律：a\^b = b\^a；
+- 结合律：(a\^b)\^c = a\^(b\^c)；
+- 归零律：a\^a = 0；
+- 恒等律：a\^0 = a；
+- 自反律：a\^b\^b = a\^0 = a。
+
+我们可以分析这样的交换过程。
+
+1. 首先，a=原a\^b；
+2. 然后b=b\^a，代入后得b=b\^原a\^b=原a（自反律与结合律）；
+3. 最后a=a\^b，代入后得原a\^b^原a=b（自反律与结合律）。
+
+程序运行结果如下：
+
+```text
+a=1, b=2
+在main()中
+a的地址：0x7ff69a775c
+b的地址：0x7ff69a7758
+在swap()中
+a的地址：0x7ff69a773c
+b的地址：0x7ff69a7738
+swap()后a=1, b=2
+```
+
+这里我们发现，尽管swap()中a与b的地址与在main()中的十分接近，但是两者仍然不在同一内存地址，也就是说函数内与函数外的变量变化无关。
+
+如果我们真的希望对原数据进行修改，怎么做呢？答案是使用指针或引用（将在下面介绍引用的概念）。
+
+# 4. 引用
+
+接下来我们来介绍引用，这是是为已存在变量创建别名的一种机制。在C++中，&运算符在声明变量时用于声明引用。例如：
+
+```cpp
+int a;
+int& ref_a = a;
+```
+
+引用有如下特性：
+
+- 引用必须在声明时初始化；
+- 与const指针类似，但更严格：引用在初始化后便不能再修改其指向的对象（即使使用const_cast进行转换也是如此）；
+- 引用不占用内存，仅作为原变量的别名存在；
+- 访问引用相当于直接访问原变量。
+
+## DLC：右值引用与移动语义（进阶内容）
+
+从C++11开始，我们可以为一些右值创建引用。右值指的是函数返回结果、运算结果等一般在等号右边的值。与之相对的，一般变量等有确定存储位置的值称作左值。右值通常是临时对象，其生命周期仅限于当前表达式，也不能为这些右值创建普通引用，因为普通左值引用需要确定的存储位置（但是右值引用可以，~~因为它做得到~~），这种引用用&&声明，称为右值引用。
+
+右值引用可以用来标识可以安全移动的对象。这是因为右值本身绑定的是临时地址，这些对象即将被销毁，所以可以安全“夺取”对数据的所有权，而不需要担心后续访问这些数据时会出现的问题。
+
+在类设计中，我们通过移动构造函数与移动语义实现内存中对象的重新利用。例如我们有如下代码：
+
+```cpp
+#include <utility>
+
+class MyString {
+public:
+    char* data;
+    // 移动构造函数
+    MyString(MyString&& other) noexcept
+        : data(other.data) {
+        other.data = nullptr;   // 源对象放弃资源所有权
+    }
+    // 拷贝构造函数（深拷贝）
+    MyString(const MyString& other) {
+        // 分配内存并复制内容...
+    }
+};
+
+MyString createTemporary() {
+	return MyString("hello");
+}
+
+int main() {
+    MyString s1("world");
+    MyString s2 = s1;                 // 调用拷贝构造（s1是左值）
+    MyString&& s3 = createTemporary(); // 创建右值引用
+    MyString s4 = std::move(s2);      // 调用移动构造（将s2转为右值引用）
+    // 此时 s2 的数据被置空，不应再使用
+    MyString s5 = std::move(s3); // 直接剥夺s3对数据的所有权
+}
+```
+
+其中std::move()的函数定义如下：
+
+```cpp
+template<typename T>
+constexpr std::remove_reference_t<T>&& move(T&& t) noexcept {
+    return static_cast<std::remove_reference_t<T>&&>(t);
+}
+```
+
+可以看到，move()函数只做了从左值到右值的类型转换，实际的移动过程由移动构造函数负责完成。
+
+对一些占用内存比较大（例如数据库中的大对象）的对象或者复制过程较为麻烦（例如链表）的对象来说，移动语义能够直接将数据就地复用而非拷贝，极大提升了效率。
+
+# 5. 递归——俄罗斯套娃
+
+递归是函数调用自己的过程。例如下面的函数：
+
+```cpp
+// 计算斐波那契数列的第n位
+int fibo(int n) {
+	if (n <= 2) {
+		return 1;
+	} else {
+		return fibo(n - 1) + fibo(n - 2);
+	}
+}
+```
+
+这里我们调用了fibo()自身来计算fibo()的结果。fibo()最终会收敛至fibo(1)或fibo(2)，其返回值为1。
+
+递归可以应用于分治算法等。例如下面的函数可以遍历一个完全二叉树：
+
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// 二叉树节点定义
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+/**
+ * 根据层序数组构建完全二叉树
+ * @param vals 节点值的数组，按层序遍历顺序排列，不含空节点（完全二叉树性质）
+ * @return 根节点指针
+ */
+TreeNode* buildCompleteBinaryTree(const vector<int>& vals) {
+    if (vals.empty()) return nullptr;
+
+    // 创建所有节点
+    vector<TreeNode*> nodes;
+    for (int v : vals) {
+        nodes.push_back(new TreeNode(v));
+    }
+
+    // 按照完全二叉树的索引关系连接左右孩子
+    int n = nodes.size();
+    for (int i = 0; i < n; ++i) {
+        int leftIdx = 2 * i + 1;
+        int rightIdx = 2 * i + 2;
+        if (leftIdx < n) nodes[i]->left = nodes[leftIdx];
+        if (rightIdx < n) nodes[i]->right = nodes[rightIdx];
+    }
+    return nodes[0];
+}
+
+/**
+ * 递归前序遍历
+ * @param root 当前根节点
+ */
+void preorder(TreeNode* root) {
+    if (root == nullptr) return;
+    cout << root->val << " ";      // 访问根节点
+    preorder(root->left);          // 遍历左子树
+    preorder(root->right);         // 遍历右子树
+}
+
+int main() {
+    // 示例：创建一个完全二叉树，层序值为 [1,2,3,4,5,6]
+    // 对应的树结构：
+    //        1
+    //       / \
+    //      2   3
+    //     / \ /
+    //    4  5 6
+    vector<int> treeVals = {1, 2, 3, 4, 5, 6};
+    TreeNode* root = buildCompleteBinaryTree(treeVals);
+
+    cout << "前序遍历结果: ";
+    preorder(root);
+    cout << endl;
+
+    // 释放动态分配的内存（此处为简化未实现，实际项目中建议递归释放）
+    // 由于程序简单，操作系统会自动回收，故省略。
+    return 0;
+}
+```
+
+在函数递归时，每一层函数中的变量都有自己的地址。同时由于栈记录了函数的执行顺序，递归层数过深会导致栈溢出（栈中的内存空间被耗尽），导致系统抛出SIGSEGV。所以在递归函数中一定要明确递归的终止条件。
+
+# 6. 函数的默认参数与函数重载——他是侵蚀那我是谁啊？
+
+函数允许为一些参数指定默认值，这些默认值必须位于函数的结尾。例如：
+
+```cpp
+int add(int a, int b = 1) {
+	return a + b;
+}
+```
+
+这样当我们只为add传入一个int参数时，编译器会默认使用1作为第二个参数。
+
+函数重载允许我们定义名称相同，但参数与行为不同的函数组。例如：
+
+```cpp
+int add(int a, int b) {
+	return a + b;
+}
+
+double add (int a, double b) {
+	return double(a) + b;
+}
+```
+
+函数重载时，不能使用类型顺序与个数相同的参数列表，即便这些函数的形参名称与行为都不同。假设我们将上面的第二个add函数的第二个参数的数据类型改为int，上述的两个函数定义会被编译器解释为如下格式：
+
+```cpp
+int add(int, int);
+double add(int, int);
+```
+
+这样的写法在C++的函数声明中同样合法——我们可以在声明中写出函数的形参类型，在函数定义中写出参数的名称。
+
+如果将两个参数类型顺序与个数相同的函数进行编译，编译器报错如下：
+
+```text
+[ 50%] Building CXX object CMakeFiles/my_program.dir/main.cpp.o
+/home/orangepi/CLionProjects/expLinux/main.cpp:10:8: error: ambiguating new declaration of ‘double add(int, int)’
+   10 | double add (int a, int b) {
+      |        ^~~
+/home/orangepi/CLionProjects/expLinux/main.cpp:6:5: note: old declaration ‘int add(int, int)’
+    6 | int add(int a, int b) {
+      |     ^~~
+make[2]: *** [CMakeFiles/my_program.dir/build.make:76: CMakeFiles/my_program.dir/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:83: CMakeFiles/my_program.dir/all] Error 2
+make: *** [Makefile:91: all] Error 2
+```
+
+在这里，编译器不知道在调用add()时到底要使用哪个函数定义，所以会报错。
+
+# 7. 函数模板
+
+模板可以为一系列数据对象定义函数，这样的函数在传入时不固定数据类型，被称为模板函数。例如：
+
+```cpp
+template <class T>
+void swap(T& a, T& b) {
+	T c;
+	c = a;
+	a = b;
+	b = c;
+}
+```
+
+其中template关键字向C++编译器描述了下面的函数或类（在后面具体讲解类）是一个模板。class T指定了模板变量的数据类型名。T的具体类型由函数的实参决定。如果我们向上面的swap()中传入了两个int，那么函数会自动适配为针对int处理。
+
+## DLC：模板与模板元编程（进阶内容）
+
+我们可以利用模板在编译期完成一些静态变量相关的计算与数据处理，其本质上属于函数式编程，称为模板元编程。
+
+### 1. 模板的特化
+
+模板可以接受任意数据类型，我们可以通过为一些标志变量编写特例来实现模板的分支判断。这样的特例称作模板的特化，例如：
+
+```cpp
+// 主模板
+template<bool B, typename T, typename F>
+struct Conditional { using type = T; };
+
+// 偏特化（当 B 为 false 时）
+template<typename T, typename F>
+struct Conditional<false, T, F> { using type = F; };
+```
+
+上面的代码可以解释为：当传入Conditional的模板参数中B为true时，Conditional使用T来选择类型成员，否则使用F来选择类型成员。
+
+### 2. 模板的迭代与终止条件
+
+与常规C++程序中使用循环不同，模板元编程中使用递归来实现迭代。编译器为每一个递归产生代码，直到达到递归的终止条件。例如：
+
+```cpp
+// 计算阶乘的元函数
+template<unsigned N>
+struct Factorial {
+    static constexpr unsigned value = N * Factorial<N-1>::value;
+};
+
+// 终止特化
+template<>
+struct Factorial<0> {
+    static constexpr unsigned value = 1;
+};
+```
+
+在实际使用时，对于传入的静态N，编译器会为0-N的每一个值生成Factorial的计算结果。假设我们给N传入了5，编译器将会把Factorial\<5\>::value直接替换为常量120嵌入代码。
+
+### 3. 类型萃取
+
+类型特化能够实现类型萃取，根据传入类型的不同执行对应类型的代码。例如：
+
+```cpp
+// 主模板：默认不是整数
+template<typename T>
+struct is_integer {
+    static const bool value = false;
+};
+
+// 针对 int 的特化
+template<>
+struct is_integer<int> {
+    static const bool value = true;
+};
+
+// 针对 unsigned int 的特化
+template<>
+struct is_integer<unsigned int> {
+    static const bool value = true;
+};
+
+// 还可以继续特化 short、long 等
+```
+
+类型萃取同样可以利用SFINAE来在编译期启用或禁用特定模板的重载。例如：
+
+```cpp
+template<typename T>
+void print(T t) {
+    if constexpr (std::is_integral_v<T>) {
+        std::cout << "Integral: " << t << std::endl;
+    } else {
+        std::cout << "Non-integral: " << t << std::endl;
+    }
+} // 需要C++17及以上标准，以下标准需要为该特化创建函数重载
+```
