@@ -220,7 +220,7 @@ interface BeatTrackerMultiFeatureReturn {
   v[m] ? (v[m]++, d[m].push(w)) : ((v[m] = 1), (d[m] = [w])));
 ```
 
-`x` 是当前拍点时间，`b` 是上一个拍点时间，`m` 是两个拍点的间隔保留 5 位小数。这里使用 toFixed(5) 实际上是将浮点数离散化，用字符串作为 key 构建直方图，算是一种简单但有效的分桶策略。接下来的操作是维护了一个拍点间隔直方图 `v: Record<deltaT, freq>`，拍点数据保存在 `d: Record<deltaT, { tick, i }>` 里。
+`x` 是当前拍点时间，`b` 是上一个拍点时间，`m` 是两个拍点的间隔保留 5 位小数。这里使用 `.toFixed(5)` 实际上是将浮点数离散化，用字符串作为 key 构建直方图，算是一种简单但有效的分桶策略。接下来的操作是维护了一个拍点间隔直方图 `v: Record<deltaT, freq>`，拍点数据保存在 `d: Record<deltaT, { tick, i }>` 里。
 
 再看循环结束之后这一段：
 
