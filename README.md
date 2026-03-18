@@ -4,7 +4,7 @@
 
 网站：https://notes.linho.cc/
 
-一些本科课程笔记。仓库由 Linho 牵头。Horrible，Skincrab 和 Acha 已加入。
+一些笔记。仓库由 Linho 牵头。Horrible，Skincrab 和 Acha 已加入。
 
 网站使用 VitePress 搭建，并加入了一些适合笔记网站的插件和语法。使用 GitHub Actions 执行自动构建并通过 GitHub Pages 提供服务。
 
