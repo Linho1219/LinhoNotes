@@ -10,6 +10,8 @@
 
 ## 流程
 
+### 一阶段：音频预处理，拍点分桶
+
 打开 DevTools 映入眼帘的就是一堆 `<script src="/_nuxt/<hash>.js" defer></script>`。那一看就是 Nuxt + Vue，几乎不可能通过事件侦听器分析逻辑。
 
 直接转到 Network 选项卡，勾上禁用缓存，刷新。丢个音频上去发现确实没有出现什么上传，但是请求了一个 `essentia-wasm.web.wasm`。这种纯前端分析大概率就是用 WASM 做的，所以很可疑。
@@ -88,19 +90,7 @@ for (
       i: g,
     }),
     v[m] ? (v[m]++, d[m].push(w)) : ((v[m] = 1), (d[m] = [w])));
-((A = e(
-  Object.entries(v).sort(function (t, r) {
-    return r[1] - t[1];
-  })[0],
-  2,
-)),
-  (S = A[0]),
-  A[1],
-  (T = []),
-  (O = d[S]),
-  (E = i(O)),
-  (t.prev = 16),
-  E.s());
+// ...
 ```
 
 原来 `essentia` 这个标识符没被 minify 掉。搜索 `essentia` 发现其他的都是生命周期管理之类的东西，这一段应该就是比较核心的东西。
@@ -222,7 +212,7 @@ interface BeatTrackerMultiFeatureReturn {
 
 `x` 是当前拍点时间，`b` 是上一个拍点时间，`m` 是两个拍点的间隔保留 5 位小数。这里使用 `.toFixed(5)` 实际上是将浮点数离散化，用字符串作为 key 构建直方图，算是一种简单但有效的分桶策略。接下来的操作是维护了一个拍点间隔直方图 `v: Record<deltaT, freq>`，拍点数据保存在 `d: Record<deltaT, { tick, i }>` 里。
 
-再看循环结束之后这一段：
+这个 `for` 循环结束之后还有一段：
 
 ```js
 ((A = e(
@@ -240,23 +230,176 @@ interface BeatTrackerMultiFeatureReturn {
   E.s());
 ```
 
-对直方图 `v` 做了一下排序，得到最高频的时间间隔。这个 `e` 函数步入进去发现就只是把原数组传回来了。所以 `S = A[0]` 是这个最高频的时间间隔，`O = d[S]` 是其对应的全部拍点时间。这个 `O` 最后保存下来再去处理，其他的都不要了。
+对直方图 `v` 做了一下排序，得到最高频的时间间隔。这个 `e` 函数步入进去发现就只是把原数组传回来了。所以 `S = A[0]` 是这个最高频的时间间隔，`O = d[S]` 是其对应的全部拍点时间，姑且叫做最佳拍点列表。`E = i(O)` 这里 `i` 似乎是一个迭代器的包装。
 
 这么做可以过滤掉不稳定的拍点，避免节拍检测算法在复杂节奏下产生抖动或误检。
 
-后续的处理流程就不去 debug 了，大概猜是可以猜出来的。这个拍点序列 `O` 应该不是最终输出，而是基于算出来的这个拍点找到全曲节拍偏移量，根据时间间隔在全曲应用拍点，并根据这个时间间隔取倒数得最终 BPM。
+### 二阶段：拍点循环分析
+
+还没结束！在这个拿到这些拍点之后还需要继续处理。上面这一段是 minify 过后 `switch` 的一个 `case`，继续看接下来的 `case`：
+
+```js
+switch ((t.prev = t.next)) {
+  case 0:
+  // 上面那一段
+  case 18:
+    if ((j = E.n()).done) {
+      t.next = 31;
+      break;
+    }
+    ((_ = j.value),
+      (I = _.tick),
+      (L = _.i),
+      (M = {
+        tick: I,
+        i: L,
+        keep: 0,
+        ticks: [I],
+      }),
+      (P = function () {
+        M.keep++;
+        var t = L + M.keep;
+        if (t >= h.length) return "break";
+        var r = h[t];
+        if (
+          !O.some(function (t) {
+            return t.tick === r;
+          })
+        )
+          return "break";
+        M.ticks.push(r);
+      }));
+  case 22:
+    if ("break" !== P()) {
+      t.next = 26;
+      break;
+    }
+    return t.abrupt("break", 28);
+  case 26:
+    t.next = 22;
+    break;
+  case 28:
+    T.push(M);
+  case 29:
+    t.next = 18;
+    break;
+  case 31:
+    t.next = 36;
+    break;
+  case 33:
+    ((t.prev = 33), (t.t0 = t.catch(16)), E.e(t.t0));
+  case 36:
+    return ((t.prev = 36), E.f(), t.finish(36));
+  // ...
+}
+```
+
+这里的逻辑就稍微有点混乱了，因为涉及到循环。
+
+这里 `j = E.n()` 在 debug 过程中看变量值应该是在迭代 `Object.values(O)`，也就是最佳拍点列表。
+
+- `j` 每次拿到 `{ index, value: O[index] }`。
+- 接下来几行 `I = _.tick` 就是拍点时间（秒），`L = _.i` 就是拍点在全部拍点中的 index。
+- `M` 记录下拍点时间和 index，维护 `ticks` 数组，把当前拍点放进去。
+
+接下来看这个 `P` 函数，发现它在不断循环。阅读调用过程。
+
+- `case 22` 调用 `P`
+  - 如果没有返回 `"break"`，前往 `case 26`，再回 `case 22`，重复调用 `P`
+  - 如果返回了 `"break"`，前往 `case 28`，`T.push(M)`，fall through 到 `case 29`，再回到 `case 18` 构建新的 `M`
+    - 如果 `(j = E.n()).done` 为真，前往 `case 31`，再去 `case 36`，就出去了
+    - 否则还没完，就再重复调用 `P`
+
+也就是说这里 `T` 数组就是一个一个 `M` 对象组成的，每一个 `M` 都是从最佳拍点列表 `O` 的元素中「发芽」，经过 `P` 函数多次迭代，当 `P` 返回 `"break"` 的时候就完成一个 `M`。
+
+接下来仔细看 `P` 函数干了什么。
+
+```js
+P = function () {
+  M.keep++;
+  var t = L + M.keep;
+  if (t >= h.length) return "break";
+  var r = h[t];
+  if (
+    !O.some(function (t) {
+      return t.tick === r;
+    })
+  )
+    return "break";
+  M.ticks.push(r);
+};
+```
+
+`keep++`，`L` 是最佳拍点在全部拍点中的 index，`t = L + M.keep`，就是最佳拍点之后 `keep` 个拍点的 index。超范围就 `break` 掉，否则 `r` 就是这个拍点。
+
+接下来 `O.some` 是在最佳拍点里找这个 `r`，如果找到了就塞进 `M.ticks`，否则就 `break` 掉。
+
+也就是说 `P` 在做这样的事情：从一个最佳拍点出发，一直向后寻找相邻的最佳拍点，找不到了这个 `M` 就结束，取找下一个最佳拍点。也就是每一个 `M` 都是相邻的一串最佳拍点，`T` 保存了所有的相邻最佳拍点组。
+
+继续看后面的代码：
+
+```js
+switch ((t.prev = t.next)) {
+  case 0:
+  // 上面那一段
+  case 39:
+    return (
+      (R = T.sort(function (t, r) {
+        return r.keep - t.keep;
+      })[0]),
+      (k = {
+        bpm: o,
+        start: f,
+        tick: R.tick + f / 44100,
+      }),
+      (t.next = 43),
+      s()
+    );
+  case 43:
+    (postMessage({
+      type: "keyBPM",
+      result: k,
+    }),
+      (t.next = 51));
+    break;
+  case 46:
+    return (
+      (t.prev = 46),
+      (t.t1 = t.catch(0)),
+      postMessage({
+        type: "error",
+        error: t.t1,
+      }),
+      t.abrupt("return")
+    );
+  case 51:
+  case "end":
+    return t.stop();
+}
+```
+
+这里对 `T` 按 `keep` 排序。这里的 `keep` 其实就是每个最佳拍点串 `M` 的长度了，这个 `R` 找到的就是最长的串。
+
+结果的这个 `k` 里：
+
+- `bpm` 用的是 `o`，也就是最开始 **BPM 粗略估计**得到的那个值；
+- `start` 的这个 `f`，是前面 `f = a.start` 也就是第二次音频裁切的起始采样数；
+- `tick` 是最长串的第一个拍点时间，补上音频裁切掉的时长。
+
+在后续这个 `k` 作为结果 `postMessage` 传回主线程。到这里 worker 里核心逻辑结束。
 
 ## 总结
 
 这个团子 AI 节拍分析工具本质就是做了一下前后处理，音频分析部分完全基于 Essentia。大致流程为：
 
-- 裁切音频，避开 intro/outro
-- 通过 `essentia.PercivalBpmEstimator` 粗略估计 BPM 值
-- 通过经验规则对 BPM 进行倍半操作，转入正常区间（60~160）
-- 再次裁切音频，只取稳定区间
-- 通过 `essentia.BeatTrackerMultiFeature`，在 BPM±10 范围内精细寻找拍点
-- 构建拍点时长频数直方图，仅取最高频时长对应的拍点序列
-- 基于主频节拍推导全曲节拍 & BPM
+1. 裁切音频，避开 intro/outro
+2. 通过 `essentia.PercivalBpmEstimator` 估计 BPM 值
+3. 通过经验规则对 BPM 进行倍半操作，转入正常区间（60~160）
+4. 再次裁切音频，只取稳定区间
+5. 通过 `essentia.BeatTrackerMultiFeature`，在 BPM±10 范围内精细寻找拍点
+6. 构建拍点时长频数直方图，取最高频时长对应的拍点序列：最佳拍点序列
+7. 最佳拍点序列回头在所有拍点中匹配，寻找在所有拍点中最长连续最佳拍点序列
+8. 2 中估计的 BPM 值，和最长连续最佳拍点序列中的第一个拍点位置是最重要的结果
 
 名字带着 AI，但实际上这个工具更多是「成熟音频信号处理算法 + 工程调参」的组合。
 
