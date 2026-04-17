@@ -99,6 +99,7 @@ export default {
         macros: {
           oiint: `{\\subset\\!\\supset} \\mathllap{\\iint}`,
           oiiint: `{\\Large{\\subset\\!\\supset}} \\mathllap{\\iiint}`,
+          degree: `^\\circ`,
         },
       },
     },
@@ -120,8 +121,8 @@ export default {
             "example",
             "例",
             { numbered: true, themeAlias: ["note"] },
-            md
-          )
+            md,
+          ),
         )
         .use(mdGitHubAlertsPlugin)
         .use(mdPlot)
