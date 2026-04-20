@@ -47,7 +47,7 @@
   },
   "scripts": {
     "dev": "vitepress dev",
-    "build": "cross-env NODE_OPTIONS='--max-old-space-size=8192' vitepress build",
+    "build": "cross-env NODE_OPTIONS='--max-old-space-size=16384' vitepress build",
     "preview": "vitepress preview",
     "devexp": "vitepress dev --host"
   },
