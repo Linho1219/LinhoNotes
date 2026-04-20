@@ -212,11 +212,11 @@ $$
 则
 
 $$
-\begin{align}
+\begin{aligned}
 |\tilde{x}_{\star}-\hat{x}_{\star}|&=|\tilde{x}_{\star}-\tilde{x}_{n_{k}}+\tilde{x}_{n_{k}}-\hat{x}_{n_{k}}+\hat{x}_{n_{k}}-\hat{x}_{\star}|\\
 &<|\tilde{x}_{\star}-\tilde{x}_{n_{k}}|+|\tilde{x}_{n_{k}}-\hat{x}_{n_{k}}|+|\hat{x}_{n_{k}}-\hat{x}_{\star}|\\
 &<3\varepsilon.
-\end{align}
+\end{aligned}
 $$
 
 由$\varepsilon$的任意性，可知$\tilde{x}_{\star}=\hat{x}_{\star}:=x_{\star}.$
