@@ -176,7 +176,6 @@ details[open] > summary::before {
 .DocSearch-Hit a {
   transition: background 0.2s;
 }
-.DocSearch-Hit span,
 .DocSearch-Hit-icon {
   transition: color 0.2s;
 }

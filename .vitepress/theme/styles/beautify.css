@@ -157,6 +157,12 @@ mjx-container text {
   background-color: #0000003a;
 }
 
+/* 淡化滚动条 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--vp-c-border) transparent;
+}
+
 /* 防止上下标影响行距 */
 sub,
 sup {
@@ -176,23 +182,14 @@ sub {
 :root {
   --docsearch-hit-active-color: var(--vp-c-text-1);
 }
-.DocSearch-Container {
-  /* 遮罩已自行通过组件实现 */
-  background: transparent;
-  z-index: 2000;
-}
 .DocSearch-Modal {
   box-shadow: #0005 0 15px 30px;
 }
-.DocSearch-Hit[aria-selected="true"] a {
-  background: var(--vp-c-brand-soft);
-}
-.DocSearch-Hit[aria-selected="true"] mark {
-  color: var(--vp-c-brand-1) !important;
-  text-decoration: none;
+.DocSearch-Hit mark {
+  text-decoration-thickness: 0.1em;
+  font-weight: bold;
 }
 .DocSearch-Logo {
-  filter: grayscale(1) brightness(2.5);
   opacity: 0.5;
 }
 .DocSearch-NoResults-Prefill-List {

@@ -18,14 +18,18 @@ if (!import.meta.env.SSR) {
 </script>
 
 <style scoped>
+:root:root:root {
+  --docsearch-container-background: transparent;
+}
+
 .search-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000e;
-  z-index: 1990;
+  background-color: var(--vp-backdrop-bg-color);
+  z-index: 399;
   opacity: 0.4;
   transition: opacity 0.2s;
 }
