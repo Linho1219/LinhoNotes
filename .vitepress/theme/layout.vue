@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import DefaultTheme from "vitepress/theme-without-fonts";
-import { nextTick, provide } from "vue";
+import { nextTick, onUnmounted, provide, watch } from "vue";
 import { useData, useRouter } from "vitepress";
 import { NolebaseHighlightTargetedHeading } from "@nolebase/vitepress-plugin-highlight-targeted-heading/client";
 import Breadcrumb from "./components/breadcrumb.vue";
@@ -46,25 +46,46 @@ provide("toggle-appearance", async () => {
       duration: 600,
       easing: "ease-out",
       pseudoElement: `::view-transition-${isDark.value ? "old" : "new"}(root)`,
-    }
+    },
   );
 });
 
 const router = useRouter();
-router.onBeforeRouteChange = () => {
-  document.body.parentElement?.classList.add("disable-scroll-transition");
-};
-router.onAfterRouteChange = () => {
-  document.body.parentElement?.classList.remove("disable-scroll-transition");
-};
+let lastPath = router.route.path;
+let lastHash = router.route.hash;
+let smoothScrollTimeout: number | null = null;
+
+function enableSmoothScroll() {
+  if (smoothScrollTimeout) clearTimeout(smoothScrollTimeout);
+  document.documentElement.classList.add("hash-scroll-smooth");
+  smoothScrollTimeout = window.setTimeout(() => {
+    document.documentElement.classList.remove("hash-scroll-smooth");
+    smoothScrollTimeout = null;
+  }, 1000);
+}
+
+watch([() => router.route.hash, () => router.route.path], () => {
+  if (router.route.hash !== lastHash && router.route.path === lastPath)
+    enableSmoothScroll();
+
+  lastHash = router.route.hash;
+  lastPath = router.route.path;
+});
+
+onUnmounted(() => {
+  if (smoothScrollTimeout) clearTimeout(smoothScrollTimeout);
+});
 </script>
 
 <style>
-html {
+html.hash-scroll-smooth {
   scroll-behavior: smooth;
 }
-html.disable-scroll-transition {
-  scroll-behavior: auto;
+
+@media (prefers-reduced-motion: reduce) {
+  html.hash-scroll-smooth {
+    scroll-behavior: auto;
+  }
 }
 
 ::view-transition-old(root),
