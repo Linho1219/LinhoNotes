@@ -37,9 +37,6 @@
   .content {
     padding-bottom: 0 !important;
   }
-  mjx-container svg * {
-    stroke: none;
-  }
   :root {
     --vp-layout-max-width: unset;
     --vp-c-text-1: black;

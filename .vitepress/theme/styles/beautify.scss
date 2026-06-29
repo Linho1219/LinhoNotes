@@ -83,11 +83,6 @@ a {
     "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
 }
 
-/* 公式内文字字体定义 */
-mjx-container text {
-  font-family: var(--vp-font-family-base);
-}
-
 /* 删除线文字颜色调整 */
 .vp-doc s {
   color: var(--vp-c-text-2);
@@ -197,57 +192,46 @@ sub {
 }
 
 /* 公式颜色优化 */
-mjx-container g[data-mml-node="mstyle"][fill="red"] {
-  fill: var(--ln-c-red);
-  stroke: var(--ln-c-red);
-}
-mjx-container g[data-mml-node="mstyle"][fill="orange"] {
-  fill: var(--ln-c-orange);
-  stroke: var(--ln-c-orange);
-}
-mjx-container g[data-mml-node="mstyle"][fill="yellow"] {
-  fill: var(--ln-c-yellow);
-  stroke: var(--ln-c-yellow);
-}
-mjx-container g[data-mml-node="mstyle"][fill="green"] {
-  fill: var(--ln-c-green);
-  stroke: var(--ln-c-green);
-}
-mjx-container g[data-mml-node="mstyle"][fill="blue"] {
-  fill: var(--ln-c-blue);
-  stroke: var(--ln-c-blue);
-}
-mjx-container g[data-mml-node="mstyle"][fill="indigo"] {
-  fill: var(--ln-c-indigo);
-  stroke: var(--ln-c-indigo);
-}
-mjx-container g[data-mml-node="mstyle"][fill="purple"] {
-  fill: var(--ln-c-purple);
-  stroke: var(--ln-c-purple);
-}
-mjx-container g[data-mml-node="mstyle"][fill="pink"] {
-  fill: var(--ln-c-pink);
-  stroke: var(--ln-c-pink);
-}
-mjx-container g[data-mml-node="mstyle"][fill="magenta"] {
-  fill: var(--ln-c-magenta);
-  stroke: var(--ln-c-magenta);
-}
-mjx-container g[data-mml-node="mstyle"][fill="lime"] {
-  fill: var(--ln-c-lime);
-  stroke: var(--ln-c-lime);
-}
-mjx-container g[data-mml-node="mstyle"][fill="olive"] {
-  fill: var(--ln-c-olive);
-  stroke: var(--ln-c-olive);
-}
-mjx-container g[data-mml-node="mstyle"][fill="cyan"] {
-  fill: var(--ln-c-cyan);
-  stroke: var(--ln-c-cyan);
-}
-mjx-container g[data-mml-node="mstyle"][fill="teal"] {
-  fill: var(--ln-c-teal);
-  stroke: var(--ln-c-teal);
+.katex-html {
+  [style*="color:red;"] {
+    color: var(--ln-c-red) !important;
+  }
+  [style*="color:orange;"] {
+    color: var(--ln-c-orange) !important;
+  }
+  [style*="color:yellow;"] {
+    color: var(--ln-c-yellow) !important;
+  }
+  [style*="color:green;"] {
+    color: var(--ln-c-green) !important;
+  }
+  [style*="color:blue;"] {
+    color: var(--ln-c-blue) !important;
+  }
+  [style*="color:indigo;"] {
+    color: var(--ln-c-indigo) !important;
+  }
+  [style*="color:purple;"] {
+    color: var(--ln-c-purple) !important;
+  }
+  [style*="color:pink;"] {
+    color: var(--ln-c-pink) !important;
+  }
+  [style*="color:magenta;"] {
+    color: var(--ln-c-magenta) !important;
+  }
+  [style*="color:lime;"] {
+    color: var(--ln-c-lime) !important;
+  }
+  [style*="color:olive;"] {
+    color: var(--ln-c-olive) !important;
+  }
+  [style*="color:cyan;"] {
+    color: var(--ln-c-cyan) !important;
+  }
+  [style*="color:teal;"] {
+    color: var(--ln-c-teal) !important;
+  }
 }
 
 #VPNavScreen .container {

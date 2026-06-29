@@ -27,10 +27,13 @@ h6 {
 }
 
 /* 修复公式纵向滚动条；标点避头尾修复 */
-mjx-container {
+.katex-display {
   overflow-y: hidden;
   white-space: nowrap;
   outline: none;
+}
+.katex {
+  font-size: 1.15em;
 }
 
 /* 避免横向滚动条 */
@@ -168,9 +171,6 @@ h6 + .footnotes-sep {
 :root {
   --vp-custom-block-font-size: 15px;
   --vp-custom-block-code-font-size: 14px;
-}
-.custom-block mjx-container {
-  font-size: 16px;
 }
 
 :root {

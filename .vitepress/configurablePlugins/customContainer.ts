@@ -1,5 +1,4 @@
 import container from "markdown-it-container";
-import type MarkdownIt from "markdown-it";
 import { RenderRule } from "markdown-it/lib/renderer.mjs";
 import { PluginWithParams } from "markdown-it";
 
@@ -17,7 +16,7 @@ export const createContainer = (
   klass: string,
   defaultTitle: string,
   config: CustomContainerConfig,
-  md: MarkdownIt,
+  md: any,
 ): ContainerArgs => [
   container as unknown as PluginWithParams,
   klass,

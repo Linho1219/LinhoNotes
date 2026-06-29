@@ -5,7 +5,7 @@ import "katex/dist/katex.css";
 
 import "./styles/private.css";
 import "./styles/fix.css";
-import "./styles/beautify.css";
+import "./styles/beautify.scss";
 import "./styles/animation.css";
 import "./styles/home.css";
 import "./styles/print.css";
