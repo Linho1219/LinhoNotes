@@ -5,20 +5,11 @@ import "katex/contrib/mhchem";
 const mathRenderMode = process.env.MATH_RENDER_MODE ?? "katex";
 
 const macros = {
-  "\\oiint": `{\\subset\\!\\supset} \\mathllap{\\iint}`,
-  "\\oiiint": `{\\Large{\\subset\\!\\supset}} \\mathllap{\\iiint}`,
-  "\\degree": `^\\circ`,
-  "\\ohm": `\\Omega`,
   "\\d": `\\mathrm d`,
   "\\dx": `\\mathrm dx`,
   "\\ddx": `\\frac{\\mathrm d}{\\mathrm dx}`,
   "\\ddy": `\\frac{\\mathrm d}{\\mathrm dy}`,
   "\\ddt": `\\frac{\\mathrm d}{\\mathrm dt}`,
-  "\\cases": `\\begin{cases}#1\\end{cases}`,
-  "\\matrix": `\\begin{matrix}#1\\end{matrix}`,
-  "\\eqalign": `\\begin{aligned}#1\\end{aligned}`,
-  "\\hfill": ``,
-  "\\mit": ``,
 };
 
 const escapeVueText = (content: string) =>
@@ -28,6 +19,12 @@ const escapeVueText = (content: string) =>
     .replace(/>/g, "&gt;")
     .replace(/{/g, "&#123;")
     .replace(/}/g, "&#125;");
+
+const normalizeForKatex = (content: string) =>
+  content
+    .replace(/\\boldsymbol\s*\{\s*(\\var[A-Z][A-Za-z]+)\s*\}/g, "\\pmb{$1}")
+    .replace(/\\boldsymbol\s+(\\var[A-Z][A-Za-z]+)/g, "\\pmb{$1}")
+    .replace(/\\boldsymbol(\\var[A-Z][A-Za-z]+)/g, "\\pmb{$1}");
 
 function isValidDelim(state: any, pos: number) {
   const max = state.posMax;
@@ -139,8 +136,9 @@ function mathBlock(state: any, start: number, end: number, silent: boolean) {
 
 const renderKatex = (content: string, displayMode: boolean) => {
   try {
+    const normalizedContent = normalizeForKatex(content);
     return katex
-      .renderToString(content, {
+      .renderToString(normalizedContent, {
         displayMode,
         macros,
         output: "html",
