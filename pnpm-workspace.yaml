@@ -6,4 +6,5 @@ overrides:
   lodash-es: ^4.17.23
 
 allowBuilds:
+  '@parcel/watcher': false
   esbuild: false
