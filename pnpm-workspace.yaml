@@ -1,0 +1,9 @@
+patchedDependencies:
+  function-plot: patches/function-plot.patch
+
+overrides:
+  esbuild: ^0.25.0
+  lodash-es: ^4.17.23
+
+allowBuilds:
+  esbuild: false
