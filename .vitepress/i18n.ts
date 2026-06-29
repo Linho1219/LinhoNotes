@@ -37,12 +37,6 @@ export const searchI18n: DefaultTheme.AlgoliaSearchOptions["translations"] = {
     buttonAriaLabel: "搜索", // Search
   },
   modal: {
-    searchBox: {
-      resetButtonTitle: "清空", // Clear the query
-      resetButtonAriaLabel: "清空", // Clear the query
-      cancelButtonText: "取消", // Cancel
-      cancelButtonAriaLabel: "取消", // Cancel
-    },
     startScreen: {
       recentSearchesTitle: "最近", // Recent
       noRecentSearchesText: "无历史纪录", // No recent searches
