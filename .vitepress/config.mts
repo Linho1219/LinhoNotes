@@ -17,7 +17,7 @@ import mdFootNotePlus from "./footnote/footnotePlugin";
 import mdImageViewer from "./imageViewer/imagePlugin";
 import mdWrapper from "./configurablePlugins/customWrapper";
 import mdLinkClass from "./configurablePlugins/customLinkClassName";
-import mdMjxErrWarning from "./siteData/mjxErrWarning";
+import mdMath from "./configurablePlugins/math";
 import mdGitHubAlertsPlugin from "./siteData/githubAlert";
 import { createContainer } from "./configurablePlugins/customContainer";
 
@@ -25,6 +25,7 @@ import { themeI18n, miscI18n, searchI18n } from "./i18n";
 import { globalConfig } from "./manualConfig";
 import iconHeader from "./siteData/iconHeader";
 const { title, description, baseUrl } = globalConfig;
+const enableMath = process.env.DISABLE_MATH !== "true";
 
 import nav from "./siteData/nav";
 import sidebar from "./siteData/sidebar";
@@ -94,15 +95,6 @@ export default {
     ...themeI18n,
   },
   markdown: {
-    math: {
-      tex: {
-        macros: {
-          oiint: `{\\subset\\!\\supset} \\mathllap{\\iint}`,
-          oiiint: `{\\Large{\\subset\\!\\supset}} \\mathllap{\\iiint}`,
-          degree: `^\\circ`,
-        },
-      },
-    },
     languageAlias: { graph: "json5" },
     config: (md) => {
       md.use(groupIconMdPlugin)
@@ -113,9 +105,9 @@ export default {
         .use(mdSub)
         .use(mdWrapper, { marker: "%", tag: "Cloze" })
         .use(mdWrapper, { marker: "=", tag: "mark" })
-        .use(mdLinkClass, { className: "animated-link" })
-        .use(mdMjxErrWarning)
-        .use(mdImageViewer)
+        .use(mdLinkClass, { className: "animated-link" });
+      if (enableMath) md.use(mdMath);
+      md.use(mdImageViewer)
         .use(
           ...createContainer(
             "example",

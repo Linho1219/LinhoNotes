@@ -106,7 +106,7 @@ $ a_m = \begin{cases} p & \text{if } \lfloor \frac{m}{2} \rfloor \text{ is odd},
 
 为简单起见，假设 $m \equiv 1 \pmod{4}$ （如果不是，则继续递增 $m$ 并分别调整其贡献）。
 
-定义 $e = \displaystyle\sum_{\substack{n &lt; i \leq m \ i \text{ even}}} a_i = a_{n + 1} + a_{n + 3} + \ldots + a_{\lfloor \frac{m}{2} \rfloor}$ 。这个和可以表示为
+定义 $e = \displaystyle\sum_{\substack{n < i \leq m \\ i \text{ even}}} a_i = a_{n + 1} + a_{n + 3} + \ldots + a_{\lfloor \frac{m}{2} \rfloor}$ 。这个和可以表示为
 
 $e = \text{sum}(\lfloor \frac{m}{2} \rfloor)_{\text{even}} - prefix_{\text{even}}(n).$
 

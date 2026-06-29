@@ -1,6 +1,7 @@
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme-without-fonts";
 import "virtual:group-icons.css";
+import "katex/dist/katex.css";
 
 import "./styles/private.css";
 import "./styles/fix.css";
