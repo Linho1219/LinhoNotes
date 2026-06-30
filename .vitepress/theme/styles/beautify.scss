@@ -192,46 +192,31 @@ sub {
 }
 
 /* 公式颜色优化 */
+@mixin katex-color($name, $var) {
+  [style^="color:#{$name}"],
+  [style^="color: #{$name}"],
+  [style*=";color:#{$name}"],
+  [style*="; color:#{$name}"],
+  [style*=";color: #{$name}"],
+  [style*="; color: #{$name}"] {
+    color: var(#{$var}) !important;
+  }
+}
+
 .katex-html {
-  [style*="color:red;"] {
-    color: var(--ln-c-red) !important;
-  }
-  [style*="color:orange;"] {
-    color: var(--ln-c-orange) !important;
-  }
-  [style*="color:yellow;"] {
-    color: var(--ln-c-yellow) !important;
-  }
-  [style*="color:green;"] {
-    color: var(--ln-c-green) !important;
-  }
-  [style*="color:blue;"] {
-    color: var(--ln-c-blue) !important;
-  }
-  [style*="color:indigo;"] {
-    color: var(--ln-c-indigo) !important;
-  }
-  [style*="color:purple;"] {
-    color: var(--ln-c-purple) !important;
-  }
-  [style*="color:pink;"] {
-    color: var(--ln-c-pink) !important;
-  }
-  [style*="color:magenta;"] {
-    color: var(--ln-c-magenta) !important;
-  }
-  [style*="color:lime;"] {
-    color: var(--ln-c-lime) !important;
-  }
-  [style*="color:olive;"] {
-    color: var(--ln-c-olive) !important;
-  }
-  [style*="color:cyan;"] {
-    color: var(--ln-c-cyan) !important;
-  }
-  [style*="color:teal;"] {
-    color: var(--ln-c-teal) !important;
-  }
+  @include katex-color("red", "--ln-c-red");
+  @include katex-color("orange", "--ln-c-orange");
+  @include katex-color("yellow", "--ln-c-yellow");
+  @include katex-color("green", "--ln-c-green");
+  @include katex-color("blue", "--ln-c-blue");
+  @include katex-color("indigo", "--ln-c-indigo");
+  @include katex-color("purple", "--ln-c-purple");
+  @include katex-color("pink", "--ln-c-pink");
+  @include katex-color("magenta", "--ln-c-magenta");
+  @include katex-color("lime", "--ln-c-lime");
+  @include katex-color("olive", "--ln-c-olive");
+  @include katex-color("cyan", "--ln-c-cyan");
+  @include katex-color("teal", "--ln-c-teal");
 }
 
 #VPNavScreen .container {
