@@ -1,5 +1,6 @@
 patchedDependencies:
   function-plot: patches/function-plot.patch
+  katex: patches/katex.patch
 
 overrides:
   esbuild: ^0.25.0

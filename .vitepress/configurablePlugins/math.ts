@@ -20,12 +20,6 @@ const escapeVueText = (content: string) =>
     .replace(/{/g, "&#123;")
     .replace(/}/g, "&#125;");
 
-const normalizeForKatex = (content: string) =>
-  content
-    .replace(/\\boldsymbol\s*\{\s*(\\var[A-Z][A-Za-z]+)\s*\}/g, "\\pmb{$1}")
-    .replace(/\\boldsymbol\s+(\\var[A-Z][A-Za-z]+)/g, "\\pmb{$1}")
-    .replace(/\\boldsymbol(\\var[A-Z][A-Za-z]+)/g, "\\pmb{$1}");
-
 function isValidDelim(state: any, pos: number) {
   const max = state.posMax;
   const prevChar = pos > 0 ? state.src.charCodeAt(pos - 1) : -1;
@@ -136,9 +130,8 @@ function mathBlock(state: any, start: number, end: number, silent: boolean) {
 
 const renderKatex = (content: string, displayMode: boolean) => {
   try {
-    const normalizedContent = normalizeForKatex(content);
     return katex
-      .renderToString(normalizedContent, {
+      .renderToString(content, {
         displayMode,
         macros,
         output: "html",

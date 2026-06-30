@@ -1,0 +1,45 @@
+diff --git a/dist/katex.mjs b/dist/katex.mjs
+index b4a83b4b7b9b31064413fa7eb5447823110d7305..66e7a8990e7787968fe6359eae7a7ed7f19f03c0 100644
+--- a/dist/katex.mjs
++++ b/dist/katex.mjs
+@@ -4223,6 +4223,19 @@ defineSymbol(math, main, mathord, "\u03d6", "\\varpi", true);
+ defineSymbol(math, main, mathord, "\u03f1", "\\varrho", true);
+ defineSymbol(math, main, mathord, "\u03c2", "\\varsigma", true);
+ defineSymbol(math, main, mathord, "\u03c6", "\\varphi", true);
++
++defineSymbol(math, main, mathord, "\u0393", "\\varGamma", true);
++defineSymbol(math, main, mathord, "\u0394", "\\varDelta", true);
++defineSymbol(math, main, mathord, "\u0398", "\\varTheta", true);
++defineSymbol(math, main, mathord, "\u039b", "\\varLambda", true);
++defineSymbol(math, main, mathord, "\u039e", "\\varXi", true);
++defineSymbol(math, main, mathord, "\u03a0", "\\varPi", true);
++defineSymbol(math, main, mathord, "\u03a3", "\\varSigma", true);
++defineSymbol(math, main, mathord, "\u03a5", "\\varUpsilon", true);
++defineSymbol(math, main, mathord, "\u03a6", "\\varPhi", true);
++defineSymbol(math, main, mathord, "\u03a8", "\\varPsi", true);
++defineSymbol(math, main, mathord, "\u03a9", "\\varOmega", true);
++
+ defineSymbol(math, main, bin, "\u2217", "*", true);
+ defineSymbol(math, main, bin, "+", "+");
+ defineSymbol(math, main, bin, "\u2212", "-", true);
+@@ -14029,19 +14042,7 @@ defineMacro("\u22ee", "\\vdots");
+ //////////////////////////////////////////////////////////////////////
+ // amsmath.sty
+ // http://mirrors.concertpass.com/tex-archive/macros/latex/required/amsmath/amsmath.pdf
+-// Italic Greek capital letters.  AMS defines these with \DeclareMathSymbol,
+-// but they are equivalent to \mathit{\Letter}.
+-defineMacro("\\varGamma", "\\mathit{\\Gamma}");
+-defineMacro("\\varDelta", "\\mathit{\\Delta}");
+-defineMacro("\\varTheta", "\\mathit{\\Theta}");
+-defineMacro("\\varLambda", "\\mathit{\\Lambda}");
+-defineMacro("\\varXi", "\\mathit{\\Xi}");
+-defineMacro("\\varPi", "\\mathit{\\Pi}");
+-defineMacro("\\varSigma", "\\mathit{\\Sigma}");
+-defineMacro("\\varUpsilon", "\\mathit{\\Upsilon}");
+-defineMacro("\\varPhi", "\\mathit{\\Phi}");
+-defineMacro("\\varPsi", "\\mathit{\\Psi}");
+-defineMacro("\\varOmega", "\\mathit{\\Omega}");
++// Italic Greek capital letters.  -- Patched and moved to symbols to avoid \boldsymbol and \mathit conflicts.
+ //\newcommand{\substack}[1]{\subarray{c}#1\endsubarray}
+ defineMacro("\\substack", "\\begin{subarray}{c}#1\\end{subarray}");
+ // \renewcommand{\colon}{\nobreak\mskip2mu\mathpunct{}\nonscript

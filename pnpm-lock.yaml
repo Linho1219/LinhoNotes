@@ -10,6 +10,7 @@ overrides:
 
 patchedDependencies:
   function-plot: ca5cb5b2d955e3a06284380cce16deb5245e5a5549f6eea07a9dacd21553aea5
+  katex: 2b69c68c970b731c226d4399857ce1f6b8229808530b87480eeb9154e8fdbee9
 
 importers:
 
@@ -26,7 +27,7 @@ importers:
         version: 2.0.0-0(patch_hash=ca5cb5b2d955e3a06284380cce16deb5245e5a5549f6eea07a9dacd21553aea5)
       katex:
         specifier: ^0.16.47
-        version: 0.16.47
+        version: 0.16.47(patch_hash=2b69c68c970b731c226d4399857ce1f6b8229808530b87480eeb9154e8fdbee9)
       mermaid:
         specifier: ^11.16.0
         version: 11.16.0
@@ -5016,7 +5017,7 @@ snapshots:
 
   json5@2.2.3: {}
 
-  katex@0.16.47:
+  katex@0.16.47(patch_hash=2b69c68c970b731c226d4399857ce1f6b8229808530b87480eeb9154e8fdbee9):
     dependencies:
       commander: 8.3.0
 
@@ -5158,7 +5159,7 @@ snapshots:
       dayjs: 1.11.21
       dompurify: 3.4.11
       es-toolkit: 1.49.0
-      katex: 0.16.47
+      katex: 0.16.47(patch_hash=2b69c68c970b731c226d4399857ce1f6b8229808530b87480eeb9154e8fdbee9)
       khroma: 2.1.0
       marked: 16.4.2
       roughjs: 4.6.6
