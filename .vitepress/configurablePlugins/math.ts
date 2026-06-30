@@ -12,13 +12,8 @@ const macros = {
   "\\ddt": `\\frac{\\mathrm d}{\\mathrm dt}`,
 };
 
-const escapeVueText = (content: string) =>
-  content
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/{/g, "&#123;")
-    .replace(/}/g, "&#125;");
+const escape = (content: string) =>
+  content.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 function isValidDelim(state: any, pos: number) {
   const max = state.posMax;
@@ -103,7 +98,7 @@ function mathBlock(state: any, start: number, end: number, silent: boolean) {
   }
 
   let next = start;
-  for (; !found; ) {
+  for (; !found;) {
     next++;
     if (next >= end) break;
     pos = state.bMarks[next] + state.tShift[next];
@@ -139,21 +134,20 @@ const renderKatex = (content: string, displayMode: boolean) => {
         throwOnError: true,
         trust: false,
       })
-      .replace(/{/g, "&#123;")
-      .replace(/}/g, "&#125;");
+      .replace(/(?<=<span)(?=[^>]*class="katex")/, " v-pre ");
   } catch (error) {
     if (process.env.NODE_ENV === "production") throw error;
     const message = error instanceof Error ? error.message : String(error);
     return displayMode
-      ? `<div class="graph-error caution custom-block github-alert"><p class="custom-block-title">公式渲染错误</p><pre>${escapeVueText(message)}</pre></div>`
-      : `<code class="graph-error caution custom-block github-alert">LaTeX Error: ${escapeVueText(message)}</code>`;
+      ? `<div class="graph-error caution custom-block github-alert"><p class="custom-block-title">公式渲染错误</p><pre v-pre>${escape(message)}</pre></div>`
+      : `<code v-pre class="graph-error caution custom-block github-alert">LaTeX Error: ${escape(message)}</code>`;
   }
 };
 
 const renderSource = (content: string, displayMode: boolean) =>
   displayMode
-    ? `<div class="math math-block">${escapeVueText(content)}</div>`
-    : `<span class="math math-inline">${escapeVueText(content)}</span>`;
+    ? `<div v-pre class="math math-block">${escape(content)}</div>`
+    : `<span v-pre class="math math-inline">${escape(content)}</span>`;
 
 export default function mdMath(md: MarkdownIt) {
   md.inline.ruler.after("escape", "math_inline", mathInline);
