@@ -1,0 +1,197 @@
+// ====== 修复问题 ======
+
+// 修复标题边距
+h1 {
+  margin-bottom: 16px;
+}
+h5,
+h6 {
+  margin: 16px 0;
+}
+
+// 调整行内代码块内边距
+.vp-doc :not(pre) > code {
+  padding: 2px 6px;
+}
+
+// 修复 shiki 语法高亮未显示斜体加粗等
+.vp-code span {
+  font-style: var(--shiki-light-font-style);
+  font-weight: var(--shiki-light-font-weight);
+  text-decoration: var(--shiki-light-text-decoration);
+  .dark & {
+    font-style: var(--shiki-dark-font-style);
+    font-weight: var(--shiki-dark-font-weight);
+    text-decoration: var(--shiki-dark-text-decoration);
+  }
+}
+
+// 修复公式纵向滚动条
+.katex-display {
+  overflow-y: visible;
+}
+.katex {
+  font-size: 1.15em;
+}
+
+// 避免横向滚动条
+.VPDoc {
+  overflow-x: hidden;
+}
+
+// blockquote 与 li 内段间距修复
+.vp-doc {
+  blockquote,
+  li {
+    p {
+      margin: 8px 0;
+    }
+  }
+  blockquote,
+  .custom-block {
+    .code-block {
+      margin: 16px 0;
+      font-size: 16px;
+    }
+    ul,
+    ol {
+      margin: 8px 0;
+    }
+  }
+}
+
+// 提示块分割线颜色修复
+.custom-block {
+  --vp-c-divider: #0002;
+  .dark & {
+    --vp-c-divider: #fff2;
+  }
+}
+
+// 提示框嵌套边距修复
+.custom-block .custom-block {
+  padding: 16px 16px 6px;
+  margin: 18px 0;
+}
+
+// 修复脚注返回按钮显示为 emoji
+a.footnote-backref {
+  font-family: sans-serif;
+}
+
+// 顶栏 logo 大小修复
+:root {
+  --vp-nav-logo-height: 30px;
+}
+img.VPImage.logo {
+  margin-right: 4px;
+}
+
+// 隐藏 H1 anchor
+.vp-doc h1 .header-anchor {
+  display: none;
+}
+
+// 缩小表格空隙
+.vp-doc {
+  table {
+    margin: 20px auto;
+    display: table;
+  }
+  @media screen and (max-width: 688px) {
+    th,
+    td {
+      padding: 4px 8px;
+    }
+  }
+}
+
+// 缩小移动端边距
+@media screen and (max-width: 688px) {
+  .VPDoc {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+// 调整自定义框标题大小
+.vp-doc .custom-block .custom-block-title {
+  font-size: 16px;
+}
+
+// 修复溢出问题
+.vp-doc p {
+  max-width: 100%;
+}
+
+// 外链提示图标
+.vp-doc a[target="_blank"]::after {
+  content: "";
+  width: 0.7em !important;
+  height: 0.7em !important;
+  margin-left: 0.1em !important;
+  color: inherit !important;
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.vp-doc a {
+  font-weight: inherit;
+}
+
+// 隐藏标题后面的脚注分割线
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  & + .footnotes-sep {
+    display: none;
+  }
+}
+
+// 修复多级列表 marker 样式
+.vp-doc {
+  li ol {
+    list-style: lower-roman;
+  }
+  li li ol {
+    list-style: lower-latin;
+  }
+  li li li ol {
+    list-style: lower-greek;
+  }
+
+  li ul {
+    list-style: circle;
+  }
+  li li ul {
+    list-style: square;
+  }
+
+  li::marker {
+    color: var(--vp-c-text-2);
+  }
+}
+
+// 调整提示框字号
+:root {
+  --vp-custom-block-font-size: 15px;
+  --vp-custom-block-code-font-size: 14px;
+}
+
+:root {
+  --vp-z-index-footer: 100;
+  --vp-z-index-local-nav: 200;
+  --vp-z-index-nav: 300;
+  --vp-z-index-layout-top: 400;
+  --vp-z-index-backdrop: 500;
+  --vp-z-index-sidebar: 600;
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-z-index-sidebar: 250;
+  }
+}

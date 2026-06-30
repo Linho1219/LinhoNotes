@@ -1,4 +1,4 @@
-/*====== 动态效果 ======*/
+// ====== 动态效果 ======
 
 @keyframes l-fade-in-up {
   from {
@@ -13,15 +13,15 @@
   }
 }
 
-/* 960px+ 有左侧边栏 */
+// 960px+ 有左侧边栏
 @media only screen and (min-width: 960px) {
-  /* 正文切换动画 */
+  // 正文切换动画
   .vp-doc > div,
   .VPHome {
     animation: l-fade-in-up 0.3s;
   }
 
-  /* 侧边栏指示条动画 */
+  // 侧边栏指示条动画
   .VPSidebarItem.is-active > .item > .indicator {
     background: var(--vp-c-brand-1);
     transform: translateY(0);
@@ -43,7 +43,7 @@
     transform: translateY(-40px);
   }
 
-  /* 页脚点击动画 */
+  // 页脚点击动画
   .VPLink.link.pager-link {
     transition:
       transform 0.15s,
@@ -56,12 +56,12 @@
     transform: translateX(15px);
   }
 
-  /* 左侧边栏出现与刷新动画 */
+  // 左侧边栏出现与刷新动画
   .VPSidebar {
     animation: l-fade-in-left 0.2s;
   }
 
-  /* 链接样式优化 */
+  // 链接样式优化
   .vp-doc .animated-link {
     padding-bottom: 0.12em;
     color: var(--link-color);
@@ -103,45 +103,42 @@
   }
 }
 
-/* 代码组页签动画时长调整 */
+// 代码组页签动画时长调整
 .vp-code-group .tabs label:after {
   transition: background-color 0.15s;
 }
 
-/* Details 折叠框 marker 调整 */
-
+// Details 折叠框 marker 调整
 summary {
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
   list-style: none;
   position: relative;
   padding-left: 20px;
+  &::before {
+    content: "";
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    -webkit-mask: var(--icon) no-repeat;
+    mask: var(--icon) no-repeat;
+    -webkit-mask-size: 120% 120%;
+    mask-size: 120% 120%;
+    -webkit-mask-position: center;
+    mask-position: center;
+    color: var(--vp-c-text-2);
+    background-color: currentColor;
+    transition: transform 0.2s;
+    vertical-align: text-bottom;
+    details[open] > & {
+      transform: rotate(90deg);
+    }
+  }
 }
 
-summary::before {
-  content: "";
-  position: absolute;
-  display: inline-block;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 16px;
-  -webkit-mask: var(--icon) no-repeat;
-  mask: var(--icon) no-repeat;
-  -webkit-mask-size: 120% 120%;
-  mask-size: 120% 120%;
-  -webkit-mask-position: center;
-  mask-position: center;
-  color: var(--vp-c-text-2);
-  background-color: currentColor;
-  transition: transform 0.2s;
-  vertical-align: text-bottom;
-}
-
-details[open] > summary::before {
-  transform: rotate(90deg);
-}
-
-/* 标题高亮 */
+// 标题高亮
 @keyframes highlightTargetAnimation {
   0% {
     background-color: transparent;
@@ -169,7 +166,7 @@ details[open] > summary::before {
   animation: highlightTargetAnimation 2s ease-in-out !important;
 }
 
-/* Algolia 搜索框 */
+// Algolia 搜索框
 .DocSearch-Modal {
   animation: l-fade-in-up 0.15s;
 }

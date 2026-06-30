@@ -26,9 +26,7 @@ const prettierTable: Record<string, string> = {
 const clangs = ["c", "c++", "cpp", "cxx"];
 
 export default function mdPlot(md: MarkdownIt): void {
-  const origFence = md.renderer.rules.fence!.bind(md.renderer.rules)!;
-  const fence: typeof origFence = (...args) =>
-    origFence(...args).replace(/(?<=class=")/, "code-block ");
+  const fence = md.renderer.rules.fence!.bind(md.renderer.rules)!;
   md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     const token = tokens[idx];
     const language = token.info.trim();
@@ -88,11 +86,13 @@ export default function mdPlot(md: MarkdownIt): void {
             console.warn("\nIllegal code" + String(err));
         }
       }
-      return fence(tokens, idx, options, env, self);
     }
 
-    }
-
-    return fence(tokens, idx, options, env, self);
+    const extraClasses: string[] = ["code-block"];
+    if (/:wrap\b/.test(info)) extraClasses.push("code-block-wrap");
+    return fence(tokens, idx, options, env, self).replace(
+      /(?<=class=")/,
+      extraClasses.join(" ") + " ",
+    );
   };
 }

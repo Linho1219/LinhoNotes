@@ -3,12 +3,12 @@ import DefaultTheme from "vitepress/theme-without-fonts";
 import "virtual:group-icons.css";
 import "katex/dist/katex.css";
 
-import "./styles/private.css";
-import "./styles/fix.css";
+import "./styles/private.scss";
+import "./styles/fix.scss";
 import "./styles/beautify.scss";
-import "./styles/animation.css";
-import "./styles/home.css";
-import "./styles/print.css";
+import "./styles/animation.scss";
+import "./styles/home.scss";
+import "./styles/print.scss";
 
 import "./fonts/JetBrainsMono/index.css";
 import "./fonts/HarmonyOSSans/index.css";

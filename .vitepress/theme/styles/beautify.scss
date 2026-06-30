@@ -1,6 +1,6 @@
-/*====== 静态样式美化 ======*/
+// ====== 静态样式美化 ======
 
-/* 加宽 */
+// 加宽
 :root {
   --vp-layout-max-width: 1500px;
   --vp-content-max-width: 750px;
@@ -10,7 +10,7 @@
   max-width: var(--vp-content-max-width);
 }
 
-/* 颜色定义 */
+// 颜色定义
 :root {
   --ln-c-red: var(--vp-c-red-2);
   --ln-c-red-soft: var(--vp-c-red-soft);
@@ -81,7 +81,7 @@ a {
   --link-color: var(--vp-c-purple-1);
 }
 
-/* 字体定义 */
+// 字体定义
 :root {
   --vp-font-family-base:
     "Punctuation SC", "HarmonyOS Sans", "PingFang SC", "HarmonyOS Sans SC",
@@ -93,18 +93,18 @@ a {
     "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
 }
 
-/* 删除线文字颜色调整 */
+// 删除线文字颜色调整
 .vp-doc s {
   color: var(--vp-c-text-2);
   text-decoration-color: var(--vp-c-text-1);
 }
 
-/* 引用框内链接减淡 */
+// 引用框内链接减淡
 .vp-doc blockquote a {
   opacity: 0.8;
 }
 
-/* 大屏下顶栏毛玻璃效果 */
+// 大屏下顶栏毛玻璃效果
 @media only screen and (min-width: 1280px) {
   :root {
     --vp-nav-bg-color: #fff5;
@@ -132,7 +132,7 @@ a {
   }
 }
 
-/* 小屏下大纲毛玻璃效果 */
+// 小屏下大纲毛玻璃效果
 .VPLocalNavOutlineDropdown .items {
   backdrop-filter: blur(15px);
   background: transparent;
@@ -142,7 +142,7 @@ a {
   --vp-c-bg-soft: #1b1b1f90;
 }
 
-/* 改善移动端点击效果 */
+// 改善移动端点击效果
 * {
   -webkit-tap-highlight-color: #0002;
 }
@@ -150,7 +150,7 @@ a {
   -webkit-tap-highlight-color: #fff2;
 }
 
-/* 改善选择样式 */
+// 改善选择样式
 ::selection {
   background-color: #3451b230;
 }
@@ -162,13 +162,13 @@ a {
   background-color: #0000003a;
 }
 
-/* 淡化滚动条 */
+// 淡化滚动条
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--vp-c-border) transparent;
 }
 
-/* 防止上下标影响行距 */
+// 防止上下标影响行距
 sub,
 sup {
   font-size: 75%;
@@ -183,7 +183,7 @@ sub {
   bottom: -0.25em;
 }
 
-/* Algolia 搜索框 */
+// Algolia 搜索框
 :root {
   --docsearch-hit-active-color: var(--vp-c-text-1);
 }
@@ -201,7 +201,7 @@ sub {
   display: none !important;
 }
 
-/* 公式颜色优化 */
+// 公式颜色优化
 @mixin katex-color($name, $var) {
   [style^="color:#{$name}"],
   [style^="color: #{$name}"],

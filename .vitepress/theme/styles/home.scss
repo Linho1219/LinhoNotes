@@ -1,4 +1,4 @@
-/*====== 首页样式调整 ======*/
+// ====== 首页样式调整 ======
 
 .VPHome {
   --vp-home-hero-name-color: transparent;
@@ -35,14 +35,10 @@
 
 .VPHome .text {
   font-size: 26px;
-}
-@media (min-width: 640px) {
-  .VPHome .text {
+  @media (min-width: 640px) {
     font-size: 40px;
   }
-}
-@media (min-width: 960px) {
-  .VPHome .text {
+  @media (min-width: 960px) {
     font-size: 48px;
   }
 }
