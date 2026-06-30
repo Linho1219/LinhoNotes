@@ -21,7 +21,7 @@ console.log(rArr[0] === foo);
 
 ```js
 console.log(foo); // {bar: 1}
-console.log(rArr[0]); // Proxy(Object) {bar: 1}
+console.log(rArr[0]); // Proxy(Object) {bar: 1}
 ```
 
 这样的「包装」发生在以任意形式「纳入」响应式体系时，例如成为响应式数组的元素、赋值到响应式对象的属性上等等，以及最基本的使用 `ref()` 或 `reactive()` 创建响应式对象。
