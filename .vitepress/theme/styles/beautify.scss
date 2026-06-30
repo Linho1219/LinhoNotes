@@ -1,5 +1,15 @@
 /*====== 静态样式美化 ======*/
 
+/* 加宽 */
+:root {
+  --vp-layout-max-width: 1500px;
+  --vp-content-max-width: 750px;
+}
+
+.VPDoc.has-aside .content-container.content-container {
+  max-width: var(--vp-content-max-width);
+}
+
 /* 颜色定义 */
 :root {
   --ln-c-red: var(--vp-c-red-2);
