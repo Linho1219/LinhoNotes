@@ -26,13 +26,15 @@ const prettierTable: Record<string, string> = {
 const clangs = ["c", "c++", "cpp", "cxx"];
 
 export default function mdPlot(md: MarkdownIt): void {
-  const fence = md.renderer.rules.fence!.bind(md.renderer.rules)!;
+  const origFence = md.renderer.rules.fence!.bind(md.renderer.rules)!;
+  const fence: typeof origFence = (...args) =>
+    origFence(...args).replace(/(?<=class=")/, "code-block ");
   md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     const token = tokens[idx];
     const language = token.info.trim();
     if (language.startsWith("mermaid"))
       return `<ClientOnly><Mermaid id="mermaid-${idx}" code="${encodeURIComponent(
-        token.content
+        token.content,
       )}"></Mermaid></ClientOnly>`;
     if (language.startsWith("graph")) {
       try {
@@ -42,7 +44,7 @@ export default function mdPlot(md: MarkdownIt): void {
         else console.error("\nGraph parse error:\n  " + String(e));
       }
       return `<ClientOnly><Graph id="funcion-${idx}" code="${encodeURIComponent(
-        token.content
+        token.content,
       )}"></Graph></ClientOnly>`;
     }
     if (language.startsWith("ggb")) {
@@ -51,7 +53,7 @@ export default function mdPlot(md: MarkdownIt): void {
       try {
         const content = fs.readFileSync(src);
         return `<ClientOnly><GeoGebra data="${content.toString("base64")}" mode="${mode}"/></ClientOnly>`;
-      } catch(err) {
+      } catch (err) {
         console.error(`\nGeoGebra parse error:\n  ${src}\n  ${String(err)}`);
         return `<div class="mermaid-error caution custom-block github-alert">
           <p class="custom-block-title">GeoGebra 导入错误</p>
@@ -60,33 +62,37 @@ export default function mdPlot(md: MarkdownIt): void {
       }
     }
 
+    const info = tokens[idx].info;
+
     // 代码格式化
-    if (token.content.trimStart().startsWith("// [!code escape-format]\n")) {
-      token.content = token.content.replace("// [!code escape-format]\n", "");
+    if (!/:escape-format\b/.test(info)) {
+      if (prettierTable[language]) {
+        try {
+          token.content = prettier.format(token.content, {
+            parser: prettierTable[language],
+            printWidth: 76,
+          });
+        } catch (err) {
+          if (process.env.NODE_ENV !== "production")
+            console.warn("\nIllegal code:" + String(err));
+        }
+      } else if (clangs.includes(language.toLowerCase())) {
+        try {
+          const formatted = execSync(
+            `clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 75}"`,
+            { input: token.content, encoding: "utf-8" },
+          );
+          token.content = formatted;
+        } catch (err) {
+          if (process.env.NODE_ENV !== "production")
+            console.warn("\nIllegal code" + String(err));
+        }
+      }
       return fence(tokens, idx, options, env, self);
     }
-    if (prettierTable[language]) {
-      try {
-        token.content = prettier.format(token.content, {
-          parser: prettierTable[language],
-          printWidth: 76,
-        });
-      } catch (err) {
-        if (process.env.NODE_ENV !== "production")
-          console.warn("\nIllegal code:" + String(err));
-      }
-    } else if (clangs.includes(language.toLowerCase())) {
-      try {
-        const formatted = execSync(
-          `clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 75}"`,
-          { input: token.content, encoding: "utf-8" }
-        );
-        token.content = formatted;
-      } catch (err) {
-        if (process.env.NODE_ENV !== "production")
-          console.warn("\nIllegal code" + String(err));
-      }
+
     }
+
     return fence(tokens, idx, options, env, self);
   };
 }

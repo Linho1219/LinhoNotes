@@ -81,8 +81,9 @@ const defineFoo = (raw: Foo) => reactive(raw);
 structuredClone(foo);
 // OK
 
-structuredClone(rArr[0]);
-// DataCloneError: Failed to execute 'structuredClone' on 'Window': #<Object> could not be cloned.
+structuredClone(rArr[0]); // [!code error]
+// DataCloneError: Failed to execute 'structuredClone' on 'Window':
+//   #<Object> could not be cloned.
 ```
 
 不过这也并不意味着我们必须一直持有原对象引用。Vue 提供了 `toRaw()` 函数，它可以把响应式的「壳」脱掉得到原本的对象：
