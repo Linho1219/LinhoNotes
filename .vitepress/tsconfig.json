@@ -1,15 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "ES2021",
-    "lib": ["ESNext", "DOM"],
-    "module": "ESNext",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "bundler",
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.app.json" }
+  ]
 }
