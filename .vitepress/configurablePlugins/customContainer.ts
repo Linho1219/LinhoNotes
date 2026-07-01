@@ -47,10 +47,10 @@ export const createContainer = (
         const title = md.renderInline(rawTitle, {
           references: env.references,
         });
-        return `<div class="${klass} ${
+        return /* html */`<div class="${klass} ${
           config.themeAlias?.join(" ") ?? ""
         } custom-block"${attrs}><p class="custom-block-title">${title}</p>\n`;
-      } else return `</div>\n`;
+      } else return /* html */`</div>\n`;
     },
   },
 ];

@@ -1,17 +1,16 @@
 <template>
-  <div class="ggb-component">
+  <div class="ggb-component" :class="{ loading }">
     <div class="ggb-shell">
       <div :id="domID"></div>
     </div>
-    <CircleLoading v-if="loading"/>
+    <div v-if="loading" class="ggb-loading">{{ loadingText }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 /// <reference path="./ggbApplet.d.ts" />
 
-import { onMounted, ref } from "vue";
-import CircleLoading from "./loading.vue";
+import { onMounted, onUnmounted, ref, shallowRef } from "vue";
 
 const props = defineProps<{
   data?: string;
@@ -20,12 +19,24 @@ const props = defineProps<{
 const appID = "_ggb_" + Math.random().toString(36).substring(2, 15);
 const domID = "dom" + appID;
 const loading = ref(true);
+const instance = shallowRef<GeoGebraApplet | null>(null);
+
+const dataUrl = ref<string | undefined>(undefined);
+
+const maxAttempts = 10;
+let attempts = 0;
+const loadingText = ref("");
 
 const init = () => {
-  if (typeof GGBApplet === "undefined") return setTimeout(init, 500);
+  if (typeof GGBApplet === "undefined") {
+    if (attempts++ < maxAttempts) setTimeout(init, 500);
+    else loadingText.value = "GeoGebra 加载失败";
+    return;
+  }
+  loadingText.value = "GeoGebra 初始化中";
   const applet = new GGBApplet({
     id: appID,
-    appName: props.mode || "graphing",
+    appName: props.mode || "suite",
     height: 450,
     ggbBase64: props.data,
     showAlgebraInput: false,
@@ -40,22 +51,47 @@ const init = () => {
     },
   });
   applet.inject(domID);
+  instance.value = applet;
 };
 
 onMounted(() => {
-  if (typeof GGBApplet !== "undefined") init();
-  else if (window) window.onload = init;
+  loadingText.value = "GeoGebra 加载中";
+  if (!props.data) {
+    loadingText.value = "GeoGebra 源文件丢失";
+    return;
+  }
+
+  init();
+});
+
+onUnmounted(() => {
+  if (dataUrl.value) URL.revokeObjectURL(dataUrl.value);
 });
 </script>
 
-<style>
+<style lang="scss">
 .ggb-component {
+  margin: 16px 0;
   position: relative;
-  min-height: 450px;
+  border-radius: 8px;
+  background-color: light-dark(white, #191919);
+  box-shadow: 0 0 0 1px var(--vp-c-border);
+  &.loading {
+    min-height: 450px;
+  }
+}
+.ggb-loading {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  width: fit-content;
+  color: var(--vp-c-text-2);
+  font-size: 18px;
 }
 .ggb-shell {
   color: black;
-  margin: 16px 0;
+  position: relative;
 }
 .dark .ggb-shell .appletParameters {
   filter: hue-rotate(180deg) brightness(90%) invert(100%);
@@ -63,13 +99,11 @@ onMounted(() => {
 .ggb-shell img {
   filter: none !important;
 }
-.GeoGebraFrame {
-  background: white !important;
-  border-color: #d3d3d3 !important;
-  outline: none !important;
-}
+.GeoGebraFrame,
 .ggb_preview {
-  border-radius: 8px;
+  background: transparent !important;
+  border-color: transparent !important;
+  outline: none !important;
 }
 .circle-loading {
   color: var(--vp-c-brand);

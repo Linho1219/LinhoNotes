@@ -2,7 +2,6 @@ import type MarkdownIt from "markdown-it";
 import prettier from "@prettier/sync";
 import { execSync } from "child_process";
 import JSON5 from "json5";
-import base64 from "base-64";
 import fs from "fs";
 
 const prettierTable: Record<string, string> = {
@@ -31,9 +30,9 @@ export default function mdPlot(md: MarkdownIt): void {
     const token = tokens[idx];
     const language = token.info.trim();
     if (language.startsWith("mermaid"))
-      return `<ClientOnly><Mermaid id="mermaid-${idx}" code="${encodeURIComponent(
+      return /* html */`<ClientOnly><Mermaid id="mermaid-${idx}" code="${encodeURIComponent(
         token.content,
-      )}"></Mermaid></ClientOnly>`;
+      )}" /></ClientOnly>`;
     if (language.startsWith("graph")) {
       try {
         JSON5.parse(token.content);
@@ -41,19 +40,19 @@ export default function mdPlot(md: MarkdownIt): void {
         if (process.env.NODE_ENV === "production") throw e;
         else console.error("\nGraph parse error:\n  " + String(e));
       }
-      return `<ClientOnly><Graph id="funcion-${idx}" code="${encodeURIComponent(
+      return /* html */`<ClientOnly><Graph id="funcion-${idx}" code="${encodeURIComponent(
         token.content,
-      )}"></Graph></ClientOnly>`;
+      )}" /></ClientOnly>`;
     }
     if (language.startsWith("ggb")) {
       // console.log(token);
       const [src, mode] = (<any>token).src as string[];
       try {
         const content = fs.readFileSync(src);
-        return `<ClientOnly><GeoGebra data="${content.toString("base64")}" mode="${mode}"/></ClientOnly>`;
+        return /* html */`<ClientOnly><GeoGebra data="${content.toString("base64")}" mode="${mode}" /></ClientOnly>`;
       } catch (err) {
         console.error(`\nGeoGebra parse error:\n  ${src}\n  ${String(err)}`);
-        return `<div class="mermaid-error caution custom-block github-alert">
+        return /* html */`<div class="mermaid-error caution custom-block github-alert">
           <p class="custom-block-title">GeoGebra 导入错误</p>
           <pre>${String(err)}</pre>
         </div>`;

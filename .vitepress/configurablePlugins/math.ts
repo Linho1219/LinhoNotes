@@ -139,15 +139,15 @@ const renderKatex = (content: string, displayMode: boolean) => {
     if (process.env.NODE_ENV === "production") throw error;
     const message = error instanceof Error ? error.message : String(error);
     return displayMode
-      ? `<div class="graph-error caution custom-block github-alert"><p class="custom-block-title">公式渲染错误</p><pre v-pre>${escape(message)}</pre></div>`
-      : `<code v-pre class="graph-error caution custom-block github-alert">LaTeX Error: ${escape(message)}</code>`;
+      ? /* html */ `<div class="graph-error caution custom-block github-alert"><p class="custom-block-title">公式渲染错误</p><pre v-pre>${escape(message)}</pre></div>`
+      : /* html */ `<code v-pre class="graph-error caution custom-block github-alert">LaTeX Error: ${escape(message)}</code>`;
   }
 };
 
 const renderSource = (content: string, displayMode: boolean) =>
   displayMode
-    ? `<div v-pre class="math math-block">${escape(content)}</div>`
-    : `<span v-pre class="math math-inline">${escape(content)}</span>`;
+    ? /* html */ `<div v-pre class="math math-block">${escape(content)}</div>`
+    : /* html */ `<span v-pre class="math math-inline">${escape(content)}</span>`;
 
 export default function mdMath(md: MarkdownIt) {
   md.inline.ruler.after("escape", "math_inline", mathInline);
