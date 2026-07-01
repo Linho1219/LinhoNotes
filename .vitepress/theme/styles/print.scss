@@ -5,11 +5,9 @@
   .edit-link-button,
   a.header-anchor,
   .VPSidebar,
-  :is(
-      .vp-external-link-icon,
-      .vp-doc a[href*="://"],
-      .vp-doc a[target="_blank"]
-    ):not(:is(.no-icon, svg a, :has(img, svg)))::after,
+  :is(.vp-external-link-icon, .vp-doc a[href*='://'], .vp-doc a[target='_blank']):not(
+      :is(.no-icon, svg a, :has(img, svg))
+    )::after,
   #imageViewers,
   .edit-info {
     display: none !important;

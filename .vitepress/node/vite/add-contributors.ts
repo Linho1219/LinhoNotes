@@ -7,51 +7,49 @@
  * 头像会被下载到 public/avatars/<username>.png。
  * 完整介绍见 <https://notes.linho.cc/s?q=f23023157b>。
  */
-import site from "#shared/site.json";
-import { Octokit } from "@octokit/rest";
-import axios from "axios";
-import "dotenv/config";
-import fs from "fs";
-import simpleGit from "simple-git";
-import type { Plugin } from "vite";
+import site from '#shared/site.json'
+import { Octokit } from '@octokit/rest'
+import axios from 'axios'
+import 'dotenv/config'
+import fs from 'fs'
+import simpleGit from 'simple-git'
+import type { Plugin } from 'vite'
 
-const { owner, repo } = site.repo;
+const { owner, repo } = site.repo
 
-const git = simpleGit();
+const git = simpleGit()
 
 /** 从 Git 处获取到的贡献者 email 及其一个 commit 的 sha1 */
-type EmailWithSha1 = { email: string; sha1: string };
+type EmailWithSha1 = { email: string; sha1: string }
 /** 贡献者 email 以及从 GitHub API 处通过 sha1 查询到的用户名 */
-type EmailWithUsername = { email: string; username: string };
+type EmailWithUsername = { email: string; username: string }
 /** 完整的贡献者信息 */
 type FullContributorData = {
-  username: string;
-  nickname: string;
-  avatar: string;
-  emails: string[];
-};
+  username: string
+  nickname: string
+  avatar: string
+  emails: string[]
+}
 
 /** 获取仓库所有贡献者的 EmailWithSha1 */
 async function getRepoContributors(): Promise<EmailWithSha1[]> {
-  const log = (await git.log(["--format=%ae %H"])).latest?.hash.split("\n");
-  if (!log) throw new Error("Unexpected falsy log");
-  const email2sha1 = new Map<string, string>();
+  const log = (await git.log(['--format=%ae %H'])).latest?.hash.split('\n')
+  if (!log) throw new Error('Unexpected falsy log')
+  const email2sha1 = new Map<string, string>()
   log.reverse().forEach((commit) => {
-    const [email, sha1] = commit.split(" ");
-    if (!email2sha1.has(email)) email2sha1.set(email, sha1);
-  });
-  return Array.from(email2sha1).map(([email, sha1]) => ({ email, sha1 }));
+    const [email, sha1] = commit.split(' ')
+    if (!email2sha1.has(email)) email2sha1.set(email, sha1)
+  })
+  return Array.from(email2sha1).map(([email, sha1]) => ({ email, sha1 }))
 }
 
 /** 获取指定文件的所有贡献者的 email，排除自动生成的 Merge branch */
 async function getEmailList(filePath: string): Promise<string[]> {
-  const log = (
-    await git.log(["--format=%ae", "--follow", "--no-merges", filePath])
-  ).latest?.hash
-    .split("\n")
-    .reverse();
-  if (!log) throw new Error("Unexpected log");
-  return Array.from(new Set(log));
+  const log = (await git.log(['--format=%ae', '--follow', '--no-merges', filePath])).latest?.hash
+    .split('\n')
+    .reverse()
+  if (!log) throw new Error('Unexpected log')
+  return Array.from(new Set(log))
 }
 
 /**
@@ -63,11 +61,9 @@ async function queryUsername(
   { email, sha1 }: EmailWithSha1,
   octokit: Octokit,
 ): Promise<EmailWithUsername> {
-  const authorQuery = (
-    await octokit.rest.repos.getCommit({ owner, repo, ref: sha1 })
-  ).data?.author;
-  if (!authorQuery) throw new Error("Author not found");
-  return { email, username: authorQuery.login };
+  const authorQuery = (await octokit.rest.repos.getCommit({ owner, repo, ref: sha1 })).data?.author
+  if (!authorQuery) throw new Error('Author not found')
+  return { email, username: authorQuery.login }
 }
 
 /**
@@ -79,11 +75,11 @@ function queryFullDataList(
   emailTuples: EmailWithUsername[],
   octokit: Octokit,
 ): Promise<FullContributorData[]> {
-  const user2emails = new Map<string, string[]>(); // username -> emails
+  const user2emails = new Map<string, string[]>() // username -> emails
   emailTuples.forEach(({ email, username }) => {
-    if (user2emails.has(username)) user2emails.get(username)!.push(email);
-    else user2emails.set(username, [email]);
-  });
+    if (user2emails.has(username)) user2emails.get(username)!.push(email)
+    else user2emails.set(username, [email])
+  })
   return Promise.all(
     Array.from(user2emails).map(([username, emails]) =>
       octokit.rest.users.getByUsername({ username }).then(({ data }) => ({
@@ -93,54 +89,53 @@ function queryFullDataList(
         emails,
       })),
     ),
-  );
+  )
 }
 
 /** 下载头像 */
 async function downloadImage(url: string, savePath: string) {
-  const writer = fs.createWriteStream(savePath);
+  const writer = fs.createWriteStream(savePath)
   const response = await axios({
     url,
-    method: "GET",
-    responseType: "stream",
-  });
-  response.data.pipe(writer);
+    method: 'GET',
+    responseType: 'stream',
+  })
+  response.data.pipe(writer)
   await new Promise<void>((resolve, reject) => {
-    writer.on("finish", resolve);
-    writer.on("error", reject);
-  });
+    writer.on('finish', resolve)
+    writer.on('error', reject)
+  })
 }
 
 async function getContributorPlugin(): Promise<Plugin> {
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
-  });
-  const rawContributorList = await getRepoContributors();
+  })
+  const rawContributorList = await getRepoContributors()
   const emailWithUsername = await Promise.all(
     rawContributorList.map((usr) => queryUsername(usr, octokit)),
-  );
-  const fullUsrData = await queryFullDataList(emailWithUsername, octokit);
+  )
+  const fullUsrData = await queryFullDataList(emailWithUsername, octokit)
 
-  fs.mkdirSync("./public/avatars", { recursive: true });
+  fs.mkdirSync('./public/avatars', { recursive: true })
   await Promise.all(
     fullUsrData.map(({ username, avatar }) =>
       downloadImage(avatar, `./public/avatars/${username}.png`),
     ),
-  );
+  )
 
   return {
-    name: "add-contributors",
-    enforce: "pre",
+    name: 'add-contributors',
+    enforce: 'pre',
     async transform(code, path) {
-      if (!path.endsWith(".md") || code.trim().match(/^---\r?\n/) !== null)
-        return; // 若 Frontmatter 存在则跳过
+      if (!path.endsWith('.md') || code.trim().match(/^---\r?\n/) !== null) return // 若 Frontmatter 存在则跳过
       const nameTuples = (await getEmailList(path))
         .map((e) => fullUsrData.find(({ emails }) => emails.includes(e))!)
-        .map(({ nickname, username }) => `${nickname},${username}`);
-      const finalList = Array.from(new Set(nameTuples)).join(";");
-      return `---\ncontributorList: ${finalList}\n---\n\n` + code;
+        .map(({ nickname, username }) => `${nickname},${username}`)
+      const finalList = Array.from(new Set(nameTuples)).join(';')
+      return `---\ncontributorList: ${finalList}\n---\n\n` + code
     },
-  };
+  }
 }
 
-export default getContributorPlugin;
+export default getContributorPlugin

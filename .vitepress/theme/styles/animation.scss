@@ -68,10 +68,7 @@
     text-decoration: none;
     position: relative;
     border-radius: 1px;
-    background-image: linear-gradient(
-      transparent calc(100% - 0.1em),
-      var(--link-color) 0.1em
-    );
+    background-image: linear-gradient(transparent calc(100% - 0.1em), var(--link-color) 0.1em);
     background-repeat: no-repeat;
     background-position: right;
     background-size: 0% 100%;
@@ -115,7 +112,7 @@ summary {
   position: relative;
   padding-left: 20px;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     display: inline-block;
     left: 0;

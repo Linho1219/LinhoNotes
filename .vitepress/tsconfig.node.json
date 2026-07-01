@@ -7,6 +7,6 @@
     "moduleResolution": "Bundler",
     "types": ["node"],
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   }
 }

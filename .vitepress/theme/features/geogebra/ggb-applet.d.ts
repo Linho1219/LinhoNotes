@@ -4,274 +4,267 @@
 // Interface for GeoGebra applet instance (ggbApplet)
 interface GeoGebraApplet {
   /** Inject applet into DOM element */
-  inject(id: string, type?: string): void;
+  inject(id: string, type?: string): void
   /** Optional, set HTML5 codebase */
-  setHTML5Codebase?(codebase: string): void;
+  setHTML5Codebase?(codebase: string): void
   // Core Methods
-  evalCommand(command: string): void;
+  evalCommand(command: string): void
   /** Returns result of CAS command, type varies */
-  evalCommandCAS(command: string): any;
+  evalCommandCAS(command: string): any
   /** Returns label of created object */
-  evalCommandGetLabels(command: string): string;
-  setValue(name: string, value: number): void;
-  getValue(name: string): number;
-  getValueString(name: string): string;
-  setVisible(name: string, visible: boolean): void;
-  getVisible(name: string): boolean;
-  setColor(name: string, red: number, green: number, blue: number): void;
+  evalCommandGetLabels(command: string): string
+  setValue(name: string, value: number): void
+  getValue(name: string): number
+  getValueString(name: string): string
+  setVisible(name: string, visible: boolean): void
+  getVisible(name: string): boolean
+  setColor(name: string, red: number, green: number, blue: number): void
   /** Overload for hex color string */
-  setColor(name: string, color: string): void;
+  setColor(name: string, color: string): void
   /** Returns hex color */
-  getColor(name: string): string;
-  setLayer(name: string, layer: number): void;
-  getLayer(name: string): number;
-  setLabelVisible(name: string, visible: boolean): void;
-  setLabelStyle(name: string, style: number): void;
-  getLabelStyle(name: string): number;
-  setFixed(name: string, fixed: boolean, selectionAllowed?: boolean): void;
-  setTrace(name: string, trace: boolean): void;
-  setCoords(name: string, x: number, y: number, z?: number): void;
-  getXcoord(name: string): number;
-  getYcoord(name: string): number;
+  getColor(name: string): string
+  setLayer(name: string, layer: number): void
+  getLayer(name: string): number
+  setLabelVisible(name: string, visible: boolean): void
+  setLabelStyle(name: string, style: number): void
+  getLabelStyle(name: string): number
+  setFixed(name: string, fixed: boolean, selectionAllowed?: boolean): void
+  setTrace(name: string, trace: boolean): void
+  setCoords(name: string, x: number, y: number, z?: number): void
+  getXcoord(name: string): number
+  getYcoord(name: string): number
   /** e.g., "point", "line" */
-  getObjectType(name: string): string;
-  getObjectName(index: number): string;
-  getObjectNumber(): number;
-  exists(name: string): boolean;
-  deleteObject(name: string): void;
-  renameObject(oldName: string, newName: string): boolean;
+  getObjectType(name: string): string
+  getObjectName(index: number): string
+  getObjectNumber(): number
+  exists(name: string): boolean
+  deleteObject(name: string): void
+  renameObject(oldName: string, newName: string): boolean
   /** Sets toolbar mode */
-  setMode(mode: number): void;
-  getMode(): number;
+  setMode(mode: number): void
+  getMode(): number
   /** e.g., "G" for Graphing */
-  setPerspective(perspective: string): void;
-  reset(): void;
-  undo(): void;
-  redo(): void;
-  setRepaintingActive(active: boolean): void;
-  refreshView(): void;
-  setOnTheFlyPointCreationActive(active: boolean): void;
-  setPointCapture(view: number, capture: number): void;
+  setPerspective(perspective: string): void
+  reset(): void
+  undo(): void
+  redo(): void
+  setRepaintingActive(active: boolean): void
+  refreshView(): void
+  setOnTheFlyPointCreationActive(active: boolean): void
+  setPointCapture(view: number, capture: number): void
   /** e.g., "2" or "auto" */
-  setRounding(digits: number | string): void;
+  setRounding(digits: number | string): void
   /** Returns base64-encoded PNG */
-  getPNGBase64(resolution?: number): string;
+  getPNGBase64(resolution?: number): string
   /** Returns XML of applet or object */
-  getXML(name?: string): string;
-  setXML(xml: string): void;
-  getPerspectiveXML(): string;
-  setAnimating(name: string, animate: boolean): void;
-  setAnimationSpeed(name: string, speed: number): void;
-  startAnimation(): void;
-  stopAnimation(): void;
-  isAnimationRunning(): boolean;
+  getXML(name?: string): string
+  setXML(xml: string): void
+  getPerspectiveXML(): string
+  setAnimating(name: string, animate: boolean): void
+  setAnimationSpeed(name: string, speed: number): void
+  startAnimation(): void
+  stopAnimation(): void
+  isAnimationRunning(): boolean
 
   // Event Listeners
-  registerAddListener(listener: string | ((name: string) => void)): void;
-  unregisterAddListener(listener: string | ((name: string) => void)): void;
-  registerRemoveListener(listener: string | ((name: string) => void)): void;
-  unregisterRemoveListener(listener: string | ((name: string) => void)): void;
-  registerClearListener(listener: string | (() => void)): void;
-  unregisterClearListener(listener: string | (() => void)): void;
-  registerRenameListener(
-    listener: string | ((oldName: string, newName: string) => void),
-  ): void;
-  unregisterRenameListener(
-    listener: string | ((oldName: string, newName: string) => void),
-  ): void;
-  registerUpdateListener(listener: string | ((name: string) => void)): void;
-  unregisterUpdateListener(listener: string | ((name: string) => void)): void;
-  registerObjectUpdateListener(
-    objName: string,
-    listener: string | ((name: string) => void),
-  ): void;
-  unregisterObjectUpdateListener(objName: string): void;
-  registerClickListener(listener: string | ((name: string) => void)): void;
-  unregisterClickListener(listener: string | ((name: string) => void)): void;
+  registerAddListener(listener: string | ((name: string) => void)): void
+  unregisterAddListener(listener: string | ((name: string) => void)): void
+  registerRemoveListener(listener: string | ((name: string) => void)): void
+  unregisterRemoveListener(listener: string | ((name: string) => void)): void
+  registerClearListener(listener: string | (() => void)): void
+  unregisterClearListener(listener: string | (() => void)): void
+  registerRenameListener(listener: string | ((oldName: string, newName: string) => void)): void
+  unregisterRenameListener(listener: string | ((oldName: string, newName: string) => void)): void
+  registerUpdateListener(listener: string | ((name: string) => void)): void
+  unregisterUpdateListener(listener: string | ((name: string) => void)): void
+  registerObjectUpdateListener(objName: string, listener: string | ((name: string) => void)): void
+  unregisterObjectUpdateListener(objName: string): void
+  registerClickListener(listener: string | ((name: string) => void)): void
+  unregisterClickListener(listener: string | ((name: string) => void)): void
   /** Event type varies */
-  registerClientListener(listener: string | ((event: any) => void)): void;
-  unregisterClientListener(listener: string | ((event: any) => void)): void;
+  registerClientListener(listener: string | ((event: any) => void)): void
+  unregisterClientListener(listener: string | ((event: any) => void)): void
 
   // File and Material Methods
   /** Returns base64-encoded GGB file */
-  getBase64(): string;
-  setBase64(base64: string): void;
-  saveState(): void;
-  restoreState(): void;
+  getBase64(): string
+  setBase64(base64: string): void
+  saveState(): void
+  restoreState(): void
 }
 
 // Interface for GGBApplet constructor parameters
 interface GeoGebraParameters {
   /** App name, e.g., "graphing", "geometry", "classic". Default: "classic" */
-  appName?: string;
+  appName?: string
 
   /** Applet width in pixels (required unless scaleContainerClass is used) */
-  width?: number;
+  width?: number
 
   /** Applet height in pixels (required unless scaleContainerClass is used) */
-  height?: number;
+  height?: number
 
   /** GeoGebra Materials ID to load, @example "RHYH3UQ8" */
-  material_id?: string;
+  material_id?: string
 
   /** URL of .ggb file to load, e.g., "myFile.ggb" */
-  filename?: string;
+  filename?: string
 
   /** Base64 encoded .ggb file content */
-  ggbBase64?: string;
+  ggbBase64?: string
 
   /** Border color as hex RGB string, e.g., "#FFFFFF". Default: gray */
-  borderColor?: string;
+  borderColor?: string
 
   /** Border radius size in pixels */
-  borderRadius?: number;
+  borderRadius?: number
 
   /** Enable right-click handling (context menus, properties, zoom). Default: true */
-  enableRightClick?: boolean;
+  enableRightClick?: boolean
 
   /** Enable dragging of labels. Default: true */
-  enableLabelDrags?: boolean;
+  enableLabelDrags?: boolean
 
   /** Enable shift-drag to move or shift-wheel to zoom. Default: true */
-  enableShiftDragZoom?: boolean;
+  enableShiftDragZoom?: boolean
 
   /** Show zoom in/out/home buttons in Graphics View. Default: false */
-  showZoomButtons?: boolean;
+  showZoomButtons?: boolean
 
   /** Show error dialogs for invalid inputs. Default: true */
-  errorDialogsActive?: boolean;
+  errorDialogsActive?: boolean
 
   /** Show GeoGebra menubar. Default: false */
-  showMenuBar?: boolean;
+  showMenuBar?: boolean
 
   /** Show toolbar with construction mode buttons. Default: false */
-  showToolBar?: boolean;
+  showToolBar?: boolean
 
   /** Show toolbar help text. Default: false */
-  showToolBarHelp?: boolean;
+  showToolBarHelp?: boolean
 
   /** Custom toolbar string, e.g., "0 1 2 3 , 4 5 6 7" */
-  customToolBar?: string;
+  customToolBar?: string
 
   /** Show algebra input line with field and commands. Default: false */
-  showAlgebraInput?: boolean;
+  showAlgebraInput?: boolean
 
   /** Show reset icon in upper right corner. Default: false */
-  showResetIcon?: boolean;
+  showResetIcon?: boolean
 
   /** ISO language code for applet language */
-  language?: string;
+  language?: string
 
   /** ISO country code, e.g., "AT" for Austria */
-  country?: string;
+  country?: string
 
   /** ID for ggbOnInit callback, e.g., "applet2" */
-  id?: string;
+  id?: string
 
   /** Allow Style Bar to be shown. Default: false */
-  allowStyleBar?: boolean;
+  allowStyleBar?: boolean
 
   /** Randomize random numbers on file load. Default: true */
-  randomize?: boolean;
+  randomize?: boolean
 
   /** Seed for random numbers, e.g., 33 */
-  randomSeed?: number;
+  randomSeed?: number
 
   /** JavaScript function to run on applet load */
-  appletOnLoad?: (api: any) => void;
+  appletOnLoad?: (api: any) => void
 
   /** Use browser for JavaScript handling. Default: false */
-  useBrowserForJS?: boolean;
+  useBrowserForJS?: boolean
 
   /** Show logging in browser console. Default: false */
-  showLogging?: boolean;
+  showLogging?: boolean
 
   /** Sensitivity for object selection (higher = easier). Default: 3 */
-  capturingThreshold?: number;
+  capturingThreshold?: number
 
   /** Enable file saving/loading and sign-in. Default: true */
-  enableFileFeatures?: boolean;
+  enableFileFeatures?: boolean
 
   /** Show Undo/Redo icons. Default: true */
-  enableUndoRedo?: boolean;
+  enableUndoRedo?: boolean
 
   /** Perspective setting for blank start */
-  perspective?: string;
+  perspective?: string
 
   /** Enable 3D mode (for exam mode) */
-  enable3d?: boolean | null;
+  enable3d?: boolean | null
 
   /** Enable CAS mode (for exam mode) */
-  enableCAS?: boolean | null;
+  enableCAS?: boolean | null
 
   /** Position of algebra input: "algebra", "top", or "bottom" */
-  algebraInputPosition?: string;
+  algebraInputPosition?: string
 
   /** Prevent applet from auto-focusing. Default: false */
-  preventFocus?: boolean;
+  preventFocus?: boolean
 
   /** CSS class for container to scale applet */
-  scaleContainerClass?: string;
+  scaleContainerClass?: string
 
   /** Compute height automatically based on width. Default: false */
-  autoHeight?: boolean;
+  autoHeight?: boolean
 
   /** Allow applet to scale up. Default: false */
-  allowUpscale?: boolean;
+  allowUpscale?: boolean
 
   /** Show preview image and play button. Default: false */
-  playButton?: boolean;
+  playButton?: boolean
 
   /** Scaling ratio for applet (e.g., 2 for 2x). Default: 1 */
-  scale?: number;
+  scale?: number
 
   /** Show animation button */
-  showAnimationButton?: boolean;
+  showAnimationButton?: boolean
 
   /** Show fullscreen button */
-  showFullscreenButton?: boolean;
+  showFullscreenButton?: boolean
 
   /** Show suggestion buttons in Algebra View */
-  showSuggestionButtons?: boolean;
+  showSuggestionButtons?: boolean
 
   /** Show "Welcome" tooltip */
-  showStartTooltip?: boolean;
+  showStartTooltip?: boolean
 
   /** Decimal places or significant digits, e.g., "10" or "10s" */
-  rounding?: string;
+  rounding?: string
 
   /** Buttons have shadow */
-  buttonShadows?: boolean;
+  buttonShadows?: boolean
 
   /** Relative radius of button’s rounded border (0 to 0.9). Default: 0.2 */
-  buttonRounding?: number;
+  buttonRounding?: number
 
   /** Button border color as hex, e.g., "#RRGGBB" */
-  buttonBorderColor?: string;
+  buttonBorderColor?: string
 
   /** Background color of evaluator app as hex */
-  editorBackgroundColor?: string;
+  editorBackgroundColor?: string
 
   /** Text color of equation editor as hex */
-  editorForegroundColor?: string;
+  editorForegroundColor?: string
 
   /** Enable text mode for evaluator app. Default: false */
-  textmode?: boolean;
+  textmode?: boolean
 
   /** Show keyboard on input focus: "true", "false", or "auto" */
-  showKeyboardOnFocus?: string;
+  showKeyboardOnFocus?: string
 
   /** Keyboard type for evaluator: "scientific", "normal", "notes" */
-  keyboardType?: string;
+  keyboardType?: string
 
   /** Make Graphics Views transparent */
-  transparentGraphics?: boolean;
+  transparentGraphics?: boolean
 
   /** Disable JavaScript from material files */
-  disableJavaScript?: boolean;
+  disableJavaScript?: boolean
 
   /** DOM selector for keyboard attachment */
-  detachedKeyboardParent?: string;
+  detachedKeyboardParent?: string
 }
 
 // Interface for GGBApplet constructor
@@ -280,15 +273,15 @@ interface GeoGebraConstructor {
     parameters: GeoGebraParameters,
     version?: string,
     views?: Record<string, any>,
-  ): GeoGebraApplet;
+  ): GeoGebraApplet
 }
 
 // Global declarations
-declare var GGBApplet: GeoGebraConstructor;
-declare var ggbApplet: GeoGebraApplet;
+declare var GGBApplet: GeoGebraConstructor
+declare var ggbApplet: GeoGebraApplet
 
 // Module declaration for module-based imports
-declare module "geogebra" {
-  const GGBApplet: GeoGebraConstructor;
-  const ggbApplet: GeoGebraApplet;
+declare module 'geogebra' {
+  const GGBApplet: GeoGebraConstructor
+  const ggbApplet: GeoGebraApplet
 }

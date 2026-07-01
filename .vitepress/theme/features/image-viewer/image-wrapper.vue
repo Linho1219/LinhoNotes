@@ -17,32 +17,33 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import ImageViewer from "./image-viewer.vue";
+import ImageViewer from './image-viewer.vue'
+import { onMounted, ref } from 'vue'
+
 const props = defineProps({
   inline: Boolean,
-});
-const slotSrc = ref("");
-const viewerOpened = ref(false);
-const triggerEle = ref<HTMLDivElement | null>(null);
+})
+const slotSrc = ref('')
+const viewerOpened = ref(false)
+const triggerEle = ref<HTMLDivElement | null>(null)
 const initWidth = ref(0),
-  initHeight = ref(0);
-const slotAlt = ref("");
+  initHeight = ref(0)
+const slotAlt = ref('')
 onMounted(() => {
-  if (!triggerEle.value) return;
-  const img = <HTMLImageElement>triggerEle.value.children[0];
-  slotSrc.value = img.getAttribute("src") ?? "";
-  slotAlt.value = img.alt;
+  if (!triggerEle.value) return
+  const img = <HTMLImageElement>triggerEle.value.children[0]
+  slotSrc.value = img.getAttribute('src') ?? ''
+  slotAlt.value = img.alt
   if (img.complete) {
-    initWidth.value = img.naturalWidth;
-    initHeight.value = img.naturalHeight;
+    initWidth.value = img.naturalWidth
+    initHeight.value = img.naturalHeight
   } else {
     img.onload = () => {
-      initWidth.value = img.naturalWidth;
-      initHeight.value = img.naturalHeight;
-    };
+      initWidth.value = img.naturalWidth
+      initHeight.value = img.naturalHeight
+    }
   }
-});
+})
 </script>
 
 <style>

@@ -17,65 +17,64 @@
 </template>
 
 <script setup lang="ts">
-import Breadcrumb from "@components/breadcrumb.vue";
-import SearchOverlay from "@components/searchOverlay.vue";
-import Contributors from "@components/contributors.vue";
-import { NolebaseHighlightTargetedHeading } from "@nolebase/vitepress-plugin-highlight-targeted-heading/client";
-import { useData, useRouter } from "vitepress";
-import DefaultTheme from "vitepress/theme-without-fonts";
-import { nextTick, onUnmounted, provide, watch } from "vue";
+import Breadcrumb from '@components/breadcrumb.vue'
+import Contributors from '@components/contributors.vue'
+import SearchOverlay from '@components/searchOverlay.vue'
+import { NolebaseHighlightTargetedHeading } from '@nolebase/vitepress-plugin-highlight-targeted-heading/client'
+import { useData, useRouter } from 'vitepress'
+import DefaultTheme from 'vitepress/theme-without-fonts'
+import { nextTick, onUnmounted, provide, watch } from 'vue'
 
-const { Layout } = DefaultTheme;
-const { isDark } = useData();
+const { Layout } = DefaultTheme
+const { isDark } = useData()
 
 const enableTransitions = () =>
-  "startViewTransition" in document &&
-  window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+  'startViewTransition' in document &&
+  window.matchMedia('(prefers-reduced-motion: no-preference)').matches
 
-provide("toggle-appearance", async () => {
+provide('toggle-appearance', async () => {
   if (!enableTransitions()) {
-    isDark.value = !isDark.value;
-    return;
+    isDark.value = !isDark.value
+    return
   }
   await document.startViewTransition(async () => {
-    isDark.value = !isDark.value;
-    await nextTick();
-  }).ready;
+    isDark.value = !isDark.value
+    await nextTick()
+  }).ready
   document.documentElement.animate(
     { opacity: isDark.value ? [1, 0] : [0, 1] },
     {
       duration: 600,
-      easing: "ease-out",
-      pseudoElement: `::view-transition-${isDark.value ? "old" : "new"}(root)`,
+      easing: 'ease-out',
+      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
     },
-  );
-});
+  )
+})
 
-const router = useRouter();
-let lastPath = router.route.path;
-let lastHash = router.route.hash;
-let smoothScrollTimeout: number | null = null;
+const router = useRouter()
+let lastPath = router.route.path
+let lastHash = router.route.hash
+let smoothScrollTimeout: number | null = null
 
 function enableSmoothScroll() {
-  if (smoothScrollTimeout) clearTimeout(smoothScrollTimeout);
-  document.documentElement.classList.add("hash-scroll-smooth");
+  if (smoothScrollTimeout) clearTimeout(smoothScrollTimeout)
+  document.documentElement.classList.add('hash-scroll-smooth')
   smoothScrollTimeout = window.setTimeout(() => {
-    document.documentElement.classList.remove("hash-scroll-smooth");
-    smoothScrollTimeout = null;
-  }, 1000);
+    document.documentElement.classList.remove('hash-scroll-smooth')
+    smoothScrollTimeout = null
+  }, 1000)
 }
 
 watch([() => router.route.hash, () => router.route.path], () => {
-  if (router.route.hash !== lastHash && router.route.path === lastPath)
-    enableSmoothScroll();
+  if (router.route.hash !== lastHash && router.route.path === lastPath) enableSmoothScroll()
 
-  lastHash = router.route.hash;
-  lastPath = router.route.path;
-});
+  lastHash = router.route.hash
+  lastPath = router.route.path
+})
 
 onUnmounted(() => {
-  if (smoothScrollTimeout) clearTimeout(smoothScrollTimeout);
-});
+  if (smoothScrollTimeout) clearTimeout(smoothScrollTimeout)
+})
 </script>
 
 <style>

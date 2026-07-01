@@ -31,7 +31,7 @@ punc-wrapper {
     text-indent: -0.5em;
   }
 
-  .paragraph-punc-start[char="《"] {
+  .paragraph-punc-start[char='《'] {
     text-indent: -0.4em;
   }
 }

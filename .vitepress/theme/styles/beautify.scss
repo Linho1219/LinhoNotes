@@ -84,13 +84,13 @@ a {
 // 字体定义
 :root {
   --vp-font-family-base:
-    "Punctuation SC", "HarmonyOS Sans", "PingFang SC", "HarmonyOS Sans SC",
-    "MiSans", "Noto Sans CJK SC", "Noto Sans SC", "Heiti SC",
-    "Microsoft YaHei UI", "DengXian", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    'Punctuation SC', 'HarmonyOS Sans', 'PingFang SC', 'HarmonyOS Sans SC', 'MiSans',
+    'Noto Sans CJK SC', 'Noto Sans SC', 'Heiti SC', 'Microsoft YaHei UI', 'DengXian', ui-sans-serif,
+    system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
   --vp-font-family-mono:
-    "JetBrains Mono", ui-monospace, "Sarasa Term SC", "Iosevka", "Menlo",
-    "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
+    'JetBrains Mono', ui-monospace, 'Sarasa Term SC', 'Iosevka', 'Menlo', 'Monaco', 'Consolas',
+    'Liberation Mono', 'Courier New', monospace;
 }
 
 // 删除线文字颜色调整
@@ -158,7 +158,7 @@ a {
   background-color: #fff3;
 }
 
-.dark .vp-doc img:not([alt*="&keep-color"])::selection {
+.dark .vp-doc img:not([alt*='&keep-color'])::selection {
   background-color: #0000003a;
 }
 
@@ -203,30 +203,30 @@ sub {
 
 // 公式颜色优化
 @mixin katex-color($name, $var) {
-  [style^="color:#{$name}"],
-  [style^="color: #{$name}"],
-  [style*=";color:#{$name}"],
-  [style*="; color:#{$name}"],
-  [style*=";color: #{$name}"],
-  [style*="; color: #{$name}"] {
+  [style^='color:#{$name}'],
+  [style^='color: #{$name}'],
+  [style*=';color:#{$name}'],
+  [style*='; color:#{$name}'],
+  [style*=';color: #{$name}'],
+  [style*='; color: #{$name}'] {
     color: var(#{$var}) !important;
   }
 }
 
 .katex-html {
-  @include katex-color("red", "--ln-c-red");
-  @include katex-color("orange", "--ln-c-orange");
-  @include katex-color("yellow", "--ln-c-yellow");
-  @include katex-color("green", "--ln-c-green");
-  @include katex-color("blue", "--ln-c-blue");
-  @include katex-color("indigo", "--ln-c-indigo");
-  @include katex-color("purple", "--ln-c-purple");
-  @include katex-color("pink", "--ln-c-pink");
-  @include katex-color("magenta", "--ln-c-magenta");
-  @include katex-color("lime", "--ln-c-lime");
-  @include katex-color("olive", "--ln-c-olive");
-  @include katex-color("cyan", "--ln-c-cyan");
-  @include katex-color("teal", "--ln-c-teal");
+  @include katex-color('red', '--ln-c-red');
+  @include katex-color('orange', '--ln-c-orange');
+  @include katex-color('yellow', '--ln-c-yellow');
+  @include katex-color('green', '--ln-c-green');
+  @include katex-color('blue', '--ln-c-blue');
+  @include katex-color('indigo', '--ln-c-indigo');
+  @include katex-color('purple', '--ln-c-purple');
+  @include katex-color('pink', '--ln-c-pink');
+  @include katex-color('magenta', '--ln-c-magenta');
+  @include katex-color('lime', '--ln-c-lime');
+  @include katex-color('olive', '--ln-c-olive');
+  @include katex-color('cyan', '--ln-c-cyan');
+  @include katex-color('teal', '--ln-c-teal');
 }
 
 #VPNavScreen .container {

@@ -125,8 +125,8 @@ img.VPImage.logo {
 }
 
 // 外链提示图标
-.vp-doc a[target="_blank"]::after {
-  content: "";
+.vp-doc a[target='_blank']::after {
+  content: '';
   width: 0.7em !important;
   height: 0.7em !important;
   margin-left: 0.1em !important;

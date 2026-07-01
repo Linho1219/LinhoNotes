@@ -5,7 +5,7 @@
   width: 1px;
   height: 24px;
   background-color: var(--vp-c-divider);
-  content: "";
+  content: '';
 }
 @media only screen and (max-width: 768px) {
   .nav-divider {

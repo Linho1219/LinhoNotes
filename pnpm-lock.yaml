@@ -137,6 +137,9 @@ importers:
       prettier:
         specifier: ^3.9.1
         version: 3.9.1
+      prettier-plugin-sort-imports:
+        specifier: ^1.8.11
+        version: 1.8.11(typescript@6.0.3)
       sass-embedded:
         specifier: ^1.100.0
         version: 1.100.0
@@ -2506,6 +2509,11 @@ packages:
   postcss@8.5.16:
     resolution: {integrity: sha512-vuwillviilfKZsg0VGj5R/YwwcHx4SLsIOI/7K6mQkWx+l5cUHTjj5g0AasTBcyXsbfTgrwsUNmVUb5xVwyPwg==}
     engines: {node: ^10 || ^12 || >=14}
+
+  prettier-plugin-sort-imports@1.8.11:
+    resolution: {integrity: sha512-ApmZkEmNh2Fi6TAcYNgUR15rsP1+omX43+8neY+MXfNZ7JQwrqSdjzKhLUYTtaLo52aaC9gCs+lJaYSU8oSJJA==}
+    peerDependencies:
+      typescript: '>4.0.0'
 
   prettier@3.9.1:
     resolution: {integrity: sha512-ppiDo2CSwexck1eyZUwJHg/N3nf1+6IRCv7W/VJ5vaLnVCmB7+3CdRfMwoCHBBX6xTrREDTksZ4OZl5SSf4zXA==}
@@ -5378,6 +5386,11 @@ snapshots:
       nanoid: 3.3.15
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  prettier-plugin-sort-imports@1.8.11(typescript@6.0.3):
+    dependencies:
+      prettier: 3.9.1
+      typescript: 6.0.3
 
   prettier@3.9.1: {}
 

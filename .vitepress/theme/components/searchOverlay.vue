@@ -5,15 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import { onUnmounted, ref } from "vue";
+import { onUnmounted, ref } from 'vue'
 
-const isActive = ref(false);
+const isActive = ref(false)
 if (!import.meta.env.SSR) {
   const observer = new MutationObserver(() => {
-    isActive.value = document.body.classList.contains("DocSearch--active");
-  });
-  observer.observe(document.body, { attributes: true });
-  onUnmounted(() => observer.disconnect());
+    isActive.value = document.body.classList.contains('DocSearch--active')
+  })
+  observer.observe(document.body, { attributes: true })
+  onUnmounted(() => observer.disconnect())
 }
 </script>
 

@@ -1,16 +1,16 @@
-import { PluginWithParams } from "markdown-it";
-import container from "markdown-it-container";
-import { RenderRule } from "markdown-it/lib/renderer.mjs";
+import { PluginWithParams } from 'markdown-it'
+import container from 'markdown-it-container'
+import { RenderRule } from 'markdown-it/lib/renderer.mjs'
 
-type ContainerArgs = [PluginWithParams, string, { render: RenderRule }];
+type ContainerArgs = [PluginWithParams, string, { render: RenderRule }]
 
 type CustomContainerConfig = {
-  numbered?: boolean;
-  themeAlias?: string[];
-};
+  numbered?: boolean
+  themeAlias?: string[]
+}
 
 const giveNumber = (arr: any[], item: any) =>
-  arr.length === 1 ? "" : " " + (arr.indexOf(item) + 1);
+  arr.length === 1 ? '' : ' ' + (arr.indexOf(item) + 1)
 
 export const createContainer = (
   klass: string,
@@ -22,11 +22,11 @@ export const createContainer = (
   klass,
   {
     render(tokens, idx, _options, env: { references?: any }) {
-      const token = tokens[idx];
-      const info = token.info.trim().slice(klass.length).trim();
-      const attrs = md.renderer.renderAttrs(token);
+      const token = tokens[idx]
+      const info = token.info.trim().slice(klass.length).trim()
+      const attrs = md.renderer.renderAttrs(token)
       if (token.nesting === 1) {
-        let rawTitle: string;
+        let rawTitle: string
         if (config.numbered) {
           rawTitle = info
             ? info +
@@ -42,15 +42,15 @@ export const createContainer = (
               giveNumber(
                 tokens.filter((item) => item.info.trim() === klass),
                 token,
-              );
-        } else rawTitle = info || defaultTitle;
+              )
+        } else rawTitle = info || defaultTitle
         const title = md.renderInline(rawTitle, {
           references: env.references,
-        });
+        })
         return /* html */ `<div class="${klass} ${
-          config.themeAlias?.join(" ") ?? ""
-        } custom-block"${attrs}><p class="custom-block-title">${title}</p>\n`;
-      } else return /* html */ `</div>\n`;
+          config.themeAlias?.join(' ') ?? ''
+        } custom-block"${attrs}><p class="custom-block-title">${title}</p>\n`
+      } else return /* html */ `</div>\n`
     },
   },
-];
+]

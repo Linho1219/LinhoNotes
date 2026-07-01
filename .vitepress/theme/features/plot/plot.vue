@@ -18,42 +18,41 @@
   </div>
 </template>
 <script setup lang="ts">
-import PlotRender from "./plot-render.vue";
-import site from "#shared/site.json";
-import base64 from "base-64";
-import JSON5 from "json5";
-import utf8 from "utf8";
-import { onMounted, ref } from "vue";
+import site from '#shared/site.json'
+import PlotRender from './plot-render.vue'
+import base64 from 'base-64'
+import JSON5 from 'json5'
+import utf8 from 'utf8'
+import { onMounted, ref } from 'vue'
 
 const MAX_HEIGHT = 350,
-  RATIO = 0.75;
+  RATIO = 0.75
 
-const shellRef = ref<HTMLDivElement | null>(null);
+const shellRef = ref<HTMLDivElement | null>(null)
 
 const props = defineProps<{
-  id: string;
-  code: string;
-}>();
+  id: string
+  code: string
+}>()
 const width = ref(0),
-  height = ref(0);
-const interactActivated = ref(false);
+  height = ref(0)
+const interactActivated = ref(false)
 
 const handleResize = () => {
   if (shellRef.value && width.value !== shellRef.value.clientWidth) {
-    width.value = shellRef.value.clientWidth;
-    height.value =
-      width.value * RATIO > MAX_HEIGHT ? MAX_HEIGHT : width.value * RATIO;
+    width.value = shellRef.value.clientWidth
+    height.value = width.value * RATIO > MAX_HEIGHT ? MAX_HEIGHT : width.value * RATIO
   }
-};
+}
 onMounted(() => {
-  handleResize();
-  window.addEventListener("resize", handleResize);
-});
+  handleResize()
+  window.addEventListener('resize', handleResize)
+})
 
 function openInExternal() {
-  const miniCode = JSON5.stringify(JSON5.parse(decodeURIComponent(props.code)));
-  const query = base64.encode(utf8.encode(miniCode)).replace(/=+$/g, "");
-  window.open(site.externalGraphBase + query, "_blank");
+  const miniCode = JSON5.stringify(JSON5.parse(decodeURIComponent(props.code)))
+  const query = base64.encode(utf8.encode(miniCode)).replace(/=+$/g, '')
+  window.open(site.externalGraphBase + query, '_blank')
 }
 </script>
 

@@ -1,15 +1,13 @@
 <template>
   <div class="cadpa-container">
     <div class="cadpa-inner" :class="'a' + props.age">
-      <span class="cadpa-age"
-        >{{ props.age }}<span class="cadpa-plus">+</span></span
-      >
+      <span class="cadpa-age">{{ props.age }}<span class="cadpa-plus">+</span></span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ age: string }>();
+const props = defineProps<{ age: string }>()
 </script>
 
 <style>
@@ -50,7 +48,7 @@ const props = defineProps<{ age: string }>();
 }
 
 .cadpa-inner::after {
-  content: "CADPA";
+  content: 'CADPA';
   display: inline-block;
   position: absolute;
   left: 0;
@@ -97,7 +95,7 @@ const props = defineProps<{ age: string }>();
   right: 0;
   font-size: 14px;
   line-height: 20px;
-  content: "适龄提示";
+  content: '适龄提示';
   color: black;
   font-weight: 500;
 }

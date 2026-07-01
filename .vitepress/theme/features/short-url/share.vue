@@ -11,10 +11,7 @@
     />
     <button class="copylink" @click="copyLink()">
       {{ i.share.copyLink
-      }}<span
-        class="copy-indicator-wrapper"
-        :class="expand ? 'expanded' : 'folded'"
-      >
+      }}<span class="copy-indicator-wrapper" :class="expand ? 'expanded' : 'folded'">
         <svg class="copy-indicator" viewBox="0 0 24 24" width="18" height="18">
           <path
             fill="currentColor"
@@ -27,40 +24,39 @@
 </template>
 
 <script setup lang="ts">
-import i from "@theme/component-i18n.json";
-import site from "#shared/site.json";
-import md5 from "blueimp-md5";
-import QRCodeVue from "qrcode.vue";
-import { useData } from "vitepress";
-import { onMounted, ref, watchEffect } from "vue";
+import site from '#shared/site.json'
+import i from '@theme/component-i18n.json'
+import md5 from 'blueimp-md5'
+import QRCodeVue from 'qrcode.vue'
+import { useData } from 'vitepress'
+import { onMounted, ref, watchEffect } from 'vue'
 
-const { page, isDark } = useData();
-const link = ref("");
-const expand = ref(false);
-const foreground = ref("");
-let timer: NodeJS.Timeout | false = false;
+const { page, isDark } = useData()
+const link = ref('')
+const expand = ref(false)
+const foreground = ref('')
+let timer: NodeJS.Timeout | false = false
 
 function copyLink() {
   navigator.clipboard.writeText(link.value).then(() => {
-    expand.value = true;
-    if (timer) clearTimeout(timer);
+    expand.value = true
+    if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
-      expand.value = timer = false;
-    }, 1500);
-  });
+      expand.value = timer = false
+    }, 1500)
+  })
 }
 
 onMounted(() => {
   watchEffect(() => {
-    const path = page.value.filePath.replace(/(index)?\.md$/, "");
-    if (encodeURI(path).length < 10)
-      link.value = `${site.baseUrl}/${encodeURI(path)}`;
-    else link.value = `${site.baseUrl}/s?q=${md5(path).slice(0, 10)}`;
-  });
+    const path = page.value.filePath.replace(/(index)?\.md$/, '')
+    if (encodeURI(path).length < 10) link.value = `${site.baseUrl}/${encodeURI(path)}`
+    else link.value = `${site.baseUrl}/s?q=${md5(path).slice(0, 10)}`
+  })
   watchEffect(() => {
-    foreground.value = isDark.value ? "#D3D3CC" : "#3C3C43";
-  });
-});
+    foreground.value = isDark.value ? '#D3D3CC' : '#3C3C43'
+  })
+})
 </script>
 
 <style>

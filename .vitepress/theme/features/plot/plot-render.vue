@@ -11,31 +11,31 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, watchEffect } from "vue";
-import functionPlot from "function-plot";
-import JSON5 from "json5";
-import type { FunctionPlotOptions } from "function-plot";
+import type { FunctionPlotOptions } from 'function-plot'
+import functionPlot from 'function-plot'
+import JSON5 from 'json5'
+import { ref, onMounted, watchEffect } from 'vue'
 
 const props = defineProps<{
-  id: string;
-  code: string;
-  graphWidth: number;
-  graphHeight: number;
-}>();
+  id: string
+  code: string
+  graphWidth: number
+  graphHeight: number
+}>()
 
-const plotRef = ref<HTMLDivElement | null>(null);
+const plotRef = ref<HTMLDivElement | null>(null)
 const errorFlag = ref(false),
-  errorDetails = ref(""),
-  disableZoom = ref(false);
+  errorDetails = ref(''),
+  disableZoom = ref(false)
 
-type Size = [number, number];
+type Size = [number, number]
 
-const X_DOMAIN: Size = [-6, 6];
+const X_DOMAIN: Size = [-6, 6]
 
 function computeScale(width: number, height: number, xScale: Size): Size {
-  const xDiff = xScale[1] - xScale[0];
-  const yDiff = (height * xDiff) / width;
-  return [-yDiff / 2, yDiff / 2];
+  const xDiff = xScale[1] - xScale[0]
+  const yDiff = (height * xDiff) / width
+  return [-yDiff / 2, yDiff / 2]
 }
 
 onMounted(() => {
@@ -52,51 +52,43 @@ onMounted(() => {
         : X_DOMAIN,
     },
     yAxis: {
-      domain: computeScale(
-        width,
-        height,
-        originalOpt.xAxis?.domain ?? X_DOMAIN,
-      ),
+      domain: computeScale(width, height, originalOpt.xAxis?.domain ?? X_DOMAIN),
     },
     ...originalOpt,
     target,
-  });
+  })
 
   if (plotRef.value) {
-    let originalOpt: FunctionPlotOptions | undefined;
+    let originalOpt: FunctionPlotOptions | undefined
     try {
-      originalOpt = <FunctionPlotOptions | undefined>JSON5.parse(props.code!);
+      originalOpt = <FunctionPlotOptions | undefined>JSON5.parse(props.code!)
     } catch (eJSON5) {
-      errorFlag.value = true;
-      errorDetails.value = String(eJSON5);
-      return;
+      errorFlag.value = true
+      errorDetails.value = String(eJSON5)
+      return
     }
-    if (typeof originalOpt !== "object") {
-      errorFlag.value = true;
-      errorDetails.value = `Illegal plot options: ${originalOpt}`;
-      return;
+    if (typeof originalOpt !== 'object') {
+      errorFlag.value = true
+      errorDetails.value = `Illegal plot options: ${originalOpt}`
+      return
     }
     if (originalOpt.disableZoom) {
-      disableZoom.value = true;
+      disableZoom.value = true
     }
     watchEffect(() => {
       if (plotRef.value && props.graphWidth && props.graphHeight) {
         try {
           functionPlot(
-            generateOpt(
-              originalOpt,
-              [props.graphWidth, props.graphHeight],
-              plotRef.value,
-            ),
-          );
+            generateOpt(originalOpt, [props.graphWidth, props.graphHeight], plotRef.value),
+          )
         } catch (e) {
-          errorFlag.value = true;
-          errorDetails.value = String(e);
+          errorFlag.value = true
+          errorDetails.value = String(e)
         }
       }
-    });
+    })
   }
-});
+})
 </script>
 
 <style>

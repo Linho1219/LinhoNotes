@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import i from "@theme/component-i18n.json";
+import i from '@theme/component-i18n.json'
 </script>
 
 <style>

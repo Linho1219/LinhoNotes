@@ -9,14 +9,10 @@
         <div class="baselineTitle">
           <BaselineIcon :status="status" />
           <span class="baselineTitleText">
-            <span v-if="status === 'newly' || status === 'widely'"
-              >Baseline&nbsp;</span
-            >
+            <span v-if="status === 'newly' || status === 'widely'">Baseline&nbsp;</span>
             <span class="baselineTitleInfo">{{ baselineInfoStr }}</span>
           </span>
-          <span v-if="status === 'newly'" class="newlyPill">
-            Newly available
-          </span>
+          <span v-if="status === 'newly'" class="newlyPill"> Newly available </span>
         </div>
         <div class="browsers" v-if="status !== 'unknown'">
           <span class="engine">
@@ -33,29 +29,25 @@
       </summary>
       <div class="extra">
         <p v-if="status === 'widely'">
-          This feature is well established and works across many devices and
-          browser versions. It’s been available across browsers since
+          This feature is well established and works across many devices and browser versions. It’s
+          been available across browsers since
           <strong>{{ lowDateStr }}</strong
           >.
         </p>
         <p v-if="status === 'newly'">
           Since <strong>{{ lowDateStr }}</strong
-          >, this feature works across the latest devices and browser versions.
-          This feature might not work in older devices or browsers.
+          >, this feature works across the latest devices and browser versions. This feature might
+          not work in older devices or browsers.
         </p>
         <p v-if="status === 'limited'">
-          This feature is not Baseline untill {{ lowDateStr }} because it does
-          not work in some of the most widely-used browsers.
+          This feature is not Baseline untill {{ lowDateStr }} because it does not work in some of
+          the most widely-used browsers.
         </p>
         <p v-if="status === 'unknown'">
           Could not fetch information about this feature. Try searching on
-          <a class="animated-link" href="https://caniuse.com/" target="_blank"
-            >Can I Use</a
-          >
+          <a class="animated-link" href="https://caniuse.com/" target="_blank">Can I Use</a>
           or
-          <a class="animated-link" href="https://caniuse.com/" target="_blank"
-            >MDN Web Docs</a
-          >
+          <a class="animated-link" href="https://caniuse.com/" target="_blank">MDN Web Docs</a>
           for more information.
         </p>
         <p class="links">
@@ -78,110 +70,105 @@
 </template>
 <script setup lang="ts">
 // import "baseline-status";
-import BaselineIcon from "./baseline-icon.vue";
-import axios from "axios";
-import { onMounted, reactive, ref } from "vue";
+import BaselineIcon from './baseline-icon.vue'
+import axios from 'axios'
+import { onMounted, reactive, ref } from 'vue'
 
-const props = defineProps<{ feature: string }>();
-const status = ref<"widely" | "newly" | "limited" | "unknown">("unknown");
-const featureNameStr = ref(props.feature);
-const baselineInfoStr = ref("Fetching baseline info...");
-const lowDateStr = ref("");
-const toCheckCross = (status: any) => (status ? "checked" : "cross");
+const props = defineProps<{ feature: string }>()
+const status = ref<'widely' | 'newly' | 'limited' | 'unknown'>('unknown')
+const featureNameStr = ref(props.feature)
+const baselineInfoStr = ref('Fetching baseline info...')
+const lowDateStr = ref('')
+const toCheckCross = (status: any) => (status ? 'checked' : 'cross')
 const brwsrCompat = reactive<{
-  chrome: "checked" | "cross";
-  edge: "checked" | "cross";
-  firefox: "checked" | "cross";
-  safari: "checked" | "cross";
+  chrome: 'checked' | 'cross'
+  edge: 'checked' | 'cross'
+  firefox: 'checked' | 'cross'
+  safari: 'checked' | 'cross'
 }>({
-  chrome: "cross",
-  edge: "cross",
-  firefox: "cross",
-  safari: "cross",
-});
+  chrome: 'cross',
+  edge: 'cross',
+  firefox: 'cross',
+  safari: 'cross',
+})
 interface APIreturn {
   baseline: {
-    low_date?: string;
-    status: "widely" | "newly" | "limited";
-  };
+    low_date?: string
+    status: 'widely' | 'newly' | 'limited'
+  }
   browser_implementations: {
     chrome?: {
-      date: string;
-      version: string;
-      status: "available";
-    };
+      date: string
+      version: string
+      status: 'available'
+    }
     edge?: {
-      date: string;
-      version: string;
-      status: "available";
-    };
+      date: string
+      version: string
+      status: 'available'
+    }
     firefox?: {
-      date: string;
-      version: string;
-      status: "available";
-    };
+      date: string
+      version: string
+      status: 'available'
+    }
     safari?: {
-      date: string;
-      version: string;
-      status: "available";
-    };
-  };
-  feature_id: string;
-  name: string;
+      date: string
+      version: string
+      status: 'available'
+    }
+  }
+  feature_id: string
+  name: string
 }
-const API_URL = "https://api.webstatus.dev/v1/features/";
+const API_URL = 'https://api.webstatus.dev/v1/features/'
 onMounted(() => {
   axios
     .get(API_URL + props.feature)
     .then((response) => {
-      const data: APIreturn = response.data;
-      status.value = data.baseline.status;
-      featureNameStr.value = data.name;
-      [
-        brwsrCompat.chrome,
-        brwsrCompat.edge,
-        brwsrCompat.firefox,
-        brwsrCompat.safari,
-      ] = [
+      const data: APIreturn = response.data
+      status.value = data.baseline.status
+      featureNameStr.value = data.name
+      ;[brwsrCompat.chrome, brwsrCompat.edge, brwsrCompat.firefox, brwsrCompat.safari] = [
         data.browser_implementations.chrome,
         data.browser_implementations.edge,
         data.browser_implementations.firefox,
         data.browser_implementations.safari,
-      ].map(toCheckCross);
+      ].map(toCheckCross)
       switch (data.baseline.status) {
-        case "widely": {
-          const lowDate = new Date(data.baseline.low_date!);
-          baselineInfoStr.value = "Widely available";
-          lowDateStr.value = lowDate.toLocaleString("en-US", {
-            month: "long",
-            year: "numeric",
-          });
-          break;
+        case 'widely': {
+          const lowDate = new Date(data.baseline.low_date!)
+          baselineInfoStr.value = 'Widely available'
+          lowDateStr.value = lowDate.toLocaleString('en-US', {
+            month: 'long',
+            year: 'numeric',
+          })
+          break
         }
-        case "newly": {
-          const lowDate = new Date(data.baseline.low_date!);
-          baselineInfoStr.value = lowDate.getFullYear().toString();
-          lowDateStr.value = lowDate.toLocaleString("en-US", {
-            month: "long",
-            year: "numeric",
-          });
-          break;
+        case 'newly': {
+          const lowDate = new Date(data.baseline.low_date!)
+          baselineInfoStr.value = lowDate.getFullYear().toString()
+          lowDateStr.value = lowDate.toLocaleString('en-US', {
+            month: 'long',
+            year: 'numeric',
+          })
+          break
         }
-        case "limited": {
-          baselineInfoStr.value = "Limited availability";
-          lowDateStr.value = new Date().toLocaleString("en-US", {
-            month: "long",
-            year: "numeric",
-          });
-          break;
+        case 'limited': {
+          baselineInfoStr.value = 'Limited availability'
+          lowDateStr.value = new Date().toLocaleString('en-US', {
+            month: 'long',
+            year: 'numeric',
+          })
+          break
         }
       }
     })
     .catch((err) => {
-      console.error("Baseline info not found: ", props.feature);
-      baselineInfoStr.value = "Availability not found";
-    });
-});
+      console.error('Baseline info not found: ', props.feature)
+      baselineInfoStr.value = 'Availability not found'
+    })
+})
 </script>
 
 <style>
@@ -282,7 +269,7 @@ onMounted(() => {
 }
 
 .baselineCard .browser::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -305,7 +292,7 @@ onMounted(() => {
   background-image: url(./assets/safari.svg);
 }
 .baselineCard .browser::after {
-  content: "";
+  content: '';
   position: absolute;
   right: 0;
   top: 0;

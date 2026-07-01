@@ -28,42 +28,41 @@
 </template>
 
 <script lang="ts" setup>
-import site from "#shared/site.json";
-import md5 from "blueimp-md5";
-import { useData } from "vitepress";
-import { ref, watchEffect } from "vue";
+import site from '#shared/site.json'
+import md5 from 'blueimp-md5'
+import { useData } from 'vitepress'
+import { ref, watchEffect } from 'vue'
 
 type Contributor = {
-  username: string;
-  nickname: string;
-  avatar: string;
-};
+  username: string
+  nickname: string
+  avatar: string
+}
 
-const { page, frontmatter } = useData();
-const displayEnabled = ref(true);
-const contributorList = ref<Contributor[]>([]);
-const link = ref("");
+const { page, frontmatter } = useData()
+const displayEnabled = ref(true)
+const contributorList = ref<Contributor[]>([])
+const link = ref('')
 
 watchEffect(() => {
-  if (typeof frontmatter.value.contributorList !== "string") {
-    displayEnabled.value = false;
-    return;
+  if (typeof frontmatter.value.contributorList !== 'string') {
+    displayEnabled.value = false
+    return
   }
   contributorList.value = frontmatter.value.contributorList
-    .split(";")
-    .map((raw) => raw.split(","))
+    .split(';')
+    .map((raw) => raw.split(','))
     .map(([nickname, username]) => ({
       nickname,
       username,
       avatar: `/avatars/${username}.png`,
-    }));
-});
+    }))
+})
 watchEffect(() => {
-  const path = page.value.filePath.replace(/(index)?\.md$/, "");
-  if (encodeURI(path).length < 10)
-    link.value = `${site.baseUrl}/${encodeURI(path)}`;
-  else link.value = `${site.baseUrl}/s?q=${md5(path).slice(0, 10)}`;
-});
+  const path = page.value.filePath.replace(/(index)?\.md$/, '')
+  if (encodeURI(path).length < 10) link.value = `${site.baseUrl}/${encodeURI(path)}`
+  else link.value = `${site.baseUrl}/s?q=${md5(path).slice(0, 10)}`
+})
 </script>
 
 <style>
@@ -138,7 +137,7 @@ watchEffect(() => {
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  --icon: url("https://api.iconify.design/simple-icons/github.svg");
+  --icon: url('https://api.iconify.design/simple-icons/github.svg');
   color: var(--vp-c-text-3);
   transition: background 0.2s;
 }

@@ -1,45 +1,42 @@
 <template>
-  <span class="VPBadge ln" :class="BadgeClass">
-    {{ BadgeText }} <slot></slot>
-  </span>
+  <span class="VPBadge ln" :class="BadgeClass"> {{ BadgeText }} <slot></slot> </span>
 </template>
 
 <script setup lang="ts">
-import { ref, useAttrs } from "vue";
+import { ref, useAttrs } from 'vue'
 
 const props = defineProps<{
-  color?: string;
-  c?: string;
-  text?: string;
-  t?: string;
-}>();
+  color?: string
+  c?: string
+  text?: string
+  t?: string
+}>()
 const colorNames = [
-  "red",
-  "orange",
-  "yellow",
-  "green",
-  "blue",
-  "indigo",
-  "purple",
-  "pink",
-  "magenta",
-  "lime",
-  "olive",
-  "cyan",
-  "teal",
-  "gray",
-];
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'magenta',
+  'lime',
+  'olive',
+  'cyan',
+  'teal',
+  'gray',
+]
 
-let colorStr = "";
-const attrs = useAttrs();
+let colorStr = ''
+const attrs = useAttrs()
 for (let key in attrs)
-  if (typeof attrs[key] === "string" && colorNames.includes(key))
-    colorStr = key;
+  if (typeof attrs[key] === 'string' && colorNames.includes(key)) colorStr = key
 
-colorStr = props.color ?? props.c ?? colorStr;
+colorStr = props.color ?? props.c ?? colorStr
 
 const BadgeClass = ref(colorStr),
-  BadgeText = ref(props.text ?? props.t);
+  BadgeText = ref(props.text ?? props.t)
 </script>
 
 <style>

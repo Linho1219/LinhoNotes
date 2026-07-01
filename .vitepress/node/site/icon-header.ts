@@ -1,50 +1,50 @@
-import type { HeadConfig } from "vitepress";
+import type { HeadConfig } from 'vitepress'
 
 export default [
   ...[16, 32, 64, 96, 128, 192].map((size) => [
-    "link",
+    'link',
     {
-      rel: "icon",
-      type: "image/png",
+      rel: 'icon',
+      type: 'image/png',
       href: `/favicons/favicon_${size}.png`,
       sizes: `${size}x${size}`,
     },
   ]),
   [
-    "link",
+    'link',
     {
-      rel: "icon",
-      type: "image/svg+xml",
-      href: "/title_logo.svg",
+      rel: 'icon',
+      type: 'image/svg+xml',
+      href: '/title_logo.svg',
     },
   ],
   [
-    "link",
+    'link',
     {
-      rel: "shortcut icon",
-      href: "/favicon.ico",
+      rel: 'shortcut icon',
+      href: '/favicon.ico',
     },
   ],
   [
-    "link",
+    'link',
     {
-      rel: "apple-touch-icon",
-      href: "/favicons/apple-touch-icon.png",
-      sizes: "180x180",
+      rel: 'apple-touch-icon',
+      href: '/favicons/apple-touch-icon.png',
+      sizes: '180x180',
     },
   ],
   [
-    "meta",
+    'meta',
     {
-      name: "apple-mobile-web-app-title",
-      content: "LinhoNotes",
+      name: 'apple-mobile-web-app-title',
+      content: 'LinhoNotes',
     },
   ],
   [
-    "link",
+    'link',
     {
-      rel: "manifest",
-      href: "/site.webmanifest",
+      rel: 'manifest',
+      href: '/site.webmanifest',
     },
   ],
-] as HeadConfig[];
+] as HeadConfig[]

@@ -13,10 +13,7 @@
       :initHeight="initHeight"
       v-model="viewerOpened"
     />
-    <div
-      v-if="errorFlag"
-      class="mermaid-error caution custom-block github-alert"
-    >
+    <div v-if="errorFlag" class="mermaid-error caution custom-block github-alert">
       <p class="custom-block-title">Mermaid 渲染错误</p>
       <pre v-html="errorDetails"></pre>
     </div>
@@ -25,44 +22,44 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  id: string;
-  code: string;
-}>();
+  id: string
+  code: string
+}>()
 
-import { ref } from "vue";
-import mermaid from "mermaid";
-import ImageViewer from "@features/image-viewer/image-viewer.vue";
+import ImageViewer from '@features/image-viewer/image-viewer.vue'
+import mermaid from 'mermaid'
+import { ref } from 'vue'
 
-const svgRef = ref(""),
+const svgRef = ref(''),
   errorFlag = ref(false),
-  errorDetails = ref("");
-const viewerOpened = ref(false);
+  errorDetails = ref('')
+const viewerOpened = ref(false)
 const initWidth = ref(0),
-  initHeight = ref(0);
+  initHeight = ref(0)
 
-const code = decodeURIComponent(props.code!);
+const code = decodeURIComponent(props.code!)
 
 mermaid.initialize({
   startOnLoad: false,
-  theme: "neutral",
-  fontFamily: "var(--vp-font-family-base)",
-});
+  theme: 'neutral',
+  fontFamily: 'var(--vp-font-family-base)',
+})
 mermaid.render(props.id!, code).then(
   (result) => {
-    svgRef.value = result.svg;
+    svgRef.value = result.svg
     const viewBox = <[number, number, number, number]>result.svg
       .match(/viewBox="([^"]+)"/)![1]
-      .split(" ")
-      .map((num) => Number(num));
-    initWidth.value = viewBox[2];
-    initHeight.value = viewBox[3];
+      .split(' ')
+      .map((num) => Number(num))
+    initWidth.value = viewBox[2]
+    initHeight.value = viewBox[3]
   },
   (error) => {
-    errorFlag.value = true;
-    errorDetails.value = error.toString();
-    console.error(error);
+    errorFlag.value = true
+    errorDetails.value = error.toString()
+    console.error(error)
   },
-);
+)
 </script>
 
 <style>

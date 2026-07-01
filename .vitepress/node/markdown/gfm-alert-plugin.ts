@@ -1,78 +1,70 @@
-import type MarkdownIt from "markdown-it";
+import type MarkdownIt from 'markdown-it'
 
-const markerRE =
-  /^\[\!(TIP|NOTE|INFO|IMPORTANT|WARNING|CAUTION|DANGER)\]([^\n\r]*)/i;
+const markerRE = /^\[\!(TIP|NOTE|INFO|IMPORTANT|WARNING|CAUTION|DANGER)\]([^\n\r]*)/i
 
 export default function mdGfmAlertPlugin(md: MarkdownIt) {
   const titleMark = {
-    tip: "TIP",
-    note: "NOTE",
-    info: "INFO",
-    important: "IMPORTANT",
-    warning: "WARNING",
-    caution: "CAUTION",
-    danger: "DANGER",
-  } as Record<string, string>;
+    tip: 'TIP',
+    note: 'NOTE',
+    info: 'INFO',
+    important: 'IMPORTANT',
+    warning: 'WARNING',
+    caution: 'CAUTION',
+    danger: 'DANGER',
+  } as Record<string, string>
 
-  md.core.ruler.after("block", "github-alerts", (state) => {
-    const tokens = state.tokens;
+  md.core.ruler.after('block', 'github-alerts', (state) => {
+    const tokens = state.tokens
     for (let i = 0; i < tokens.length; i++) {
-      if (tokens[i].type === "blockquote_open") {
-        const startIndex = i;
-        const open = tokens[startIndex];
-        let endIndex = i + 1;
+      if (tokens[i].type === 'blockquote_open') {
+        const startIndex = i
+        const open = tokens[startIndex]
+        let endIndex = i + 1
         while (
           endIndex < tokens.length &&
-          (tokens[endIndex].type !== "blockquote_close" ||
-            tokens[endIndex].level !== open.level)
+          (tokens[endIndex].type !== 'blockquote_close' || tokens[endIndex].level !== open.level)
         )
-          endIndex++;
-        if (endIndex === tokens.length) continue;
-        const close = tokens[endIndex];
+          endIndex++
+        if (endIndex === tokens.length) continue
+        const close = tokens[endIndex]
         const firstContent = tokens
           .slice(startIndex, endIndex + 1)
-          .find((token) => token.type === "inline");
-        if (!firstContent) continue;
-        const match = firstContent.content.match(markerRE);
-        if (!match) continue;
+          .find((token) => token.type === 'inline')
+        if (!firstContent) continue
+        const match = firstContent.content.match(markerRE)
+        if (!match) continue
         const secondContent = tokens.slice(startIndex, endIndex + 1).find(
           (() => {
-            let flag = 0;
-            return (token) => token.type === "inline" && flag++;
+            let flag = 0
+            return (token) => token.type === 'inline' && flag++
           })(),
-        );
-        const secondTitle = secondContent?.content
-          .trim()
-          .match(/^\*\*([^*]+)\*\*$/)?.[1];
-        const type = match[1].toLowerCase();
-        const title =
-          secondTitle ??
-          (match[2].trim() || titleMark[type] || capitalize(type));
-        firstContent.content = firstContent.content
-          .slice(match[0].length)
-          .trimStart();
-        if (secondTitle) secondContent.content = "";
-        open.type = "github_alert_open";
-        open.tag = "div";
+        )
+        const secondTitle = secondContent?.content.trim().match(/^\*\*([^*]+)\*\*$/)?.[1]
+        const type = match[1].toLowerCase()
+        const title = secondTitle ?? (match[2].trim() || titleMark[type] || capitalize(type))
+        firstContent.content = firstContent.content.slice(match[0].length).trimStart()
+        if (secondTitle) secondContent.content = ''
+        open.type = 'github_alert_open'
+        open.tag = 'div'
         open.meta = {
           title,
           type,
-        };
-        close.type = "github_alert_close";
-        close.tag = "div";
+        }
+        close.type = 'github_alert_close'
+        close.tag = 'div'
       }
     }
-  });
+  })
   md.renderer.rules.github_alert_open = function (tokens, idx, _options, env) {
-    const { title, type } = tokens[idx].meta;
-    const attrs = "";
+    const { title, type } = tokens[idx].meta
+    const attrs = ''
     return /*html*/ `<div class="${type} custom-block github-alert"${attrs}><p class="custom-block-title">${md.renderInline(
       title,
       { references: env.references },
-    )}</p>\n`;
-  };
+    )}</p>\n`
+  }
 }
 
 function capitalize(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+  return str.charAt(0).toUpperCase() + str.slice(1)
 }

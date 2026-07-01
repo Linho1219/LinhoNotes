@@ -27,40 +27,40 @@
 </template>
 
 <script setup lang="ts">
-import emitter from "./mitt";
-import { ref, watch } from "vue";
+import emitter from './mitt'
+import { ref, watch } from 'vue'
 
 const props = defineProps<{
-  id: string;
-  refid: string;
-  caption: string;
-}>();
+  id: string
+  refid: string
+  caption: string
+}>()
 const isHover = ref(false),
   isLoaded = ref(false),
-  content = ref(""),
+  content = ref(''),
   linkEle = ref<HTMLElement | null>(null),
   alignRight = ref(false),
-  isTouch = ref(false);
+  isTouch = ref(false)
 function loadContent(event: PointerEvent) {
-  if (event.pointerType === "touch") {
-    isTouch.value = true;
-    return;
+  if (event.pointerType === 'touch') {
+    isTouch.value = true
+    return
   }
   const handleEvent = (footContent: string) => {
-    content.value = footContent.replace(/(^<p>)|(<\/p>$)/g, "");
-    isLoaded.value = true;
-    emitter.off("on-return-footnote", handleEvent);
-  };
-  emitter.on("on-return-footnote", handleEvent);
-  emitter.emit("on-query-footnote", props.id!);
+    content.value = footContent.replace(/(^<p>)|(<\/p>$)/g, '')
+    isLoaded.value = true
+    emitter.off('on-return-footnote', handleEvent)
+  }
+  emitter.on('on-return-footnote', handleEvent)
+  emitter.emit('on-query-footnote', props.id!)
 }
 watch(isHover, (hover) => {
-  if (!hover || !linkEle.value) return;
-  const rect = linkEle.value.getBoundingClientRect();
-  const rightDistance = window.innerWidth - rect.right;
-  if (rightDistance < 410) alignRight.value = true;
-  else alignRight.value = false;
-});
+  if (!hover || !linkEle.value) return
+  const rect = linkEle.value.getBoundingClientRect()
+  const rightDistance = window.innerWidth - rect.right
+  if (rightDistance < 410) alignRight.value = true
+  else alignRight.value = false
+})
 </script>
 
 <style>
@@ -90,10 +90,10 @@ watch(isHover, (hover) => {
   opacity: 0.4;
 }
 .footnote-link::before {
-  content: "[";
+  content: '[';
 }
 .footnote-link::after {
-  content: "]";
+  content: ']';
 }
 .footnote-link:active {
   opacity: 0.5;
@@ -115,7 +115,7 @@ watch(isHover, (hover) => {
 }
 
 .footnote-ref-wrapper::after {
-  content: "";
+  content: '';
   width: 16px;
   height: 10px;
   display: block;
@@ -154,7 +154,7 @@ watch(isHover, (hover) => {
 }
 
 .footnote-ref-wrapper::before {
-  content: "";
+  content: '';
   width: 100%;
   height: 10px;
   display: block;
