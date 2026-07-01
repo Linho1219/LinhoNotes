@@ -9,11 +9,12 @@
 <script setup lang="ts">
 import pinyin from "pinyin";
 import { onMounted, ref } from "vue";
+
 const display = ref("");
 const textEle = ref<HTMLSpanElement | null>(null);
 const props = defineProps<{
-  manual?: string,
-  m?: string,
+  manual?: string;
+  m?: string;
 }>();
 onMounted(() => {
   if (!textEle.value) return;

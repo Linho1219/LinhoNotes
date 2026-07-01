@@ -1,40 +1,42 @@
-/// <reference path="./types.d.ts" />
-
+import mdPlot from "./node/markdown/codeblock-plugin";
+import { miscI18n, searchI18n, themeI18n } from "./node/i18n";
+import { createContainer } from "./node/markdown/custom-container-plugin";
+import mdLinkClass from "./node/markdown/custom-link-classname-plugin";
+import mdWrapper from "./node/markdown/custom-wrapper-plugin";
+import mdFootNotePlus from "./node/markdown/footnote-plugin";
+import mdGfmAlertPlugin from "./node/markdown/gfm-alert-plugin";
+import mdImageViewer from "./node/markdown/image-plugin";
+import mdMath from "./node/markdown/math-plugin";
+import mdAutoSpacing from "./node/markdown/spacing-plugin";
+import getContributorPlugin from "./node/vite/add-contributors";
+import mapShortUrl from "./node/vite/map-short-url";
+import iconHeader from "./node/site/icon-header";
+import nav from "./node/site/nav";
+import sidebar from "./node/site/sidebar";
+import genreateSitemap from "./node/vite/sitemap";
 import mdFootnote from "markdown-it-footnote";
-import mdCheckbox from "markdown-it-task-lists";
-import mdSup from "markdown-it-sup";
 import mdSub from "markdown-it-sub";
-import mdAutoSpacing from "./spacing/spacing";
-
+import mdSup from "markdown-it-sup";
+import mdCheckbox from "markdown-it-task-lists";
+import { resolve } from "node:path";
+import type { DefaultTheme, UserConfig } from "vitepress";
 import {
   groupIconMdPlugin,
   groupIconVitePlugin,
 } from "vitepress-plugin-group-icons";
-import getContributorPlugin from "./contributors/addContributors";
 
-import mdPlot from "./codeblock/codeblockPlugin";
-import mdFootNotePlus from "./footnote/footnotePlugin";
-import mdImageViewer from "./imageViewer/imagePlugin";
-import mdWrapper from "./configurablePlugins/customWrapper";
-import mdLinkClass from "./configurablePlugins/customLinkClassName";
-import mdMath from "./configurablePlugins/math";
-import mdGitHubAlertsPlugin from "./siteData/githubAlert";
-import { createContainer } from "./configurablePlugins/customContainer";
+import site from "#shared/site.json";
 
-import { themeI18n, miscI18n, searchI18n } from "./i18n";
-import { globalConfig } from "./manualConfig";
-import iconHeader from "./siteData/iconHeader";
-const { title, description, baseUrl } = globalConfig;
-const enableMath = process.env.DISABLE_MATH !== "true";
+import tsconfigApp from "./tsconfig.app.json";
 
-import nav from "./siteData/nav";
-import sidebar from "./siteData/sidebar";
-import genreateSitemap from "./sitemap";
-import mapShortUrl from "./shortUrl/mapShortUrl";
+const alias = Object.entries(tsconfigApp.compilerOptions.paths).map(
+  ([key, value]) => ({
+    find: key.replace(/\/\*$/, ""),
+    replacement: resolve(__dirname, value[0].replace(/\/\*$/, "")),
+  }),
+);
 
-import type { UserConfig, DefaultTheme } from "vitepress";
-import { resolve } from "node:path";
-
+const { title, description, baseUrl } = site;
 // https://vitepress.dev/reference/site-config
 export default {
   title,
@@ -56,9 +58,7 @@ export default {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/title_logo.svg",
     nav,
-    socialLinks: [
-      { icon: "github", link: "https://github.com/Linho1219/LinhoNotes" },
-    ],
+    socialLinks: [{ icon: "github", link: site.repo.url }],
     search: {
       provider: "algolia",
       options: {
@@ -86,10 +86,7 @@ export default {
       process.env.NODE_ENV === "production"
         ? {
             text: miscI18n.lastUpdated,
-            formatOptions: {
-              dateStyle: "short",
-              timeStyle: "short",
-            },
+            formatOptions: { dateStyle: "short", timeStyle: "short" },
           }
         : false,
     ...themeI18n,
@@ -105,9 +102,9 @@ export default {
         .use(mdSub)
         .use(mdWrapper, { marker: "%", tag: "Cloze" })
         .use(mdWrapper, { marker: "=", tag: "mark" })
-        .use(mdLinkClass, { className: "animated-link" });
-      if (enableMath) md.use(mdMath);
-      md.use(mdImageViewer)
+        .use(mdLinkClass, { className: "animated-link" })
+        .use(mdMath)
+        .use(mdImageViewer)
         .use(
           ...createContainer(
             "example",
@@ -116,7 +113,7 @@ export default {
             md,
           ),
         )
-        .use(mdGitHubAlertsPlugin)
+        .use(mdGfmAlertPlugin)
         .use(mdPlot)
         .use(mdAutoSpacing);
     },
@@ -136,9 +133,7 @@ export default {
     },
   },
   vite: {
-    build: {
-      chunkSizeWarningLimit: 8192,
-    },
+    build: { chunkSizeWarningLimit: 8192 },
     plugins: [
       groupIconVitePlugin(),
       ...(process.env.NODE_ENV === "production" &&
@@ -149,13 +144,6 @@ export default {
     ssr: {
       noExternal: ["@nolebase/vitepress-plugin-highlight-targeted-heading"],
     },
-    resolve: {
-      alias: [
-        {
-          find: "@",
-          replacement: resolve(__dirname, "./"),
-        },
-      ],
-    },
+    resolve: { alias },
   },
 } as UserConfig<DefaultTheme.Config>;

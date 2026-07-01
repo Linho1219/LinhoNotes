@@ -6,6 +6,7 @@
 
 <script setup lang="ts">
 import { ref, useAttrs } from "vue";
+
 const props = defineProps<{
   color?: string;
   c?: string;

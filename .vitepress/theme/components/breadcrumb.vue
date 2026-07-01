@@ -10,10 +10,11 @@
 </template>
 
 <script setup lang="ts">
-import { useData } from "vitepress";
-const { page } = useData();
-import { ref, watchEffect } from "vue";
 import pangu from "pangu";
+import { useData } from "vitepress";
+import { ref, watchEffect } from "vue";
+
+const { page } = useData();
 
 type Breadcrumb = {
   name: string;

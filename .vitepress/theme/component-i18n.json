@@ -1,0 +1,10 @@
+{
+  "global": {
+    "javascriptDisabled": "您已禁用 JavaScript"
+  },
+  "share": {
+    "copyLink": "复制链接"
+  },
+  "geogebra": {},
+  "plot": {}
+}

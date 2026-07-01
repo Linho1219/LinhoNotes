@@ -5,8 +5,8 @@
 </template>
 
 <script setup lang="ts">
-/// <reference path="../../types.d.ts" />
-import { ref, onUnmounted } from "vue";
+import { onUnmounted, ref } from "vue";
+
 const isActive = ref(false);
 if (!import.meta.env.SSR) {
   const observer = new MutationObserver(() => {

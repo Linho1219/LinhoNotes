@@ -8,8 +8,5 @@
     "types": ["node"],
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "paths": {
-      "@/*": ["./*"] // temporary, for compatibility
-    }
   }
 }

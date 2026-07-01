@@ -10,6 +10,6 @@ head:
 <ClientOnly><Jumper /></ClientOnly>
 
 <script lang="ts" setup>
-import Jumper from '/.vitepress/shortUrl/jumper.vue'
-import Loading from '/.vitepress/shortUrl/loading.vue'
+import Jumper from '@features/short-url/jumper.vue'
+import Loading from '@features/short-url/loading.vue'
 </script>

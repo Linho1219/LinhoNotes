@@ -1,6 +1,11 @@
 {
   "title": "LinhoNotes",
+  "description": "一个笔记仓库",
   "baseUrl": "https://notes.linho.cc",
   "externalGraphBase": "https://plot.linho.cc/#code=",
-  "repoUrl": "https://github.com/Linho1219/LinhoNotes"
+  "repo": {
+    "url": "https://github.com/Linho1219/LinhoNotes",
+    "owner": "Linho1219",
+    "repo": "LinhoNotes"
+  }
 }

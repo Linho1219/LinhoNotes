@@ -17,13 +17,14 @@
 </template>
 
 <script setup lang="ts">
+import Breadcrumb from "@components/breadcrumb.vue";
+import SearchOverlay from "@components/searchOverlay.vue";
+import Contributors from "@components/contributors.vue";
+import { NolebaseHighlightTargetedHeading } from "@nolebase/vitepress-plugin-highlight-targeted-heading/client";
+import { useData, useRouter } from "vitepress";
 import DefaultTheme from "vitepress/theme-without-fonts";
 import { nextTick, onUnmounted, provide, watch } from "vue";
-import { useData, useRouter } from "vitepress";
-import { NolebaseHighlightTargetedHeading } from "@nolebase/vitepress-plugin-highlight-targeted-heading/client";
-import Breadcrumb from "./components/breadcrumb.vue";
-import SearchOverlay from "./components/searchOverlay.vue";
-import Contributors from "@/contributors/contributors.vue";
+
 const { Layout } = DefaultTheme;
 const { isDark } = useData();
 

@@ -1,13 +1,13 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["theme/**/*.ts", "theme/**/*.vue", "shared/**/*.ts", "env.d.ts"],
+  "include": ["theme/**/*", "theme/**/*.vue", "theme/vite-env.d.ts"],
   "compilerOptions": {
     "noEmit": true,
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "paths": {
-      "@/*": ["./*"], // temporary, for compatibility
       "@theme/*": ["./theme/*"],
-      "@shared/*": ["./shared/*"]
+      "@components/*": ["./theme/components/*"],
+      "@features/*": ["./theme/features/*"]
     }
   }
 }
