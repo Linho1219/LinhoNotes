@@ -12,6 +12,16 @@
     opacity: 0;
   }
 }
+@keyframes l-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+// GeoGebra 加载动画
+.GeoGebraFrame > [role='application'] {
+  animation: l-fade 0.3s;
+}
 
 // 960px+ 有左侧边栏
 @media only screen and (min-width: 960px) {
