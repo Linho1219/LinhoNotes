@@ -20,18 +20,17 @@
   @include image-size(tiny, 80px);
 }
 
-.vp-doc img[data-image-viewer],
-.vp-doc [data-image-viewer='mermaid'] {
+.vp-doc [data-image-viewer] {
   cursor: zoom-in;
 }
 
-.vp-doc p > img[data-image-viewer]:only-child {
+.vp-doc p > img[data-image-viewer][data-image-type='block'] {
   margin-left: auto;
   margin-right: auto;
 }
 
 .vp-doc td img[data-image-viewer],
-.vp-doc p > img[data-image-viewer]:not(:only-child) {
+.vp-doc p > img[data-image-viewer][data-image-type='inline'] {
   display: inline-block;
   vertical-align: middle;
   margin: 0;
