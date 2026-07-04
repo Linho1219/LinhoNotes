@@ -2,17 +2,12 @@
   <div class="mermaid">
     <div
       v-if="!errorFlag"
-      class="mermaid_container viewer-trigger"
+      class="mermaid_container"
+      data-image-viewer="mermaid"
+      :data-image-viewer-width="initWidth"
+      :data-image-viewer-height="initHeight"
       v-html="svgRef"
-      @click="viewerOpened = true"
     ></div>
-    <ImageViewer
-      :svg="svgRef"
-      alt=""
-      :initWidth="initWidth"
-      :initHeight="initHeight"
-      v-model="viewerOpened"
-    />
     <div v-if="errorFlag" class="mermaid-error caution custom-block github-alert">
       <p class="custom-block-title">Mermaid 渲染错误</p>
       <pre v-html="errorDetails"></pre>
@@ -25,15 +20,12 @@ const props = defineProps<{
   id: string
   code: string
 }>()
-
-import ImageViewer from '@features/image-viewer/image-viewer.vue'
 import mermaid from 'mermaid'
 import { ref } from 'vue'
 
 const svgRef = ref(''),
   errorFlag = ref(false),
   errorDetails = ref('')
-const viewerOpened = ref(false)
 const initWidth = ref(0),
   initHeight = ref(0)
 
@@ -70,9 +62,6 @@ mermaid.render(props.id!, code).then(
 .mermaid_container p {
   line-height: 1.5em !important;
   user-select: none;
-}
-.mermaid_container.viewer-trigger {
-  width: auto;
 }
 .mermaid-error pre {
   white-space: pre-wrap;

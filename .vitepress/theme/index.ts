@@ -19,7 +19,6 @@ import Baseline from '@features/baseline/baseline.vue'
 import FootnoteRef from '@features/footnote/footnote-ref.vue'
 import Footnote from '@features/footnote/footnote.vue'
 import GeoGebra from '@features/geogebra/geogebra.vue'
-import ImageWrapper from '@features/image-viewer/image-wrapper.vue'
 import Plot from '@features/plot/plot.vue'
 import Share from '@features/short-url/share.vue'
 import 'katex/dist/katex.css'
@@ -39,7 +38,6 @@ export default {
     app.component('Share', Share)
     app.component('Footnote', Footnote)
     app.component('FootnoteRef', FootnoteRef)
-    app.component('ImageWrapper', ImageWrapper)
     app.component('CADPA', Cadpa)
     app.component('PY', Pinyin)
     app.component('Pinyin', Pinyin)

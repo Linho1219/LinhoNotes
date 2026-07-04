@@ -1,70 +1,67 @@
 <template>
-  <Teleport to="#imageViewers">
-    <transition name="viewer-fade">
+  <transition name="viewer-fade">
+    <div
+      v-if="isShown"
+      class="viewer-wrapper"
+      @wheel.passive="handleScroll"
+      @touchstart.passive="handleTouch"
+    >
+      <div class="viewer-overlay" @click="close()"></div>
       <div
-        v-if="isShown"
-        class="viewer-wrapper"
-        @wheel.passive="handleScroll"
-        @touchstart.passive="handleTouch"
+        class="viewer-img"
+        :class="{
+          filter: filterEnabled,
+          filteroff: !filterEnabled,
+          transition: transitionEnabled,
+        }"
+        :style="style"
+        @mousedown="handleDrag"
       >
-        <div class="viewer-overlay" @click="close()"></div>
-        <div
-          class="viewer-img"
-          :class="{
-            filter: filterEnabled,
-            filteroff: !filterEnabled,
-            transition: transitionEnabled,
-          }"
-          :style="style"
-          @mousedown="handleDrag"
+        <img
+          v-if="current.src"
+          class="viewer-img-inner image"
+          :src="current.src"
+          :alt="current.alt"
+          draggable="false"
+        />
+        <div v-if="current.svg" class="viewer-img-inner svg" v-html="current.svg"></div>
+      </div>
+      <div class="viewer-toolbar" @touchstart.stop.passive="null">
+        {{ Math.round(scale * 100) }}%
+        <button
+          v-if="isDark"
+          class="viewer-filter"
+          :class="{ enabled: filterEnabled && isDark }"
+          @click="filterEnabled = !filterEnabled"
         >
-          <img
-            v-if="props.src"
-            class="viewer-img-inner image"
-            :src="props.src"
-            :alt="props.alt"
-            draggable="false"
-          />
-          <div v-if="props.svg" class="viewer-img-inner svg" v-html="props.svg"></div>
-        </div>
-        <div class="viewer-toolbar" @touchstart.stop.passive="null">
-          {{ Math.round(scale * 100) }}%
-          <button
-            v-if="isDark"
-            class="viewer-filter"
-            :class="{ enabled: filterEnabled && isDark }"
-            @click="filterEnabled = !filterEnabled"
-          >
-            <svg height="22" viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                d="m19 19l-7-8v8H5l7-8V5h7m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"
-              />
-            </svg>
-          </button>
-        </div>
-      </div> </transition
-  ></Teleport>
+          <svg height="22" viewBox="0 0 24 24">
+            <path
+              fill="currentColor"
+              d="m19 19l-7-8v8H5l7-8V5h7m0-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script setup lang="ts">
 import { useData } from 'vitepress'
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, reactive, ref } from 'vue'
 import type { StyleValue } from 'vue'
 
 const { isDark } = useData()
 const close = () => {
   isShown.value = false
 }
-const props = defineProps<{
-  src?: string
-  svg?: string
-  alt: string
-  initWidth: number
-  initHeight: number
-}>()
-const isShown = defineModel<boolean>({
-  required: true,
+const isShown = ref(false)
+const current = reactive({
+  src: '',
+  svg: '',
+  alt: '',
+  initWidth: 0,
+  initHeight: 0,
 })
 
 interface Range {
@@ -101,9 +98,9 @@ const convertRatio = (delta: number) => (delta > 0 ? 1 + delta : 1 / (1 - delta)
 
 /** CSS 属性 */
 const style = computed<StyleValue>(() => ({
-  width: props.initWidth! + 'px',
-  height: props.initHeight! + 'px',
-  transform: `translate(${position.x - props.initWidth! / 2}px,${position.y - props.initHeight! / 2}px) scale(${scale.value})`,
+  width: current.initWidth + 'px',
+  height: current.initHeight + 'px',
+  transform: `translate(${position.x - current.initWidth / 2}px,${position.y - current.initHeight / 2}px) scale(${scale.value})`,
 }))
 const transitionEnabled = ref(false)
 const filterEnabled = ref(false)
@@ -118,18 +115,86 @@ const getLimitRatio = (
   }[]
 ) => Math.min(1, ...limitValues.map(({ value, limit }) => limit / value))
 
-/** 监听开启关闭 */
-watch(isShown, () => {
-  if (import.meta.env.SSR) return
-  if (!isShown.value) return
-
+const open = (payload: {
+  src?: string
+  svg?: string
+  alt: string
+  initWidth: number
+  initHeight: number
+}) => {
+  current.src = payload.src ?? ''
+  current.svg = payload.svg ?? ''
+  current.alt = payload.alt
+  current.initWidth = payload.initWidth
+  current.initHeight = payload.initHeight
   getWindowResize()
   ;[position.x, position.y] = [frame.width / 2, frame.height / 2]
   scale.value = getLimitRatio(
-    { value: props.initHeight!, limit: frame.height },
-    { value: props.initWidth!, limit: frame.width },
+    { value: current.initHeight, limit: frame.height },
+    { value: current.initWidth, limit: frame.width },
   )
-  filterEnabled.value = Boolean(isDark.value && !props.alt?.includes('&keep-color'))
+  transitionEnabled.value = false
+  filterEnabled.value = Boolean(isDark.value && !current.alt.includes('&keep-color'))
+  isShown.value = true
+}
+
+const parseSize = (value: string | undefined) => {
+  const size = Number(value)
+  return Number.isFinite(size) && size > 0 ? size : 0
+}
+
+const openImage = (img: HTMLImageElement) => {
+  const initWidth = img.naturalWidth || img.width
+  const initHeight = img.naturalHeight || img.height
+  if (!initWidth || !initHeight) return
+  open({
+    src: img.currentSrc || img.src,
+    alt: img.alt,
+    initWidth,
+    initHeight,
+  })
+}
+
+const openMermaid = (container: HTMLElement) => {
+  const svg = container.querySelector('svg')
+  if (!svg) return
+  const initWidth =
+    parseSize(container.dataset.imageViewerWidth) ||
+    parseSize(svg.getAttribute('width') ?? undefined) ||
+    svg.getBoundingClientRect().width
+  const initHeight =
+    parseSize(container.dataset.imageViewerHeight) ||
+    parseSize(svg.getAttribute('height') ?? undefined) ||
+    svg.getBoundingClientRect().height
+  if (!initWidth || !initHeight) return
+  open({
+    svg: svg.outerHTML,
+    alt: '',
+    initWidth,
+    initHeight,
+  })
+}
+
+const handleGlobalClick = (event: MouseEvent) => {
+  const target = event.target
+  if (!(target instanceof Element)) return
+  const trigger = target.closest<HTMLElement>('.vp-doc [data-image-viewer]')
+  if (!trigger) return
+  event.preventDefault()
+  const type = trigger.dataset.imageViewer
+  if (type === 'image' && trigger instanceof HTMLImageElement) {
+    openImage(trigger)
+  } else if (type === 'mermaid') {
+    openMermaid(trigger)
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleGlobalClick)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleGlobalClick)
 })
 
 /** 滚轮缩放 */
@@ -287,7 +352,8 @@ const handleTouch = ({ touches }: TouchEvent) => {
   document.addEventListener('touchend', onTouchEnd, { passive: true })
 }
 </script>
-<style>
+
+<style lang="scss">
 .viewer-wrapper {
   position: fixed;
   top: 0;
@@ -310,8 +376,6 @@ const handleTouch = ({ touches }: TouchEvent) => {
 .viewer-img {
   position: absolute;
   max-width: unset;
-}
-.viewer-img {
   --white: white;
   --gray: #f3f3f3;
   --size: 15px;
@@ -325,19 +389,24 @@ const handleTouch = ({ touches }: TouchEvent) => {
   background-size: calc(var(--size) * 2) calc(var(--size) * 2);
   background-attachment: fixed;
   cursor: grab;
+  &.transition {
+    transition: transform 0.1s;
+  }
+  &:active {
+    cursor: grabbing;
+  }
 }
-.viewer-img.transition {
-  transition: transform 0.1s;
-}
-.viewer-img:active {
-  cursor: grabbing;
-}
+
 .viewer-img-inner,
 .viewer-img-inner svg {
   width: 100%;
   height: 100%;
   max-width: unset !important;
   max-height: unset !important;
+}
+
+.viewer-img-inner.image {
+  border-radius: 0;
 }
 
 .viewer-toolbar {
@@ -364,41 +433,39 @@ const handleTouch = ({ touches }: TouchEvent) => {
   margin-left: 6px;
   border-left: 1px solid #fff6;
   transition: color 0.1s;
-}
-.viewer-filter.enabled {
-  color: var(--vp-c-brand);
+  &.enabled {
+    color: var(--vp-c-brand);
+  }
 }
 .viewer-img.filter {
   --white: black;
   --gray: #141417;
-}
-.viewer-img.filter .viewer-img-inner {
-  filter: invert(100%) hue-rotate(180deg) contrast(80%) !important;
+  .viewer-img-inner {
+    filter: invert(100%) hue-rotate(180deg) contrast(80%) !important;
+  }
 }
 .viewer-img.filteroff .viewer-img-inner {
   filter: none !important;
 }
-</style>
 
-<style>
 .viewer-wrapper {
   transition: opacity 0.2s;
 }
-.viewer-fade-enter-from .viewer-toolbar {
-  transform: translateY(15px);
+.viewer-fade {
+  &-enter-from .viewer-toolbar {
+    transform: translateY(15px);
+  }
+  &-enter-active,
+  &-leave-to {
+    opacity: 0;
+  }
+  &-enter-to {
+    opacity: 1;
+  }
 }
-.viewer-fade-enter-active,
-.viewer-fade-leave-to {
-  opacity: 0;
-}
-.viewer-fade-enter-to {
-  opacity: 1;
-}
+
 body:has(.viewer-wrapper) {
   overflow: hidden;
   touch-action: none;
-}
-.viewer-img-inner.image {
-  border-radius: 0;
 }
 </style>

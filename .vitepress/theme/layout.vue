@@ -11,7 +11,7 @@
     </template>
     <template #layout-bottom>
       <SearchOverlay />
-      <div id="imageViewers"></div>
+      <ImageViewer />
     </template>
   </Layout>
 </template>
@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import Breadcrumb from '@components/breadcrumb.vue'
 import Contributors from '@components/contributors.vue'
+import ImageViewer from '@components/image-viewer.vue'
 import SearchOverlay from '@components/searchOverlay.vue'
 import { NolebaseHighlightTargetedHeading } from '@nolebase/vitepress-plugin-highlight-targeted-heading/client'
 import { useData, useRouter } from 'vitepress'

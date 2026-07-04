@@ -8,7 +8,7 @@
   :is(.vp-external-link-icon, .vp-doc a[href*='://'], .vp-doc a[target='_blank']):not(
       :is(.no-icon, svg a, :has(img, svg))
     )::after,
-  #imageViewers,
+  .viewer-wrapper,
   .edit-info {
     display: none !important;
   }
