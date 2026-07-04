@@ -53,7 +53,7 @@ export const searchI18n: DefaultTheme.AlgoliaSearchOptions['translations'] = {
       navigateText: '导航', // to navigate
       navigateUpKeyAriaLabel: '上箭头', // Arrow up
       navigateDownKeyAriaLabel: '下箭头', // Arrow down
-      closeText: '清空', // to close
+      closeText: '关闭', // to close
       closeKeyAriaLabel: 'Esc 键', // Escape key
     },
     noResultsScreen: {

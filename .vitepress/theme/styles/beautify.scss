@@ -196,6 +196,7 @@ sub {
 }
 .DocSearch-Logo {
   opacity: 0.5;
+  filter: grayscale(1);
 }
 .DocSearch-NoResults-Prefill-List {
   display: none !important;
