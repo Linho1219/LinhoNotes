@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       - uses: pnpm/action-setup@v6
         with:
-          version: 11
+          version: 11.7.0
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
