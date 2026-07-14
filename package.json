@@ -19,7 +19,7 @@
     "mitt": "^3.0.1",
     "qrcode.vue": "^3.10.0",
     "utf8": "^3.0.0",
-    "vitepress": "2.0.0-alpha.17",
+    "vitepress": "2.0.0-alpha.18",
     "vue": "^3.5.39"
   },
   "devDependencies": {
@@ -35,7 +35,7 @@
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.11",
     "@types/markdown-it-footnote": "^3.0.4",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.1",
     "@types/pangu": "^4.0.2",
     "@types/pinyin": "^2.10.2",
     "@types/utf8": "^3.0.3",
@@ -52,13 +52,13 @@
     "markdown-it-task-lists": "^2.1.1",
     "pangu": "^7.2.1",
     "pinyin": "4.0.0",
-    "prettier": "^3.9.1",
+    "prettier": "^3.9.5",
     "prettier-plugin-sort-imports": "^1.8.11",
     "sass-embedded": "^1.100.0",
     "segmentit": "^2.0.3",
     "simple-git": "^3.36.0",
-    "vite": "^8.1.0",
+    "vite": "^8.1.4",
     "vitepress-plugin-group-icons": "^1.7.5",
-    "vue-tsc": "^3.3.5"
+    "vue-tsc": "^3.3.7"
   }
 }
