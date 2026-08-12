@@ -1,7 +1,8 @@
 /**
  * 由于 Git 中的贡献者信息只包含 email 地址，因此需要通过 GitHub 获取贡献者的用户名。
- * 具体方法是通过 Git 获取该贡献者一个 commit 的 sha1，通过 GitHub API 获取该 commit 的详细信息，
- * 从而获取到贡献者的用户名，再通过用户名获取贡献者的详细信息（昵称、头像等）。
+ * 具体方法是通过 Git 获取作者及 Co-authored-by trailer 中的邮箱和一个相关 commit 的 sha1，
+ * 再通过 GitHub GraphQL API 获取该 commit 的所有作者，从而将邮箱映射到 GitHub 用户名，
+ * 最后通过用户名获取贡献者的详细信息（昵称、头像等）。
  * 贡献者的详细信息会被缓存以避免重复查询。
  * 详细信息会被添加到每个 .md 文件的 Frontmatter 中，格式为：<nickname>,<username>。
  * 头像会被下载到 public/avatars/<username>.png。
@@ -19,9 +20,12 @@ const { owner, repo } = site.repo
 
 const git = simpleGit()
 
-/** 从 Git 处获取到的贡献者 email 及其一个 commit 的 sha1 */
+const gitLogFormat =
+  '--format=%H%x00%ae%x00%(trailers:key=Co-authored-by,valueonly,separator=%x00)%x1e'
+
+/** 从 Git 处获取到的贡献者 email 及其一个相关 commit 的 sha1 */
 type EmailWithSha1 = { email: string; sha1: string }
-/** 贡献者 email 以及从 GitHub API 处通过 sha1 查询到的用户名 */
+/** 贡献者 email 以及从 GitHub GraphQL API 处通过 sha1 查询到的用户名 */
 type EmailWithUsername = { email: string; username: string }
 /** 完整的贡献者信息 */
 type FullContributorData = {
@@ -31,29 +35,46 @@ type FullContributorData = {
   emails: string[]
 }
 
-/** 获取仓库所有贡献者的 EmailWithSha1 */
-async function getRepoContributors(): Promise<EmailWithSha1[]> {
-  const log = (await git.log(['--format=%ae %H'])).latest?.hash.split('\n')
-  if (!log) throw new Error('Unexpected falsy log')
+/** 从 git log 输出中读取主作者和 Co-authored-by trailer 中的邮箱 */
+function parseContributors(log: string): EmailWithSha1[] {
   const email2sha1 = new Map<string, string>()
-  log.reverse().forEach((commit) => {
-    const [email, sha1] = commit.split(' ')
-    if (!email2sha1.has(email)) email2sha1.set(email, sha1)
+  const commits = log
+    .split('\x1e')
+    .map((commit) => commit.trim())
+    .filter(Boolean)
+    .reverse()
+
+  commits.forEach((commit) => {
+    const [sha1, authorEmail, ...coAuthorTrailers] = commit.split('\x00')
+    const coAuthorEmails = coAuthorTrailers
+      .map((trailer) => trailer.match(/<([^<>]+)>\s*$/)?.[1])
+      .filter((email): email is string => Boolean(email))
+
+    for (const email of [authorEmail, ...coAuthorEmails]) {
+      const normalizedEmail = email.trim().toLowerCase()
+      if (normalizedEmail && !email2sha1.has(normalizedEmail)) {
+        email2sha1.set(normalizedEmail, sha1)
+      }
+    }
   })
+
   return Array.from(email2sha1).map(([email, sha1]) => ({ email, sha1 }))
 }
 
-/** 获取指定文件的所有贡献者的 email，排除自动生成的 Merge branch */
+/** 获取仓库所有主作者及联合作者的 EmailWithSha1 */
+async function getRepoContributors(): Promise<EmailWithSha1[]> {
+  return parseContributors(await git.raw(['log', gitLogFormat]))
+}
+
+/** 获取指定文件的所有主作者及联合作者 email，排除自动生成的 Merge branch */
 async function getEmailList(filePath: string): Promise<string[]> {
-  const log = (await git.log(['--format=%ae', '--follow', '--no-merges', filePath])).latest?.hash
-    .split('\n')
-    .reverse()
-  if (!log) throw new Error('Unexpected log')
-  return Array.from(new Set(log))
+  return parseContributors(
+    await git.raw(['log', gitLogFormat, '--follow', '--no-merges', '--', filePath]),
+  ).map(({ email }) => email)
 }
 
 /**
- * 通过 GitHub API 查询给定 EmailWithSha1 的用户名。
+ * 通过 GitHub GraphQL API 查询给定 EmailWithSha1 的用户名。
  * @param emailWithSha1
  * @param octokit GitHub Octokit 实例
  */
@@ -61,9 +82,42 @@ async function queryUsername(
   { email, sha1 }: EmailWithSha1,
   octokit: Octokit,
 ): Promise<EmailWithUsername> {
-  const authorQuery = (await octokit.rest.repos.getCommit({ owner, repo, ref: sha1 })).data?.author
-  if (!authorQuery) throw new Error('Author not found')
-  return { email, username: authorQuery.login }
+  type CommitAuthorsQuery = {
+    repository: {
+      object: {
+        authors: {
+          nodes: ({ email: string | null; user: { login: string } | null } | null)[] | null
+        }
+      } | null
+    }
+  }
+
+  const result = await octokit.graphql<CommitAuthorsQuery>(
+    `
+      query ($owner: String!, $repo: String!, $oid: GitObjectID!) {
+        repository(owner: $owner, name: $repo) {
+          object(oid: $oid) {
+            ... on Commit {
+              authors(first: 100) {
+                nodes {
+                  email
+                  user {
+                    login
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    { owner, repo, oid: sha1 },
+  )
+  const author = result.repository.object?.authors.nodes?.find(
+    (candidate) => candidate?.email?.toLowerCase() === email,
+  )
+  if (!author?.user) throw new Error(`GitHub user not found for ${email} in commit ${sha1}`)
+  return { email, username: author.user.login }
 }
 
 /**
