@@ -45,8 +45,8 @@ export default function mdPlot(md: MarkdownIt): void {
       )}" /></ClientOnly>`
     }
     if (language.startsWith('ggb')) {
-      // console.log(token);
-      const [src, mode] = (<any>token).src as string[]
+      const src: string = token.meta.src
+      const mode: string = token.meta.region
       try {
         const content = fs.readFileSync(src)
         return /* html */ `<ClientOnly><GeoGebra data="${content.toString('base64')}" mode="${mode}" /></ClientOnly>`

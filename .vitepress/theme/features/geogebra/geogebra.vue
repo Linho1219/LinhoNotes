@@ -32,7 +32,7 @@ const init = () => {
     else loadingText.value = 'GeoGebra 加载失败'
     return
   }
-  loadingText.value = 'GeoGebra 初始化中'
+  loadingText.value = 'GeoGebra 加载中'
   const applet = new GGBApplet({
     id: appID,
     appName: props.mode || 'suite',
