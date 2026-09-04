@@ -9,6 +9,7 @@
 @mixin image-size($size, $max-height) {
   img[alt*='&#{$size}'] {
     max-height: $max-height;
+    width: auto;
   }
 }
 .vp-doc {
