@@ -1,11 +1,19 @@
-<template><div class="nav-divider"></div></template>
-<style>
+<template>
+  <div class="nav-divider"></div>
+</template>
+<style lang="scss">
 .nav-divider {
-  margin: auto 8px auto 8px;
-  width: 1px;
-  height: 24px;
-  background-color: var(--vp-c-divider);
-  content: '';
+  height: 100%;
+  display: grid;
+  place-items: center;
+  &::after {
+    content: '';
+    margin: auto 8px;
+    display: block;
+    width: 1px;
+    height: 24px;
+    background-color: var(--vp-c-divider);
+  }
 }
 @media only screen and (max-width: 768px) {
   .nav-divider {
