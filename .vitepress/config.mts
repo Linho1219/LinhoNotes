@@ -21,6 +21,7 @@ import mdSub from 'markdown-it-sub'
 import mdSup from 'markdown-it-sup'
 import mdCheckbox from 'markdown-it-task-lists'
 import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import type { DefaultTheme, UserConfig } from 'vitepress'
 import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
 
@@ -127,6 +128,16 @@ export default {
     ssr: {
       noExternal: ['@nolebase/vitepress-plugin-highlight-targeted-heading'],
     },
-    resolve: { alias },
+    resolve: {
+      alias: [
+        ...alias,
+        {
+          find: /^.*\/VPFeatures\.vue$/,
+          replacement: fileURLToPath(
+            new URL('./theme/components/rewrites/VPFeatures.vue', import.meta.url),
+          ),
+        },
+      ],
+    },
   },
 } as UserConfig<DefaultTheme.Config>
