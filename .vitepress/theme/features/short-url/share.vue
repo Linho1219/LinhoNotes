@@ -109,6 +109,7 @@ onMounted(() => {
     right: 0;
     bottom: 0;
     height: 40px;
+    font-size: 14px;
 
     color: var(--vp-c-text-1);
     background: #75798e10;
@@ -136,6 +137,7 @@ onMounted(() => {
     width: 100%;
     padding: 8px 0;
     line-height: 18px;
+    font-size: 14px;
 
     background: var(--vp-c-bg-soft);
     border-radius: 3px;
