@@ -16,6 +16,7 @@ import getContributorPlugin from './node/vite/add-contributors'
 import mapShortUrl from './node/vite/map-short-url'
 import genreateSitemap from './node/vite/sitemap'
 import tsconfigApp from './tsconfig.app.json'
+import { PluginSimple } from 'markdown-it'
 import mdFootnote from 'markdown-it-footnote'
 import mdSub from 'markdown-it-sub'
 import mdSup from 'markdown-it-sup'
@@ -27,7 +28,7 @@ import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-i
 
 const alias = Object.entries(tsconfigApp.compilerOptions.paths).map(([key, value]) => ({
   find: key.replace(/\/\*$/, ''),
-  replacement: resolve(__dirname, value[0].replace(/\/\*$/, '')),
+  replacement: resolve(import.meta.dirname, value[0].replace(/\/\*$/, '')),
 }))
 
 const { title, description, baseUrl } = site
@@ -87,7 +88,7 @@ export default {
     languageAlias: { graph: 'json5' },
     config: (md) => {
       md.use(groupIconMdPlugin)
-        .use(mdFootnote)
+        .use(mdFootnote as unknown as PluginSimple)
         .use(mdFootNotePlus)
         .use(mdCheckbox)
         .use(mdSup)
