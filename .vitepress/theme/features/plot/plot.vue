@@ -69,6 +69,7 @@ function openInExternal() {
   display: flex;
   align-items: center;
   gap: 0.3em;
+  font-size: 14px;
   padding: 0.3em 0.6em;
   position: absolute;
   bottom: 25px;
