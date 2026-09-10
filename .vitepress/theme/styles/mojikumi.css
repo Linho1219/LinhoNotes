@@ -5,12 +5,12 @@ punc-wrapper {
   display: inline;
 }
 
-:root {
+#app {
   text-spacing-trim: trim-start;
 }
 
 @supports not (text-spacing-trim: trim-start) {
-  :root {
+  #app {
     text-spacing-trim: space-all;
   }
 
