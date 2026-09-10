@@ -38,7 +38,7 @@ VitePress 的 Markdown 编译链路可以称得上「暴力」：
 
 也就是说，每一篇 Markdown 在经过 Markdown-it 解析之后的 HTML 产物，还要作为 Vue 模板再走一遍 Vue 编译器再解析一遍，产生 JS 加上 SSR 产出的 HTML。JS 和 HTML 各自一份完整的 Markdown 产物信息，HTML 负责首屏、JS 负责水合（hydration）和后续加载。
 
-这套逻辑初看相当费解。原因在于 VitePress 的一大招牌就是所有内容均为动态，可以通过 Markdown-it 插件加入 Vue 组件、可以在 Markdown 内随意用双花括号 `{​{}}` 写插值，等等。可是要接驳 Markdown-it 的内部数据结构和 Vue 的内部数据结构将是极大的工程挑战，维护起来也不现实。于是两边的接驳就只能用 HTML 纯文本了。
+这套逻辑初看相当费解。原因在于 VitePress 的一大招牌就是所有内容均为动态，可以通过 Markdown-it 插件加入 Vue 组件、可以在 Markdown 内随意用双花括号 <code>&lcub;&lcub;&rcub;&rcub;</code> 写插值，等等。可是要接驳 Markdown-it 的内部数据结构和 Vue 的内部数据结构将是极大的工程挑战，维护起来也不现实。于是两边的接驳就只能用 HTML 纯文本了。
 
 这也意味着 Markdown 渲染阶段产生的 HTML 字符串越大，Vue 编译阶段的压力就越大。这个压力不只体现在最终文件大小上，也体现在构建期间的 CPU 时间和内存占用上。尤其是 Vue 编译器这部分主要还是单线程 JS，遇到大量的模板字符串时，很容易成为整条构建链路上的瓶颈。
 
@@ -54,7 +54,7 @@ VitePress 内建的公式支持本质上是在 Markdown-it 中接入 `markdown-i
 
 ### 性能测量
 
-要度量 MathJax 对性能的影响，方式是关闭 VitePress 的 `math` 选项，自定义一个公式渲染插件，解析 `$` 和 `$$` 语法但只输出占位符。注意不可以直接把公式渲染一关了之，因为公式中有可能出现 Vue 的插值模板 `{{}}` 导致报错。
+要度量 MathJax 对性能的影响，方式是关闭 VitePress 的 `math` 选项，自定义一个公式渲染插件，解析 `$` 和 `$$` 语法但只输出占位符。注意不可以直接把公式渲染一关了之，因为公式中有可能出现 Vue 的插值模板 <code>&lcub;&lcub;&rcub;&rcub;</code> 导致报错。
 
 在我的设备上构建仓库，得到如下结果：
 
