@@ -26,6 +26,10 @@ features:
     details: 大前端技术栈的相关内容，含网页开发、浏览器原理等。
     link: 前端相关/
 
+  - title: 重新认识现代 C++
+    details: 从中学算法竞赛或大学课程基础上学习现代、工程化的 C++。
+    link: 重新认识现代C++/
+
   - title: FunnyAWM 的 C++ 宇宙
     details: FunnyAWM 撰写的 C++ 从入门到精通讲义。
     link: FunnyAWM的C++宇宙/
