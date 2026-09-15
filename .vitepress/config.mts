@@ -16,8 +16,6 @@ import getContributorPlugin from './node/vite/add-contributors'
 import mapShortUrl from './node/vite/map-short-url'
 import genreateSitemap from './node/vite/sitemap'
 import tsconfigApp from './tsconfig.app.json'
-import { PluginSimple } from 'markdown-it'
-import mdFootnote from 'markdown-it-footnote'
 import mdSub from 'markdown-it-sub'
 import mdSup from 'markdown-it-sup'
 import mdCheckbox from 'markdown-it-task-lists'
@@ -88,7 +86,6 @@ export default {
     languageAlias: { graph: 'json5' },
     config: (md) => {
       md.use(groupIconMdPlugin)
-        .use(mdFootnote as unknown as PluginSimple)
         .use(mdFootNotePlus)
         .use(mdCheckbox)
         .use(mdSup)
