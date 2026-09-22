@@ -223,3 +223,14 @@ sub {
 #VPNavScreen .container {
   padding-bottom: 40px;
 }
+
+// kbd 元素
+.vp-doc kbd {
+  border-radius: 4px;
+  padding: 1px 4px;
+  background-color: var(--vp-code-bg);
+  font-size: var(--vp-code-font-size);
+  box-shadow:
+    0 0 0 1px var(--vp-c-border),
+    0 2px 0 1px var(--vp-c-border);
+}
