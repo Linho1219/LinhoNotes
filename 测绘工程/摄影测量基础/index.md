@@ -1,6 +1,10 @@
 # 摄影测量基础
 
-主要使用的教材为
+<Tag orange>更新中</Tag>
+
+同济大学测绘专业基础课程，课号 `CSG330101` / `57002901`。
+
+主要使用的教材为：
 
 - *Introduction to Modern Photogrammetry* by Edward M. Mikhail, James S. Bethel, J. Chris McGlone
 - 武汉大学王佩军、徐亚明《摄影测量学（第四版）》
