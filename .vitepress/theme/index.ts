@@ -13,7 +13,6 @@ import Cadpa from '@components/cadpa.vue'
 import Cloze from '@components/cloze.vue'
 import Mermaid from '@components/mermaid.vue'
 import NavDivider from '@components/nav-divider.vue'
-import Pinyin from '@components/pinyin.vue'
 import Tag from '@components/tag.vue'
 import Baseline from '@features/baseline/baseline.vue'
 import FileWidget from '@features/file-widget/file-widget.vue'
@@ -39,8 +38,6 @@ export default {
     app.component('Footnote', Footnote)
     app.component('FootnoteRef', FootnoteRef)
     app.component('CADPA', Cadpa)
-    app.component('PY', Pinyin)
-    app.component('Pinyin', Pinyin)
     app.component('Cloze', Cloze)
     app.component('Baseline', Baseline)
     app.component('FileWidget', FileWidget)
