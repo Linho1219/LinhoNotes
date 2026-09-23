@@ -1,6 +1,5 @@
 // Code modified from markdown-it/markdown-it-mark
-import type MarkdownIt from 'markdown-it'
-import { StateInline } from 'markdown-it/index.js'
+import type { default as MarkdownIt, Delimiter, StateInline } from 'markdown-it'
 
 interface customWrapperOptions {
   marker: string
@@ -67,7 +66,7 @@ export default function ins_plugin(md: MarkdownIt, options: customWrapperOptions
 
   // Walk through delimiter list and replace text tokens with tags
   //
-  function postProcess(state: StateInline, delimiters: StateInline.Delimiter[]) {
+  function postProcess(state: StateInline, delimiters: Delimiter[]) {
     const loneMarkers: number[] = []
     const max = delimiters.length
 
