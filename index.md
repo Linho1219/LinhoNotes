@@ -34,6 +34,10 @@ features:
     details: FunnyAWM 撰写的 C++ 从入门到精通讲义。
     link: FunnyAWM的C++宇宙/
 
+  - title: 微旅行日记
+    details: 周末甚至是工作日傍晚都能去的城市短途微旅行记录。
+    link: 微旅行日记/
+
   - title: 算法相关
     details: 包含算法学习与做题笔记。基于 C++。
     link: 算法相关/
