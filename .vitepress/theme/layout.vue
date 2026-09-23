@@ -43,11 +43,12 @@ provide('toggle-appearance', async () => {
     await nextTick()
   }).ready
   document.documentElement.animate(
-    { opacity: isDark.value ? [1, 0] : [0, 1] },
+    { opacity: [1, 0] },
     {
       duration: 600,
       easing: 'ease-out',
-      pseudoElement: `::view-transition-${isDark.value ? 'old' : 'new'}(root)`,
+      fill: 'forwards',
+      pseudoElement: '::view-transition-old(root)',
     },
   )
 })
@@ -94,12 +95,10 @@ html.hash-scroll-smooth {
   animation: none;
   mix-blend-mode: normal;
 }
-::view-transition-old(root),
-.dark::view-transition-new(root) {
+::view-transition-old(root) {
   z-index: 1;
 }
-::view-transition-new(root),
-.dark::view-transition-old(root) {
-  z-index: 9999;
+::view-transition-new(root) {
+  z-index: 0;
 }
 </style>
