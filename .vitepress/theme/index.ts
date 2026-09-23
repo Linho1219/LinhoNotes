@@ -16,9 +16,9 @@ import NavDivider from '@components/nav-divider.vue'
 import Pinyin from '@components/pinyin.vue'
 import Tag from '@components/tag.vue'
 import Baseline from '@features/baseline/baseline.vue'
+import FileWidget from '@features/file-widget/file-widget.vue'
 import FootnoteRef from '@features/footnote/footnote-ref.vue'
 import Footnote from '@features/footnote/footnote.vue'
-import GeoGebra from '@features/geogebra/geogebra.vue'
 import Plot from '@features/plot/plot.vue'
 import Share from '@features/short-url/share.vue'
 import 'katex/dist/katex.css'
@@ -43,6 +43,6 @@ export default {
     app.component('Pinyin', Pinyin)
     app.component('Cloze', Cloze)
     app.component('Baseline', Baseline)
-    app.component('GeoGebra', GeoGebra)
+    app.component('FileWidget', FileWidget)
   },
 } satisfies Theme

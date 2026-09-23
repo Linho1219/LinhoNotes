@@ -1,8 +1,8 @@
 import prettier from '@prettier/sync'
 import { execSync } from 'child_process'
-import fs from 'fs'
 import JSON5 from 'json5'
 import type MarkdownIt from 'markdown-it'
+import path from 'node:path'
 
 const prettierTable: Record<string, string> = {
   ts: 'typescript',
@@ -24,6 +24,18 @@ const prettierTable: Record<string, string> = {
 }
 const clangs = ['c', 'c++', 'cpp', 'cxx']
 
+interface FileWidgetDescriptor {
+  kind: string
+}
+
+const fileWidgets = new Map<string, FileWidgetDescriptor>([['.ggb', { kind: 'geogebra' }]])
+
+function getAssetUrl(src: string, importer: string): string {
+  let relativePath = path.relative(path.dirname(importer), src).replaceAll('\\', '/')
+  if (!relativePath.startsWith('.')) relativePath = `./${relativePath}`
+  return `${relativePath}?no-inline`
+}
+
 export default function mdPlot(md: MarkdownIt): void {
   const fence = md.renderer.rules.fence!.bind(md.renderer.rules)!
   md.renderer.rules.fence = (tokens, idx, options, env, self) => {
@@ -44,19 +56,22 @@ export default function mdPlot(md: MarkdownIt): void {
         token.content,
       )}" /></ClientOnly>`
     }
-    if (language.startsWith('ggb')) {
-      const src: string = token.meta.src
-      const mode: string = token.meta.region
-      try {
-        const content = fs.readFileSync(src)
-        return /* html */ `<ClientOnly><GeoGebra data="${content.toString('base64')}" mode="${mode}" /></ClientOnly>`
-      } catch (err) {
-        console.error(`\nGeoGebra parse error:\n  ${src}\n  ${String(err)}`)
-        return /* html */ `<div class="mermaid-error caution custom-block github-alert">
-          <p class="custom-block-title">GeoGebra 导入错误</p>
-          <pre>${String(err)}</pre>
-        </div>`
-      }
+    const src = token.meta?.src as string | undefined
+    const widget = src && fileWidgets.get(path.extname(src).toLowerCase())
+    if (src && widget) {
+      // The original VitePress snippet renderer normally registers imported
+      // files here. This branch bypasses that renderer, so keep HMR/watch
+      // tracking intact ourselves.
+      env.includes?.push(src)
+
+      const importer = (env.realPath ?? env.path) as string | undefined
+      if (!importer) throw new Error(`Cannot resolve widget asset from ${src}`)
+
+      const assetUrl = md.utils.escapeHtml(getAssetUrl(src, importer))
+      const mode = token.meta?.region
+      const modeAttribute = mode ? ` mode="${md.utils.escapeHtml(String(mode))}"` : ''
+
+      return /* html */ `<ClientOnly><FileWidget kind="${widget.kind}" src="${assetUrl}"${modeAttribute} /></ClientOnly>`
     }
 
     const info = tokens[idx].info

@@ -5,6 +5,8 @@
 interface GeoGebraApplet {
   /** Inject applet into DOM element */
   inject(id: string, type?: string): void
+  /** Remove the applet and release its resources */
+  remove?(): void
   /** Optional, set HTML5 codebase */
   setHTML5Codebase?(codebase: string): void
   // Core Methods

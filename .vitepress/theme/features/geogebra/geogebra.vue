@@ -9,35 +9,27 @@
 
 <script setup lang="ts">
 import './ggb-applet.d.ts'
+import { loadGeoGebra } from './load-geogebra'
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 
 const props = defineProps<{
-  data?: string
+  src: string
   mode?: GeoGebraParameters['appName']
 }>()
 const appID = '_ggb_' + Math.random().toString(36).substring(2, 15)
 const domID = 'dom' + appID
 const loading = ref(true)
 const instance = shallowRef<GeoGebraApplet | null>(null)
-
-const dataUrl = ref<string | undefined>(undefined)
-
-const maxAttempts = 10
-let attempts = 0
 const loadingText = ref('')
+let disposed = false
 
 const init = () => {
-  if (typeof GGBApplet === 'undefined') {
-    if (attempts++ < maxAttempts) setTimeout(init, 500)
-    else loadingText.value = 'GeoGebra 加载失败'
-    return
-  }
   loadingText.value = 'GeoGebra 加载中'
   const applet = new GGBApplet({
     id: appID,
     appName: props.mode || 'suite',
     height: 450,
-    ggbBase64: props.data,
+    filename: props.src,
     showAlgebraInput: false,
     showLogging: false,
     // showResetIcon: true,
@@ -46,25 +38,33 @@ const init = () => {
     showZoomButtons: true,
     algebraInputPosition: 'top',
     appletOnLoad() {
-      loading.value = false
+      if (!disposed) loading.value = false
     },
   })
   applet.inject(domID)
   instance.value = applet
 }
 
-onMounted(() => {
+onMounted(async () => {
   loadingText.value = 'GeoGebra 加载中'
-  if (!props.data) {
+  if (!props.src) {
     loadingText.value = 'GeoGebra 源文件丢失'
     return
   }
 
-  init()
+  try {
+    await loadGeoGebra()
+    if (!disposed) init()
+  } catch (error) {
+    console.error('GeoGebra 加载失败', error)
+    loadingText.value = 'GeoGebra 加载失败'
+  }
 })
 
 onUnmounted(() => {
-  if (dataUrl.value) URL.revokeObjectURL(dataUrl.value)
+  disposed = true
+  instance.value?.remove?.()
+  instance.value = null
 })
 </script>
 

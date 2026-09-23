@@ -43,7 +43,6 @@ export default {
         content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
       },
     ],
-    ['script', { src: 'https://www.geogebra.org/apps/deployggb.js' }],
     ...iconHeader,
   ],
   themeConfig: {
@@ -112,10 +111,23 @@ export default {
   },
   vue: {
     template: {
+      transformAssetUrls: {
+        // Providing a custom tag table replaces Vue's defaults, so keep the
+        // built-in asset-bearing tags alongside FileWidget.
+        tags: {
+          video: ['src', 'poster'],
+          source: ['src'],
+          img: ['src'],
+          image: ['xlink:href', 'href'],
+          use: ['xlink:href', 'href'],
+          FileWidget: ['src'],
+        },
+      },
       compilerOptions: { isCustomElement: (tag) => tag.startsWith('punc-') },
     },
   },
   vite: {
+    assetsInclude: ['**/*.ggb', '**/*.geojson'],
     build: { chunkSizeWarningLimit: 8192 },
     plugins: [
       groupIconVitePlugin(),
