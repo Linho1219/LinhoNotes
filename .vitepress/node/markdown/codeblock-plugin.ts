@@ -28,7 +28,10 @@ interface FileWidgetDescriptor {
   kind: string
 }
 
-const fileWidgets = new Map<string, FileWidgetDescriptor>([['.ggb', { kind: 'geogebra' }]])
+const fileWidgets = new Map<string, FileWidgetDescriptor>([
+  ['.ggb', { kind: 'geogebra' }],
+  ['.geojson', { kind: 'geojson' }],
+])
 
 function getAssetUrl(src: string, importer: string): string {
   let relativePath = path.relative(path.dirname(importer), src).replaceAll('\\', '/')

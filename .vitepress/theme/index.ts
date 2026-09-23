@@ -22,6 +22,7 @@ import Plot from '@features/plot/plot.vue'
 import Share from '@features/short-url/share.vue'
 import 'katex/dist/katex.css'
 import 'virtual:group-icons.css'
+import 'virtual:palette.css'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme-without-fonts'
 

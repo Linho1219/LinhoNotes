@@ -1,0 +1,70 @@
+{
+  "light": {
+    "text": {
+      "red": "#d5393e",
+      "orange": "#d55c37",
+      "yellow": "#946300",
+      "green": "#299764",
+      "blue": "#3573b2",
+      "indigo": "#3451b2",
+      "purple": "#6f42c1",
+      "pink": "#e0575b",
+      "magenta": "#ff53ac",
+      "lime": "#86a822",
+      "olive": "#808000",
+      "cyan": "#138aa7",
+      "teal": "#008080",
+      "gray": "#67676c"
+    },
+    "soft": {
+      "red": "#f43f5e24",
+      "orange": "#ff924429",
+      "yellow": "#eab30824",
+      "green": "#10b98124",
+      "blue": "#4897ff29",
+      "indigo": "#646cff24",
+      "purple": "#9f7aea24",
+      "pink": "#ff858529",
+      "magenta": "#ff45ae29",
+      "lime": "#a1c54529",
+      "olive": "#647c2629",
+      "cyan": "#2cb6c529",
+      "teal": "#25a2a729",
+      "gray": "#8e96aa24"
+    }
+  },
+  "dark": {
+    "text": {
+      "red": "#f14158",
+      "orange": "#ff7044",
+      "yellow": "#f9b44e",
+      "green": "#3abf7f",
+      "blue": "#5badff",
+      "indigo": "#a8b1ff",
+      "purple": "#c8abfa",
+      "pink": "#f66f81",
+      "magenta": "#ff53ac",
+      "lime": "#9fc726",
+      "olive": "#baba15",
+      "cyan": "#29b8db",
+      "teal": "#18bebe",
+      "gray": "#98989f"
+    },
+    "soft": {
+      "red": "#f43f5e29",
+      "orange": "#ff924429",
+      "yellow": "#eab30829",
+      "green": "#10b98129",
+      "blue": "#4897ff29",
+      "indigo": "#646cff29",
+      "purple": "#9f7aea29",
+      "pink": "#ff858529",
+      "magenta": "#ff45ae29",
+      "lime": "#a1c54529",
+      "olive": "#bbce5d29",
+      "cyan": "#29d7ea29",
+      "teal": "#25a2a729",
+      "gray": "#65758529"
+    }
+  }
+}
