@@ -8,6 +8,7 @@
 </template>
 
 <script setup lang="ts">
+import { PaletteJSON } from '../utils/palette'
 import {
   GeoJSONSource,
   Map,
@@ -22,9 +23,11 @@ import { onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 
 const SOURCE_ID = 'file-widget-geojson'
 const MAP_STYLES = {
-  light: 'https://tiles.openfreemap.org/styles/positron',
+  light: 'https://tiles.openfreemap.org/styles/bright',
   dark: 'https://tiles.openfreemap.org/styles/dark',
 } as const
+const COLOR_PROPERTY = 'marker-color'
+const DEFAULT_COLOR = 'indigo'
 const LOAD_TIMEOUT = 30_000
 
 setWorkerUrl(workerUrl)
@@ -59,7 +62,58 @@ function showError(message: string, error?: unknown) {
   if (error) console.error(message, error)
 }
 
+function createPaletteColorExpression(colors: Record<string, string>, fallback: string) {
+  const expression: unknown[] = ['match', ['get', COLOR_PROPERTY]]
+
+  for (const [name, color] of Object.entries(colors)) expression.push(name, color)
+  expression.push(fallback)
+
+  return expression as any
+}
+
+function usesNameProperty(value: unknown): boolean {
+  if (typeof value === 'string') {
+    return (
+      value === 'name' ||
+      value === 'name_en' ||
+      value.startsWith('name:') ||
+      value.includes('{name')
+    )
+  }
+  if (Array.isArray(value)) return value.some(usesNameProperty)
+  if (value && typeof value === 'object') return Object.values(value).some(usesNameProperty)
+  return false
+}
+
+function createChinesePreferredName() {
+  return [
+    'case',
+    ['has', 'name:zh-Hans'],
+    ['get', 'name:zh-Hans'],
+    ['has', 'name:zh'],
+    ['get', 'name:zh'],
+    ['has', 'name:zh-Hant'],
+    ['get', 'name:zh-Hant'],
+    ['get', 'name']
+  ]
+}
+
+function localizeBaseMap(map: Map) {
+  for (const layer of map.getStyle().layers) {
+    if (layer.type !== 'symbol') continue
+
+    const textField = layer.layout?.['text-field']
+    if (!textField || !usesNameProperty(textField)) continue
+
+    map.setLayoutProperty(layer.id, 'text-field', createChinesePreferredName() as any)
+  }
+}
+
 async function addGeoJSONLayers(map: Map) {
+  const palette = isDark.value ? PaletteJSON.dark : PaletteJSON.light
+  const textColor = createPaletteColorExpression(palette.text, palette.text[DEFAULT_COLOR])
+  const softColor = createPaletteColorExpression(palette.soft, palette.soft[DEFAULT_COLOR])
+
   map.addSource(SOURCE_ID, {
     type: 'geojson',
     data: props.src,
@@ -71,8 +125,8 @@ async function addGeoJSONLayers(map: Map) {
     source: SOURCE_ID,
     filter: ['==', ['geometry-type'], 'Polygon'],
     paint: {
-      'fill-color': '#3b82f6',
-      'fill-opacity': 0.24,
+      'fill-color': softColor,
+      'fill-opacity': 1,
     },
   })
 
@@ -86,8 +140,8 @@ async function addGeoJSONLayers(map: Map) {
       'line-join': 'round',
     },
     paint: {
-      'line-color': '#2563eb',
-      'line-width': 2,
+      'line-color': textColor,
+      'line-width': 1.5,
       'line-opacity': 0.9,
     },
   })
@@ -102,7 +156,7 @@ async function addGeoJSONLayers(map: Map) {
       'line-join': 'round',
     },
     paint: {
-      'line-color': '#e11d48',
+      'line-color': textColor,
       'line-width': 4,
       'line-opacity': 0.9,
     },
@@ -114,7 +168,7 @@ async function addGeoJSONLayers(map: Map) {
     source: SOURCE_ID,
     filter: ['==', ['geometry-type'], 'Point'],
     paint: {
-      'circle-color': '#e11d48',
+      'circle-color': textColor,
       'circle-radius': 6,
       'circle-stroke-color': '#ffffff',
       'circle-stroke-width': 2,
@@ -178,6 +232,7 @@ onMounted(() => {
       if (disposed) return
 
       try {
+        localizeBaseMap(map)
         await addGeoJSONLayers(map)
       } catch (error) {
         showError('GeoJSON 加载失败', error)
@@ -234,7 +289,7 @@ onUnmounted(() => {
   }
 
   :deep(.maplibregl-ctrl-attrib-button) {
-    filter:invert(1)
+    filter: invert(1);
   }
   :deep(.maplibregl-compact) {
     background-color: var(--vp-c-bg);
