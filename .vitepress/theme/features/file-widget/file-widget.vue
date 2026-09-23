@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, onMounted, onUnmounted, ref } from 'vue'
 
-type FileWidgetKind = 'geogebra'
+type FileWidgetKind = 'geogebra' | 'geojson'
 
 const props = defineProps<{
   kind: FileWidgetKind
@@ -23,6 +23,7 @@ const props = defineProps<{
 
 const renderers = {
   geogebra: defineAsyncComponent(() => import('../geogebra/geogebra.vue')),
+  geojson: defineAsyncComponent(() => import('../geojson/geojson-map.vue')),
 }
 
 const renderer = computed(() => renderers[props.kind])
