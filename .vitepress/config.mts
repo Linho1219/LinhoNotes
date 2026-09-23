@@ -14,6 +14,7 @@ import nav from './node/site/nav'
 import sidebar from './node/site/sidebar'
 import getContributorPlugin from './node/vite/add-contributors'
 import mapShortUrl from './node/vite/map-short-url'
+import paletteCSS from './node/vite/palette-virtual-css'
 import genreateSitemap from './node/vite/sitemap'
 import tsconfigApp from './tsconfig.app.json'
 import mdSub from 'markdown-it-sub'
@@ -131,6 +132,7 @@ export default {
     build: { chunkSizeWarningLimit: 8192 },
     plugins: [
       groupIconVitePlugin(),
+      paletteCSS(),
       ...(process.env.NODE_ENV === 'production' && !process.env.DISABLE_CONTRIBUTORS
         ? [await getContributorPlugin()]
         : []),
