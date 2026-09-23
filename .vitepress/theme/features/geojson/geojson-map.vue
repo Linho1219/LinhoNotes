@@ -9,6 +9,8 @@
 
 <script setup lang="ts">
 import { PaletteJSON } from '../utils/palette'
+import MapStyleDark from './map-dark.json?url'
+import MapStyleLight from './map-light.json?url'
 import {
   GeoJSONSource,
   Map,
@@ -22,12 +24,9 @@ import { useData } from 'vitepress'
 import { onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
 
 const SOURCE_ID = 'file-widget-geojson'
-const MAP_STYLES = {
-  light: 'https://tiles.openfreemap.org/styles/bright',
-  dark: 'https://tiles.openfreemap.org/styles/dark',
-} as const
-const COLOR_PROPERTY = 'marker-color'
-const DEFAULT_COLOR = 'indigo'
+const MAP_STYLES = { light: MapStyleLight, dark: MapStyleDark }
+const COLOR_PROPERTY = 'color'
+const DEFAULT_COLOR = 'red'
 const LOAD_TIMEOUT = 30_000
 
 setWorkerUrl(workerUrl)
@@ -94,7 +93,7 @@ function createChinesePreferredName() {
     ['get', 'name:zh'],
     ['has', 'name:zh-Hant'],
     ['get', 'name:zh-Hant'],
-    ['get', 'name']
+    ['get', 'name'],
   ]
 }
 
@@ -189,7 +188,7 @@ async function addGeoJSONLayers(map: Map) {
   }
 
   map.fitBounds(bounds, {
-    padding: 36,
+    padding: 45,
     maxZoom: 15,
     duration: 0,
   })
@@ -281,6 +280,10 @@ onUnmounted(() => {
   :deep(.maplibregl-ctrl-attrib-button:focus, .maplibregl-ctrl-group button:focus) {
     box-shadow: none;
   }
+
+  :deep(.maplibregl-ctrl) {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .dark .geojson-map {
@@ -297,6 +300,9 @@ onUnmounted(() => {
     a {
       color: inherit;
     }
+  }
+  :deep(.maplibregl-ctrl-bottom-right .maplibregl-ctrl) {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
   }
 }
 
