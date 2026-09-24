@@ -1736,8 +1736,8 @@
         "text-size": 14
       },
       "paint": {
-        "text-color": "#495e91",
-        "text-halo-color": "rgba(255,255,255,0.7)",
+        "text-color": "#7BB1E6",
+        "text-halo-color": "#0C1522",
         "text-halo-width": 1.5
       }
     },

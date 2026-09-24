@@ -9,8 +9,8 @@
 
 <script setup lang="ts">
 import { PaletteJSON } from '../utils/palette'
-import MapStyleDark from './map-dark.json?url'
-import MapStyleLight from './map-light.json?url'
+import MapStyleDark from './map-style-dark.json?url'
+import MapStyleLight from './map-style-light.json?url'
 import {
   GeoJSONSource,
   Map,
@@ -152,7 +152,7 @@ async function addGeoJSONLayers(map: Map) {
   })
 
   map.addLayer({
-    id: `${SOURCE_ID}-lines-outline`,
+    id: `${SOURCE_ID}-lines-halo`,
     type: 'line',
     source: SOURCE_ID,
     filter: ['==', ['geometry-type'], 'LineString'],
