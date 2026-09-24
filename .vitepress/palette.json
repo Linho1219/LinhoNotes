@@ -3,17 +3,19 @@
     "text": {
       "red": "#d5393e",
       "orange": "#d55c37",
-      "yellow": "#946300",
+      "yellow": "#bba400",
       "green": "#299764",
       "blue": "#3573b2",
       "indigo": "#3451b2",
       "purple": "#6f42c1",
-      "pink": "#e0575b",
+      "pink": "#c57678",
       "magenta": "#ff53ac",
       "lime": "#86a822",
       "olive": "#808000",
       "cyan": "#138aa7",
       "teal": "#008080",
+      "claret": "#871C2B",
+      "brown": "#a2732d",
       "gray": "#67676c"
     },
     "soft": {
@@ -30,14 +32,16 @@
       "olive": "#647c2629",
       "cyan": "#2cb6c529",
       "teal": "#25a2a729",
+      "claret": "#871c2b21",
+      "brown": "#b5833b26",
       "gray": "#8e96aa24"
     }
   },
   "dark": {
     "text": {
-      "red": "#f14158",
+      "red": "#ff5b5b",
       "orange": "#ff7044",
-      "yellow": "#f9b44e",
+      "yellow": "#f9cb4e",
       "green": "#3abf7f",
       "blue": "#5badff",
       "indigo": "#a8b1ff",
@@ -48,6 +52,8 @@
       "olive": "#baba15",
       "cyan": "#29b8db",
       "teal": "#18bebe",
+      "claret": "#d57e8b",
+      "brown": "#c8b38e",
       "gray": "#98989f"
     },
     "soft": {
@@ -64,6 +70,8 @@
       "olive": "#bbce5d29",
       "cyan": "#29d7ea29",
       "teal": "#25a2a729",
+      "claret": "#871c2b59",
+      "brown": "#c28a3a26",
       "gray": "#65758529"
     }
   }
