@@ -27,8 +27,8 @@ const SOURCE_ID = 'file-widget-geojson'
 const MAP_STYLES = { light: MapStyleLight, dark: MapStyleDark }
 const COLOR_PROPERTY = 'color'
 const LABEL_PROPERTY = 'label'
-const DEFAULT_COLOR_LIGHT = 'indigo'
-const DEFAULT_COLOR_DARK = 'yellow'
+const DEFAULT_COLOR_LIGHT = 'red'
+const DEFAULT_COLOR_DARK = 'red'
 const HALO_COLOR_LIGHT = '#ffffff'
 const HALO_COLOR_DARK = '#111111'
 const LOAD_TIMEOUT = 30_000
@@ -69,9 +69,9 @@ function createPaletteColorExpression(colors: Record<string, string>, fallback: 
   const expression: unknown[] = ['match', ['get', COLOR_PROPERTY]]
 
   for (const [name, color] of Object.entries(colors)) expression.push(name, color)
-  expression.push(fallback)
+  expression.push(['get', COLOR_PROPERTY])
 
-  return expression as any
+  return ['case', ['has', COLOR_PROPERTY], expression, fallback] as any
 }
 
 function usesNameProperty(value: unknown): boolean {
