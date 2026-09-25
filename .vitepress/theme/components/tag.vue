@@ -34,8 +34,8 @@ const BadgeClass = ref(colorStr),
 }
 
 $colors:
-  red, orange, yellow, green, blue, indigo, purple, pink, magenta, lime, olive, cyan, teal, claret,
-  brown, gray;
+  'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple', 'pink', 'magenta', 'lime',
+  'olive', 'cyan', 'teal', 'claret', 'brown', 'gray';
 
 @each $color in $colors {
   .VPBadge.ln.#{$color} {
