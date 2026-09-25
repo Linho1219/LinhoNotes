@@ -52,9 +52,8 @@ import { computed, onMounted, onUnmounted, reactive, ref } from 'vue'
 import type { StyleValue } from 'vue'
 
 const { isDark } = useData()
-const close = () => {
-  isShown.value = false
-}
+const close = () => (isShown.value = false)
+
 const isShown = ref(false)
 const current = reactive({
   src: '',
@@ -189,13 +188,8 @@ const handleGlobalClick = (event: MouseEvent) => {
   }
 }
 
-onMounted(() => {
-  document.addEventListener('click', handleGlobalClick)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('click', handleGlobalClick)
-})
+onMounted(() => document.addEventListener('click', handleGlobalClick))
+onUnmounted(() => document.removeEventListener('click', handleGlobalClick))
 
 /** 滚轮缩放 */
 const handleScroll = (event: WheelEvent) => {
@@ -351,6 +345,12 @@ const handleTouch = ({ touches }: TouchEvent) => {
   document.addEventListener('touchmove', onTouchMove, { passive: true })
   document.addEventListener('touchend', onTouchEnd, { passive: true })
 }
+
+function escapeListener(event: KeyboardEvent) {
+  if (event.key === 'Escape' || event.key === ' ') close()
+}
+onMounted(() => document.addEventListener('keydown', escapeListener))
+onUnmounted(() => document.removeEventListener('keydown', escapeListener))
 </script>
 
 <style lang="scss">
