@@ -68,7 +68,12 @@ interface Range {
   max: number
 }
 /** 缩放比例范围 */
-const RANGE: Range = { min: 0.2, max: 2.5 } as const
+const MIN_ZOOM = 0.2
+const MAX_ZOOM = 2.5
+const zoomRange: Range = {
+  min: MIN_ZOOM,
+  max: MAX_ZOOM,
+}
 /** 双击缩放系数 */
 const DOUBLETAP_RATIO = 2.5
 /** 双击时间间隔阈值 */
@@ -91,7 +96,7 @@ const position = reactive({
 /** 缩放系数 */
 const scale = ref(1)
 
-const limitRange = (input: number, { min, max } = RANGE) =>
+const limitRange = (input: number, { min, max } = zoomRange) =>
   input > max ? max : input < min ? min : input
 const convertRatio = (delta: number) => (delta > 0 ? 1 + delta : 1 / (1 - delta))
 
@@ -132,6 +137,7 @@ const open = (payload: {
     { value: current.initHeight, limit: frame.height },
     { value: current.initWidth, limit: frame.width },
   )
+  zoomRange.min = Math.min(MIN_ZOOM, scale.value)
   transitionEnabled.value = false
   filterEnabled.value = Boolean(isDark.value && !current.alt.includes('&keep-color'))
   isShown.value = true
@@ -280,7 +286,7 @@ const handleTouch = ({ touches }: TouchEvent) => {
     transitionEnabled.value = true
     clearTimeout(closeTimer)
     const newScale = limitRange(
-      scale.value * DOUBLETAP_RATIO > RANGE.max
+      scale.value * DOUBLETAP_RATIO > zoomRange.max
         ? scale.value / DOUBLETAP_RATIO
         : scale.value * DOUBLETAP_RATIO,
     )
