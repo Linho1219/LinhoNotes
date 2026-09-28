@@ -1,5 +1,4 @@
-import type MarkdownIt from 'markdown-it'
-import type { Token } from 'markdown-it/index.js'
+import type { default as MarkdownIt, Token } from 'markdown-it'
 import { RenderRule } from 'markdown-it/lib/renderer.mjs'
 import pangulib from 'pangu'
 

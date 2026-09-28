@@ -31,7 +31,7 @@ _记录一下常用的「妙妙小工具」及其下载方式（如果 Google Pl
 
 ## 应用管理
 
-### 黑<PY>阈</PY> <T purple>ADB</T>
+### 黑<ruby>阈<rt>yù</rt></ruby> <T purple>ADB</T>
 
 【**包名**】`me.piebridge.brevent`
 

@@ -14,10 +14,9 @@ import nav from './node/site/nav'
 import sidebar from './node/site/sidebar'
 import getContributorPlugin from './node/vite/add-contributors'
 import mapShortUrl from './node/vite/map-short-url'
+import paletteCSS from './node/vite/palette-virtual-css'
 import genreateSitemap from './node/vite/sitemap'
 import tsconfigApp from './tsconfig.app.json'
-import { PluginSimple } from 'markdown-it'
-import mdFootnote from 'markdown-it-footnote'
 import mdSub from 'markdown-it-sub'
 import mdSup from 'markdown-it-sup'
 import mdCheckbox from 'markdown-it-task-lists'
@@ -45,7 +44,6 @@ export default {
         content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
       },
     ],
-    ['script', { src: 'https://www.geogebra.org/apps/deployggb.js' }],
     ...iconHeader,
   ],
   themeConfig: {
@@ -88,7 +86,6 @@ export default {
     languageAlias: { graph: 'json5' },
     config: (md) => {
       md.use(groupIconMdPlugin)
-        .use(mdFootnote as unknown as PluginSimple)
         .use(mdFootNotePlus)
         .use(mdCheckbox)
         .use(mdSup)
@@ -115,13 +112,27 @@ export default {
   },
   vue: {
     template: {
+      transformAssetUrls: {
+        // Providing a custom tag table replaces Vue's defaults, so keep the
+        // built-in asset-bearing tags alongside FileWidget.
+        tags: {
+          video: ['src', 'poster'],
+          source: ['src'],
+          img: ['src'],
+          image: ['xlink:href', 'href'],
+          use: ['xlink:href', 'href'],
+          FileWidget: ['src'],
+        },
+      },
       compilerOptions: { isCustomElement: (tag) => tag.startsWith('punc-') },
     },
   },
   vite: {
+    assetsInclude: ['**/*.ggb', '**/*.geojson'],
     build: { chunkSizeWarningLimit: 8192 },
     plugins: [
       groupIconVitePlugin(),
+      paletteCSS(),
       ...(process.env.NODE_ENV === 'production' && !process.env.DISABLE_CONTRIBUTORS
         ? [await getContributorPlugin()]
         : []),

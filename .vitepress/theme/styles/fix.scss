@@ -28,10 +28,15 @@ h6 {
 
 // 修复公式纵向滚动条
 .katex-display {
-  overflow-y: visible;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
-.katex {
-  font-size: 1.15em;
+.katex.katex {
+  overflow: visible;
+  font-size: 1.12em;
+  .katex-display & {
+    font-size: 1.21em;
+  }
 }
 
 // 避免横向滚动条
