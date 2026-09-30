@@ -8,6 +8,7 @@
   - 声明与定义
   - 头文件和源文件
   - include guard / `#pragma once`
+  - 命名空间与目录边界
   - 编译与链接
   - 符号、链接错误、ODR
   - 静态库和动态库只讲基本概念
@@ -17,8 +18,7 @@
   - `target_include_directories`
   - `PUBLIC` / `PRIVATE` / `INTERFACE`
   - CMake Presets
-  - CTest
-  - 引入第三方依赖
+  - 为 CTest 预留测试入口
 - **3.3 错误不是打印一句话然后退出**
   - 前置条件、断言
   - 返回值
@@ -44,7 +44,7 @@
 - **3.6 依赖、版本控制与持续集成**
   - 为什么不应把第三方源码随手复制进项目
   - `find_package`
-  - vcpkg / Conan 介绍，选择一种用于示例
+  - vcpkg / Conan 介绍，使用 vcpkg manifest 作为示例
   - Git 分支、提交、代码评审
   - CI 中构建、测试、静态检查
   - README 应当告诉别人什么
