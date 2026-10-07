@@ -25,7 +25,10 @@ const pageTitles = new Map<string, string>()
 
 export function collectShortUrlPageData(pageData: PageData) {
   if (pageData.isNotFound) return
-  pageTitles.set(normalizePagePath(pageData.relativePath), `${pageData.title} | ${site.title}`)
+  pageTitles.set(
+    normalizePagePath(pageData.relativePath),
+    pageData.title ? `${pageData.title} | ${site.title}` : site.title,
+  )
 }
 
 function assertUniqueIds(
