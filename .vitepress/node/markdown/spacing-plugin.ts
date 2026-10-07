@@ -1,5 +1,6 @@
 import type { default as MarkdownIt, Token } from 'markdown-it'
 import { RenderRule } from 'markdown-it/lib/renderer.mjs'
+import { escape } from 'lodash-es'
 import pangu from 'pangu'
 
 function getPrevChar(tokens: Token[], index: number) {
@@ -10,9 +11,6 @@ function getPrevChar(tokens: Token[], index: number) {
   }
   return ''
 }
-
-const escapeHtml = (str: string) =>
-  str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 // 正则表达式来自 赫蹏增强脚本 https://github.com/sivan/heti
 const puncConfig: Record<string, string> = {
@@ -58,7 +56,7 @@ export default function mdAutoSpacing(md: MarkdownIt) {
     let result: string
     const prevChar = getPrevChar(tokens, index)
     result = punctuationAdjust(
-      escapeHtml(pangu.spaceText(prevChar + tokens[index].content).slice(prevChar.length)),
+      escape(pangu.spaceText(prevChar + tokens[index].content).slice(prevChar.length)),
     )
     return result
   }

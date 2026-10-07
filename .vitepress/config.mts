@@ -13,7 +13,10 @@ import iconHeader from './node/site/icon-header'
 import nav from './node/site/nav'
 import sidebar from './node/site/sidebar'
 import getContributorPlugin from './node/vite/add-contributors'
-import mapShortUrl from './node/vite/map-short-url'
+import mapShortUrl, {
+  collectShortUrlPageData,
+  generateShortUrlRedirects,
+} from './node/vite/map-short-url'
 import paletteCSS from './node/vite/palette-virtual-css'
 import genreateSitemap from './node/vite/sitemap'
 import tsconfigApp from './tsconfig.app.json'
@@ -106,8 +109,9 @@ export default {
   srcExclude: ['CODE_OF_CONDUCT.md', 'CONTRIBUTING.md'],
   metaChunk: true,
   sitemap: { hostname: baseUrl },
-  buildEnd: (siteConfig) => {
-    genreateSitemap(siteConfig)
+  transformPageData: collectShortUrlPageData,
+  buildEnd: async (siteConfig) => {
+    await Promise.all([genreateSitemap(siteConfig), generateShortUrlRedirects(siteConfig)])
   },
   vue: {
     template: {
