@@ -6,6 +6,7 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "types": ["node"],
+    "paths": { "#shared/*": ["./shared/*"] },
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true
   }

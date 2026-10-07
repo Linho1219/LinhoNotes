@@ -1,16 +1,22 @@
+<template></template>
 <script setup lang="ts">
-import axios from 'axios'
+import { encodePagePath } from '#shared/short-url'
+import shortUrlMap from 'virtual:short-url-map'
 import { useRouter } from 'vitepress'
 import { onMounted } from 'vue'
 
-const router = useRouter()
 onMounted(() => {
-  const id = window.location.search.match(/\?q=(.{10})$/)?.[1]
-  if (!id) return router.go(`./404`)
-  axios.get('/shortmap.json').then(
-    (res) =>
-      res.data[id] !== undefined ? router.go(`./${encodeURI(res.data[id])}`) : router.go(`./404`),
-    () => router.go(`./404`),
-  )
+  const params = new URLSearchParams(window.location.search)
+  const currentId = params.get('p')
+  const legacyId = params.get('q')
+  let path: string | undefined
+
+  if (currentId && /^[0-9A-Za-z]{7}$/.test(currentId)) {
+    path = shortUrlMap.current[currentId]
+  } else if (legacyId && /^[0-9a-f]{10}$/.test(legacyId)) {
+    path = shortUrlMap.legacy[legacyId]
+  }
+
+  useRouter().go(path === undefined ? '/404' : `/${encodePagePath(path)}`, { replace: true })
 })
 </script>

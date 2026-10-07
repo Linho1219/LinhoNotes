@@ -19,9 +19,6 @@ importers:
       '@rolldown/pluginutils':
         specifier: ^1.0.1
         version: 1.0.1
-      axios:
-        specifier: ^1.20.0
-        version: 1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       base-64:
         specifier: ^1.0.0
         version: 1.0.0
@@ -47,8 +44,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       vitepress:
-        specifier: 2.0.0-alpha.19
-        version: 2.0.0-alpha.19(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3)
+        specifier: 2.0.0-alpha.20
+        version: 2.0.0-alpha.20(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3)
       vue:
         specifier: ^3.5.42
         version: 3.5.42(typescript@6.0.3)
@@ -61,7 +58,7 @@ importers:
         version: 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@nolebase/vitepress-plugin-highlight-targeted-heading':
         specifier: ^2.18.2
-        version: 2.18.2(supports-color@8.1.1)(vitepress@2.0.0-alpha.19(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3))
+        version: 2.18.2(supports-color@8.1.1)(vitepress@2.0.0-alpha.20(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3))
       '@octokit/rest':
         specifier: ^22.0.1
         version: 22.0.1
@@ -2884,8 +2881,8 @@ packages:
       vite:
         optional: true
 
-  vitepress@2.0.0-alpha.19:
-    resolution: {integrity: sha512-WnBsb0Bwr43kXKyiis+lld/7ri3hnMbthS8N3hpFtjjwsdLO4IRmiAE08D7aud4q6oMDf9uwRowxzNqRFe/amw==}
+  vitepress@2.0.0-alpha.20:
+    resolution: {integrity: sha512-uQWKmP9PaBkf9zxHn0iOml/ZPPDaGKqQXVMBHz3yjwyyd9Eg+BKLGxbqmOGlfOMCt6Fj8TLiAnE59qlKZ0A3xw==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4
@@ -3784,10 +3781,10 @@ snapshots:
     dependencies:
       '@chevrotain/types': 11.1.2
 
-  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.18.2(supports-color@8.1.1)(vitepress@2.0.0-alpha.19(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3))':
+  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.18.2(supports-color@8.1.1)(vitepress@2.0.0-alpha.20(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3))':
     dependencies:
       less: 4.9.1(supports-color@8.1.1)
-      vitepress: 2.0.0-alpha.19(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3)
+      vitepress: 2.0.0-alpha.20(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -4333,12 +4330,14 @@ snapshots:
       debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   alien-signals@3.2.1: {}
 
   async@3.2.6: {}
 
-  asynckit@0.4.0: {}
+  asynckit@0.4.0:
+    optional: true
 
   axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1):
     dependencies:
@@ -4349,6 +4348,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - supports-color
+    optional: true
 
   babel-plugin-macros@2.8.0:
     dependencies:
@@ -4423,6 +4423,7 @@ snapshots:
     dependencies:
       es-errors: 1.3.0
       function-bind: 1.1.2
+    optional: true
 
   callsites@3.1.0: {}
 
@@ -4450,6 +4451,7 @@ snapshots:
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
+    optional: true
 
   comma-separated-tokens@2.0.3: {}
 
@@ -4714,7 +4716,8 @@ snapshots:
     dependencies:
       robust-predicates: 3.0.3
 
-  delayed-stream@1.0.0: {}
+  delayed-stream@1.0.0:
+    optional: true
 
   dequal@2.0.3: {}
 
@@ -4737,6 +4740,7 @@ snapshots:
       call-bind-apply-helpers: 1.0.2
       es-errors: 1.3.0
       gopd: 1.2.0
+    optional: true
 
   earcut@3.2.3: {}
 
@@ -4753,13 +4757,15 @@ snapshots:
     dependencies:
       is-arrayish: 0.2.1
 
-  es-define-property@1.0.1: {}
+  es-define-property@1.0.1:
+    optional: true
 
   es-errors@1.3.0: {}
 
   es-object-atoms@1.1.2:
     dependencies:
       es-errors: 1.3.0
+    optional: true
 
   es-set-tostringtag@2.1.0:
     dependencies:
@@ -4767,6 +4773,7 @@ snapshots:
       get-intrinsic: 1.3.0
       has-tostringtag: 1.0.2
       hasown: 2.0.4
+    optional: true
 
   es-toolkit@1.52.0: {}
 
@@ -4825,6 +4832,7 @@ snapshots:
   follow-redirects@1.16.0(debug@4.4.3(supports-color@8.1.1)):
     optionalDependencies:
       debug: 4.4.3(supports-color@8.1.1)
+    optional: true
 
   form-data@4.0.6:
     dependencies:
@@ -4833,6 +4841,7 @@ snapshots:
       es-set-tostringtag: 2.1.0
       hasown: 2.0.4
       mime-types: 2.1.35
+    optional: true
 
   fs.realpath@1.0.0: {}
 
@@ -4870,11 +4879,13 @@ snapshots:
       has-symbols: 1.1.0
       hasown: 2.0.4
       math-intrinsics: 1.1.0
+    optional: true
 
   get-proto@1.0.1:
     dependencies:
       dunder-proto: 1.0.1
       es-object-atoms: 1.1.2
+    optional: true
 
   gl-matrix@3.4.4: {}
 
@@ -4887,7 +4898,8 @@ snapshots:
       once: 1.4.0
       path-is-absolute: 1.0.1
 
-  gopd@1.2.0: {}
+  gopd@1.2.0:
+    optional: true
 
   graceful-fs@4.2.11:
     optional: true
@@ -4896,11 +4908,13 @@ snapshots:
 
   has-flag@4.0.0: {}
 
-  has-symbols@1.1.0: {}
+  has-symbols@1.1.0:
+    optional: true
 
   has-tostringtag@1.0.2:
     dependencies:
       has-symbols: 1.1.0
+    optional: true
 
   hasown@2.0.4:
     dependencies:
@@ -4934,6 +4948,7 @@ snapshots:
       debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   iconv-lite@0.4.24:
     dependencies:
@@ -5141,7 +5156,8 @@ snapshots:
       extend: 3.0.2
       mr-parser: 0.2.2
 
-  math-intrinsics@1.1.0: {}
+  math-intrinsics@1.1.0:
+    optional: true
 
   mdast-util-to-hast@13.2.1:
     dependencies:
@@ -5197,11 +5213,13 @@ snapshots:
 
   micromark-util-types@2.0.2: {}
 
-  mime-db@1.52.0: {}
+  mime-db@1.52.0:
+    optional: true
 
   mime-types@2.1.35:
     dependencies:
       mime-db: 1.52.0
+    optional: true
 
   mime@1.6.0:
     optional: true
@@ -5349,7 +5367,8 @@ snapshots:
 
   protocol-buffers-schema@3.6.1: {}
 
-  proxy-from-env@2.1.0: {}
+  proxy-from-env@2.1.0:
+    optional: true
 
   prr@1.0.1:
     optional: true
@@ -5716,15 +5735,13 @@ snapshots:
     optionalDependencies:
       vite: 8.2.2(@types/node@26.5.0)(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.0)(sass@1.104.0)
 
-  vitepress@2.0.0-alpha.19(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3):
+  vitepress@2.0.0-alpha.20(@types/node@26.5.0)(axios@1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(sass-embedded@1.104.0)(sass@1.104.0)(typescript@6.0.3):
     dependencies:
       '@docsearch/css': 4.7.0
       '@docsearch/js': 4.7.0
       '@docsearch/sidepanel-js': 4.7.0
       '@iconify-json/simple-icons': 1.2.95
-      '@shikijs/core': 4.4.3
       '@shikijs/transformers': 4.4.3
-      '@shikijs/types': 4.4.3
       '@types/markdown-it': 14.2.0
       '@vitejs/plugin-vue': 6.0.8(vite@8.2.2(@types/node@26.5.0)(esbuild@0.25.12)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.0)(sass@1.104.0))(vue@3.5.42(typescript@6.0.3))
       '@vue/devtools-api': 8.2.1

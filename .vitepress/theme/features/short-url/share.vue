@@ -24,9 +24,9 @@
 </template>
 
 <script setup lang="ts">
+import { createShareUrl } from '#shared/short-url'
 import site from '#shared/site.json'
 import i from '@theme/component-i18n.json'
-import md5 from 'blueimp-md5'
 import QRCodeVue from 'qrcode.vue'
 import { useData } from 'vitepress'
 import { onMounted, ref, watchEffect } from 'vue'
@@ -49,9 +49,10 @@ function copyLink() {
 
 onMounted(() => {
   watchEffect(() => {
-    const path = page.value.filePath.replace(/(index)?\.md$/, '')
-    if (encodeURI(path).length < 10) link.value = `${site.baseUrl}/${encodeURI(path)}`
-    else link.value = `${site.baseUrl}/s?q=${md5(path).slice(0, 10)}`
+    link.value = createShareUrl(
+      import.meta.env.DEV ? location.origin : site.baseUrl, // 方便开发环境测试
+      page.value.filePath,
+    )
   })
   watchEffect(() => {
     foreground.value = isDark.value ? '#D3D3CC' : '#3C3C43'

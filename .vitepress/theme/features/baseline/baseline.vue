@@ -71,7 +71,6 @@
 <script setup lang="ts">
 // import "baseline-status";
 import BaselineIcon from './baseline-icon.vue'
-import axios from 'axios'
 import { onMounted, reactive, ref } from 'vue'
 
 const props = defineProps<{ feature: string }>()
@@ -122,52 +121,52 @@ interface APIreturn {
   name: string
 }
 const API_URL = 'https://api.webstatus.dev/v1/features/'
-onMounted(() => {
-  axios
-    .get(API_URL + props.feature)
-    .then((response) => {
-      const data: APIreturn = response.data
-      status.value = data.baseline.status
-      featureNameStr.value = data.name
-      ;[brwsrCompat.chrome, brwsrCompat.edge, brwsrCompat.firefox, brwsrCompat.safari] = [
-        data.browser_implementations.chrome,
-        data.browser_implementations.edge,
-        data.browser_implementations.firefox,
-        data.browser_implementations.safari,
-      ].map(toCheckCross)
-      switch (data.baseline.status) {
-        case 'widely': {
-          const lowDate = new Date(data.baseline.low_date!)
-          baselineInfoStr.value = 'Widely available'
-          lowDateStr.value = lowDate.toLocaleString('en-US', {
-            month: 'long',
-            year: 'numeric',
-          })
-          break
-        }
-        case 'newly': {
-          const lowDate = new Date(data.baseline.low_date!)
-          baselineInfoStr.value = lowDate.getFullYear().toString()
-          lowDateStr.value = lowDate.toLocaleString('en-US', {
-            month: 'long',
-            year: 'numeric',
-          })
-          break
-        }
-        case 'limited': {
-          baselineInfoStr.value = 'Limited availability'
-          lowDateStr.value = new Date().toLocaleString('en-US', {
-            month: 'long',
-            year: 'numeric',
-          })
-          break
-        }
+onMounted(async () => {
+  try {
+    const response = await fetch(API_URL + props.feature)
+    if (!response.ok) throw new Error(`Request failed with status ${response.status}`)
+
+    const data = (await response.json()) as APIreturn
+    status.value = data.baseline.status
+    featureNameStr.value = data.name
+    ;[brwsrCompat.chrome, brwsrCompat.edge, brwsrCompat.firefox, brwsrCompat.safari] = [
+      data.browser_implementations.chrome,
+      data.browser_implementations.edge,
+      data.browser_implementations.firefox,
+      data.browser_implementations.safari,
+    ].map(toCheckCross)
+    switch (data.baseline.status) {
+      case 'widely': {
+        const lowDate = new Date(data.baseline.low_date!)
+        baselineInfoStr.value = 'Widely available'
+        lowDateStr.value = lowDate.toLocaleString('en-US', {
+          month: 'long',
+          year: 'numeric',
+        })
+        break
       }
-    })
-    .catch((err) => {
-      console.error('Baseline info not found: ', props.feature)
-      baselineInfoStr.value = 'Availability not found'
-    })
+      case 'newly': {
+        const lowDate = new Date(data.baseline.low_date!)
+        baselineInfoStr.value = lowDate.getFullYear().toString()
+        lowDateStr.value = lowDate.toLocaleString('en-US', {
+          month: 'long',
+          year: 'numeric',
+        })
+        break
+      }
+      case 'limited': {
+        baselineInfoStr.value = 'Limited availability'
+        lowDateStr.value = new Date().toLocaleString('en-US', {
+          month: 'long',
+          year: 'numeric',
+        })
+        break
+      }
+    }
+  } catch (error) {
+    console.error('Baseline info not found: ', props.feature, error)
+    baselineInfoStr.value = 'Availability not found'
+  }
 })
 </script>
 

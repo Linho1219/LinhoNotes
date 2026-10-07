@@ -5,6 +5,7 @@
     "noEmit": true,
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "paths": {
+      "#shared/*": ["./shared/*"],
       "@theme/*": ["./theme/*"],
       "@components/*": ["./theme/components/*"],
       "@features/*": ["./theme/features/*"]

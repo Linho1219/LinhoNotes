@@ -1,5 +1,6 @@
 ---
 layout: false
+title: 跳转中…
 head:
   - - meta
     - name: robots
