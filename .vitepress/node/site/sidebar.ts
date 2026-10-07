@@ -35,7 +35,7 @@ interface DirConfig {
 }
 
 const beautifyName = (name: string) =>
-  pangu.spacingText(name.replaceAll('-', ' ').replaceAll(/,(?=[^\s])/g, ', '))
+  pangu.spaceText(name.replaceAll('-', ' ').replaceAll(/,(?=[^\s])/g, ', '))
 
 const strIsRegExp = (str: string) => str.at(0) === '/' && str.at(-1) === '/'
 const str2RegExp = (str: string) => new RegExp(str.slice(1, -1))
@@ -46,8 +46,8 @@ const rewriteName = (name: string, rewrites: Record<string, string>) => {
   for (const key of rewritesKeys)
     if (strIsRegExp(key)) {
       const reg = str2RegExp(key)
-      if (name.match(reg)) return pangu.spacingText(name.replace(reg, rewrites[key]))
-    } else if (name === key) return pangu.spacingText(rewrites[key])
+      if (name.match(reg)) return pangu.spaceText(name.replace(reg, rewrites[key]))
+    } else if (name === key) return pangu.spaceText(rewrites[key])
   return beautifyName(name)
 }
 
