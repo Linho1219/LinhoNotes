@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@rolldown/pluginutils": "^1.0.1",
-    "axios": "^1.20.0",
     "base-64": "^1.0.0",
     "function-plot": "2.0.0-0",
     "katex": "^0.16.47",
@@ -24,7 +23,7 @@
     "mitt": "^3.0.1",
     "qrcode.vue": "^3.11.0",
     "utf8": "^3.0.0",
-    "vitepress": "2.0.0-alpha.19",
+    "vitepress": "2.0.0-alpha.20",
     "vue": "^3.5.42"
   },
   "devDependencies": {

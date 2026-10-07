@@ -28,8 +28,8 @@
 </template>
 
 <script lang="ts" setup>
+import { createShareUrl } from '#shared/short-url'
 import site from '#shared/site.json'
-import md5 from 'blueimp-md5'
 import { useData } from 'vitepress'
 import { ref, watchEffect } from 'vue'
 
@@ -59,9 +59,7 @@ watchEffect(() => {
     }))
 })
 watchEffect(() => {
-  const path = page.value.filePath.replace(/(index)?\.md$/, '')
-  if (encodeURI(path).length < 10) link.value = `${site.baseUrl}/${encodeURI(path)}`
-  else link.value = `${site.baseUrl}/s?q=${md5(path).slice(0, 10)}`
+  link.value = createShareUrl(site.baseUrl, page.value.filePath)
 })
 </script>
 

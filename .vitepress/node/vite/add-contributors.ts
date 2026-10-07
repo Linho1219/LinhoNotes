@@ -10,7 +10,6 @@
  */
 import site from '#shared/site.json'
 import { Octokit } from '@octokit/rest'
-import axios from 'axios'
 import 'dotenv/config'
 import fs from 'fs'
 import simpleGit from 'simple-git'
@@ -148,17 +147,12 @@ function queryFullDataList(
 
 /** 下载头像 */
 async function downloadImage(url: string, savePath: string) {
-  const writer = fs.createWriteStream(savePath)
-  const response = await axios({
-    url,
-    method: 'GET',
-    responseType: 'stream',
-  })
-  response.data.pipe(writer)
-  await new Promise<void>((resolve, reject) => {
-    writer.on('finish', resolve)
-    writer.on('error', reject)
-  })
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error(`Download ${url} failed with status ${response.status}`)
+  }
+
+  await fs.promises.writeFile(savePath, Buffer.from(await response.arrayBuffer()))
 }
 
 async function getContributorPlugin(): Promise<Plugin> {
@@ -179,7 +173,7 @@ async function getContributorPlugin(): Promise<Plugin> {
   )
 
   return {
-    name: 'add-contributors',
+    name: 'linho-notes:add-contributors',
     enforce: 'pre',
     async transform(code, path) {
       if (!path.endsWith('.md') || code.trim().match(/^---\r?\n/) !== null) return // 若 Frontmatter 存在则跳过

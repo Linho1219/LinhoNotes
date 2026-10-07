@@ -2,7 +2,7 @@ import { exactRegex } from '@rolldown/pluginutils'
 import fs from 'node:fs'
 import path from 'node:path'
 
-const PalettePath = path.resolve(__dirname, '../../palette.json')
+const PalettePath = path.resolve(import.meta.dirname, '../../palette.json')
 const PaletteJSON = JSON.parse(fs.readFileSync(PalettePath, 'utf-8')) as {
   light: {
     text: Record<string, string>
@@ -40,7 +40,7 @@ export default function myPlugin() {
   const resolvedVirtualModuleId = '\0' + virtualModuleId
 
   return {
-    name: 'virtual-palette-css',
+    name: 'linho-notes:virtual-palette-css',
     resolveId: {
       filter: { id: exactRegex(virtualModuleId) },
       handler() {
