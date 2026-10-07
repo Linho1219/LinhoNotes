@@ -1,14 +1,16 @@
 <template>
   <div class="share-panel">
     <noscript>{{ i.global.javascriptDisabled }}</noscript>
-    <QRCodeVue
-      :value="link"
-      :size="120"
-      render-as="svg"
-      level="L"
-      background="transparent"
-      :foreground="foreground"
-    />
+    <ClientOnly>
+      <QRCodeVue
+        :value="link"
+        :size="120"
+        render-as="svg"
+        level="L"
+        background="transparent"
+        :foreground="foreground"
+      />
+    </ClientOnly>
     <button class="copylink" @click="copyLink()">
       {{ i.share.copyLink
       }}<span class="copy-indicator-wrapper" :class="expand ? 'expanded' : 'folded'">
