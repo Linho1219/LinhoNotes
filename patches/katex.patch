@@ -1,8 +1,8 @@
 diff --git a/dist/katex.mjs b/dist/katex.mjs
-index b4a83b4b7b9b31064413fa7eb5447823110d7305..66e7a8990e7787968fe6359eae7a7ed7f19f03c0 100644
+index 10a14abb465a47d53b9aa5813291e6555d314c10..42d59dab439ae1e8c9ae42da964e40fec016b7b2 100644
 --- a/dist/katex.mjs
 +++ b/dist/katex.mjs
-@@ -4223,6 +4223,19 @@ defineSymbol(math, main, mathord, "\u03d6", "\\varpi", true);
+@@ -4166,6 +4166,19 @@ defineSymbol(math, main, mathord, "\u03d6", "\\varpi", true);
  defineSymbol(math, main, mathord, "\u03f1", "\\varrho", true);
  defineSymbol(math, main, mathord, "\u03c2", "\\varsigma", true);
  defineSymbol(math, main, mathord, "\u03c6", "\\varphi", true);
@@ -22,7 +22,7 @@ index b4a83b4b7b9b31064413fa7eb5447823110d7305..66e7a8990e7787968fe6359eae7a7ed7
  defineSymbol(math, main, bin, "\u2217", "*", true);
  defineSymbol(math, main, bin, "+", "+");
  defineSymbol(math, main, bin, "\u2212", "-", true);
-@@ -14029,19 +14042,7 @@ defineMacro("\u22ee", "\\vdots");
+@@ -13787,19 +13800,7 @@ defineMacro("\u22ee", "\\vdots");
  //////////////////////////////////////////////////////////////////////
  // amsmath.sty
  // http://mirrors.concertpass.com/tex-archive/macros/latex/required/amsmath/amsmath.pdf
