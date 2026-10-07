@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import VPFeature from './VPFeature.vue'
-import type { DefaultTheme } from 'vitepress/theme'
+import type { DefaultTheme } from 'vitepress/theme-without-fonts'
 import { computed } from 'vue'
 
 export interface Feature {
