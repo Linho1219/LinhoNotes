@@ -1,3 +1,4 @@
+import { mathMacros } from '#shared/math'
 import { escape } from 'lodash-es'
 import katex from 'katex'
 import 'katex/contrib/mhchem'
@@ -122,7 +123,7 @@ const renderKatex = (content: string, displayMode: boolean) => {
     return katex
       .renderToString(content, {
         displayMode,
-        macros,
+        macros: mathMacros,
         output: 'html',
         strict: false,
         throwOnError: true,
@@ -143,19 +144,22 @@ const renderSource = (content: string, displayMode: boolean) =>
     ? /* html */ `<div v-pre class="math math-block">${escape(content)}</div>`
     : /* html */ `<span v-pre class="math math-inline">${escape(content)}</span>`
 
+const renderComponent = (content: string, displayMode: boolean) =>
+  `<Formula code="${encodeURIComponent(content)}"${displayMode ? ' display' : ''} />`
+
+const renderMath = (content: string, displayMode: boolean) => {
+  if (mathRenderMode === 'source') return renderSource(content, displayMode)
+  if (mathRenderMode === 'component') return renderComponent(content, displayMode)
+  return renderKatex(content, displayMode)
+}
+
 export default function mdMath(md: MarkdownIt) {
   md.inline.ruler.after('escape', 'math_inline', mathInline)
   md.block.ruler.after('blockquote', 'math_block', mathBlock, {
     alt: ['paragraph', 'reference', 'blockquote', 'list'],
   })
 
-  md.renderer.rules.math_inline = (tokens, idx) =>
-    mathRenderMode === 'source'
-      ? renderSource(tokens[idx].content, false)
-      : renderKatex(tokens[idx].content, false)
+  md.renderer.rules.math_inline = (tokens, idx) => renderMath(tokens[idx].content, false)
 
-  md.renderer.rules.math_block = (tokens, idx) =>
-    mathRenderMode === 'source'
-      ? renderSource(tokens[idx].content, true)
-      : renderKatex(tokens[idx].content, true)
+  md.renderer.rules.math_block = (tokens, idx) => renderMath(tokens[idx].content, true)
 }

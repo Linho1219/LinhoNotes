@@ -105,6 +105,7 @@ export default {
     },
   },
   cleanUrls: true,
+  buildConcurrency: 8,
   rewrites: { 'short-url.md': 's.md' },
   srcExclude: ['CODE_OF_CONDUCT.md', 'CONTRIBUTING.md'],
   metaChunk: true,

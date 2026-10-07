@@ -25,6 +25,14 @@ import 'virtual:group-icons.css'
 import 'virtual:palette.css'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme-without-fonts'
+import { defineAsyncComponent } from 'vue'
+
+const Formula = defineAsyncComponent({
+  loader: () => import('@components/formula.vue'),
+  // Formulas are static after SSR. Client-side navigations mount normally,
+  // while the initial server-rendered DOM is kept without running KaTeX again.
+  hydrate: () => {},
+})
 
 export default {
   extends: DefaultTheme,
@@ -42,5 +50,6 @@ export default {
     app.component('Cloze', Cloze)
     app.component('Baseline', Baseline)
     app.component('FileWidget', FileWidget)
+    app.component('Formula', Formula)
   },
 } satisfies Theme
