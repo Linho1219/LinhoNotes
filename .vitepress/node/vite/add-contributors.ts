@@ -12,7 +12,7 @@ import site from '#shared/site.json'
 import { Octokit } from '@octokit/rest'
 import 'dotenv/config'
 import fs from 'fs'
-import simpleGit from 'simple-git'
+import { simpleGit } from 'simple-git'
 import type { Plugin } from 'vite'
 
 const { owner, repo } = site.repo
