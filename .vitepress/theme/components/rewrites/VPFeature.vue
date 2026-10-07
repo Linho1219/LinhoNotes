@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { DefaultTheme } from 'vitepress/theme'
-import { VPLink, VPImage } from 'vitepress/theme'
+import type { DefaultTheme } from 'vitepress/theme-without-fonts'
+import { VPLink, VPImage } from 'vitepress/theme-without-fonts'
 
 defineProps<{
   icon?: DefaultTheme.FeatureIcon
