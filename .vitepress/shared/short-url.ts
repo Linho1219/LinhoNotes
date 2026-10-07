@@ -1,11 +1,11 @@
 import md5 from 'blueimp-md5'
 
 export const LEGACY_SHORT_ID_LENGTH = 10
-export const SHORT_ID_LENGTH = 7
+export const SHORT_ID_LENGTH = 8
 
-const BASE62_ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-const BASE62_RADIX = BigInt(BASE62_ALPHABET.length)
-const SHORT_ID_SPACE = BASE62_RADIX ** BigInt(SHORT_ID_LENGTH)
+const BASE36_ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz'
+const BASE36_RADIX = BigInt(BASE36_ALPHABET.length)
+const SHORT_ID_SPACE = BASE36_RADIX ** BigInt(SHORT_ID_LENGTH)
 
 export function normalizePagePath(path: string) {
   return path.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
@@ -20,8 +20,8 @@ export function createShortId(path: string) {
   let id = ''
 
   for (let i = 0; i < SHORT_ID_LENGTH; i++) {
-    id = BASE62_ALPHABET[Number(value % BASE62_RADIX)] + id
-    value /= BASE62_RADIX
+    id = BASE36_ALPHABET[Number(value % BASE36_RADIX)] + id
+    value /= BASE36_RADIX
   }
 
   return id
@@ -35,7 +35,7 @@ export function createShareUrl(baseUrl: string, filePath: string) {
   const path = normalizePagePath(filePath)
   const base = baseUrl.replace(/\/$/, '')
   const directUrl = `${base}/${encodePagePath(path)}`
-  const shortUrl = `${base}/s?p=${createShortId(path)}`
+  const shortUrl = `${base}/${createShortId(path)}`
 
   return directUrl.length <= shortUrl.length ? directUrl : shortUrl
 }
