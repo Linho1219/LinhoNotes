@@ -3,6 +3,7 @@ import { execSync } from 'child_process'
 import JSON5 from 'json5'
 import type MarkdownIt from 'markdown-it'
 import path from 'node:path'
+import { encodeHtmlAttr } from './utils'
 
 const prettierTable: Record<string, string> = {
   ts: 'typescript',
@@ -32,10 +33,6 @@ const fileWidgets = new Map<string, FileWidgetDescriptor>([
   ['.ggb', { kind: 'geogebra' }],
   ['.geojson', { kind: 'geojson' }],
 ])
-
-function encodeHtmlAttr(value: string): string {
-  return value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
-}
 
 function getAssetUrl(src: string, importer: string): string {
   let relativePath = path.relative(path.dirname(importer), src).replaceAll('\\', '/')

@@ -3,16 +3,9 @@ import { escape } from 'lodash-es'
 import katex from 'katex'
 import 'katex/contrib/mhchem'
 import type MarkdownIt from 'markdown-it'
+import { encodeHtmlAttr } from './utils'
 
 const mathRenderMode = process.env.MATH_RENDER_MODE ?? 'katex'
-
-const macros = {
-  '\\d': `\\mathrm d`,
-  '\\dx': `\\mathrm dx`,
-  '\\ddx': `\\frac{\\mathrm d}{\\mathrm dx}`,
-  '\\ddy': `\\frac{\\mathrm d}{\\mathrm dy}`,
-  '\\ddt': `\\frac{\\mathrm d}{\\mathrm dt}`,
-}
 
 function isValidDelim(state: any, pos: number) {
   const max = state.posMax
@@ -143,8 +136,6 @@ const renderSource = (content: string, displayMode: boolean) =>
   displayMode
     ? /* html */ `<div v-pre class="math math-block">${escape(content)}</div>`
     : /* html */ `<span v-pre class="math math-inline">${escape(content)}</span>`
-
-const encodeHtmlAttr = (value: string) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
 
 const renderComponent = (content: string, displayMode: boolean) =>
   `<Formula code="${encodeHtmlAttr(content)}"${displayMode ? ' display' : ''} />`
