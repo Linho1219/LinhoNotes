@@ -5,7 +5,7 @@ import 'katex/contrib/mhchem'
 import type MarkdownIt from 'markdown-it'
 import { encodeHtmlAttr } from './utils'
 
-const mathRenderMode = process.env.MATH_RENDER_MODE ?? 'katex'
+const mathRenderMode = process.env.MATH_RENDER_MODE ?? 'component'
 
 function isValidDelim(state: any, pos: number) {
   const max = state.posMax
