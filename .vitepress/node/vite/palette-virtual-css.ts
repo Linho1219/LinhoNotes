@@ -1,18 +1,6 @@
 import { exactRegex } from '@rolldown/pluginutils'
-import fs from 'node:fs'
-import path from 'node:path'
+import PaletteJSON from '#shared/palette.json'
 
-const PalettePath = path.resolve(import.meta.dirname, '../../palette.json')
-const PaletteJSON = JSON.parse(fs.readFileSync(PalettePath, 'utf-8')) as {
-  light: {
-    text: Record<string, string>
-    soft: Record<string, string>
-  }
-  dark: {
-    text: Record<string, string>
-    soft: Record<string, string>
-  }
-}
 const PaletteCSS = /* css */ `
 :root {
   ${Object.entries(PaletteJSON.light.text)
