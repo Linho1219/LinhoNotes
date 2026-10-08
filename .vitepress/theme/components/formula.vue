@@ -14,17 +14,14 @@ const props = defineProps<{
   display?: boolean
 }>()
 
-const html = computed(
-  () => (
-    import.meta.env.SSR ? null : console.log(1),
-    katex.renderToString(decodeURIComponent(props.code), {
-      displayMode: props.display,
-      macros: mathMacros,
-      output: 'html',
-      strict: false,
-      throwOnError: true,
-      trust: false,
-    })
-  ),
+const html = computed(() =>
+  katex.renderToString(decodeURIComponent(props.code), {
+    displayMode: props.display,
+    macros: mathMacros,
+    output: 'html',
+    strict: false,
+    throwOnError: true,
+    trust: false,
+  }),
 )
 </script>
