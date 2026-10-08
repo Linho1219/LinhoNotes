@@ -144,8 +144,10 @@ const renderSource = (content: string, displayMode: boolean) =>
     ? /* html */ `<div v-pre class="math math-block">${escape(content)}</div>`
     : /* html */ `<span v-pre class="math math-inline">${escape(content)}</span>`
 
+const encodeHtmlAttr = (value: string) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
+
 const renderComponent = (content: string, displayMode: boolean) =>
-  `<Formula code="${encodeURIComponent(content)}"${displayMode ? ' display' : ''} />`
+  `<Formula code="${encodeHtmlAttr(content)}"${displayMode ? ' display' : ''} />`
 
 const renderMath = (content: string, displayMode: boolean) => {
   if (mathRenderMode === 'source') return renderSource(content, displayMode)
