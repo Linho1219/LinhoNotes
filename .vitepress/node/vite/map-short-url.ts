@@ -88,7 +88,7 @@ function createShortUrlData(siteConfig: SiteConfig) {
 function createRedirectHtml(title: string, targetUrl: string, lang: string) {
   const canonical = escape(targetUrl)
 
-  return /* html */ `<!doctype html>
+  return /* html */ `<!DOCTYPE html>
     <html lang="${escape(lang)}">
       <head>
         <meta charset="utf-8">
@@ -98,9 +98,10 @@ function createRedirectHtml(title: string, targetUrl: string, lang: string) {
         <link rel="canonical" href="${canonical}">
         <meta http-equiv="refresh" content="0;url=${canonical}">
         <script>location.replace(document.querySelector('link').href)</script>
+        <style>:root{background-color:light-dark(white,#1B1B1F);}</style>
       </head>
     </html>
-    `.replaceAll(/\n\s+/g, ' ')
+    `.replaceAll(/\n\s+/g, '')
 }
 
 function validateOutputTargets(entries: ShortUrlEntry[], names: string[]) {
