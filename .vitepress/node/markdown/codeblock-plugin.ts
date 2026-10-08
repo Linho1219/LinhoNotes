@@ -33,6 +33,10 @@ const fileWidgets = new Map<string, FileWidgetDescriptor>([
   ['.geojson', { kind: 'geojson' }],
 ])
 
+function encodeHtmlAttr(value: string): string {
+  return value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
+}
+
 function getAssetUrl(src: string, importer: string): string {
   let relativePath = path.relative(path.dirname(importer), src).replaceAll('\\', '/')
   if (!relativePath.startsWith('.')) relativePath = `./${relativePath}`
@@ -45,7 +49,7 @@ export default function mdPlot(md: MarkdownIt): void {
     const token = tokens[idx]
     const language = token.info.trim()
     if (language.startsWith('mermaid'))
-      return /* html */ `<ClientOnly><Mermaid id="mermaid-${idx}" code="${encodeURIComponent(
+      return /* html */ `<ClientOnly><Mermaid id="mermaid-${idx}" code="${encodeHtmlAttr(
         token.content,
       )}" /></ClientOnly>`
     if (language.startsWith('graph')) {
@@ -55,7 +59,7 @@ export default function mdPlot(md: MarkdownIt): void {
         if (process.env.NODE_ENV === 'production') throw e
         else console.error('\nGraph parse error:\n  ' + String(e))
       }
-      return /* html */ `<ClientOnly><Plot id="funcion-${idx}" code="${encodeURIComponent(
+      return /* html */ `<ClientOnly><Plot id="funcion-${idx}" code="${encodeHtmlAttr(
         token.content,
       )}" /></ClientOnly>`
     }

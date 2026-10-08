@@ -29,14 +29,12 @@ const svgRef = ref(''),
 const initWidth = ref(0),
   initHeight = ref(0)
 
-const code = decodeURIComponent(props.code!)
-
 mermaid.initialize({
   startOnLoad: false,
   theme: 'neutral',
   fontFamily: 'var(--vp-font-family-base)',
 })
-mermaid.render(props.id!, code).then(
+mermaid.render(props.id, props.code).then(
   (result) => {
     svgRef.value = result.svg
     const viewBox = <[number, number, number, number]>result.svg

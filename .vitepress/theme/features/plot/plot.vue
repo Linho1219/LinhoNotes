@@ -7,7 +7,7 @@
   >
     <PlotRender
       :id="props.id"
-      :code="decodeURIComponent(props.code)"
+      :code="props.code"
       :graphWidth="width"
       :graphHeight="height"
     />
