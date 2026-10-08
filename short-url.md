@@ -7,7 +7,7 @@ head:
 ---
 
 <Loading />
-<ClientOnly><Jumper /></ClientOnly>
+<Jumper />
 
 <script lang="ts" setup>
 import Jumper from '@features/short-url/jumper.vue'
