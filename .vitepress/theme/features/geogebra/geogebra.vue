@@ -10,13 +10,14 @@
 <script setup lang="ts">
 import './ggb-applet.d.ts'
 import { loadGeoGebra } from './load-geogebra'
+import { nanoid } from 'nanoid'
 import { onMounted, onUnmounted, ref, shallowRef } from 'vue'
 
 const props = defineProps<{
   src: string
   mode?: GeoGebraParameters['appName']
 }>()
-const appID = '_ggb_' + Math.random().toString(36).substring(2, 15)
+const appID = '_ggb_' + nanoid()
 const domID = 'dom' + appID
 const loading = ref(true)
 const instance = shallowRef<GeoGebraApplet | null>(null)
