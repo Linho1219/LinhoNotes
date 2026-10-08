@@ -1,3 +1,4 @@
+import { escape } from 'lodash-es'
 import katex from 'katex'
 import 'katex/contrib/mhchem'
 import type MarkdownIt from 'markdown-it'
@@ -11,9 +12,6 @@ const macros = {
   '\\ddy': `\\frac{\\mathrm d}{\\mathrm dy}`,
   '\\ddt': `\\frac{\\mathrm d}{\\mathrm dt}`,
 }
-
-const escape = (content: string) =>
-  content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 function isValidDelim(state: any, pos: number) {
   const max = state.posMax
