@@ -36,6 +36,7 @@ watchEffect(() => {
 #breadcrumb {
   margin-bottom: 15px;
   font-size: 15px;
+  line-height: 20px;
   color: var(--vp-c-text-2);
 }
 .bc-items::after {
@@ -43,7 +44,7 @@ watchEffect(() => {
   margin: 0 8px;
   vertical-align: top;
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--vp-c-text-3);
 }
 </style>
