@@ -10,9 +10,11 @@
   background: none !important;
 }
 .DocSearch-Modal {
-  box-shadow:
-    color-mix(in srgb, var(--vp-c-brand) 50%, transparent) 0 0 0 2px,
-    light-dark(#0003, #0008) 0 20px 50px !important;
+  --shadow-color: light-dark(#0004, #0008);
+  --halo-color: color-mix(in srgb, var(--vp-c-brand) 50%, transparent);
+  --docsearch-modal-shadow: var(--halo-color) 0 0 0 2px, var(--shadow-color) 0 20px 50px !important;
+
+  --docsearch-logo-color: light-dark(#333, white);
 }
 
 .search-overlay {
