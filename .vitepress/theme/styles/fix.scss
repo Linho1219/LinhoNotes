@@ -27,9 +27,11 @@ h6 {
 }
 
 // 修复公式纵向滚动条
-.katex-display {
+.katex-display.katex-display {
   overflow-x: auto;
   overflow-y: hidden;
+  margin: 1em 0 0.75em 0;
+  padding: 0 0 0.25em 0;
 }
 .katex.katex {
   overflow: visible;
