@@ -2,7 +2,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="216.785721" height="197.857147">
 	<defs>
 		<pattern id="Fill_HP-01" patternTransform="rotate(135)" patternUnits="userSpaceOnUse" width="15" height="15">
-			<rect width="15" height="15" fill="#FFFFFF" />
 			<path d="M 0 7.5 L 15 7.5" fill="none" stoke-width="3" stroke="#777777" />
 		</pattern>
 	</defs>
