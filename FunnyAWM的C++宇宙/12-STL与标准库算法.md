@@ -1,13 +1,12 @@
 # 第12章 C++中的STL与标准库算法
 
-**By FunnyAWM**
-
-> [!TIP] 运行环境说明
+> [!INFO] 运行环境说明
 > 本章及以后章节换用Windows 64位x86 MinGW GCC编译器进行编译及运行。
 
 在C++中，我们有一组绝大部分编译器都共有的文件，这些文件被称作标准库。其中STL也在标准库的范围内。这一章我们来具体探讨一下C++中的STL（标准模板库）容器与标准库函数。
 
 在[这个仓库](https://github.com/FunnyAWM/MusicSyncTool)中可以找到大量对本章知识的应用。其中大部分容器出于Qt的限制改为了使用Qt提供的容器版本，与标准STL容器可能有部分不同（STL容器可能缺失了部分方法），仅供参考。
+
 ## 1. STL容器
 
 ### 1. 有哪些容器？
@@ -19,7 +18,7 @@ STL中包含的常用容器有string、vector、map、unordered_map等。受限�
 string容器应该是我们最常用的STL容器之一。string容器可以通过使用C字符串、复制、移动、使用有参构造函数等进行初始化。其中类提供的特殊有参构造函数如下：
 
 | 函数 | 描述 |
-|--|--|
+| -- | -- |
 | string(size_type n, char c) | 创建一个包含n个元素的string对象，其中每一个元素都被初始化为字符c |
 | template\<class Iter\> string(Iter begin, Iter end) | 从迭代器范围创建string对象 |
 | string(const string & str, string size_type pos = 0, size_type n = npos) | 创建string对象，数据为从pos位置开始的n个字符（如果n没有指定则为到结尾） |
@@ -33,7 +32,7 @@ std::cin >> str1;
 std::getline(std::cin, str1); // 这种方式同样可以用于从文件流构造字符串
 ```
 
-getline函数的第一个参数是一个istream流，它可以从用户键盘或文件中读取数据并初始化对应的对象。我们将在[后续](./13-输入输出流与文件IO)章节详细讲解C++的IO流。
+getline函数的第一个参数是一个istream流，它可以从用户键盘或文件中读取数据并初始化对应的对象。我们将在[后续](./13-输入输出流与文件IO#第13章-c-中的输入输出流与文件io)章节详细讲解C++的IO流。
 
 由于string类重载了\[\]运算符，它也可以被当做常规的C字符串被访问。
 
@@ -51,14 +50,14 @@ vector同样为我们提供了很多功能，包括获取元素数目、交换�
 
 ```cpp
 void MSTDataSource::updateFavoriteBatch(const QList<FavoriteUpdate>& updates) {
-	query.exec("BEGIN TRANSACTION");
-	for (auto update = updates.begin(); update != updates.end(); ++update) {
-		prepareStatement("UPDATE musicInfo SET favorite = :fav WHERE fileName = :fileName");
-		bindValue(":fav", update->isFavorite);
-		bindValue(":fileName", update->fileName);
-		execQuery();
-	}
-	query.exec("COMMIT");
+    query.exec("BEGIN TRANSACTION");
+    for (auto update = updates.begin(); update != updates.end(); ++update) {
+        prepareStatement("UPDATE musicInfo SET favorite = :fav WHERE fileName = :fileName");
+        bindValue(":fav", update->isFavorite);
+        bindValue(":fileName", update->fileName);
+        execQuery();
+    }
+    query.exec("COMMIT");
 }
 ```
 
@@ -66,14 +65,14 @@ void MSTDataSource::updateFavoriteBatch(const QList<FavoriteUpdate>& updates) {
 
 ```cpp
 void MSTDataSource::updateFavoriteBatch(const QList<FavoriteUpdate>& updates) {
-	query.exec("BEGIN TRANSACTION");
-	for (const auto& update : updates) {
-		prepareStatement("UPDATE musicInfo SET favorite = :fav WHERE fileName = :fileName");
-		bindValue(":fav", update.isFavorite);
-		bindValue(":fileName", update.fileName);
-		execQuery();
-	}
-	query.exec("COMMIT");
+    query.exec("BEGIN TRANSACTION");
+    for (const auto& update : updates) {
+        prepareStatement("UPDATE musicInfo SET favorite = :fav WHERE fileName = :fileName");
+        bindValue(":fav", update.isFavorite);
+        bindValue(":fileName", update.fileName);
+        execQuery();
+    }
+    query.exec("COMMIT");
 }
 ```
 
@@ -91,7 +90,7 @@ end()迭代器指向的对象都是容器中最后一个对象的后一对象。
 
 随机访问迭代器支持常数时间的任意位置跳转（$O(1)$），而其他迭代器只能通过逐步移动来访问元素，从当前位置移动到任意位置的时间复杂度为 $O(n)$。
 
-> [!TIP] 名词解释
+> [!INFO] 名词解释
 > 时间复杂度：描述了某个算法或操作需要耗费的时间随输入规模的变化趋势。其中$O(1)$代表该算法或操作在使用任意参数时耗费的时间恒定，而$O(n)$代表该算法或操作需要的时间随需要进行该操作的元素数量呈线性增长。相似的表述还有$O(n^2)$（需要的时间随元素数呈二次增长）、$O(log n)$（需要的时间随元素数呈对数增长）、$O(n log n)$（需要的时间随元素数呈线性对数增长）、$O(2^n)$（需要的时间随元素数呈指数增长）、$O(n!)$（需要的时间随元素数呈阶乘增长）等。
 
 > [!CAUTION] 警告
@@ -110,8 +109,9 @@ end()迭代器指向的对象都是容器中最后一个对象的后一对象。
 
 以下我们选取几个典型函数进行详细讲解（所有函数的使用方法都能够在[Cpp Reference](https://zh.cppreference.com)找到）。
 
-> [!TIP] 关于这些函数实现的说明
+> [!INFO] 关于这些函数实现的说明
 > any_of与remove_if函数于C++11中被实现，而random_shuffle函数已在C++17中被移除，在C++11及以后，更推荐使用std::shuffle。
+
 ### 1. for_each
 
 该函数接收两个迭代器参数与一个函数指针或Lambda表达式，对迭代器范围内的所有对象执行函数或Lambda操作。
