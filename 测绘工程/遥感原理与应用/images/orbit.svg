@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="555" height="500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path id="arrow" d="m 0 0 l -14 5 v -10 z"/>
+    </defs>
+    <path fill="#f0f0a0" stroke-width="1.89794801" d="M 117.42233 110.48971 A 300.46670 147.47556 -45.49000 0 0 238.53786 399.38818" fill-opacity="0.6" stroke="#000000"/>
+    <ellipse rx="300.46670" fill="#d2d2d2" ry="147.47556" cx="177.98010" cy="254.93894" stroke="none"/>
+    <line y2="270.17398" stroke-width="1.15914595" x1="177.98010" x2="497.70418" stroke="#ff2020" y1="254.93894"/>
+    <use transform="translate(497.70418 270.17398) rotate(2.72811)" fill="#ff2020" xlink:href="#arrow"/>
+    <path fill="none" stroke-width="2.48823" d="M 206.45629 256.29585 A 28.61008 14.04245 0.0 1 0 183.74633 268.69323" stroke="#17ab34"/>
+    <use transform="translate(183.74633 268.69323) rotate(2)" fill="#17ab34" xlink:href="#arrow"/>
+    <path fill="#f0f0a0" stroke-width="1.89794801" d="M 117.42233 110.48971 A 300.46670 147.47556 -45.49000 0 1 238.53786 399.38818" fill-opacity="0.6" stroke="#000000"/>
+    <line y2="47.87766" stroke-width="1.15914595" x1="177.98010" x2="395.03658" y1="254.93894" stroke="#3a20ff"/>
+    <line y2="254.93894" stroke-width="1.15914595" x1="244.89699" x2="177.98010" stroke="#ff2020" y1="33.12704"/>
+    <path fill="none" d="M 189.71775 282.93691 A 58.23816 28.58455 -45.49000 0 0 220.05122 214.80515" stroke-width="2.62202" stroke="#6028ff"/>
+    <use transform="translate(220.05122 214.80515) rotate(-106)" fill="#6028ff" xlink:href="#arrow"/>
+    <path fill="none" d="M 220.05122 214.80515 A 58.23816 28.58455 -45.49000 0 0 190.95031 211.94610" stroke-width="2.4" stroke="#c20a0a"/>
+    <use transform="translate(190.95031 211.94610) rotate(163)" fill="#c20a0a" xlink:href="#arrow"/>
+    <path fill="none" d="M 297.82634 390.17533 A 60 60 0 0 0 282.70429 358.77627" stroke-width="2.10753798" stroke="#007d00"/>
+    <use transform="translate(282.70429 358.77627) rotate(-123)" fill="#007d00" xlink:href="#arrow"/>
+    <circle r="7.96189" cx="244.89699" cy="33.12704"/>
+    <g font-family="sans-serif" font-size="18">
+        <g font-size="18">
+            <text x="55" fill="#17ab34" y="285">升交点赤经</text>
+            <text x="260" fill="#6028ff" y="238">近心点幅角</text>
+            <text x="125" fill="#c20a0a" y="185">真近点角</text>
+            <text x="285" fill="#007d00" y="410">轨道倾角</text>
+            <text x="225" fill="#ec4040" y="430">升交点</text>
+            <text x="479" y="300">参考方向</text>
+            <text x="479" y="325">(春分点)</text>
+            <text x="195" y="29">卫星</text>
+            <text x="67.46901" y="368.44458" transform="matrix(0.9890034 0.14789264 -0.14789264 0.9890034 9.937065 -2.5154736)">参考平面</text>
+            <text x="-144.32684" y="464.2918" transform="matrix(0.93274015 -0.36054942 0.36054942 0.93274015 56.016125 -9.603659)">轨道</text>
+        </g>
+        <g font-family="Times New Roman" font-style="italic" font-size="25">
+            <text x="120.31801" fill="#17ab34" y="261.79498">Ω</text>
+            <text x="234.02448" fill="#6028ff" y="239.59079">ω</text>
+            <text x="209.09743" fill="#c20a0a" y="195.24765">ν</text>
+            <text font-style="italic" x="271.4589" fill="#007d00" y="389.5631">i</text>
+        </g>
+    </g>
+</svg>
