@@ -1,19 +1,9 @@
 <template>
   <div class="share-panel">
     <noscript>{{ i.global.javascriptDisabled }}</noscript>
-    <ClientOnly>
-      <QRCodeVue
-        :value="link"
-        :size="120"
-        render-as="svg"
-        level="L"
-        background="transparent"
-        :foreground="foreground"
-      />
-    </ClientOnly>
     <button class="copylink" @click="copyLink()">
-      {{ i.share.copyLink
-      }}<span class="copy-indicator-wrapper" :class="expand ? 'expanded' : 'folded'">
+      <span class="copylink-text">{{ i.share.copyLink }}</span>
+      <span class="copy-indicator-wrapper" :class="expand ? 'expanded' : 'folded'">
         <svg class="copy-indicator" viewBox="0 0 24 24" width="18" height="18">
           <path
             fill="currentColor"
@@ -22,6 +12,17 @@
         </svg>
       </span>
     </button>
+    <ClientOnly>
+      <QRCodeVue
+        class="qrcode"
+        :value="link"
+        :size="120"
+        render-as="svg"
+        level="L"
+        background="transparent"
+        :foreground="foreground"
+      />
+    </ClientOnly>
   </div>
 </template>
 
@@ -62,89 +63,95 @@ onMounted(() => {
 })
 </script>
 
-<style>
-.share-panel > svg {
-  border-radius: 3px;
-  margin: 0 auto;
-  margin-bottom: 15px;
-}
-
-.share-panel .copy-indicator {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 18px;
-  color: var(--ln-c-green);
-}
-
-.share-panel .copy-indicator-wrapper {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: middle;
-  height: 18px;
-  width: 18px;
-  margin-bottom: 2px;
-  position: relative;
-  transition: max-width 0.3s cubic-bezier(0, 0.5, 0.5, 1);
-}
-
-.share-panel .copy-indicator-wrapper.folded {
-  max-width: 0;
-  transform: translateX(3px);
-}
-
-.share-panel .copy-indicator-wrapper.expanded {
-  max-width: 18px;
-  margin-left: 3px;
-}
-
-@media only screen and (min-width: 768px) {
-  .share-panel {
-    padding: 6px;
-    height: 170px;
-  }
-  .share-panel .copylink {
+<style lang="scss">
+.share-panel {
+  display: flex;
+  flex-direction: column;
+  .copylink {
     display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 40px;
-    font-size: 14px;
-
-    color: var(--vp-c-text-1);
-    background: #75798e10;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-top: var(--vp-c-divider) 1px solid;
-
-    transition: background 0.2s;
   }
-  .share-panel .copylink:hover {
-    background: #c2c7e614;
-  }
-  .share-panel .copylink:active {
-    background: #30323a10;
-    transition: background 0.05s;
-  }
-}
 
-@media only screen and (max-width: 768px) {
-  .share-panel {
-    margin-top: 10px;
-  }
-  .share-panel .copylink {
-    display: block;
-    width: 100%;
-    padding: 8px 0;
-    line-height: 18px;
-    font-size: 14px;
+  @media only screen and (min-width: 768px) {
+    & {
+      margin: -0.75rem;
+    }
+    .copylink {
+      height: 40px;
+      line-height: 40px;
+      font-size: 14px;
 
-    background: var(--vp-c-bg-soft);
+      color: var(--vp-c-text-1);
+      background-color: #75798e10;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      border-bottom: var(--vp-c-divider) 1px solid;
+
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #c2c7e614;
+      }
+      &:active {
+        background-color: #30323a10;
+        transition: background-color 0.05s;
+      }
+    }
+    .qrcode {
+      margin: 1rem;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    & {
+      margin: 0.5rem 0;
+      gap: 1rem;
+      flex-direction: column-reverse;
+    }
+    .copylink {
+      width: 100%;
+      padding: 8px 0;
+      line-height: 18px;
+      font-size: 14px;
+
+      background-color: var(--vp-c-bg-soft);
+      border-radius: 3px;
+      border: var(--vp-c-divider) 1px solid;
+    }
+    .qrcode {
+      margin: 0 auto;
+    }
+  }
+
+  .qrcode {
     border-radius: 3px;
-    border: var(--vp-c-divider) 1px solid;
+  }
+
+  .copy-indicator {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 18px;
+    color: var(--ln-c-green);
+  }
+  .copy-indicator-wrapper {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: middle;
+    height: 18px;
+    width: 18px;
+    margin-bottom: 2px;
+    position: relative;
+    transition: max-width 0.3s cubic-bezier(0, 0.5, 0.5, 1);
+    &.folded {
+      max-width: 0;
+      transform: translateX(3px);
+    }
+    &.expanded {
+      max-width: 18px;
+      margin-left: 3px;
+    }
   }
 }
 </style>
