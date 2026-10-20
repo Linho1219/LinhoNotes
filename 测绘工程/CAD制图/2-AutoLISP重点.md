@@ -70,6 +70,30 @@
 )
 ```
 
+### 两点加宽度绘制矩形并标注面积
+
+```lisp
+(defun c:fd () 
+  (setq pt1 (getpoint "\nPick first point: "))
+  (setq pt2 (getpoint pt1 "\nPick second point: "))
+  (setq alf (angle pt1 pt2))
+  (setq pt6 (list (* (+ (car pt1) (car pt2)) 0.5) 
+                  (* (+ (cadr pt1) (cadr pt2)) 0.5)
+            )
+  )
+
+  (setq alf1 (+ alf (/ pi 2)))
+  (setq h (getdist pt2 "\nEnter height: "))
+  (setq pt3 (polar pt1 alf1 h))
+  (setq pt4 (polar pt2 alf1 h))
+  (setq pt5 (polar pt6 alf1 (/ h 2)))
+
+  (setq p (* (distance pt1 pt2) h))
+  (command "pline" pt1 pt2 pt4 pt3 "c" "text" "j" "mc" pt5 (/ h 10.0) 0 (rtos p 2 3))
+  (princ)
+)
+```
+
 ## 表操作
 
 ### 向用户要求实数，形成表
