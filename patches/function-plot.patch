@@ -1,5 +1,5 @@
 diff --git a/dist/samplers/interval_worker_pool.js b/dist/samplers/interval_worker_pool.js
-index 144edd05b81f40b1005f89c1d10ede198e3f05e2..784870a7bddb9acae548705df397a818c1dcd32e 100644
+index 144edd05b81f40b1005f89c1d10ede198e3f05e2..d25f6a5a29cd25598e2bf903b97f65c9a487cbd7 100644
 --- a/dist/samplers/interval_worker_pool.js
 +++ b/dist/samplers/interval_worker_pool.js
 @@ -1,4 +1,4 @@

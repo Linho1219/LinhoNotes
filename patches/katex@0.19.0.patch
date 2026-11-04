@@ -1,5 +1,5 @@
 diff --git a/dist/katex.mjs b/dist/katex.mjs
-index 10a14abb465a47d53b9aa5813291e6555d314c10..42d59dab439ae1e8c9ae42da964e40fec016b7b2 100644
+index 10a14abb465a47d53b9aa5813291e6555d314c10..08a183f984551e119dd3b11570d7d5efc8741afb 100644
 --- a/dist/katex.mjs
 +++ b/dist/katex.mjs
 @@ -4166,6 +4166,19 @@ defineSymbol(math, main, mathord, "\u03d6", "\\varpi", true);

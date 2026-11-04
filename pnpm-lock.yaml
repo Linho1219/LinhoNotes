@@ -9,8 +9,8 @@ overrides:
   lodash-es: ^4.17.23
 
 patchedDependencies:
-  function-plot: ca5cb5b2d955e3a06284380cce16deb5245e5a5549f6eea07a9dacd21553aea5
-  katex@0.19.0: 64d03550fb2fb64f73ebcfed627d15b7152ead7eb328b0c944260084b435c95f
+  function-plot: 000317870dd69404cabb9f545faf6395f7f7b060d16c93f192522cb07858fa40
+  katex@0.19.0: 28b7fd25ef1bab65b2311b52a696341e9509908262ec84891305eb4b08690dbf
 
 importers:
 
@@ -21,10 +21,10 @@ importers:
         version: 1.0.0
       function-plot:
         specifier: 2.0.0-0
-        version: 2.0.0-0(patch_hash=ca5cb5b2d955e3a06284380cce16deb5245e5a5549f6eea07a9dacd21553aea5)
+        version: 2.0.0-0(patch_hash=000317870dd69404cabb9f545faf6395f7f7b060d16c93f192522cb07858fa40)
       katex:
         specifier: ^0.19.0
-        version: 0.19.0(patch_hash=64d03550fb2fb64f73ebcfed627d15b7152ead7eb328b0c944260084b435c95f)
+        version: 0.19.0(patch_hash=28b7fd25ef1bab65b2311b52a696341e9509908262ec84891305eb4b08690dbf)
       maplibre-gl:
         specifier: ^6.14.0
         version: 6.14.0
@@ -44,8 +44,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       vitepress:
-        specifier: 2.0.0-alpha.20
-        version: 2.0.0-alpha.20(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3)
+        specifier: 2.0.0-alpha.21
+        version: 2.0.0-alpha.21(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3)
       vue:
         specifier: ^3.5.43
         version: 3.5.43(typescript@6.0.3)
@@ -58,7 +58,7 @@ importers:
         version: 8.0.7(@babel/core@8.0.7)
       '@nolebase/vitepress-plugin-highlight-targeted-heading':
         specifier: ^2.18.2
-        version: 2.18.2(supports-color@8.1.1)(vitepress@2.0.0-alpha.20(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3))
+        version: 2.18.2(supports-color@8.1.1)(vitepress@2.0.0-alpha.21(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3))
       '@octokit/rest':
         specifier: ^22.0.1
         version: 22.0.1
@@ -1303,18 +1303,20 @@ packages:
       vue:
         optional: true
 
-  '@vueuse/core@14.4.0':
-    resolution: {integrity: sha512-X4WHz1HlCzCBoYXesUkifzzWBAcZgXG8Fi5iNPQg/epdzOB3gu8Fawj3hvuwYR1nGcXGnvxwYYcUC/71++svtQ==}
+  '@vueuse/core@15.0.0':
+    resolution: {integrity: sha512-Zv67h5mrk7YHDJsRObx+DXaCBz6RKBUpxqLesJ+3xZNPG6yuQs7ja7kg3veFrrouYLWAqydQ7CwGEbLVxB43Ng==}
+    engines: {node: '>=22'}
     peerDependencies:
       vue: ^3.5.0
 
-  '@vueuse/integrations@14.4.0':
-    resolution: {integrity: sha512-oJz9qTgczvA7L1nXQFRU7h8tQbOCoiceqvMMhT9XYMyOGTqLJ2rEa09PON+nD2t48sZUfeOmg4eaWJXV4sZb/w==}
+  '@vueuse/integrations@15.0.0':
+    resolution: {integrity: sha512-uWC1608pEocJPeRk1IqrEA3uYHhAGTJNibcMAdxgdK2Sy2Hypc6b+VdNO9KekCxyPc4VXK8SKDp8vsXefR/ZFg==}
+    engines: {node: '>=22'}
     peerDependencies:
       async-validator: ^4
       axios: ^1
       change-case: ^5
-      drauu: ^0.4
+      drauu: ^1 || ^0.4
       focus-trap: ^7 || ^8
       fuse.js: ^7
       idb-keyval: ^6
@@ -1350,11 +1352,13 @@ packages:
       universal-cookie:
         optional: true
 
-  '@vueuse/metadata@14.4.0':
-    resolution: {integrity: sha512-swx/255R6JyHZFJhx845iz5CRWDZdCfvkZOpACWc5+c5WHcG24mv8gUT1WIdFQaHt6dq79rvILd9QnCWiyVm9g==}
+  '@vueuse/metadata@15.0.0':
+    resolution: {integrity: sha512-sfWE5LADAKJ0KnjtGliMdSN8Ij/L7uP6rXIZlgPloAI4zvvefbw6H5Lt7KJA6RqQOYgVqWF5Guj50HHMIzygBg==}
+    engines: {node: '>=22'}
 
-  '@vueuse/shared@14.4.0':
-    resolution: {integrity: sha512-JRgY90Sz8DDtPMsaDflvPMp9xYk69JZAmbuDvAquUVXKr2gEjqtzGNTTthLfckH0BzBqvnu31gb4a8TGLRe79g==}
+  '@vueuse/shared@15.0.0':
+    resolution: {integrity: sha512-vbNXhGrbV53xPOMSyOzMHQRvhMgZf7oNDw2RChUetVxwTIEkInQ1joZ9JbT0G3z2n2AJNjvmCWeM9ySYrnvogA==}
+    engines: {node: '>=22'}
     peerDependencies:
       vue: ^3.5.0
 
@@ -2662,8 +2666,8 @@ packages:
       vite:
         optional: true
 
-  vitepress@2.0.0-alpha.20:
-    resolution: {integrity: sha512-uQWKmP9PaBkf9zxHn0iOml/ZPPDaGKqQXVMBHz3yjwyyd9Eg+BKLGxbqmOGlfOMCt6Fj8TLiAnE59qlKZ0A3xw==}
+  vitepress@2.0.0-alpha.21:
+    resolution: {integrity: sha512-b2PFPIw2mVfxDi490FhSq4AlkFi17b9lofLCqWfH4uPKz/dF4oy2C9vBpP2r7l7hl2hc5BG7OTRPvRFfRzF7MA==}
     hasBin: true
     peerDependencies:
       markdown-it-mathjax3: ^4
@@ -3408,10 +3412,10 @@ snapshots:
     dependencies:
       '@chevrotain/types': 13.2.0
 
-  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.18.2(supports-color@8.1.1)(vitepress@2.0.0-alpha.20(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3))':
+  '@nolebase/vitepress-plugin-highlight-targeted-heading@2.18.2(supports-color@8.1.1)(vitepress@2.0.0-alpha.21(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3))':
     dependencies:
       less: 4.9.1(supports-color@8.1.1)
-      vitepress: 2.0.0-alpha.20(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3)
+      vitepress: 2.0.0-alpha.21(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -3934,24 +3938,24 @@ snapshots:
       typescript: 6.0.3
       vue: 3.5.43(typescript@6.0.3)
 
-  '@vueuse/core@14.4.0(vue@3.5.43(typescript@6.0.3))':
+  '@vueuse/core@15.0.0(vue@3.5.43(typescript@6.0.3))':
     dependencies:
       '@types/web-bluetooth': 0.0.21
-      '@vueuse/metadata': 14.4.0
-      '@vueuse/shared': 14.4.0(vue@3.5.43(typescript@6.0.3))
+      '@vueuse/metadata': 15.0.0
+      '@vueuse/shared': 15.0.0(vue@3.5.43(typescript@6.0.3))
       vue: 3.5.43(typescript@6.0.3)
 
-  '@vueuse/integrations@14.4.0(focus-trap@8.2.3)(vue@3.5.43(typescript@6.0.3))':
+  '@vueuse/integrations@15.0.0(focus-trap@8.2.3)(vue@3.5.43(typescript@6.0.3))':
     dependencies:
-      '@vueuse/core': 14.4.0(vue@3.5.43(typescript@6.0.3))
-      '@vueuse/shared': 14.4.0(vue@3.5.43(typescript@6.0.3))
+      '@vueuse/core': 15.0.0(vue@3.5.43(typescript@6.0.3))
+      '@vueuse/shared': 15.0.0(vue@3.5.43(typescript@6.0.3))
       vue: 3.5.43(typescript@6.0.3)
     optionalDependencies:
       focus-trap: 8.2.3
 
-  '@vueuse/metadata@14.4.0': {}
+  '@vueuse/metadata@15.0.0': {}
 
-  '@vueuse/shared@14.4.0(vue@3.5.43(typescript@6.0.3))':
+  '@vueuse/shared@15.0.0(vue@3.5.43(typescript@6.0.3))':
     dependencies:
       vue: 3.5.43(typescript@6.0.3)
 
@@ -4372,7 +4376,7 @@ snapshots:
 
   function-bind@1.1.2: {}
 
-  function-plot@2.0.0-0(patch_hash=ca5cb5b2d955e3a06284380cce16deb5245e5a5549f6eea07a9dacd21553aea5):
+  function-plot@2.0.0-0(patch_hash=000317870dd69404cabb9f545faf6395f7f7b060d16c93f192522cb07858fa40):
     dependencies:
       built-in-math-eval: 0.3.2
       d3-axis: 3.0.0
@@ -4507,7 +4511,7 @@ snapshots:
     dependencies:
       commander: 8.3.0
 
-  katex@0.19.0(patch_hash=64d03550fb2fb64f73ebcfed627d15b7152ead7eb328b0c944260084b435c95f):
+  katex@0.19.0(patch_hash=28b7fd25ef1bab65b2311b52a696341e9509908262ec84891305eb4b08690dbf):
     dependencies:
       commander: 15.0.0
 
@@ -5203,7 +5207,7 @@ snapshots:
     optionalDependencies:
       vite: 8.3.4(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.105.1)(sass@1.105.1)
 
-  vitepress@2.0.0-alpha.20(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3):
+  vitepress@2.0.0-alpha.21(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(postcss@8.5.29)(sass-embedded@1.105.1)(sass@1.105.1)(typescript@6.0.3):
     dependencies:
       '@docsearch/css': 4.7.1
       '@docsearch/js': 4.7.1
@@ -5214,8 +5218,8 @@ snapshots:
       '@vitejs/plugin-vue': 6.0.10(vite@8.3.4(@types/node@26.6.5)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.105.1)(sass@1.105.1))(vue@3.5.43(typescript@6.0.3))
       '@vue/devtools-api': 8.2.1
       '@vue/shared': 3.5.43
-      '@vueuse/core': 14.4.0(vue@3.5.43(typescript@6.0.3))
-      '@vueuse/integrations': 14.4.0(focus-trap@8.2.3)(vue@3.5.43(typescript@6.0.3))
+      '@vueuse/core': 15.0.0(vue@3.5.43(typescript@6.0.3))
+      '@vueuse/integrations': 15.0.0(focus-trap@8.2.3)(vue@3.5.43(typescript@6.0.3))
       focus-trap: 8.2.3
       mark.js: 8.11.1
       minisearch: 7.2.0
