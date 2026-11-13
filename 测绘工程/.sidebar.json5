@@ -1,4 +1,5 @@
 {
   pinned: ['摄影测量基础', '遥感原理与应用', '大地测量基础'],
-  bottomed: ['工程测量'],
+  bottomed: ['测量学', '误差理论与测量平差'],
+  collapseAllByDefault: true,
 }
