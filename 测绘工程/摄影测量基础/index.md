@@ -6,8 +6,9 @@
 
 主要使用的教材为：
 
-- *Introduction to Modern Photogrammetry* by Edward M. Mikhail, James S. Bethel, J. Chris McGlone
-- 武汉大学王佩军、徐亚明《摄影测量学（第四版）》
+- _Introduction to Modern Photogrammetry_ by Edward M. Mikhail, James S. Bethel, J. Chris McGlone, `ISBN 0-471-30924-9`
+- 《摄影测量学》（第三版），潘励等，武汉大学出版社，`ISBN 978-7-307-23548-9`
+- 《摄影测量学》（第三版），王佩军、徐亚明，武汉大学出版社，`ISBN 978-7-307-17773-4`
 
 主要教学内容：
 
