@@ -16,6 +16,8 @@ import functionPlot from 'function-plot'
 import JSON5 from 'json5'
 import { ref, onMounted, watchEffect } from 'vue'
 
+type FPObject = FunctionPlotOptions & { center?: [number, number]; disableZoom?: boolean }
+
 const props = defineProps<{
   id: string
   code: string
@@ -38,30 +40,66 @@ function computeScale(width: number, height: number, xScale: Size): Size {
   return [-yDiff / 2, yDiff / 2]
 }
 
+function determineDomain(
+  width: number,
+  height: number,
+  originalOpt: FPObject,
+): { xDomain: Size; yDomain: Size } {
+  if (originalOpt.xAxis?.domain && originalOpt.yAxis?.domain)
+    return {
+      xDomain: originalOpt.xAxis.domain,
+      yDomain: originalOpt.yAxis.domain,
+    }
+  if (originalOpt.xAxis?.domain)
+    return {
+      xDomain: originalOpt.xAxis.domain,
+      yDomain: computeScale(width, height, originalOpt.xAxis.domain),
+    }
+  if (originalOpt.yAxis?.domain)
+    return {
+      xDomain: computeScale(height, width, originalOpt.yAxis.domain),
+      yDomain: originalOpt.yAxis.domain,
+    }
+  if (originalOpt.center) {
+    const [centerX, centerY] = originalOpt.center
+    const xDiff = (X_DOMAIN[1] - X_DOMAIN[0]) / 2
+    const yDiff = (height * xDiff) / width
+    return {
+      xDomain: [centerX - xDiff, centerX + xDiff],
+      yDomain: [centerY - yDiff, centerY + yDiff],
+    }
+  }
+  return {
+    xDomain: X_DOMAIN,
+    yDomain: computeScale(height, width, X_DOMAIN),
+  }
+}
+
+function makeAxis(width: number, height: number, originalOpt: FPObject) {
+  const { xDomain, yDomain } = determineDomain(width, height, originalOpt)
+  return {
+    xAxis: originalOpt.xAxis ? { ...originalOpt.xAxis, domain: xDomain } : { domain: xDomain },
+    yAxis: originalOpt.yAxis ? { ...originalOpt.yAxis, domain: yDomain } : { domain: yDomain },
+  }
+}
+
 onMounted(() => {
   const generateOpt = (
-    originalOpt: FunctionPlotOptions,
+    originalOpt: FPObject,
     [width, height]: Size,
     target: HTMLElement,
-  ): FunctionPlotOptions => ({
+  ): FPObject => ({
     width,
     height,
-    xAxis: {
-      domain: originalOpt.yAxis?.domain
-        ? computeScale(height, width, originalOpt.yAxis.domain)
-        : X_DOMAIN,
-    },
-    yAxis: {
-      domain: computeScale(width, height, originalOpt.xAxis?.domain ?? X_DOMAIN),
-    },
     ...originalOpt,
+    ...makeAxis(width, height, originalOpt),
     target,
   })
 
   if (plotRef.value) {
-    let originalOpt: FunctionPlotOptions | undefined
+    let originalOpt: FPObject | undefined
     try {
-      originalOpt = <FunctionPlotOptions | undefined>JSON5.parse(props.code!)
+      originalOpt = <FPObject | undefined>JSON5.parse(props.code!)
     } catch (eJSON5) {
       errorFlag.value = true
       errorDetails.value = String(eJSON5)
@@ -91,28 +129,27 @@ onMounted(() => {
 })
 </script>
 
-<style>
+<style lang="scss">
 .graph-container {
   color: black;
   user-select: none;
-}
-.graph-container {
   filter: hue-rotate(25deg) brightness(75%);
+  .dark & {
+    filter: invert(100%) hue-rotate(210deg) brightness(133%);
+    .annotations {
+      filter: contrast(30%);
+    }
+  }
+  .fn-text {
+    filter: brightness(60%) saturate(150%);
+  }
+
+  &.disable-zoom .zoom-and-drag {
+    display: none;
+  }
 }
 
-.dark .graph-container {
-  filter: invert(100%) hue-rotate(210deg) brightness(133%);
-}
-.dark .graph-container .annotations {
-  filter: contrast(30%);
-}
-.graph-container .fn-text {
-  filter: brightness(60%) saturate(150%);
-}
 .graph-error pre {
   white-space: pre-wrap;
-}
-.graph-container.disable-zoom .zoom-and-drag {
-  display: none;
 }
 </style>
