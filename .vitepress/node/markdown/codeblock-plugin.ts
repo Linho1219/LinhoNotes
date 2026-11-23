@@ -1,38 +1,7 @@
-import prettier from '@prettier/sync'
-import { getNativeBinary } from 'clang-format'
 import JSON5 from 'json5'
 import type MarkdownIt from 'markdown-it'
-import { execFileSync, execSync } from 'node:child_process'
 import path from 'node:path'
 import { encodeHtmlAttr } from './utils.ts'
-
-const prettierTable: Record<string, string> = {
-  ts: 'typescript',
-  typescript: 'typescript',
-  js: 'babel',
-  javascript: 'babel',
-  css: 'css',
-  scss: 'scss',
-  less: 'less',
-  json: 'json',
-  json5: 'json5',
-  jsonc: 'jsonc',
-  markdown: 'markdown',
-  md: 'markdown',
-  html: 'html',
-  vue: 'vue',
-  angular: 'angular',
-  yaml: 'yaml',
-}
-const clangs = ['c', 'c++', 'cpp', 'cxx']
-const clangFormatStyle = '{BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 75}'
-// Resolve once so each fence can skip the shell and the npm wrapper.
-let clangFormatBinary: string | undefined
-try {
-  clangFormatBinary = getNativeBinary()
-} catch {
-  // On platforms without a bundled binary, try the existing PATH command.
-}
 
 interface FileWidgetDescriptor {
   kind: string
@@ -88,29 +57,6 @@ export default function mdPlot(md: MarkdownIt): void {
     }
 
     const info = tokens[idx].info
-
-    // 代码格式化
-    if (!/:escape-format\b/.test(info)) {
-      if (prettierTable[language]) {
-        try {
-          token.content = prettier.format(token.content, {
-            parser: prettierTable[language],
-            printWidth: 76,
-          })
-        } catch (err) {
-          if (process.env.NODE_ENV !== 'production') console.warn('\nIllegal code:' + String(err))
-        }
-      } else if (clangs.includes(language.toLowerCase())) {
-        try {
-          const formatOptions = { input: token.content, encoding: 'utf-8' } as const
-          token.content = clangFormatBinary
-            ? execFileSync(clangFormatBinary, [`-style=${clangFormatStyle}`], formatOptions)
-            : execSync(`clang-format -style="${clangFormatStyle}"`, formatOptions)
-        } catch (err) {
-          if (process.env.NODE_ENV !== 'production') console.warn('\nIllegal code' + String(err))
-        }
-      }
-    }
 
     const extraClasses: string[] = ['code-block']
     if (/:wrap\b/.test(info)) extraClasses.push('code-block-wrap')
