@@ -1,4 +1,4 @@
-import { miscI18n } from '../i18n'
+import { miscI18n } from '../i18n.ts'
 import { DefaultTheme } from 'vitepress'
 
 export type Nav = {

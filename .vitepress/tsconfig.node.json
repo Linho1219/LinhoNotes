@@ -8,6 +8,7 @@
     "types": ["node"],
     "paths": { "#shared/*": ["./shared/*"] },
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true
   }
 }

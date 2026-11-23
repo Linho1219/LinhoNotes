@@ -3,7 +3,7 @@ import { execSync } from 'child_process'
 import JSON5 from 'json5'
 import type MarkdownIt from 'markdown-it'
 import path from 'node:path'
-import { encodeHtmlAttr } from './utils'
+import { encodeHtmlAttr } from './utils.ts'
 
 const prettierTable: Record<string, string> = {
   ts: 'typescript',

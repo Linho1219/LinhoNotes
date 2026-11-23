@@ -1,5 +1,5 @@
 import { exactRegex } from '@rolldown/pluginutils'
-import PaletteJSON from '#shared/palette.json'
+import PaletteJSON from '#shared/palette.json' with { type: 'json' }
 
 const PaletteCSS = /* css */ `
 :root {

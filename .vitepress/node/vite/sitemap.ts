@@ -1,4 +1,4 @@
-import site from '#shared/site.json'
+import site from '#shared/site.json' with { type: 'json' }
 import fs from 'fs'
 import { SiteConfig } from 'vitepress'
 

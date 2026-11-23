@@ -8,7 +8,7 @@
  * 头像会被下载到 public/avatars/<username>.png。
  * 完整介绍见 <https://notes.linho.cc/s?q=f23023157b>。
  */
-import site from '#shared/site.json'
+import site from '#shared/site.json' with { type: 'json' }
 import { Octokit } from '@octokit/rest'
 import 'dotenv/config'
 import fs from 'fs'

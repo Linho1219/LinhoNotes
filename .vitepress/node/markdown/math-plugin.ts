@@ -3,7 +3,7 @@ import { escape } from 'lodash-es'
 import katex from 'katex'
 import 'katex/contrib/mhchem'
 import type MarkdownIt from 'markdown-it'
-import { encodeHtmlAttr } from './utils'
+import { encodeHtmlAttr } from './utils.ts'
 
 const mathRenderMode = process.env.MATH_RENDER_MODE ?? 'component'
 

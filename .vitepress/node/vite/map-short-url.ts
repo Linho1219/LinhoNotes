@@ -5,7 +5,7 @@ import {
   normalizePagePath,
   SHORT_ID_LENGTH,
 } from '#shared/short-url'
-import site from '#shared/site.json'
+import site from '#shared/site.json' with { type: 'json' }
 import fs from 'node:fs'
 import path from 'node:path'
 import { escape } from 'lodash-es'
