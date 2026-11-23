@@ -26,14 +26,11 @@ VitePress 的 Markdown 编译链路可以称得上「暴力」：
 >
 > ```ts
 > const vueSrc = [
->   ...injectPageDataCode(
->     sfcBlocks?.scripts.map((item) => item.content) ?? [],
->     pageData,
->   ),
+>   ...injectPageDataCode(sfcBlocks?.scripts.map((item) => item.content) ?? [], pageData),
 >   `<template><div>${html}</div></template>`,
 >   ...(sfcBlocks?.styles.map((item) => item.content) ?? []),
 >   ...(sfcBlocks?.customBlocks.map((item) => item.content) ?? []),
-> ].join("\n");
+> ].join('\n')
 > ```
 
 也就是说，每一篇 Markdown 在经过 Markdown-it 解析之后的 HTML 产物，还要作为 Vue 模板再走一遍 Vue 编译器再解析一遍，产生 JS 加上 SSR 产出的 HTML。JS 和 HTML 各自一份完整的 Markdown 产物信息，HTML 负责首屏、JS 负责水合（hydration）和后续加载。
@@ -65,18 +62,13 @@ VitePress 内建的公式支持本质上是在 Markdown-it 中接入 `markdown-i
 
 构建的绝对耗时在不同性能的设备上会有差异，但趋势与比例是大致相当的。确实是公式渲染带来了显著的性能问题。
 
-## 解决
+## 一阶段优化：KaTeX 预渲染 HTML
 
-目标很明确，就是让 Markdown-it 产出的 HTML 更轻。有两种思路：
+目标很明确，就是让 Markdown-it 产出的 HTML 更轻。
 
-- 不再渲染完整的 SVG 进入 Markdown-it 产物，而是采取更轻量的渲染器，例如 KaTeX 的 HTML/CSS 模式，使用文本元素配合 webfont 显示公式
-  - 优点：前端无需 JS，首屏性能优良，字体缓存后切页不易出现布局闪烁
-  - 缺点：仍然会产生不少节点
-- 构建时不再执行渲染，而是在浏览器访问页面时渲染公式
-  - 优点：进一步减轻构建负担
-  - 缺点：前端首屏更慢、切页时布局闪烁，对低性能设备不友好，禁用 JS 时无法显示公式
+我们可以不再渲染完整的 SVG 进入 Markdown-it 产物，而是采取更轻量的渲染器，例如 KaTeX 的 HTML/CSS 模式，它使用文本元素配合 webfont 显示公式。这样 DOM 里就不再有 SVG path，大部分都只是符号布局信息，会轻很多。虽然仍然会生成不少 `<span>`，但节点结构已经比 SVG path 轻得多，Vue 编译器需要处理的字符串体积和节点复杂度都会明显下降。
 
-我最后采取的是构建时 KaTeX 渲染的方案。KaTeX 产生的 HTML 比 MathJax SVG 更适合塞进 Vue 模板里。虽然仍然会生成不少 `<span>`，但节点结构已经比 SVG path 轻得多，Vue 编译器需要处理的字符串体积和节点复杂度都会明显下降。
+使用 webfont 渲染符号的坏处是第一次打开需要额外加载，会有短暂的布局闪烁。但是字体缓存之后就不会有这个问题了。而且同一符号的形状信息无需重复保存或请求，也降低了网络流量。
 
 再跑测试，构建耗时和峰值 RAM 相比 MathJax 有显著下降，虽然比起完全不渲染还是有开销，但已经回到了可接受、可持续的范围。
 
@@ -88,4 +80,89 @@ VitePress 内建的公式支持本质上是在 Markdown-it 中接入 `markdown-i
 
 KaTeX 有一些小毛病，比如有一些命令不支持，不过调整一下公式写法基本都能处理得了。
 
-如果要进一步优化的话就是用前端渲染方案了。
+## 二阶段优化：KaTeX 首屏 SSR + 路由时前端渲染
+
+过了一段时间觉得还是可以再优化一下。最终采用了首屏 SSR + 路由时前端渲染的方案。
+
+详细来说，在 Markdown 渲染时，将公式块包装成一个 Vue 组件：
+
+```ts
+const encodeHtmlAttr = (value: string) => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
+
+const renderComponent = (content: string, displayMode: boolean) =>
+  `<Formula code="${encodeHtmlAttr(content)}"${displayMode ? ' display' : ''} />`
+
+md.renderer.rules.math_inline = (tokens, idx) => renderComponent(tokens[idx].content, false)
+md.renderer.rules.math_block = (tokens, idx) => renderComponent(tokens[idx].content, true)
+```
+
+然后在 Vue 组件这边执行渲染：
+
+```vue
+<template>
+  <div v-if="display" class="formula-block" v-html="html"></div>
+  <span v-else class="formula-inline" v-html="html"></span>
+</template>
+
+<script setup lang="ts">
+import { mathMacros } from '#shared/math'
+import katex from 'katex'
+import 'katex/contrib/mhchem'
+
+const props = defineProps<{
+  code: string
+  display?: boolean
+}>()
+
+const html = katex.renderToString(props.code, {
+  displayMode: props.display,
+  macros: mathMacros,
+  output: 'html',
+  strict: false,
+  throwOnError: true,
+  trust: false,
+})
+</script>
+```
+
+由于 VitePress 的 SSR 策略，在构建阶段的时候这段代码会运行并渲染出公式 HTML，放入首屏的 HTML 中。在 Vue 加载之后，对应的 HTML 会发生水合（hydration），其中逻辑被页面 JS 接管。此后导航时，不会再下载 SSR 产物，而是请求对应页面的 JS，由前端渲染公式。此时 JS 中就是原本的 LaTeX 公式代码了。
+
+这样的好处是，既保留了首屏加载的性能，又让 Vue 编译器不需要再将 KaTeX 生成的 HTML 作为模板解析，进一步加快了构建。而导航时由于 JS 已经加载，渲染公式也几乎没什么性能开销，我是没感觉有卡顿。而且导航时只下载 LaTeX 源码，不需要下载与稿件的公式 HTML，还节省了流量。
+
+值得一提的是这里还有个小 trick。其实我们的公式组件是没有必要水合的。因为它只做渲染这一件事，相同的代码总是渲染出相同的 HTML，没有必要在首屏 SSR 已经有预渲染结果的情况下，再跑渲染。`defineAsyncComponent` 函数允许我们自定义水合的时机，其中的 `hydrate` 属性的签名是：
+
+```ts
+/**
+ * A lazy hydration strategy for async components.
+ * @param hydrate - call this to perform the actual hydration.
+ * @param forEachElement - iterate through the root elements of the component's
+ *                         non-hydrated DOM, accounting for possible fragments.
+ * @returns a teardown function to be called if the async component is unmounted
+ *          before it is hydrated. This can be used to e.g. remove DOM event
+ *          listeners.
+ */
+export type HydrationStrategy = (
+  hydrate: () => void,
+  forEachElement: (cb: (el: Element) => any) => void,
+) => (() => void) | void
+```
+
+传入一个空函数，永远不会调用 `hydrate` 参数，自然就永远不会水合了。
+
+```ts
+import { defineAsyncComponent } from 'vue'
+
+const Formula = defineAsyncComponent({
+  loader: () => import('@components/formula.vue'),
+  hydrate: () => {},
+})
+```
+
+由于两次方案中间隔了一段时间，网站的内容是有变化的，不能直接把两次的测量结果放在一起比较，所以重新测了一下：
+
+| 方案         | 构建耗时 / s | 峰值 RAM / GB | JS 总量 / MB |
+| ------------ | ------------ | ------------- | ------------ |
+| KaTeX 预渲染 | 270.7        | 6.62          | 60.92        |
+| KaTeX 组件   | 140.9        | 3.92          | 23.30        |
+
+整体有相当明显的提升，在 CI 上也能看得出来，现在每次站点构建并部署到 GitHub Pages，整个工作流用时一般在两分钟多，不超过三分钟。目前这就是本站使用的公式渲染方案，这方面可以说已经基本优化到顶了，如果要继续优化构建性能，应该就得考虑其他路径了。
