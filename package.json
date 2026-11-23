@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "cross-env NODE_OPTIONS='--max-old-space-size=16384' vitepress build",
+    "build": "cross-env NODE_OPTIONS='--max-old-space-size=1536' vitepress build",
     "preview": "vitepress preview",
     "typecheck": "vue-tsc --build .vitepress/tsconfig.json",
     "format": "prettier --write .vitepress/",

@@ -12,3 +12,7 @@ declare module 'markdown-it-sub' {
   import type MarkdownIt from 'markdown-it'
   export default function (md: MarkdownIt): void
 }
+
+declare module 'clang-format' {
+  export function getNativeBinary(): string
+}

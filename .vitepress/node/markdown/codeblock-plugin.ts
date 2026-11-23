@@ -1,7 +1,8 @@
 import prettier from '@prettier/sync'
-import { execSync } from 'child_process'
+import { getNativeBinary } from 'clang-format'
 import JSON5 from 'json5'
 import type MarkdownIt from 'markdown-it'
+import { execFileSync, execSync } from 'node:child_process'
 import path from 'node:path'
 import { encodeHtmlAttr } from './utils.ts'
 
@@ -24,6 +25,14 @@ const prettierTable: Record<string, string> = {
   yaml: 'yaml',
 }
 const clangs = ['c', 'c++', 'cpp', 'cxx']
+const clangFormatStyle = '{BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 75}'
+// Resolve once so each fence can skip the shell and the npm wrapper.
+let clangFormatBinary: string | undefined
+try {
+  clangFormatBinary = getNativeBinary()
+} catch {
+  // On platforms without a bundled binary, try the existing PATH command.
+}
 
 interface FileWidgetDescriptor {
   kind: string
@@ -93,11 +102,10 @@ export default function mdPlot(md: MarkdownIt): void {
         }
       } else if (clangs.includes(language.toLowerCase())) {
         try {
-          const formatted = execSync(
-            `clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 75}"`,
-            { input: token.content, encoding: 'utf-8' },
-          )
-          token.content = formatted
+          const formatOptions = { input: token.content, encoding: 'utf-8' } as const
+          token.content = clangFormatBinary
+            ? execFileSync(clangFormatBinary, [`-style=${clangFormatStyle}`], formatOptions)
+            : execSync(`clang-format -style="${clangFormatStyle}"`, formatOptions)
         } catch (err) {
           if (process.env.NODE_ENV !== 'production') console.warn('\nIllegal code' + String(err))
         }
