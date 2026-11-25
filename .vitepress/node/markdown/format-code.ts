@@ -1,9 +1,8 @@
 import { getNativeBinary } from 'clang-format'
-import type { Token } from 'markdown-it'
 import { exec, execFile } from 'node:child_process'
 import { availableParallelism } from 'node:os'
 import prettier from 'prettier'
-import type { MarkdownRenderer } from 'vitepress'
+import { CodeFenceProcessHook } from './code-fence-process'
 
 const prettierParsers = new Map([
   ['ts', 'typescript'],
@@ -64,45 +63,25 @@ function createClangFormatter() {
   }
 }
 
-export default function formatCodeFences(md: MarkdownRenderer) {
-  const formatClang = createClangFormatter()
-  const render = md.render.bind(md)
-  const renderAsync = md.renderAsync.bind(md)
-  const prepared = new WeakMap<object, Token[]>()
+const formatClang = createClangFormatter()
 
-  md.render = (src, env) => {
-    const tokens = env && prepared.get(env)
-    if (!tokens) return render(src, env)
-    prepared.delete(env)
-    return md.renderer.render(tokens, md.options, env)
-  }
+export const codeFormatProcessHook: CodeFenceProcessHook = (token) => {
+  if (/:escape-format\b/.test(token.info)) return null
+  const language = token.info.trim()
+  const prettierParser = prettierParsers.get(language)
+  const clangMatch = clangLanguages.test(language)
+  if (!prettierParser && !clangMatch) return null
 
-  // preConfig runs before VitePress wraps renderAsync to expand Markdown includes.
-  md.renderAsync = async (src, env) => {
-    env ??= {}
-    const tokens = md.parse(src, env)
-    const tasks = tokens
-      .filter((token) => token.type === 'fence' && !token.meta?.src)
-      .map(async (token) => {
-        if (/:escape-format\b/.test(token.info)) return
-        const language = token.info.trim()
-        const prettierParser = prettierParsers.get(language)
-        try {
-          if (prettierParser)
-            token.content = await prettier.format(token.content, {
-              parser: prettierParser,
-              printWidth: 75,
-            })
-          else if (clangLanguages.test(language)) token.content = await formatClang(token.content)
-        } catch (error) {
-          if (process.env.NODE_ENV !== 'production')
-            console.warn('\nIllegal code: ' + String(error))
-        }
-      })
-    if (tasks.length) await Promise.all(tasks)
-
-    // MarkdownItAsync calls render synchronously, then resolves Shiki's placeholders.
-    prepared.set(env, tokens)
-    return renderAsync(src, env)
-  }
+  return (async () => {
+    try {
+      if (prettierParser)
+        token.content = await prettier.format(token.content, {
+          parser: prettierParser,
+          printWidth: 75,
+        })
+      else if (clangMatch) token.content = await formatClang(token.content)
+    } catch (error) {
+      if (process.env.NODE_ENV !== 'production') console.warn('\nIllegal code: ' + String(error))
+    }
+  })()
 }

@@ -1,6 +1,7 @@
 import JSON5 from 'json5'
 import type MarkdownIt from 'markdown-it'
 import path from 'node:path'
+import { markmapDir, markmapFilename } from './markmap-assets.ts'
 import { encodeHtmlAttr } from './utils.ts'
 
 interface FileWidgetDescriptor {
@@ -23,6 +24,13 @@ export default function mdPlot(md: MarkdownIt): void {
   md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
     const language = token.info.trim()
+    if (language === 'markmap') {
+      const importer = (env.realPath ?? env.path) as string | undefined
+      if (!importer) throw new Error('Cannot resolve markmap asset without a Markdown path')
+      const asset = path.join(markmapDir, markmapFilename(token.content))
+      const src = md.utils.escapeHtml(getAssetUrl(asset, importer))
+      return `<p><img src="${src}" alt="Mind map" data-image-viewer="image" data-image-type="block" loading="lazy"></p>`
+    }
     if (language.startsWith('mermaid'))
       return /* html */ `<ClientOnly><Mermaid id="mermaid-${idx}" code="${encodeHtmlAttr(
         token.content,

@@ -447,7 +447,7 @@ onUnmounted(() => document.removeEventListener('keydown', escapeListener))
   --white: black;
   --gray: #141417;
   .viewer-img-inner {
-    filter: invert(100%) hue-rotate(180deg) contrast(80%) !important;
+    filter: var(--image-invert-filter) !important;
   }
 }
 .viewer-img.filteroff .viewer-img-inner {

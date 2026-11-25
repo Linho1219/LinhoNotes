@@ -5,7 +5,7 @@ import { createContainer } from './node/markdown/custom-container-plugin.ts'
 import mdLinkClass from './node/markdown/custom-link-classname-plugin.ts'
 import mdWrapper from './node/markdown/custom-wrapper-plugin.ts'
 import mdFootNotePlus from './node/markdown/footnote-plugin.ts'
-import formatCodeFences from './node/markdown/format-code-plugin.ts'
+import mdCodeFenceProcessHook from './node/markdown/code-fence-process.ts'
 import mdGfmAlertPlugin from './node/markdown/gfm-alert-plugin.ts'
 import mdImageViewer from './node/markdown/image-plugin.ts'
 import mdMath from './node/markdown/math-plugin.ts'
@@ -90,7 +90,7 @@ export default {
   },
   markdown: {
     languageAlias: { graph: 'json5' },
-    preConfig: formatCodeFences,
+    preConfig: mdCodeFenceProcessHook,
     config: (md) => {
       md.use(groupIconMdPlugin)
         .use(mdFootNotePlus)

@@ -65,6 +65,6 @@ mermaid.render(props.id, props.code).then(
   white-space: pre-wrap;
 }
 .dark .mermaid_container {
-  filter: invert() hue-rotate(180deg) contrast(80%) brightness(120%);
+  filter: var(--image-invert-filter);
 }
 </style>

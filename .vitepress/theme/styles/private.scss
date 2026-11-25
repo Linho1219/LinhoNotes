@@ -1,8 +1,12 @@
 // ====== 私有特性 ======
 
+:root{
+  --image-invert-filter: invert(100%) hue-rotate(180deg) contrast(80%) brightness(120%);
+}
+
 // 图片颜色反转
 .dark .vp-doc img:not([alt*='&keep-color']) {
-  filter: invert(100%) hue-rotate(180deg) contrast(80%);
+  filter: var(--image-invert-filter);
 }
 
 // 图片大小标记
