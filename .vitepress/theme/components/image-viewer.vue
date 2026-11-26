@@ -189,6 +189,7 @@ const openSvg = (container: HTMLElement) => {
 const handleGlobalClick = (event: MouseEvent) => {
   const target = event.target
   if (!(target instanceof Element)) return
+  if (target.closest('a[href]')) return
   const trigger = target.closest<HTMLElement>('.vp-doc [data-image-viewer]')
   if (!trigger) return
   event.preventDefault()

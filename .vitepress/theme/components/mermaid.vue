@@ -1,8 +1,8 @@
 <template>
-  <div class="mermaid">
+  <div class="mermaid-component">
     <div
       v-if="!errorFlag"
-      class="mermaid_container"
+      class="mermaid-container"
       data-image-viewer="svg"
       :data-image-viewer-width="initWidth"
       :data-image-viewer-height="initHeight"
@@ -10,7 +10,7 @@
     ></div>
     <div v-if="errorFlag" class="mermaid-error caution custom-block github-alert">
       <p class="custom-block-title">Mermaid 渲染错误</p>
-      <pre v-html="errorDetails"></pre>
+      <pre>{{ errorDetails }}</pre>
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ import { useData } from 'vitepress'
 import { computed, ref, watch } from 'vue'
 
 const { isDark } = useData()
-const theme = computed(() => (isDark.value ? 'dark' : 'light'))
+const colorScheme = computed(() => (isDark.value ? 'dark' : 'light'))
 
 const svgRef = ref(''),
   errorFlag = ref(false),
@@ -44,7 +44,7 @@ const renderCache = {
   dark: null as RenderResult | null,
 }
 
-async function renderMermaid() {
+async function renderMermaid(): Promise<RenderResult> {
   const output = await mermaid.render(props.id, props.code, {
     config: { theme: isDark.value ? 'redux-dark' : 'redux' },
   })
@@ -64,10 +64,10 @@ function applyRenderResult(result: RenderResult) {
 
 async function updateMermaid() {
   if (errorFlag.value) return
-  if (renderCache[theme.value]) return applyRenderResult(renderCache[theme.value]!)
+  if (renderCache[colorScheme.value]) return applyRenderResult(renderCache[colorScheme.value]!)
   try {
     const result = await renderMermaid()
-    renderCache[theme.value] = result
+    renderCache[colorScheme.value] = result
     applyRenderResult(result)
   } catch (error) {
     errorFlag.value = true
@@ -80,21 +80,22 @@ watch(() => isDark.value, updateMermaid, { immediate: true })
 </script>
 
 <style lang="scss" scoped>
-.mermaid {
-  --mermaid-fontFamily: var(--vp-font-family-base);
+.mermaid-component {
+  margin: 1rem 0;
 }
-
-.mermaid_container {
-  &,
-  & p {
-    line-height: 1.5em !important;
-    user-select: none;
-  }
-  svg {
+.mermaid-container {
+  user-select: none;
+  :deep(.mermaid) {
     margin: 0 auto;
   }
 }
 .mermaid-error pre {
   white-space: pre-wrap;
+}
+</style>
+
+<style>
+:root {
+  --mermaid-fontFamily: var(--vp-font-family-base);
 }
 </style>

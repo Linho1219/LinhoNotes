@@ -1,12 +1,11 @@
 import type { MarkdownRenderer } from 'vitepress'
 import { Token } from 'markdown-it'
-import { markmapProcessHook } from './markmap-assets.ts'
 import { codeFormatProcessHook } from './format-code.ts'
 
 /** Return `null` to fall through to the next hook, or a `Promise<void>` to handle the token asynchronously. */
 export type CodeFenceProcessHook = (token: Token) => null | Promise<void>
 
-const codeFenceProcessHooks: CodeFenceProcessHook[] = [markmapProcessHook, codeFormatProcessHook]
+const codeFenceProcessHooks: CodeFenceProcessHook[] = [codeFormatProcessHook]
 
 export default function mdCodeFenceProcessHook(md: MarkdownRenderer) {
   const render = md.render.bind(md)

@@ -2,7 +2,7 @@ import { getNativeBinary } from 'clang-format'
 import { exec, execFile } from 'node:child_process'
 import { availableParallelism } from 'node:os'
 import prettier from 'prettier'
-import { CodeFenceProcessHook } from './code-fence-process.ts'
+import { CodeFenceProcessHook } from './codeblock-process.ts'
 
 const prettierParsers = new Map([
   ['ts', 'typescript'],
@@ -22,7 +22,7 @@ const prettierParsers = new Map([
   ['angular', 'angular'],
   ['yaml', 'yaml'],
 ])
-const clangLanguages = /^(c|c\+\+|cpp|cxx)$/i
+const clangLanguages = /^(?:c|c\+\+|cpp|cxx)\b/i
 const clangStyle = '{BasedOnStyle: llvm, IndentWidth: 4, ColumnLimit: 75}'
 
 function createClangFormatter() {

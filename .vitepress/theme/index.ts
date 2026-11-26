@@ -12,6 +12,7 @@ import './styles/private.scss'
 import Cadpa from '@components/cadpa.vue'
 import Cloze from '@components/cloze.vue'
 import Mermaid from '@components/mermaid.vue'
+import Markmap from './components/markmap.vue'
 import NavDivider from '@components/nav-divider.vue'
 import Tag from '@components/tag.vue'
 import Baseline from '@features/baseline/baseline.vue'
@@ -39,6 +40,7 @@ export default {
   Layout,
   enhanceApp: async ({ app }) => {
     app.component('Mermaid', Mermaid)
+    app.component('Markmap', Markmap)
     app.component('Plot', Plot)
     app.component('T', Tag)
     app.component('Tag', Tag)
