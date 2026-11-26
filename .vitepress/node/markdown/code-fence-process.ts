@@ -3,6 +3,7 @@ import { Token } from 'markdown-it'
 import { markmapProcessHook } from './markmap-assets'
 import { codeFormatProcessHook } from './format-code'
 
+/** Return `null` to fall through to the next hook, or a `Promise<void>` to handle the token asynchronously. */
 export type CodeFenceProcessHook = (token: Token) => null | Promise<void>
 
 const codeFenceProcessHooks: CodeFenceProcessHook[] = [markmapProcessHook, codeFormatProcessHook]
@@ -28,7 +29,7 @@ export default function mdCodeFenceProcessHook(md: MarkdownRenderer) {
       .map(async (token) => {
         for (const hook of codeFenceProcessHooks) {
           const promise = hook(token)
-          if (hook(token) !== null) return promise
+          if (promise !== null) return promise
         }
       })
     if (tasks.length) await Promise.all(tasks)
