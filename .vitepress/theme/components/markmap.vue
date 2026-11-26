@@ -78,7 +78,10 @@ async function renderMarkmap(): Promise<RenderResult> {
     background: false,
     colorScheme: colorScheme.value,
     padding: 0,
-  }).replace(/(?<=<svg[^>]+)width=".+?" height=".+?"/, 'width="100%"')
+  }).replace(
+    /(?<=<svg[^>]+)width=".+?" height=".+?"/,
+    `width="100%" style="max-width: ${output.bounds.width}px;"`,
+  )
   return {
     svg,
     width: output.bounds.width,
