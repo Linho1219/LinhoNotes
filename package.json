@@ -18,7 +18,7 @@
     "function-plot": "2.0.0-0",
     "katex": "=0.19.0",
     "maplibre-gl": "^6.19.0",
-    "mermaid": "^12.3.0",
+    "mermaid": "=13.0.0-alpha.3",
     "mitt": "^3.0.1",
     "nanoid": "^6.0.2",
     "qrcode.vue": "^3.11.1",

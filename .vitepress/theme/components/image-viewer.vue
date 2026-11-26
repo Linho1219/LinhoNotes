@@ -11,7 +11,7 @@
         class="viewer-img"
         :class="{
           filter: filterEnabled,
-          filteroff: !filterEnabled,
+          darkcheckboard: darkCheckboard,
           transition: transitionEnabled,
         }"
         :style="style"
@@ -29,8 +29,8 @@
       <div class="viewer-toolbar" @touchstart.stop.passive="null">
         {{ Math.round(scale * 100) }}%
         <button
-          v-if="isDark"
-          class="viewer-filter"
+          v-if="isDark && !escapeFilter"
+          class="viewer-filter-button"
           :class="{ enabled: filterEnabled && isDark }"
           @click="filterEnabled = !filterEnabled"
         >
@@ -108,6 +108,8 @@ const style = computed<StyleValue>(() => ({
 }))
 const transitionEnabled = ref(false)
 const filterEnabled = ref(false)
+const escapeFilter = ref(false)
+const darkCheckboard = computed(() => isDark.value && (escapeFilter.value || filterEnabled.value))
 
 // 维护窗口大小信息
 const getWindowResize = () =>
@@ -125,6 +127,7 @@ const open = (payload: {
   alt: string
   initWidth: number
   initHeight: number
+  escapeFilter?: boolean
 }) => {
   current.src = payload.src ?? ''
   current.svg = payload.svg ?? ''
@@ -139,7 +142,8 @@ const open = (payload: {
   )
   zoomRange.min = Math.min(MIN_ZOOM, scale.value)
   transitionEnabled.value = false
-  filterEnabled.value = Boolean(isDark.value && !current.alt.includes('&keep-color'))
+  filterEnabled.value = Boolean(isDark.value && !payload.escapeFilter)
+  escapeFilter.value = Boolean(payload.escapeFilter)
   isShown.value = true
 }
 
@@ -157,10 +161,11 @@ const openImage = (img: HTMLImageElement) => {
     alt: img.alt,
     initWidth,
     initHeight,
+    escapeFilter: img.alt.includes('&keep-color'),
   })
 }
 
-const openMermaid = (container: HTMLElement) => {
+const openSvg = (container: HTMLElement) => {
   const svg = container.querySelector('svg')
   if (!svg) return
   const initWidth =
@@ -177,6 +182,7 @@ const openMermaid = (container: HTMLElement) => {
     alt: '',
     initWidth,
     initHeight,
+    escapeFilter: true,
   })
 }
 
@@ -189,8 +195,8 @@ const handleGlobalClick = (event: MouseEvent) => {
   const type = trigger.dataset.imageViewer
   if (type === 'image' && trigger instanceof HTMLImageElement) {
     openImage(trigger)
-  } else if (type === 'mermaid') {
-    openMermaid(trigger)
+  } else if (type === 'svg') {
+    openSvg(trigger)
   }
 }
 
@@ -359,7 +365,14 @@ onMounted(() => document.addEventListener('keydown', escapeListener))
 onUnmounted(() => document.removeEventListener('keydown', escapeListener))
 </script>
 
-<style lang="scss">
+<style>
+body:has(.viewer-wrapper) {
+  overflow: hidden;
+  touch-action: none;
+}
+</style>
+
+<style lang="scss" scoped>
 .viewer-wrapper {
   position: fixed;
   top: 0;
@@ -401,6 +414,16 @@ onUnmounted(() => document.removeEventListener('keydown', escapeListener))
   &:active {
     cursor: grabbing;
   }
+
+  &.filter {
+    .viewer-img-inner {
+      filter: var(--image-invert-filter) !important;
+    }
+  }
+  &.darkcheckboard {
+    --white: black;
+    --gray: #141417;
+  }
 }
 
 .viewer-img-inner,
@@ -409,10 +432,6 @@ onUnmounted(() => document.removeEventListener('keydown', escapeListener))
   height: 100%;
   max-width: unset !important;
   max-height: unset !important;
-}
-
-.viewer-img-inner.image {
-  border-radius: 0;
 }
 
 .viewer-toolbar {
@@ -432,26 +451,17 @@ onUnmounted(() => document.removeEventListener('keydown', escapeListener))
   border: #8885 1px solid;
   box-shadow: #0005 0 0 15px;
   transition: transform 0.2s cubic-bezier(0.08, 0.61, 0.45, 1);
-}
-.viewer-filter {
-  vertical-align: text-bottom;
-  padding-left: 10px;
-  margin-left: 6px;
-  border-left: 1px solid #fff6;
-  transition: color 0.1s;
-  &.enabled {
-    color: var(--vp-c-brand);
+
+  .viewer-filter-button {
+    vertical-align: text-bottom;
+    padding-left: 10px;
+    margin-left: 6px;
+    border-left: 1px solid #fff6;
+    transition: color 0.1s;
+    &.enabled {
+      color: var(--vp-c-brand);
+    }
   }
-}
-.viewer-img.filter {
-  --white: black;
-  --gray: #141417;
-  .viewer-img-inner {
-    filter: var(--image-invert-filter) !important;
-  }
-}
-.viewer-img.filteroff .viewer-img-inner {
-  filter: none !important;
 }
 
 .viewer-wrapper {
@@ -468,10 +478,5 @@ onUnmounted(() => document.removeEventListener('keydown', escapeListener))
   &-enter-to {
     opacity: 1;
   }
-}
-
-body:has(.viewer-wrapper) {
-  overflow: hidden;
-  touch-action: none;
 }
 </style>

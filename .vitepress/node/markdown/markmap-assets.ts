@@ -11,7 +11,7 @@ import {
 import { createHash } from 'node:crypto'
 import { access, mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
-import { CodeFenceProcessHook } from './code-fence-process'
+import { CodeFenceProcessHook } from './code-fence-process.ts'
 
 export const markmapDir = path.resolve('.vitepress/cache/markmap')
 

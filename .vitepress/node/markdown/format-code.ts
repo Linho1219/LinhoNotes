@@ -2,7 +2,7 @@ import { getNativeBinary } from 'clang-format'
 import { exec, execFile } from 'node:child_process'
 import { availableParallelism } from 'node:os'
 import prettier from 'prettier'
-import { CodeFenceProcessHook } from './code-fence-process'
+import { CodeFenceProcessHook } from './code-fence-process.ts'
 
 const prettierParsers = new Map([
   ['ts', 'typescript'],
