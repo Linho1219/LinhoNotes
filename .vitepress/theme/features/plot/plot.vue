@@ -1,20 +1,15 @@
 <template>
   <div
     class="graph"
-    :class="{ noInteract: !interactActivated }"
+    :class="{ 'no-interact': !interactActivated }"
     ref="shellRef"
     @click.once="interactActivated = true"
   >
-    <PlotRender
-      :id="props.id"
-      :code="props.code"
-      :graphWidth="width"
-      :graphHeight="height"
-    />
-    <button class="graphExternal" @click="openInExternal">
+    <PlotRender :id="props.id" :code="props.code" :graphWidth="width" :graphHeight="height" />
+    <a :href="externalLink" target="_blank" rel="noopener noreferrer" class="graph-external">
       <span class="icon vpi-square-pen edit-link-icon"></span>
       在外部打开
-    </button>
+    </a>
   </div>
 </template>
 <script setup lang="ts">
@@ -23,7 +18,7 @@ import PlotRender from './plot-render.vue'
 import base64 from 'base-64'
 import JSON5 from 'json5'
 import utf8 from 'utf8'
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 const MAX_HEIGHT = 350,
   RATIO = 0.75
@@ -49,23 +44,22 @@ onMounted(() => {
   window.addEventListener('resize', handleResize)
 })
 
-function openInExternal() {
+const externalLink = computed(() => {
   const miniCode = JSON5.stringify(JSON5.parse(decodeURIComponent(props.code)))
   const query = base64.encode(utf8.encode(miniCode)).replace(/=+$/g, '')
-  window.open(site.externalGraphBase + query, '_blank')
-}
+  return site.externalGraphBase + query
+})
 </script>
 
-<style>
+<style lang="scss" scoped>
 .graph {
   width: 100%;
   position: relative;
+  &.no-interact :deep(.zoom-and-drag) {
+    display: none;
+  }
 }
-.graph.noInteract .zoom-and-drag {
-  display: none;
-}
-.graphExternal {
-  color: var(--vp-c-brand);
+.graph-external {
   display: flex;
   align-items: center;
   gap: 0.3em;
@@ -74,19 +68,23 @@ function openInExternal() {
   position: absolute;
   bottom: 25px;
   right: 20px;
+  color: var(--vp-c-brand) !important;
+  text-decoration: none !important;
   border-radius: 3px;
   transition: background-color 0.2s;
-}
-
-.graphExternal:hover {
-  background-color: var(--vp-c-brand-soft);
-}
-.graphExternal:active {
-  filter: brightness(0.6);
-}
-.graphExternal .icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
+  .icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+  }
+  &::after {
+    content: unset !important;
+  }
+  &:hover {
+    background-color: var(--vp-c-brand-soft);
+    &:active {
+      filter: brightness(0.6);
+    }
+  }
 }
 </style>

@@ -32,14 +32,10 @@ const errorFlag = ref(false),
 
 type Size = [number, number]
 
-const X_DOMAIN: Size = [-6, 6]
+const defaultHalfX = 6
 
-function computeScale(width: number, height: number, xScale: Size): Size {
-  const xDiff = xScale[1] - xScale[0]
-  const yDiff = (height * xDiff) / width
-  return [-yDiff / 2, yDiff / 2]
-}
-
+const getMid = (domain: Size): number => (domain[0] + domain[1]) / 2
+const getHalf = (domain: Size): number => (domain[1] - domain[0]) / 2
 function determineDomain(
   width: number,
   height: number,
@@ -50,28 +46,23 @@ function determineDomain(
       xDomain: originalOpt.xAxis.domain,
       yDomain: originalOpt.yAxis.domain,
     }
-  if (originalOpt.xAxis?.domain)
-    return {
-      xDomain: originalOpt.xAxis.domain,
-      yDomain: computeScale(width, height, originalOpt.xAxis.domain),
-    }
-  if (originalOpt.yAxis?.domain)
-    return {
-      xDomain: computeScale(height, width, originalOpt.yAxis.domain),
-      yDomain: originalOpt.yAxis.domain,
-    }
-  if (originalOpt.center) {
-    const [centerX, centerY] = originalOpt.center
-    const xDiff = (X_DOMAIN[1] - X_DOMAIN[0]) / 2
-    const yDiff = (height * xDiff) / width
-    return {
-      xDomain: [centerX - xDiff, centerX + xDiff],
-      yDomain: [centerY - yDiff, centerY + yDiff],
-    }
+  let centerX = 0
+  let centerY = 0
+  let halfX = defaultHalfX
+  let halfY = (halfX * height) / width
+  if (originalOpt.center) [centerX, centerY] = originalOpt.center
+  if (originalOpt.xAxis?.domain) {
+    centerX = getMid(originalOpt.xAxis.domain)
+    halfX = getHalf(originalOpt.xAxis.domain)
+    halfY = (halfX * height) / width
+  } else if (originalOpt.yAxis?.domain) {
+    centerY = getMid(originalOpt.yAxis.domain)
+    halfY = getHalf(originalOpt.yAxis.domain)
+    halfX = (halfY * width) / height
   }
   return {
-    xDomain: X_DOMAIN,
-    yDomain: computeScale(height, width, X_DOMAIN),
+    xDomain: [centerX - halfX, centerX + halfX],
+    yDomain: [centerY - halfY, centerY + halfY],
   }
 }
 
@@ -133,9 +124,9 @@ onMounted(() => {
 .graph-container {
   color: black;
   user-select: none;
-  filter: hue-rotate(25deg) brightness(75%);
+  filter: hue-rotate(30deg) brightness(75%);
   .dark & {
-    filter: invert(100%) hue-rotate(210deg) brightness(133%);
+    filter: hue-rotate(30deg) invert(100%) hue-rotate(180deg) brightness(133%);
     .annotations {
       filter: contrast(30%);
     }
