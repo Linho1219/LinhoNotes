@@ -1,7 +1,6 @@
 import JSON5 from 'json5'
 import type MarkdownIt from 'markdown-it'
 import path from 'node:path'
-import { markmapDir, markmapFilename } from './markmap-assets.ts'
 import { encodeHtmlAttr } from './utils.ts'
 
 interface FileWidgetDescriptor {
@@ -32,7 +31,7 @@ export default function mdPlot(md: MarkdownIt): void {
       return /* html */ `<ClientOnly><Markmap id="markmap-${idx}" code="${encodeHtmlAttr(
         token.content,
       )}" /></ClientOnly>`
-    if (language.match(/^graph\b/)) {
+    if (language.match(/^(?:function-plot|fp|graph)\b/)) {
       try {
         JSON5.parse(token.content)
       } catch (e) {
