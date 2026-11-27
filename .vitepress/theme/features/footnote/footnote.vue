@@ -6,12 +6,12 @@
 
 <script setup lang="ts">
 import emitter from './mitt'
-import { onMounted, onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, useTemplateRef } from 'vue'
 
 const props = defineProps<{
   id: string
 }>()
-const liRef = ref<HTMLDivElement | null>(null)
+const liRef = useTemplateRef('liRef')
 const handleEvent = (id: string) => {
   if (id === props.id && liRef.value !== null)
     emitter.emit('on-return-footnote', liRef.value.innerHTML)

@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import emitter from './mitt'
-import { ref, watch } from 'vue'
+import { ref, useTemplateRef, watch } from 'vue'
 
 const props = defineProps<{
   id: string
@@ -38,7 +38,7 @@ const props = defineProps<{
 const isHover = ref(false),
   isLoaded = ref(false),
   content = ref(''),
-  linkEle = ref<HTMLElement | null>(null),
+  linkEle = useTemplateRef('linkEle'),
   alignRight = ref(false),
   isTouch = ref(false)
 function loadContent(event: PointerEvent) {

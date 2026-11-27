@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineAsyncComponent, onMounted, onUnmounted, ref } from 'vue'
+import { computed, defineAsyncComponent, onMounted, onUnmounted, ref, useTemplateRef } from 'vue'
 
 type FileWidgetKind = 'geogebra' | 'geojson'
 
@@ -27,7 +27,7 @@ const renderers = {
 }
 
 const renderer = computed(() => renderers[props.kind])
-const host = ref<HTMLElement>()
+const host = useTemplateRef('host')
 const visible = ref(false)
 let observer: IntersectionObserver | undefined
 

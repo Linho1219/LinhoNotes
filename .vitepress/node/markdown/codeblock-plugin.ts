@@ -2,6 +2,9 @@ import JSON5 from 'json5'
 import type MarkdownIt from 'markdown-it'
 import path from 'node:path'
 import { encodeHtmlAttr } from './utils.ts'
+import base64 from 'base-64'
+import utf8 from 'utf8'
+import site from '#shared/site.json' with { type: 'json' }
 
 interface FileWidgetDescriptor {
   kind: string
@@ -33,14 +36,17 @@ export default function mdPlot(md: MarkdownIt): void {
       )}" /></ClientOnly>`
     if (language.match(/^(?:function-plot|fp|graph)\b/)) {
       try {
-        JSON5.parse(token.content)
+        const parsed = JSON5.parse(token.content)
+        const minified = JSON5.stringify(parsed)
+        const shareQuery = base64.encode(utf8.encode(minified)).replace(/=+$/g, '')
+        const shareLink = site.externalGraphBase + shareQuery
+        return /* html */ `<ClientOnly><Plot id="funcion-${idx}" json5="${encodeHtmlAttr(
+          minified,
+        )}" externalLink="${encodeHtmlAttr(shareLink)}" /></ClientOnly>`
       } catch (e) {
         if (process.env.NODE_ENV === 'production') throw e
         else console.error('\nGraph parse error:\n  ' + String(e))
       }
-      return /* html */ `<ClientOnly><Plot id="funcion-${idx}" code="${encodeHtmlAttr(
-        token.content,
-      )}" /></ClientOnly>`
     }
     const src = token.meta?.src as string | undefined
     const widget = src && fileWidgets.get(path.extname(src).toLowerCase())

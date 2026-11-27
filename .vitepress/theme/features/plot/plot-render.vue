@@ -14,18 +14,18 @@
 import type { FunctionPlotOptions } from 'function-plot'
 import functionPlot from 'function-plot'
 import JSON5 from 'json5'
-import { ref, onMounted, watchEffect } from 'vue'
+import { onMounted, ref, useTemplateRef, watch } from 'vue'
 
 type FPObject = FunctionPlotOptions & { center?: [number, number]; disableZoom?: boolean }
 
 const props = defineProps<{
   id: string
-  code: string
+  json5: string
   graphWidth: number
   graphHeight: number
 }>()
 
-const plotRef = ref<HTMLDivElement | null>(null)
+const plotRef = useTemplateRef('plotRef')
 const errorFlag = ref(false),
   errorDetails = ref(''),
   disableZoom = ref(false)
@@ -74,56 +74,48 @@ function makeAxis(width: number, height: number, originalOpt: FPObject) {
   }
 }
 
-onMounted(() => {
-  const generateOpt = (
-    originalOpt: FPObject,
-    [width, height]: Size,
-    target: HTMLElement,
-  ): FPObject => ({
-    width,
-    height,
-    ...originalOpt,
-    ...makeAxis(width, height, originalOpt),
-    target,
-  })
-
-  if (plotRef.value) {
-    let originalOpt: FPObject | undefined
-    try {
-      originalOpt = <FPObject | undefined>JSON5.parse(props.code!)
-    } catch (eJSON5) {
-      errorFlag.value = true
-      errorDetails.value = String(eJSON5)
-      return
-    }
-    if (typeof originalOpt !== 'object') {
-      errorFlag.value = true
-      errorDetails.value = `Illegal plot options: ${originalOpt}`
-      return
-    }
-    if (originalOpt.disableZoom) {
-      disableZoom.value = true
-    }
-    watchEffect(() => {
-      if (plotRef.value && props.graphWidth && props.graphHeight) {
-        try {
-          functionPlot(
-            generateOpt(originalOpt, [props.graphWidth, props.graphHeight], plotRef.value),
-          )
-        } catch (e) {
-          errorFlag.value = true
-          errorDetails.value = String(e)
-        }
-      }
-    })
-  }
+const generateOpt = (
+  originalOpt: FPObject,
+  [width, height]: Size,
+  target: HTMLElement,
+): FPObject => ({
+  width,
+  height,
+  ...originalOpt,
+  ...makeAxis(width, height, originalOpt),
+  target,
 })
+
+let originalOpt: FPObject | undefined
+try {
+  originalOpt = JSON5.parse(props.json5) as FPObject
+  if (typeof originalOpt !== 'object') throw new Error(`Illegal plot options: ${originalOpt}`)
+  if (originalOpt.disableZoom) disableZoom.value = true
+} catch (eJSON5) {
+  errorFlag.value = true
+  errorDetails.value = String(eJSON5)
+}
+
+function render() {
+  if (!originalOpt || !plotRef.value || errorFlag.value) return
+  try {
+    functionPlot(generateOpt(originalOpt, [props.graphWidth, props.graphHeight], plotRef.value))
+  } catch (e) {
+    errorFlag.value = true
+    errorDetails.value = String(e)
+  }
+}
+
+onMounted(render)
+watch([plotRef, () => props.graphHeight, () => props.graphWidth], render)
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .graph-container {
   color: black;
   user-select: none;
+  width: fit-content;
+  margin: 0 auto;
   filter: hue-rotate(30deg) brightness(75%);
   .dark & {
     filter: hue-rotate(30deg) invert(100%) hue-rotate(180deg) brightness(133%);
@@ -134,12 +126,10 @@ onMounted(() => {
   .fn-text {
     filter: brightness(60%) saturate(150%);
   }
-
-  &.disable-zoom .zoom-and-drag {
+  &.disable-zoom :deep(.zoom-and-drag) {
     display: none;
   }
 }
-
 .graph-error pre {
   white-space: pre-wrap;
 }

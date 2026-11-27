@@ -21,7 +21,7 @@ import {
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { useData } from 'vitepress'
-import { onMounted, onUnmounted, ref, shallowRef, watch } from 'vue'
+import { onMounted, onUnmounted, ref, shallowRef, useTemplateRef, watch } from 'vue'
 
 const SOURCE_ID = 'file-widget-geojson'
 const MAP_STYLES = { light: MapStyleLight, dark: MapStyleDark }
@@ -40,7 +40,7 @@ const props = defineProps<{
 }>()
 
 const { isDark } = useData()
-const container = ref<HTMLElement>()
+const container = useTemplateRef('container')
 const instance = shallowRef<Map>()
 const status = ref('地图加载中')
 const failed = ref(false)
